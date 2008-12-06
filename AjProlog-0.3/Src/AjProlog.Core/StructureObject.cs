@@ -7,25 +7,26 @@ namespace AjProlog.Core
 {
     public class StructureObject : PrologObject
     {
-	    private PrologObject mFunctor;
-	    private PrologObject[] mParameters;
+	    private PrologObject functor;
+	    private PrologObject[] parameters;
 
 	    public StructureObject(object functor, params object[] parameters)
-            : this(ToPrologObject(functor), parameters)
+            : this(Utilities.ToPrologObject(functor), parameters)
 	    {
 	    }
 
-	    StructureObject(StructureObject st, PrologMachine pm, ArrayList vars, int offset)
+	    public StructureObject(StructureObject st, PrologMachine pm, ArrayList vars, int offset)
 	    {
-		    mFunctor = pm.AdjustVariables(st.Functor, vars, offset);
+		    this.functor = pm.AdjustVariables(st.Functor, vars, offset);
+
 		    if (st.Arity == 0) {
-			    mParameters = null;
+			    this.parameters = null;
 		    } else {
-			    mParameters = new PrologObject[st.Arity];
+			    this.parameters = new PrologObject[st.Arity];
 		    }
-		    int np;
+
 		    for (int np = 0; np <= st.Arity - 1; np++) {
-			    mParameters[np] = pm.AdjustVariables(st.Parameters[np], vars, offset);
+			    this.parameters[np] = pm.AdjustVariables(st.Parameters[np], vars, offset);
 		    }
 	    }
 
@@ -34,15 +35,20 @@ namespace AjProlog.Core
 		    if (functor == null) {
 			    throw new ArgumentNullException("functor");
 		    }
-		    mFunctor = functor;
+
+		    this.functor = functor;
+
 		    if (parameters == null || parameters.Length == 0) {
-			    mParameters = null;
+			    this.parameters = null;
 			    return;
-		    } else {
-			    mParameters = new PrologObject[parameters.Length];
+		    } 
+            else 
+            {
+			    this.parameters = new PrologObject[parameters.Length];
 		    }
+
 		    for (int np = 0; np <= parameters.Length - 1; np++) {
-			    mParameters[np] = ToPrologObject(parameters[np]);
+			    this.parameters[np] = Utilities.ToPrologObject(parameters[np]);
 		    }
 	    }
 
@@ -56,50 +62,59 @@ namespace AjProlog.Core
 
 	    public PrologObject Functor {
 		    get {
-			    return mFunctor;
+			    return this.functor;
 		    }
 	    }
 
 	    public int Arity {
 		    get {
-			    if (mParameters == null) {
+			    if (this.parameters == null) {
 				    return 0;
 			    }
-			    return mParameters.Length;
+			    return this.parameters.Length;
 		    }
 	    }
 
 	    public PrologObject[] Parameters {
 		    get {
-			    return mParameters;
+			    return this.parameters;
 		    }
 	    }
 
 	    public override bool Equals(object obj)
 	    {
 		    PrologObject objMe;
+
 		    objMe = Normalize();
+
 		    if (!(objMe == this)) {
 			    return objMe.Equals(obj);
 		    }
+
 		    if (obj is StructureObject) {
 			    obj = ((StructureObject)(obj)).Normalize();
 		    }
+
 		    if (obj == null || !(obj.GetType().Equals(this.GetType()))) {
 			    return false;
 		    }
+
 		    StructureObject st = ((StructureObject)(obj));
+
 		    if (!(Functor.Equals(st.Functor))) {
 			    return false;
 		    }
+
 		    if (!(Arity == st.Arity)) {
 			    return false;
 		    }
+
 		    for (int k = 0; k <= Arity - 1; k++) {
 			    if (!(Parameters[k].Equals(st.Parameters[k]))) {
 				    return false;
 			    }
 		    }
+
 		    return true;
 	    }
 
@@ -111,7 +126,7 @@ namespace AjProlog.Core
 			    return objMe.GetHashCode();
 		    }
 		    int hc = Functor.GetHashCode() ^ Arity;
-		    foreach (PrologObject p in mParameters) {
+		    foreach (PrologObject p in this.parameters) {
 			    hc = hc ^ p.GetHashCode();
 		    }
 		    return hc;

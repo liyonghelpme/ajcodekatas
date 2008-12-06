@@ -6,21 +6,21 @@ namespace AjProlog.Core
 {
     public class Variable : SimpleObject
     {
-        private int mId;
-        private PrologObject mValue;
-        private PrologMachine mMachine;
+        private int id;
+        private PrologObject value;
+        private PrologMachine machine;
 
         public Variable(int id, PrologMachine mach)
         {
-            mId = id;
-            mMachine = mach;
+            this.id = id;
+            this.machine = mach;
         }
 
         public int Id
         {
             get
             {
-                return mId;
+                return this.id;
             }
         }
 
@@ -29,42 +29,44 @@ namespace AjProlog.Core
             if (obj is Variable)
             {
                 Variable v = ((Variable)(obj));
-                if (v.Id > mId)
+                if (v.Id > id)
                 {
                     v.Bind(this);
                     return;
                 }
             }
-            mValue = obj;
-            mMachine.Bindings.Add(this);
+
+            this.value = obj;
+            this.machine.Bindings.Add(this);
         }
 
         public void Unbind()
         {
-            mValue = null;
+            value = null;
         }
 
         public override PrologObject Dereference()
         {
-            if (mValue == null | mValue == this)
+            if (this.value == null || this.value == this)
             {
                 return this;
             }
-            return mValue.Dereference;
+
+            return value.Dereference();
         }
 
         public override int GetHashCode()
         {
-            return mId.GetHashCode + mMachine.GetHashCode;
+            return this.id.GetHashCode() + this.machine.GetHashCode();
         }
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !(obj.GetType() == this.GetType))
+            if (obj == null || !(obj.GetType().Equals(this.GetType())))
             {
                 return false;
             }
-            return mId == ((Variable)(obj)).mId && mMachine.Equals(((Variable)(obj)).mMachine);
+            return this.id == ((Variable)(obj)).id && machine.Equals(((Variable)(obj)).machine);
         }
 
         public override string ToString()
@@ -73,14 +75,14 @@ namespace AjProlog.Core
             obj = Dereference();
             if (!(obj == this))
             {
-                return obj.ToString;
+                return obj.ToString();
             }
-            return "_" + mId;
+            return "_" + this.id;
         }
 
         public override PrologObject Evaluate(PrologMachine pm)
         {
-            return Dereference();
+            return this.Dereference();
         }
     }
 }

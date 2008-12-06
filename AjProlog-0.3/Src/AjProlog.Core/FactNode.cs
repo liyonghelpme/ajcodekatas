@@ -27,12 +27,13 @@ namespace AjProlog.Core
             {
                 return false;
             }
+
             while (mFactsEnum.MoveNext())
             {
                 PrologObject fact = (PrologObject) mFactsEnum.Current;
                 SaveStatus();
                 fact = Machine.AdjustVariables(fact);
-                if (fact is StructureObject && ((StructureObject)(fact)).Functor == IfPrimitive.GetInstance)
+                if (fact is StructureObject && ((StructureObject)(fact)).Functor.Equals(IfPrimitive.GetInstance()))
                 {
                     StructureObject ifpo;
                     ifpo = ((StructureObject)(fact));

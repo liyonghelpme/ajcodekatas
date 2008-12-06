@@ -7,19 +7,19 @@ namespace AjProlog.Core
 {
     public class FactBase
     {
-        private IList mFacts = new ArrayList();
+        private List<PrologObject> facts = new List<PrologObject>();
 
         public void Add(PrologObject fact)
         {
-            if (!(mFacts.Contains(fact)))
+            if (!(facts.Contains(fact)))
             {
-                mFacts.Add(fact);
+                facts.Add(fact);
             }
         }
 
-        public IList GetFacts(PrologObject po)
+        public List<PrologObject> GetFacts(PrologObject po)
         {
-            return mFacts;
+            return this.facts;
         }
 
         private bool IsPredicate(PrologObject fact, StringObject atom)
@@ -28,47 +28,58 @@ namespace AjProlog.Core
             {
                 return true;
             }
+
             if (!(fact is StructureObject))
             {
                 return false;
             }
+
             StructureObject st = ((StructureObject)(fact));
+
             if (st.Functor.Equals(atom))
             {
                 return true;
             }
-            if (!(st.Functor == IfPrimitive.GetInstance))
+
+            if (!(st.Functor == IfPrimitive.GetInstance()))
             {
                 return false;
             }
-            fact = st.Parameters(0);
+
+            fact = st.Parameters[0];
+
             if (fact.Equals(atom))
             {
                 return true;
             }
+
             if (!(fact is StructureObject))
             {
                 return false;
             }
-            st = ((StructureObject)(fact));
+
+            st = (StructureObject) fact;
+
             if (st.Functor.Equals(atom))
             {
                 return true;
             }
+
             return false;
         }
 
         public IList GetPredicates(StringObject atom)
         {
             ArrayList result = new ArrayList();
-            PrologObject fact;
-            foreach (Fact fact in mFacts)
+
+            foreach (PrologObject fact in this.facts)
             {
                 if (IsPredicate(fact, atom))
                 {
                     result.Add(fact);
                 }
             }
+
             return result;
         }
     }

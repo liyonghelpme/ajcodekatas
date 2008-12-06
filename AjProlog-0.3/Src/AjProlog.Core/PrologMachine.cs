@@ -8,29 +8,29 @@ namespace AjProlog.Core
 {
     public class PrologMachine
     {
-        private FactBase mFacts = new FactBase();
-        private IList mVariables = new ArrayList();
-        private IList mBindings = new ArrayList();
-        private IList mPendings = new ArrayList();
-        private IList mNodes = new ArrayList();
-        private IList mQueryVariables = new ArrayList();
-        private int mLevel;
-        private bool mTrace;
-        private TextReader mInput = Console.In;
-        private TextWriter mOutput = Console.Out;
-        private bool mInteractive;
-        private Node mNode;
-        private PrologMachineAction mAction;
+        private FactBase facts = new FactBase();
+        private IList variables = new ArrayList();
+        private IList bindings = new ArrayList();
+        private IList pendings = new ArrayList();
+        private IList nodes = new ArrayList();
+        private IList queryVariables = new ArrayList();
+        private int level;
+        private bool trace;
+        private TextReader input = Console.In;
+        private TextWriter output = Console.Out;
+        private bool interactive;
+        private Node node;
+        private PrologMachineAction action;
 
         public bool Interactive
         {
             get
             {
-                return mInteractive;
+                return interactive;
             }
             set
             {
-                mInteractive = value;
+                interactive = value;
             }
         }
 
@@ -38,11 +38,11 @@ namespace AjProlog.Core
         {
             get
             {
-                return mTrace;
+                return trace;
             }
             set
             {
-                mTrace = true;
+                trace = true;
             }
         }
 
@@ -50,7 +50,7 @@ namespace AjProlog.Core
         {
             get
             {
-                return mInput;
+                return input;
             }
         }
 
@@ -58,7 +58,7 @@ namespace AjProlog.Core
         {
             get
             {
-                return mOutput;
+                return output;
             }
         }
 
@@ -66,11 +66,11 @@ namespace AjProlog.Core
         {
             get
             {
-                return mLevel;
+                return level;
             }
             set
             {
-                mLevel = value;
+                level = value;
             }
         }
 
@@ -78,17 +78,17 @@ namespace AjProlog.Core
         {
             get
             {
-                return mVariables.Count;
+                return variables.Count;
             }
             set
             {
-                while (mVariables.Count > value)
+                while (variables.Count > value)
                 {
-                    mVariables.RemoveAt(mVariables.Count - 1);
+                    variables.RemoveAt(variables.Count - 1);
                 }
-                while (mVariables.Count < value)
+                while (variables.Count < value)
                 {
-                    mVariables.Add(new Variable(mVariables.Count, this));
+                    variables.Add(new Variable(variables.Count, this));
                 }
             }
         }
@@ -97,16 +97,16 @@ namespace AjProlog.Core
         {
             get
             {
-                return mBindings.Count;
+                return bindings.Count;
             }
             set
             {
                 Variable v;
-                while (mBindings.Count > value)
+                while (bindings.Count > value)
                 {
-                    v = (Variable) mBindings[mBindings.Count - 1];
+                    v = (Variable) bindings[bindings.Count - 1];
                     v.Unbind();
-                    mBindings.RemoveAt(mBindings.Count - 1);
+                    bindings.RemoveAt(bindings.Count - 1);
                 }
             }
         }
@@ -115,15 +115,15 @@ namespace AjProlog.Core
         {
             get
             {
-                return mPendings.Count;
+                return pendings.Count;
             }
             set
             {
-                while (mPendings.Count > value)
+                while (pendings.Count > value)
                 {
-                    mPendings.RemoveAt(mPendings.Count - 1);
+                    pendings.RemoveAt(pendings.Count - 1);
                 }
-                if (mPendings.Count < value)
+                if (pendings.Count < value)
                 {
                     throw new Exception("Pocos Pendientes");
                 }
@@ -134,18 +134,18 @@ namespace AjProlog.Core
         {
             get
             {
-                return mBindings;
+                return bindings;
             }
         }
         public Node PopNode()
         {
-            if (mNodes.Count == 0)
+            if (nodes.Count == 0)
             {
                 return null;
             }
             Node node;
-            node = (Node) mNodes[mNodes.Count - 1];
-            mNodes.RemoveAt(mNodes.Count - 1);
+            node = (Node) nodes[nodes.Count - 1];
+            nodes.RemoveAt(nodes.Count - 1);
             return node;
         }
 
@@ -153,7 +153,7 @@ namespace AjProlog.Core
         {
             if (!(node == null && node.IsPushable()))
             {
-                mNodes.Add(node);
+                nodes.Add(node);
             }
         }
 
@@ -161,7 +161,7 @@ namespace AjProlog.Core
         {
             if (!(po == null))
             {
-                mPendings.Add(po.MakeNode(this));
+                pendings.Add(po.MakeNode(this));
             }
         }
 
@@ -169,47 +169,47 @@ namespace AjProlog.Core
         {
             if (!(node == null))
             {
-                mPendings.Add(node);
+                pendings.Add(node);
             }
         }
 
         public Node PopPending()
         {
-            if (mPendings.Count == 0)
+            if (pendings.Count == 0)
             {
                 return null;
             }
             Node n;
-            n = (Node) mPendings[mPendings.Count - 1];
-            mPendings.RemoveAt(mPendings.Count - 1);
+            n = (Node) pendings[pendings.Count - 1];
+            pendings.RemoveAt(pendings.Count - 1);
             return n;
         }
 
         public void Assertz(PrologObject po)
         {
-            mFacts.Add(po);
+            facts.Add(po);
         }
 
         public IList GetFacts(PrologObject po)
         {
-            return mFacts.GetFacts(po);
+            return facts.GetFacts(po);
         }
 
         public IList GetPredicates(StringObject atom)
         {
-            return mFacts.GetPredicates(atom);
+            return facts.GetPredicates(atom);
         }
 
         bool DoSolution()
         {
-            if (mQueryVariables.Count == 0)
+            if (queryVariables.Count == 0)
             {
                 Console.WriteLine("yes");
                 return true;
             }
-            for (int k = 0; k <= mQueryVariables.Count - 1; k++)
+            for (int k = 0; k <= queryVariables.Count - 1; k++)
             {
-                Console.WriteLine(mQueryVariables[k].ToString() + ": " + GetVariable(k).Dereference().ToString());
+                Console.WriteLine(queryVariables[k].ToString() + ": " + GetVariable(k).Dereference().ToString());
             }
             while (Console.In.Peek() > 0)
             {
@@ -230,37 +230,37 @@ namespace AjProlog.Core
 
         void ExecuteTrace()
         {
-            Console.WriteLine("Nivel " + Level);
+            Console.WriteLine("Level " + Level);
             Console.WriteLine("Variables");
             for (int n = 0; n <= NVariables - 1; n++)
             {
                 Console.WriteLine("n: " + GetVariable(n).Dereference().ToString());
             }
-            Console.WriteLine("Pendientes");
-            for (int n = 0; n <= mPendings.Count - 1; n++)
+            Console.WriteLine("Pending");
+            for (int n = 0; n <= pendings.Count - 1; n++)
             {
-                Console.WriteLine(((Node)(mPendings[n])).Object.ToString());
+                Console.WriteLine(((Node)(pendings[n])).Object.ToString());
             }
-            Console.WriteLine("Nodos");
-            for (int n = 0; n <= mNodes.Count - 1; n++)
+            Console.WriteLine("Nodes");
+            for (int n = 0; n <= nodes.Count - 1; n++)
             {
-                Console.WriteLine(((Node)(mNodes[n])).Object.ToString());
+                Console.WriteLine(((Node)(nodes[n])).Object.ToString());
             }
         }
 
         public bool Resolve(PrologObject po)
         {
-            mVariables.Clear();
-            mBindings.Clear();
-            mPendings.Clear();
-            mNodes.Clear();
-            mQueryVariables.Clear();
-            mLevel = 0;
+            variables.Clear();
+            bindings.Clear();
+            pendings.Clear();
+            nodes.Clear();
+            queryVariables.Clear();
+            level = 0;
             ArrayList vars = new ArrayList();
-            po = AdjustVariables(po, vars, mVariables.Count);
+            po = AdjustVariables(po, vars, variables.Count);
             if (Interactive)
             {
-                mQueryVariables = vars;
+                queryVariables = vars;
             }
             PushPending(po);
             Node node;
@@ -318,16 +318,51 @@ namespace AjProlog.Core
         {
             if (n < 0)
             {
-                throw new ArgumentException("Nro. de Variable incorrecto " + n);
+                throw new ArgumentException("Incorrect number of variables: " + n);
             }
-            if (n >= mVariables.Count)
+            if (n >= variables.Count)
             {
-                for (int k = mVariables.Count; k <= n; k++)
+                for (int k = variables.Count; k <= n; k++)
                 {
-                    mVariables.Add(new Variable(k, this));
+                    variables.Add(new Variable(k, this));
                 }
             }
-            return (Variable) mVariables[n];
+            return (Variable) variables[n];
+        }
+
+        public PrologObject AdjustVariables(PrologObject po, ArrayList vars, int offset)
+        {
+            if (po is StructureObject)
+            {
+                po = ((StructureObject)po).Normalize();
+            }
+
+            if (po is StringObject && ((StringObject)po).IsVariableName())
+            {
+                int off;
+
+                off = vars.IndexOf(po);
+
+                if (off >= 0)
+                {
+                    return GetVariable(off + offset);
+                }
+
+                vars.Add(po);
+
+                po = GetVariable(offset + vars.Count - 1);
+            }
+            else if (po is StructureObject) 
+            {
+                po = new StructureObject((StructureObject) po, this, vars, offset);
+            }
+
+            return po;
+        }
+
+        public PrologObject AdjustVariables(PrologObject po)
+        {
+            return AdjustVariables(po, new ArrayList(), variables.Count);
         }
 
         public bool Unify(PrologObject po1, PrologObject po2)
@@ -374,17 +409,17 @@ namespace AjProlog.Core
 
         public void NextAction(Node node, PrologMachineAction action)
         {
-            mNode = node;
-            mAction = action;
+            this.node = node;
+            this.action = action;
         }
 
         public FactNode GetCutNode()
         {
-            for (int k = mNodes.Count - 1; k >= 0; k--)
+            for (int k = nodes.Count - 1; k >= 0; k--)
             {
-                if (mNodes[k] is FactNode)
+                if (nodes[k] is FactNode)
                 {
-                    return ((FactNode)(mNodes[k]));
+                    return ((FactNode)(nodes[k]));
                 }
             }
             return null;
@@ -393,15 +428,15 @@ namespace AjProlog.Core
         public void CutToNode(FactNode node)
         {
             Node n;
-            while (mNodes.Count > 0)
+            while (nodes.Count > 0)
             {
-                n = (Node) mNodes[mNodes.Count - 1];
+                n = (Node) nodes[nodes.Count - 1];
                 if (n == node)
                 {
                     ((FactNode)(node)).DoCut();
                     return;
                 }
-                mNodes.RemoveAt(mNodes.Count - 1);
+                nodes.RemoveAt(nodes.Count - 1);
             }
         }
 

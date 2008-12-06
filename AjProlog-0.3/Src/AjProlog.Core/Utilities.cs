@@ -4,23 +4,27 @@ using System.Text;
 
 namespace AjProlog.Core
 {
-    class Utilities
+    public class Utilities
     {
 
-	    static PrologObject[] Evaluate(PrologObject[] pars)
+	    public static PrologObject[] Evaluate(PrologObject[] pars)
 	    {
 		    if (pars == null) {
 			    return null;
 		    }
+
 		    if (pars.Length == 0) {
 			    return null;
 		    }
+
 		    PrologObject[] result;
+
 		    result = new PrologObject[pars.Length];
-		    int np;
+
 		    for (int np = 0; np <= pars.Length - 1; np++) {
 			    result[np] = pars[np].Dereference();
 		    }
+
 		    return result;
 	    }
 
@@ -29,67 +33,82 @@ namespace AjProlog.Core
 		    if (name == null || name.Length == 0) {
 			    return false;
 		    }
-		    if (char.IsUpper(name.Chars(0))) {
+
+		    if (char.IsUpper(name[0])) {
 			    return true;
 		    }
-		    if (name.Chars(0) == '_') {
+
+		    if (name[0] == '_') {
 			    return true;
 		    }
+
 		    return false;
 	    }
 
-	    static PrologObject ToPrologObject(object obj)
+	    public static PrologObject ToPrologObject(object obj)
 	    {
 		    if (obj is string) {
 			    string txt = ((string)(obj));
+
 			    PrologObject po;
-			    po = Primitives.GetPrimitive(obj);
+
+			    po = Primitives.GetPrimitive(txt);
+
 			    if (po == null) {
-				    return new StringObject(obj);
+				    return new StringObject(txt);
 			    }
+
 			    return po;
 		    }
+
 		    if (obj is int) {
-			    return new IntegerObject(((int)(obj)));
+			    return new IntegerObject((int) obj);
 		    }
+
 		    if (obj is PrologObject) {
-			    return ((PrologObject)(obj));
+			    return (PrologObject)(obj);
 		    }
+
 		    if (obj == null) {
 			    return null;
 		    }
-		    throw new ArgumentException("Objecto ilegal " + obj.ToString);
+
+		    throw new ArgumentException("Illegal object: " + obj.ToString());
 	    }
 
-	    static bool IsAtom(PrologObject po)
+	    public static bool IsAtom(PrologObject po)
 	    {
 		    if (po is StringObject) {
 			    return true;
 		    }
+
 		    return false;
 	    }
 
-	    static bool IsInteger(PrologObject po)
+	    public static bool IsInteger(PrologObject po)
 	    {
 		    if (po is IntegerObject) {
 			    return true;
 		    }
+
 		    return false;
 	    }
 
-	    static bool IsAtomic(PrologObject po)
+	    public static bool IsAtomic(PrologObject po)
 	    {
 		    if (IsAtom(po) || IsInteger(po)) {
 			    return true;
 		    }
+
 		    return false;
 	    }
 
-	    static bool IsVariable(PrologObject po)
+	    public static bool IsVariable(PrologObject po)
 	    {
 		    if (po is Variable) {
 			    return true;
 		    }
+
 		    return false;
 	    }
     }

@@ -23,17 +23,17 @@ namespace AjProlog.Core
 	    {
 		    if (po is StructureObject && ((StructureObject)(po)).Functor == this) {
 			    StructureObject ast = ((StructureObject)(po));
-			    Add(pm, ast.Parameters(1));
-			    Add(pm, ast.Parameters(0));
+			    Add(pm, ast.Parameters[1]);
+			    Add(pm, ast.Parameters[0]);
 		    } else {
 			    pm.PushPending(po);
 		    }
 	    }
 
-	    public bool Execute(PrologMachine pm, PrologObject[] pars)
+	    public override bool Execute(PrologMachine pm, params PrologObject[] pars)
 	    {
 		    if (pars == null || pars.Length != 2) {
-			    throw new ArgumentException("And debe recibir dos parámetros");
+			    throw new ArgumentException("AndPrimitive expects two arguments");
 		    }
 		    Add(pm, pars[1]);
 		    Add(pm, pars[0]);

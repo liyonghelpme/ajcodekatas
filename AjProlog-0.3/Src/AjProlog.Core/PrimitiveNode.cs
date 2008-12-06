@@ -6,26 +6,26 @@ namespace AjProlog.Core
 {
 public class PrimitiveNode : Node
 {
-	private Primitive mPrimitive;
-	private PrologObject[] mParameters;
+	private Primitive primitive;
+	private PrologObject[] parameters;
 
 	public PrimitiveNode(PrologMachine pm, StructureObject st)
         : base(pm, st)
 	{
-		mPrimitive = ((Primitive)(st.Functor));
-		mParameters = st.Parameters;
+		primitive = ((Primitive)(st.Functor));
+		parameters = st.Parameters;
 	}
 
 	public PrimitiveNode(PrologMachine pm, Primitive obj)
         : base(pm, obj)
 	{
-		mPrimitive = obj;
-		mParameters = null;
+		primitive = obj;
+		parameters = null;
 	}
 
 	public override bool ExecuteCall()
 	{
-		if (mPrimitive.Execute(Machine, Evaluate(mParameters))) {
+		if (primitive.Execute(Machine, Utilities.Evaluate(parameters))) {
 			Machine.PushNode(this);
 			return true;
 		}

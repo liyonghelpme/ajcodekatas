@@ -16,7 +16,7 @@ namespace AjProlog.Core
 		    return new PrimitiveNode(pm, this);
 	    }
 
-	    public virtual bool Execute(PrologMachine pm, PrologObject[][] parameters)
+	    public virtual bool Execute(PrologMachine pm, params PrologObject[] parameters)
 	    {
 		    return true;
 	    }
