@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjGa", "AjGa\AjGa.csproj", "{2DFCC706-09D1-4190-8A98-3AB8F6F5EFE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjGa.Tests", "AjGa.Tests\AjGa.Tests.csproj", "{9D86670B-4306-492D-A33F-335EBF9C18DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0EAAB289-2802-4168-AE37-A17FAF9137D7}"
+	ProjectSection(SolutionItems) = preProject
+		AjGa.vsmdi = AjGa.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjGa.Tsp", "AjGa.Tsp\AjGa.Tsp.csproj", "{222CD841-8213-4735-B64E-2CEF10441106}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = AjGa.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DFCC706-09D1-4190-8A98-3AB8F6F5EFE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DFCC706-09D1-4190-8A98-3AB8F6F5EFE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DFCC706-09D1-4190-8A98-3AB8F6F5EFE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DFCC706-09D1-4190-8A98-3AB8F6F5EFE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D86670B-4306-492D-A33F-335EBF9C18DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D86670B-4306-492D-A33F-335EBF9C18DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D86670B-4306-492D-A33F-335EBF9C18DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D86670B-4306-492D-A33F-335EBF9C18DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222CD841-8213-4735-B64E-2CEF10441106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222CD841-8213-4735-B64E-2CEF10441106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222CD841-8213-4735-B64E-2CEF10441106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222CD841-8213-4735-B64E-2CEF10441106}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
