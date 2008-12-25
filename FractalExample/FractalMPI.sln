@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fractal", "Fractal\Fractal.csproj", "{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fractal.MPI", "Fractal.MPI\Fractal.MPI.csproj", "{E8910632-D05E-49FB-8A82-FC8C473D664C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9770F99D-C569-49DA-BCE4-F9BDF6CE186F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8910632-D05E-49FB-8A82-FC8C473D664C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8910632-D05E-49FB-8A82-FC8C473D664C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8910632-D05E-49FB-8A82-FC8C473D664C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8910632-D05E-49FB-8A82-FC8C473D664C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

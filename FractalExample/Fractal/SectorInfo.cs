@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Fractal
 {
+    [Serializable]
     public class SectorInfo
     {
         public double RealMinimum { get; set; }

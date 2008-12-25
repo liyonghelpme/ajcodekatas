@@ -1,3 +1,8 @@
 
 2008-12-17
 	Initial version
+
+2008-12-25
+	Console version
+	GUI reading file version
+	MPI version
