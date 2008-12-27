@@ -4,3 +4,8 @@
 	AjGa Genetic Algorithms base with templates
 	AjGa.Tsp Traveling Salemen Problem base
 	AjGa.Tests Test for both projects
+
+2008-12-27
+	GradientMutator in TSP
+	New AjGa.Tsp.Gui WinForm application
+		to test Tsp

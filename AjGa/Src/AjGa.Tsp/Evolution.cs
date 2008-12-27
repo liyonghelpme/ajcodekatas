@@ -14,6 +14,11 @@ namespace AjGa.Tsp
         {
         }
 
+        public Evolution(Evaluator evaluator, List<IGenomaFactory<int, int>> operators)
+            : base(evaluator, operators)
+        {
+        }
+
         protected override IPopulation<int, int> CreateNewPopulation()
         {
             return new Population();

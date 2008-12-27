@@ -104,6 +104,30 @@ namespace AjGa.Tests
             Assert.IsNotNull(newpopulation);
             Assert.AreEqual(100, newpopulation.Genomas.Count);
         }
+
+        [TestMethod]
+        public void ShouldRunGenerationWithMutators()
+        {
+            List<Position> positions = new List<Position>();
+            positions.Add(new Position(0, 0));
+            positions.Add(new Position(1, 1));
+            positions.Add(new Position(2, 2));
+
+            Population population = new Population(100, positions.Count);
+            List<IGenomaFactory<int, int>> operators = new List<IGenomaFactory<int, int>>();
+
+            for (int k = 0; k < 50; k++)
+            {
+                operators.Add(new Mutator());
+            }
+
+            Evolution evolution = new Evolution(new Evaluator(positions), operators);
+
+            Population newpopulation = (Population)evolution.RunGeneration(population);
+
+            Assert.IsNotNull(newpopulation);
+            Assert.AreEqual(100, newpopulation.Genomas.Count);
+        }
     }
 }
 

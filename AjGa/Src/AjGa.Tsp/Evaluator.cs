@@ -27,7 +27,7 @@ namespace AjGa.Tsp
                     position = positions[p];
                 else
                 {
-                    value -= (positions[p].X - position.X) * (positions[p].X - position.X) + (positions[p].Y - position.Y) * (positions[p].Y - position.Y);
+                    value += (positions[p].X - position.X) * (positions[p].X - position.X) + (positions[p].Y - position.Y) * (positions[p].Y - position.Y);
                     position = positions[p];        
                 }
             }
