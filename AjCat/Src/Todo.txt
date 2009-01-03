@@ -1,0 +1,11 @@
+
+Miscellaneous
+Remove PushToken from Parser (is it needed?)
+
+Level 0
+Type inference
+Type checking
+
+Level 1
+Real
+String
