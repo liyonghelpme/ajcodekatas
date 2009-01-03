@@ -4,8 +4,12 @@ Initial Project in ajcodekatas
 Parser and tests
 Integer Expressions and tests
 Machine with Stack and tests
-
 Quotation Expression and tests
 List Expression and tests
 Pop, Dup, Swap Expression and tests
+
+Cons, Uncons, Empty Expressions and tests
+If, Not, And, Or, True, False, Eq Expressions and tests
+Papply, Apply, Compose, Quote, Dip Expressions and tests
+Dec, Inc, Mod Expressions and tests
 

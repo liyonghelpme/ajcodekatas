@@ -6,15 +6,15 @@
     using System.Linq;
     using System.Text;
 
-    public class ListExpression : Expression
+    public class ApplyExpression : Expression
     {
-        private static ListExpression instance = new ListExpression();
+        private static ApplyExpression instance = new ApplyExpression();
 
-        private ListExpression()
+        private ApplyExpression()
         {
         }
 
-        public static ListExpression Instance
+        public static ApplyExpression Instance
         {
             get
             {
@@ -27,16 +27,7 @@
             Expression expression = (Expression)machine.Pop();
             IList result = new ArrayList();
 
-            Machine newmachine = new Machine();
-
-            expression.Evaluate(newmachine);
-
-            while (newmachine.StackCount > 0)
-            {
-                result.Insert(0, newmachine.Pop());
-            }
-
-            machine.Push(result);
+            expression.Evaluate(machine);
         }
     }
 }
