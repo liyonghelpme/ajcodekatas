@@ -46,9 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compiler\EndOfInputException.cs" />
+    <Compile Include="Compiler\Expressions.cs" />
     <Compile Include="Compiler\Parser.cs" />
     <Compile Include="Compiler\Token.cs" />
     <Compile Include="Compiler\TokenType.cs" />
+    <Compile Include="Expressions\CompositeExpression.cs" />
+    <Compile Include="Expressions\SwapExpression.cs" />
+    <Compile Include="Expressions\DupExpression.cs" />
     <Compile Include="Expressions\IntegerDivideOperation.cs" />
     <Compile Include="Expressions\IntegerMultiplyOperation.cs" />
     <Compile Include="Expressions\IntegerSubtractOperation.cs" />
@@ -56,6 +60,9 @@
     <Compile Include="Expressions\IntegerAddOperation.cs" />
     <Compile Include="Expressions\IntegerBinaryOperation.cs" />
     <Compile Include="Expressions\IntegerExpression.cs" />
+    <Compile Include="Expressions\ListExpression.cs" />
+    <Compile Include="Expressions\PopExpression.cs" />
+    <Compile Include="Expressions\QuotationExpression.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

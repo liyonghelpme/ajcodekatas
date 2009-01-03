@@ -5,4 +5,7 @@ Parser and tests
 Integer Expressions and tests
 Machine with Stack and tests
 
+Quotation Expression and tests
+List Expression and tests
+Pop, Dup, Swap Expression and tests
 
