@@ -1,5 +1,8 @@
 
 2009-01-03
-	Initial Project in ajcodekatas
-	Parser and tests
+Initial Project in ajcodekatas
+Parser and tests
+Integer Expressions and tests
+Machine with Stack and tests
+
 

@@ -49,6 +49,14 @@
     <Compile Include="Compiler\Parser.cs" />
     <Compile Include="Compiler\Token.cs" />
     <Compile Include="Compiler\TokenType.cs" />
+    <Compile Include="Expressions\IntegerDivideOperation.cs" />
+    <Compile Include="Expressions\IntegerMultiplyOperation.cs" />
+    <Compile Include="Expressions\IntegerSubtractOperation.cs" />
+    <Compile Include="Expressions\Expression.cs" />
+    <Compile Include="Expressions\IntegerAddOperation.cs" />
+    <Compile Include="Expressions\IntegerBinaryOperation.cs" />
+    <Compile Include="Expressions\IntegerExpression.cs" />
+    <Compile Include="Machine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
