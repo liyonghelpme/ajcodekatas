@@ -19,8 +19,9 @@
             expressionsByName["div_int"] = IntegerDivideOperation.Instance;
             expressionsByName["inc"] = IntegerIncrementOperation.Instance;
             expressionsByName["dec"] = IntegerDecrementOperation.Instance;
-            expressionsByName["mod"] = IntegerModuleOperation.Instance;
+            expressionsByName["mod_int"] = IntegerModuleOperation.Instance;
 
+            expressionsByName["id"] = IdExpression.Instance;
             expressionsByName["dup"] = DupExpression.Instance;
             expressionsByName["swap"] = SwapExpression.Instance;
             expressionsByName["pop"] = PopExpression.Instance;
@@ -33,14 +34,22 @@
             expressionsByName["empty"] = EmptyExpression.Instance;
 
             expressionsByName["if"] = IfExpression.Instance;
+            expressionsByName["while"] = WhileExpression.Instance;
+
             expressionsByName["or"] = OrExpression.Instance;
             expressionsByName["and"] = AndExpression.Instance;
             expressionsByName["true"] = new TrueExpression();
             expressionsByName["false"] = new FalseExpression();
             expressionsByName["not"] = NotExpression.Instance;
             expressionsByName["eq"] = EqualsExpression.Instance;
+            expressionsByName["lt_int"] = IntegerLessThanExpression.Instance;
+            expressionsByName["lteq_int"] = IntegerLessEqualThanExpression.Instance;
+            expressionsByName["gt_int"] = IntegerGreaterThanExpression.Instance;
+            expressionsByName["gteq_int"] = IntegerGreaterEqualThanExpression.Instance;
 
+            expressionsByName["#load"] = LoadExpression.Instance;
             expressionsByName["apply"] = ApplyExpression.Instance;
+            expressionsByName["eval"] = EvalExpression.Instance;
             expressionsByName["papply"] = PartialApplyExpression.Instance;
             expressionsByName["compose"] = ComposeExpression.Instance;
             expressionsByName["quote"] = QuoteExpression.Instance;

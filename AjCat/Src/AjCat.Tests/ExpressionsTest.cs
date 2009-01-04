@@ -24,7 +24,11 @@
             types["div_int"] = typeof(IntegerDivideOperation);
             types["inc"] = typeof(IntegerIncrementOperation);
             types["dec"] = typeof(IntegerDecrementOperation);
-            types["mod"] = typeof(IntegerModuleOperation);
+            types["mod_int"] = typeof(IntegerModuleOperation);
+            types["lt_int"] = typeof(IntegerLessThanExpression);
+            types["lteq_int"] = typeof(IntegerLessEqualThanExpression);
+            types["gt_int"] = typeof(IntegerGreaterThanExpression);
+            types["gteq_int"] = typeof(IntegerGreaterEqualThanExpression);
 
             this.GetTypes(types);
         }
@@ -38,6 +42,7 @@
             types["pop"] = typeof(PopExpression);
             types["dup"] = typeof(DupExpression);
             types["swap"] = typeof(SwapExpression);
+            types["id"] = typeof(IdExpression);
 
             this.GetTypes(types);
         }
@@ -57,11 +62,21 @@
         }
 
         [TestMethod]
-        public void RetrievesBooleanExpressionsByName()
+        public void RetrievesControlExpressionsByName()
         {
             Dictionary<string, Type> types = new Dictionary<string, Type>();
 
             types["if"] = typeof(IfExpression);
+            types["while"] = typeof(WhileExpression);
+
+            this.GetTypes(types);
+        }
+
+        [TestMethod]
+        public void RetrievesBooleanExpressionsByName()
+        {
+            Dictionary<string, Type> types = new Dictionary<string, Type>();
+
             types["not"] = typeof(NotExpression);
             types["and"] = typeof(AndExpression);
             types["or"] = typeof(OrExpression);
@@ -77,6 +92,8 @@
         {
             Dictionary<string, Type> types = new Dictionary<string, Type>();
 
+            types["#load"] = typeof(LoadExpression);
+            types["eval"] = typeof(EvalExpression);
             types["papply"] = typeof(PartialApplyExpression);
             types["apply"] = typeof(ApplyExpression);
             types["compose"] = typeof(ComposeExpression);

@@ -142,12 +142,19 @@
         private Expression CompileDefineExpression()
         {
             Token nametoken = this.CompileName();
+            CompositeExpression composite = new CompositeExpression(new List<Expression>());
+            Expressions.DefineExpression(nametoken.Value, composite);
 
             this.CompileToken("{");
 
             List<Expression> list = this.CompileList();
 
             this.CompileToken("}");
+
+            foreach (Expression expr in list)
+            {
+                composite.Expressions.Add(expr);
+            }
 
             return new DefineExpression(nametoken.Value, list);
         }

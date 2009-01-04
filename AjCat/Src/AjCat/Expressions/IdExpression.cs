@@ -5,15 +5,15 @@
     using System.Linq;
     using System.Text;
 
-    public class IntegerModuleOperation : IntegerBinaryOperation
+    public class IdExpression : Expression
     {
-        private static IntegerModuleOperation instance = new IntegerModuleOperation();
+        private static IdExpression instance = new IdExpression();
 
-        private IntegerModuleOperation()
+        private IdExpression()
         {
         }
 
-        public static IntegerModuleOperation Instance
+        public static IdExpression Instance
         {
             get
             {
@@ -21,14 +21,15 @@
             }
         }
 
-        public override int Apply(int op1, int op2)
+        public override void Evaluate(Machine machine)
         {
-            return op1 % op2;
+            // TODO improve
+            machine.Push(machine.Pop());
         }
 
         public override string ToString()
         {
-            return "mod_int";
+            return "id";
         }
     }
 }

@@ -62,6 +62,14 @@
     <Compile Include="Expressions\ApplyExpression.cs" />
     <Compile Include="Expressions\ComposeExpression.cs" />
     <Compile Include="Expressions\ClearExpression.cs" />
+    <Compile Include="Expressions\IntegerGreaterEqualThanExpression.cs" />
+    <Compile Include="Expressions\IntegerGreaterThanExpression.cs" />
+    <Compile Include="Expressions\IntegerLessEqualThanExpression.cs" />
+    <Compile Include="Expressions\IntegerLessThanExpression.cs" />
+    <Compile Include="Expressions\LoadExpression.cs" />
+    <Compile Include="Expressions\IdExpression.cs" />
+    <Compile Include="Expressions\WhileExpression.cs" />
+    <Compile Include="Expressions\EvalExpression.cs" />
     <Compile Include="Expressions\DefineExpression.cs" />
     <Compile Include="Expressions\StringExpression.cs" />
     <Compile Include="Expressions\NilExpression.cs" />

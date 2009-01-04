@@ -46,7 +46,8 @@
 
         public override void Evaluate(Machine machine)
         {
-            AjCat.Compiler.Expressions.DefineExpression(this.name, new CompositeExpression(this.expressions));
+            // TODO Compiler never push a DefineExpression
+            //AjCat.Compiler.Expressions.DefineExpression(this.name, new CompositeExpression(this.expressions));
         }
 
         public override string ToString()

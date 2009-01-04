@@ -22,3 +22,12 @@ ToString in Expressions
 String parsing, expression and compiling
 Clear
 Define
+
+Eval
+While
+Id
+Load
+Lt_int
+Lteq_int
+Gt_int
+Gteq_int

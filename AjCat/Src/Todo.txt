@@ -5,10 +5,13 @@ Refactor Expressions (static class and method -> dynamic)
 Level 0
 Type inference
 Type checking
-define
-while
+Load file at start
+now
 foreach
 for_each
+#save
+fact example with recursion in define
+print of a list in Console app
 
 Level 1
 Real

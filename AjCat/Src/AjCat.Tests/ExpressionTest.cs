@@ -838,5 +838,221 @@
             Assert.AreEqual(1, machine.StackCount);
             Assert.AreEqual(6, machine.Pop());
         }
+
+        [TestMethod]
+        public void GetAndEvaluateEvalExpression()
+        {
+            EvalExpression expression = EvalExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            IList list = new ArrayList();
+            list.Add(1);
+            list.Add(2);
+
+            machine.Push(list);
+            machine.Push("dup add_int add_int");
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsInstanceOfType(machine.Top(), typeof(IList));
+
+            IList result = (IList)machine.Pop();
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(5, result[0]);
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateWhileExpression()
+        {
+            WhileExpression expression = WhileExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            List<Expression> listcond = new List<Expression>();
+
+            listcond.Add(DupExpression.Instance);
+            listcond.Add(new IntegerExpression(0));
+            listcond.Add(EqualsExpression.Instance);
+            listcond.Add(NotExpression.Instance);
+
+            List<Expression> listblock = new List<Expression>();
+
+            listblock.Add(IntegerDecrementOperation.Instance);
+
+            CompositeExpression cond = new CompositeExpression(listcond);
+            CompositeExpression block = new CompositeExpression(listblock);
+
+            machine.Push(10);
+            machine.Push(block);
+            machine.Push(cond);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsInstanceOfType(machine.Top(), typeof(int));
+            Assert.AreEqual(0, machine.Pop());
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateIdExpression()
+        {
+            IdExpression expression = IdExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(1);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.AreEqual(1, machine.Pop());
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"LoadTest.ajcat")]
+        public void GetAndEvaluateLoadExpression()
+        {
+            LoadExpression expression = LoadExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push("LoadTest.ajcat");
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.AreEqual(6, machine.Pop());
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateIntegerLessThanExpression()
+        {
+            IntegerLessThanExpression expression = IntegerLessThanExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(1);
+            machine.Push(2);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsTrue((bool)machine.Pop());
+
+            machine.Push(2);
+            machine.Push(2);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsFalse((bool)machine.Pop());
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateIntegerLessEqualThanExpression()
+        {
+            IntegerLessEqualThanExpression expression = IntegerLessEqualThanExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(1);
+            machine.Push(2);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsTrue((bool)machine.Pop());
+
+            machine.Push(2);
+            machine.Push(2);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsTrue((bool)machine.Pop());
+
+            machine.Push(3);
+            machine.Push(2);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsFalse((bool)machine.Pop());
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateIntegerGreaterThanExpression()
+        {
+            IntegerGreaterThanExpression expression = IntegerGreaterThanExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(2);
+            machine.Push(1);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsTrue((bool)machine.Pop());
+
+            machine.Push(2);
+            machine.Push(2);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsFalse((bool)machine.Pop());
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateIntegerGreaterEqualThanExpression()
+        {
+            IntegerGreaterEqualThanExpression expression = IntegerGreaterEqualThanExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(2);
+            machine.Push(1);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsTrue((bool)machine.Pop());
+
+            machine.Push(2);
+            machine.Push(2);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsTrue((bool)machine.Pop());
+
+            machine.Push(2);
+            machine.Push(3);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsFalse((bool)machine.Pop());
+        }
     }
 }

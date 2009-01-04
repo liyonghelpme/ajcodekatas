@@ -164,5 +164,20 @@
 
             Assert.AreEqual("define foo { 1 2 dup }", define.ToString());
         }
+
+        [TestMethod]
+        [DeploymentItem(@"DefineTest.ajcat")]
+        public void LoadDefineTest()
+        {
+            Compiler compiler = new Compiler(File.OpenText("DefineTest.ajcat"));
+
+            Expression expression = compiler.CompileExpression();
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            expression.Evaluate(machine);
+        }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
 
@@ -11,11 +12,14 @@
 
     public class Program
     {
+        private static Machine machine = new Machine();
+
         public static void Main(string[] args)
         {
             PrintPrologue();
 
-            Machine machine = new Machine();
+            LoadBoot();
+
             string line;
 
             while (true)
@@ -87,6 +91,20 @@
             {
                 return obj.ToString();
             }
+        }
+
+        private static void LoadBoot()
+        {
+            if (!File.Exists("Boot.ajcat"))
+            {
+                return;
+            }
+
+            Compiler compiler = new Compiler(File.OpenText("Boot.ajcat"));
+
+            Expression expression = compiler.CompileExpression();
+
+            expression.Evaluate(machine);
         }
     }
 }

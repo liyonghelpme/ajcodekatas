@@ -1,0 +1,261 @@
+﻿
+define neq 
+  {
+     eq not
+  }
+
+define !=
+  {
+     neq
+  }
+
+define sub
+  {
+     sub_int
+  }
+
+define -
+  {
+     sub
+  }
+  
+define mod
+  {
+     mod_int
+  }
+
+define % 
+  {
+     mod
+  }
+
+define mult
+  {
+     mult_int
+  }
+
+define *
+  {
+     mult
+  }
+
+define div
+  {
+     div_int
+  }
+
+define /
+  {
+     div
+  }
+
+define add
+  {
+     add_int
+  }
+
+define +
+  {
+     add
+  }
+
+
+define lt
+  {
+     lt_int
+  }
+
+define <
+  {
+     lt
+  }
+
+define lteq
+  {
+     lteq_int
+  }
+
+define <=
+  {
+     lteq
+  }
+
+define ==
+  {
+     eq
+  }
+
+define gt
+  {
+     gt_int
+  }
+
+define >
+  {
+     gt
+  }
+
+define gteq
+  {
+     gteq_int
+  }
+
+define >=
+  {
+     gteq
+  }
+
+define swapd
+  {
+     [swap] dip
+  }
+
+define dip2
+  {
+     swap [dip] dip
+  }
+
+define app2
+  {
+     dup swapd [apply] dip2 apply
+  }
+
+define app2
+  {
+     dup swapd [apply] dip2 apply
+  }
+
+define keep
+  {
+     dup [apply] dip
+  }
+
+define apply2
+  {
+     keep apply
+  }
+
+define get2
+  {
+     [dup] dip swap
+  }
+
+define get3
+  {
+     [get2] dip swap
+  }
+
+define get4
+  {
+     [get3] dip swap
+  }
+
+define dup2
+  {
+     get2 get2
+  }
+
+define are_eq
+  {
+     dup2 eq
+  }
+
+define are_gt
+  {
+     dup2 gt
+  }
+
+define are_gteq
+  {
+     dup2 gteq
+  }
+
+define are_lt
+  {
+     dup2 lt
+  }
+
+define are_lteq
+  {
+     dup2 lteq
+  }
+
+define are_neq
+  {
+     dup2 neq
+  }
+
+define bury
+  {
+     swap swapd
+  }
+
+define bury4
+  {
+     swap [bury] dip
+  }
+
+define bury5
+  {
+     swap [bury4] dip
+  }
+  
+define dig
+  {
+     swapd swap
+  }
+  
+define dig4
+  {
+     [dig] dig swap
+  }
+  
+define dig5
+  {
+     [dig4] dig swap
+  }
+  
+define dip2
+  {
+     swap [dip] dip
+  }
+  
+define dip3
+  {
+     swap [dip2] dip
+  }
+  
+define dip4
+  {
+     swap [dip3] dip
+  }
+  
+define pop2
+  {
+     pop pop
+  }
+  
+define pop3
+  {
+     pop pop pop
+  }
+  
+define pop4
+  {
+     pop pop pop pop
+  }
+  
+define popd
+  {
+     [pop] dip
+  }
+  
+define popdd
+  {
+     [popd] dip
+  }
+
+define fold
+  {
+     dig empty [pop2] [uncons swap [swap keep] dip bury fold] if
+  }
