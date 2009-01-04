@@ -7,9 +7,12 @@ Type inference
 Type checking
 define
 while
-Compiler
-Console App
+foreach
+for_each
 
 Level 1
 Real
 String
+
+Level 2
+clr_* methods

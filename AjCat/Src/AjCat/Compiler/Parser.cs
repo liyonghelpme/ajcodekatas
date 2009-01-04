@@ -60,7 +60,7 @@
 
                 if (Separators.Contains(ch))
                 {
-                    return this.NextSeparator(ch);
+                    return NextSeparator(ch);
                 }
 
                 return this.NextName(ch);
@@ -102,7 +102,7 @@
             this.lastToken = token;
         }
 
-        private Token NextSeparator(char ch)
+        private static Token NextSeparator(char ch)
         {
             return new Token()
             {

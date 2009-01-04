@@ -46,6 +46,7 @@ namespace AjCat.Tests
         {
             Dictionary<string, Type> types = new Dictionary<string, Type>();
 
+            types["nil"] = typeof(NilExpression);
             types["list"] = typeof(ListExpression);
             types["cons"] = typeof(ConsExpression);
             types["uncons"] = typeof(UnconsExpression);

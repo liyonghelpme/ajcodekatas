@@ -25,6 +25,7 @@
             expressionsByName["swap"] = SwapExpression.Instance;
             expressionsByName["pop"] = PopExpression.Instance;
 
+            expressionsByName["nil"] = NilExpression.Instance;
             expressionsByName["cons"] = ConsExpression.Instance;
             expressionsByName["uncons"] = UnconsExpression.Instance;
             expressionsByName["list"] = ListExpression.Instance;

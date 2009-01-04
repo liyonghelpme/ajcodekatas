@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AjCat.Expressions
+﻿namespace AjCat.Expressions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class IfExpression : Expression
     {
         private static IfExpression instance = new IfExpression();

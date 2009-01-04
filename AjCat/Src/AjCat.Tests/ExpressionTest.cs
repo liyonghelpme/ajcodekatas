@@ -320,6 +320,26 @@ namespace AjCat.Tests
         }
 
         [TestMethod]
+        public void GetAndEvaluateNilExpression()
+        {
+            NilExpression expression = NilExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.IsInstanceOfType(machine.Top(), typeof(IList));
+
+            IList list = (IList)machine.Pop();
+
+            Assert.IsNotNull(list);
+            Assert.AreEqual(0, list.Count);
+        }
+
+        [TestMethod]
         public void GetAndEvaluateConsExpression()
         {
             Machine machine = new Machine();
@@ -753,11 +773,15 @@ namespace AjCat.Tests
 
             CompositeExpression result = (CompositeExpression)machine.Pop();
 
-            Assert.AreEqual(1, result.Expressions.Count);
-            Assert.IsInstanceOfType(result.Expressions[0], typeof(IntegerAddOperation));
+            Assert.AreEqual(3, result.Expressions.Count);
+            Assert.IsInstanceOfType(result.Expressions[0], typeof(ConstantExpression));
+            Assert.IsInstanceOfType(result.Expressions[1], typeof(IntegerAddOperation));
+            Assert.IsInstanceOfType(result.Expressions[2], typeof(IntegerAddOperation));
 
-            Assert.AreEqual(5, machine.Pop());
-            Assert.AreEqual(1, machine.Pop());
+            result.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.AreEqual(6, machine.Pop());
         }
     }
 }

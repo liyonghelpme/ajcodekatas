@@ -45,17 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compiler\Compiler.cs" />
+    <Compile Include="Compiler\CompilerException.cs" />
+    <Compile Include="Compiler\ExpectedTokenException.cs" />
     <Compile Include="Compiler\EndOfInputException.cs" />
     <Compile Include="Compiler\Expressions.cs" />
     <Compile Include="Compiler\Parser.cs" />
     <Compile Include="Compiler\Token.cs" />
     <Compile Include="Compiler\TokenType.cs" />
+    <Compile Include="Compiler\UnexpectedTokenException.cs" />
     <Compile Include="Expressions\AndExpression.cs" />
     <Compile Include="Expressions\CompositeExpression.cs" />
     <Compile Include="Expressions\ConsExpression.cs" />
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\ApplyExpression.cs" />
     <Compile Include="Expressions\ComposeExpression.cs" />
+    <Compile Include="Expressions\NilExpression.cs" />
     <Compile Include="Expressions\PartialApplyExpression.cs" />
     <Compile Include="Expressions\IfExpression.cs" />
     <Compile Include="Expressions\UnconsExpression.cs" />

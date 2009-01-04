@@ -18,6 +18,14 @@
             }
         }
 
+        public object[] StackContent
+        {
+            get
+            {
+                return this.stack.ToArray();
+            }
+        }
+
         public void Push(object value)
         {
             this.stack.Push(value);

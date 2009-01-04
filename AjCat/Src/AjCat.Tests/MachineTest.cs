@@ -67,5 +67,25 @@ namespace AjCat.Tests
 
             machine.Pop();
         }
+
+        [TestMethod]
+        public void GetStackContent()
+        {
+            Machine machine = new Machine();
+
+            machine.Push(1);
+            machine.Push(2);
+            machine.Push("foo");
+            machine.Push("bar");
+
+            object[] content = machine.StackContent;
+
+            Assert.IsNotNull(content);
+            Assert.AreEqual(4, content.Length);
+            Assert.AreEqual(1, content[3]);
+            Assert.AreEqual(2, content[2]);
+            Assert.AreEqual("foo", content[1]);
+            Assert.AreEqual("bar", content[0]);
+        }
     }
 }

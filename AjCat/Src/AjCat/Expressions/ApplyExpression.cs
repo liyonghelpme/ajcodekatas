@@ -29,5 +29,10 @@
 
             expression.Evaluate(machine);
         }
+
+        public override string ToString()
+        {
+            return "apply";
+        }
     }
 }

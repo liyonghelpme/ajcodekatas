@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AjCat.Expressions
+﻿namespace AjCat.Expressions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class AndExpression : Expression
     {
         private static AndExpression instance = new AndExpression();
@@ -27,6 +27,11 @@ namespace AjCat.Expressions
             bool op1 = (bool)machine.Pop();
 
             machine.Push(op1 && op2);
+        }
+
+        public override string ToString()
+        {
+            return "and";
         }
     }
 }

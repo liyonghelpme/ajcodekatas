@@ -25,29 +25,13 @@
         public override void Evaluate(Machine machine)
         {
             CompositeExpression expression = (CompositeExpression) machine.Pop();
+            object value = machine.Pop();
 
-            int stacksize = machine.StackCount;
-            int nexpr = 0;
+            List<Expression> newlist = new List<Expression>(expression.Expressions);
 
-            foreach (Expression expr in expression.Expressions) 
-            {
-                nexpr++;
-                expr.Evaluate(machine);
+            newlist.Insert(0, new ConstantExpression(value));
 
-                if (machine.StackCount < stacksize)
-                {
-                    break;
-                }
-            }
-
-            List<Expression> rest = new List<Expression>();
-
-            for (int k = nexpr; k<expression.Expressions.Count; k++)
-            {
-                rest.Add(expression.Expressions[k]);
-            }
-
-            machine.Push(new CompositeExpression(rest));
+            machine.Push(new CompositeExpression(newlist));
         }
     }
 }

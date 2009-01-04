@@ -1,19 +1,20 @@
 ﻿namespace AjCat.Expressions
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public class DupExpression : Expression
+    public class NilExpression : Expression
     {
-        private static DupExpression instance = new DupExpression();
+        private static NilExpression instance = new NilExpression();
 
-        private DupExpression()
+        private NilExpression()
         {
         }
 
-        public static DupExpression Instance
+        public static NilExpression Instance
         {
             get
             {
@@ -23,7 +24,7 @@
 
         public override void Evaluate(Machine machine)
         {
-            machine.Push(machine.Top());
+            machine.Push(new ArrayList());
         }
     }
 }

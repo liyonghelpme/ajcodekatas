@@ -23,7 +23,7 @@
 
         public override int Apply(int operand)
         {
-            return operand-1;
+            return operand - 1;
         }
     }
 }

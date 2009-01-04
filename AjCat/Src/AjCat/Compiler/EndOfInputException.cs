@@ -17,10 +17,5 @@
             : base(msg)
         {
         }
-
-        public EndOfInputException(string msg, Exception exception)
-            : base(msg, exception)
-        {
-        }
     }
 }
