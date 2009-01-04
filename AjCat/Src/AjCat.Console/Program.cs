@@ -36,6 +36,7 @@
                 }
                 catch (Exception ex)
                 {
+                    Console.Write("***Error: ");
                     Console.WriteLine(ex.Message);
                 }
             }
@@ -70,10 +71,22 @@
             for (int k = content.Length; --k >= 0; )
             {
                 Console.Write(" ");
-                Console.Write(content[k].ToString());
+                Console.Write(ObjectToString(content[k]));
             }
 
             Console.WriteLine();
+        }
+
+        private static string ObjectToString(object obj) 
+        {
+            if (obj is string) 
+            {
+                return string.Format("\"{0}\"", obj);
+            }
+            else 
+            {
+                return obj.ToString();
+            }
         }
     }
 }

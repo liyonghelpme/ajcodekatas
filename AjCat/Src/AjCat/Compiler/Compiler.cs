@@ -1,8 +1,8 @@
 ﻿namespace AjCat.Compiler
 {
     using System;
-    using System.IO;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
 
@@ -34,9 +34,9 @@
 
         public Expression CompileExpression()
         {
-            List<Expression> list = CompileList();
+            List<Expression> list = this.CompileList();
 
-            Token token = parser.NextToken();
+            Token token = this.parser.NextToken();
 
             if (token != null)
             {
@@ -58,26 +58,48 @@
 
         private Expression CompileQuotation()
         {
-            List<Expression> list = CompileList();
+            List<Expression> list = this.CompileList();
 
-            Token token = parser.NextToken();
-
-            if (token == null)
-            {
-                throw new ExpectedTokenException("]");
-            }
-
-            if (token.Value != "]")
-            {
-                throw new UnexpectedTokenException(token);
-            }
+            this.CompileToken("]");
 
             return new QuotationExpression(list);
         }
 
+        private void CompileToken(string value)
+        {
+            Token token = this.parser.NextToken();
+
+            if (token == null)
+            {
+                throw new ExpectedTokenException(value);
+            }
+
+            if (token.Value != value)
+            {
+                throw new UnexpectedTokenException(token);
+            }
+        }
+
+        private Token CompileName()
+        {
+            Token token = this.parser.NextToken();
+
+            if (token == null)
+            {
+                throw new NameExpectedException();
+            }
+
+            if (token.TokenType != TokenType.Name)
+            {
+                throw new UnexpectedTokenException(token);
+            }
+
+            return token;
+        }
+
         private List<Expression> CompileList()
         {
-            Token token = parser.NextToken();
+            Token token = this.parser.NextToken();
 
             if (token == null)
             {
@@ -86,15 +108,17 @@
 
             List<Expression> list = new List<Expression>();
 
-            parser.PushToken(token);
+            this.parser.PushToken(token);
 
             while (!this.IsClosingToken(token))
             {
                 Expression expression = this.CompileSingleExpression();
                 list.Add(expression);
-                token = parser.NextToken();
+                token = this.parser.NextToken();
                 if (token != null)
-                    parser.PushToken(token);
+                {
+                    this.parser.PushToken(token);
+                }
             }
 
             return list;
@@ -107,7 +131,7 @@
                 return true;
             }
 
-            if (token.Value == "]")
+            if (token.Value == "]" || token.Value == "}")
             {
                 return true;
             }
@@ -115,11 +139,24 @@
             return false;
         }
 
+        private Expression CompileDefineExpression()
+        {
+            Token nametoken = this.CompileName();
+
+            this.CompileToken("{");
+
+            List<Expression> list = this.CompileList();
+
+            this.CompileToken("}");
+
+            return new DefineExpression(nametoken.Value, list);
+        }
+
         private Expression CompileSingleExpression()
         {
-            Token token = parser.NextToken();
+            Token token = this.parser.NextToken();
 
-            if (token==null) 
+            if (token == null) 
             {
                 return null;
             }
@@ -128,17 +165,25 @@
             {
                 case TokenType.Integer:
                     return new IntegerExpression(Convert.ToInt32(token.Value));
+                case TokenType.String:
+                    return new StringExpression(token.Value);
                 case TokenType.Name:
+                    if (token.Value == "define")
+                    {
+                        return this.CompileDefineExpression();
+                    }
+
                     return Expressions.GetByName(token.Value);
                 case TokenType.Separator:
                     if (token.Value == "[")
-                        return CompileQuotation();
+                    {
+                        return this.CompileQuotation();
+                    }
+
                     break;
             }
 
             throw new UnexpectedTokenException(token);
         }
-
-
     }
 }

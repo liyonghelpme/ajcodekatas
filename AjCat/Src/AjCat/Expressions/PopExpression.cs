@@ -25,5 +25,10 @@
         {
             machine.Pop();
         }
+
+        public override string ToString()
+        {
+            return "pop";
+        }
     }
 }

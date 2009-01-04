@@ -32,5 +32,10 @@
 
             machine.Push(value);
         }
+
+        public override string ToString()
+        {
+            return "dip";
+        }
     }
 }

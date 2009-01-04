@@ -27,5 +27,10 @@
             object value = machine.Pop();
             machine.Push(new ConstantExpression(value));
         }
+
+        public override string ToString()
+        {
+            return "quote";
+        }
     }
 }

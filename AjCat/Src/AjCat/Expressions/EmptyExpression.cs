@@ -28,5 +28,10 @@
 
             machine.Push(list.Count == 0);
         }
+
+        public override string ToString()
+        {
+            return "empty";
+        }
     }
 }

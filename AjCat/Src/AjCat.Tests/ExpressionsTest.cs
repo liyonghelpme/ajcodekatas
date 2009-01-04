@@ -1,15 +1,15 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-
-using AjCat.Compiler;
-using AjCat.Expressions;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace AjCat.Tests
+﻿namespace AjCat.Tests
 {
+    using System;
+    using System.Text;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AjCat.Compiler;
+    using AjCat.Expressions;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class ExpressionsTest
     {
@@ -34,6 +34,7 @@ namespace AjCat.Tests
         {
             Dictionary<string, Type> types = new Dictionary<string, Type>();
 
+            types["#clr"] = typeof(ClearExpression);
             types["pop"] = typeof(PopExpression);
             types["dup"] = typeof(DupExpression);
             types["swap"] = typeof(SwapExpression);
@@ -89,13 +90,53 @@ namespace AjCat.Tests
         {
             foreach (string name in types.Keys) 
             {
-                Assert.IsInstanceOfType(this.GetByName(name), types[name]);
+                Expression expression = this.GetByName(name);
+                Assert.IsInstanceOfType(expression, types[name]);
+                Assert.AreEqual(name, expression.ToString());
             }
+        }
+
+        [TestMethod]
+        public void DefineNewExpression()
+        {
+            Expression expression = new StringExpression("bar");
+            Expressions.DefineExpression("foo", expression);
+
+            Assert.IsNotNull(Expressions.GetByName("foo"));
+            Assert.AreEqual(expression, Expressions.GetByName("foo"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RaiseIfNameIsNullInDefine()
+        {
+            Expressions.DefineExpression(null, new StringExpression("foo"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RaiseIfExpressionIsNullInDefine()
+        {
+            Expressions.DefineExpression("foo", null);
+        }
+
+        [TestMethod]
+        public void RedefineExpression()
+        {
+            Expression expression = new StringExpression("bar");
+            Expressions.DefineExpression("foo", expression);
+            Assert.IsNotNull(Expressions.GetByName("foo"));
+
+            Expression newexpression = new StringExpression("foo");
+
+            Expressions.DefineExpression("foo", newexpression);
+
+            Assert.AreEqual(newexpression, Expressions.GetByName("foo"));
         }
 
         private Expression GetByName(string name)
         {
-            return Compiler.Expressions.GetByName(name);
+            return Expressions.GetByName(name);
         }
     }
 }

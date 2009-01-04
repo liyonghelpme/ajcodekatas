@@ -1,16 +1,17 @@
-﻿using System;
-using System.Text;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
-using AjCat;
-using AjCat.Expressions;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace AjCat.Tests
+﻿namespace AjCat.Tests
 {
+    using System;
+    using System.Text;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AjCat;
+    using AjCat.Compiler;
+    using AjCat.Expressions;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class ExpressionTest
     {
@@ -20,6 +21,17 @@ namespace AjCat.Tests
             IntegerExpression expression = new IntegerExpression(10);
 
             Assert.AreEqual(10, expression.Value);
+
+            Assert.AreEqual("10", expression.ToString());
+        }
+
+        [TestMethod]
+        public void CreateStringExpression()
+        {
+            StringExpression expression = new StringExpression("foo");
+
+            Assert.AreEqual("foo", expression.Value);
+            Assert.AreEqual("\"foo\"", expression.ToString());
         }
 
         [TestMethod]
@@ -145,6 +157,30 @@ namespace AjCat.Tests
         }
 
         [TestMethod]
+        public void CreateAndEvaluateDefineExpression()
+        {
+            Machine machine = new Machine();
+            List<Expression> list = new List<Expression>();
+
+            list.Add(new IntegerExpression(1));
+            list.Add(new IntegerExpression(2));
+            list.Add(new IntegerExpression(3));
+
+            DefineExpression expression = new DefineExpression("foo", list);
+
+            Assert.IsNotNull(expression);
+            Assert.AreEqual("foo", expression.Name);
+            Assert.IsNotNull(expression.Expressions);
+            Assert.AreEqual(3, expression.Expressions.Count);
+
+            Assert.AreEqual(0, machine.StackCount);
+            expression.Evaluate(machine);
+            Assert.AreEqual(0, machine.StackCount);
+
+            Assert.IsNotNull(Expressions.GetByName("foo"));
+        }
+
+        [TestMethod]
         public void CreateAndEvaluateCompositeExpression()
         {
             Machine machine = new Machine();
@@ -159,6 +195,7 @@ namespace AjCat.Tests
             Assert.IsNotNull(expression);
             Assert.IsNotNull(expression.Expressions);
             Assert.AreEqual(3, expression.Expressions.Count);
+            Assert.AreEqual("[1 2 3]", expression.ToString());
 
             Assert.AreEqual(0, machine.StackCount);
             expression.Evaluate(machine);
@@ -451,6 +488,24 @@ namespace AjCat.Tests
             Assert.AreEqual(2, machine.StackCount);
             Assert.AreEqual(1, machine.Pop());
             Assert.AreEqual(2, machine.Pop());
+            Assert.AreEqual(0, machine.StackCount);
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateClearExpression()
+        {
+            ClearExpression expression = ClearExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(1);
+            machine.Push(2);
+            machine.Push(3);
+
+            Assert.AreEqual(3, machine.StackCount);
+            expression.Evaluate(machine);
             Assert.AreEqual(0, machine.StackCount);
         }
 

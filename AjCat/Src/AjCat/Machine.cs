@@ -40,5 +40,10 @@
         {
             return this.stack.Peek();
         }
+
+        public void Clear()
+        {
+            this.stack.Clear();
+        }
     }
 }

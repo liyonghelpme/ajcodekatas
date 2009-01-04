@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Text;
 
-    public abstract class CompilerException : Exception
+    public class NameExpectedException : CompilerException
     {
-        protected CompilerException(string msg)
-            : base(msg)
+        public NameExpectedException()
+            : base("A name was expected")
         {
         }
     }

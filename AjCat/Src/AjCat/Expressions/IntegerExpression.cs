@@ -26,5 +26,10 @@
         {
             machine.Push(this.value);
         }
+
+        public override string ToString()
+        {
+            return this.value.ToString();
+        }
     }
 }

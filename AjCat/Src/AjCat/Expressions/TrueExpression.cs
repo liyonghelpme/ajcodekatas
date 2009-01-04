@@ -11,5 +11,10 @@
             : base(true)
         {
         }
+
+        public override string ToString()
+        {
+            return "true";
+        }
     }
 }

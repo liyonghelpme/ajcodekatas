@@ -9,6 +9,7 @@
     {
         Name,
         Integer,
-        Separator
+        Separator,
+        String
     }
 }

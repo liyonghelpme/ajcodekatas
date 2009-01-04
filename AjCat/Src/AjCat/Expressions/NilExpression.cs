@@ -26,5 +26,10 @@
         {
             machine.Push(new ArrayList());
         }
+
+        public override string ToString()
+        {
+            return "nil";
+        }
     }
 }

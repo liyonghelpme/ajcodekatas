@@ -45,9 +45,41 @@
         }
 
         [TestMethod]
+        public void ParseString()
+        {
+            Parser parser = new Parser("\"foo and bar\"");
+
+            Token token = parser.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.String, token.TokenType);
+            Assert.AreEqual("foo and bar", token.Value);
+
+            token = parser.NextToken();
+
+            Assert.IsNull(token);
+        }
+
+        [TestMethod]
+        public void ParseStringWithEscapedCharacters()
+        {
+            Parser parser = new Parser("\"foo\\t\\\\\\r\\n\\\"and bar\"");
+
+            Token token = parser.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.String, token.TokenType);
+            Assert.AreEqual("foo\t\\\r\n\"and bar", token.Value);
+
+            token = parser.NextToken();
+
+            Assert.IsNull(token);
+        }
+
+        [TestMethod]
         public void ParseSeparators()
         {
-            string separators = "[]";
+            string separators = "[]{}";
             using (Parser parser = new Parser(separators))
             {
                 Token token;
@@ -216,6 +248,36 @@
             Assert.IsNotNull(token);
             Assert.AreEqual(TokenType.Integer, token.TokenType);
             Assert.AreEqual("123", token.Value);
+
+            token = parser.NextToken();
+
+            Assert.IsNull(token);
+        }
+
+        [TestMethod]
+        public void ParseNameWithSeparators()
+        {
+            Parser parser = new Parser("[foo]");
+
+            Token token;
+
+            token = parser.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Separator, token.TokenType);
+            Assert.AreEqual("[", token.Value);
+
+            token = parser.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Name, token.TokenType);
+            Assert.AreEqual("foo", token.Value);
+
+            token = parser.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Separator, token.TokenType);
+            Assert.AreEqual("]", token.Value);
 
             token = parser.NextToken();
 

@@ -29,5 +29,10 @@
             machine.Push(top);
             machine.Push(subtop);
         }
+
+        public override string ToString()
+        {
+            return "swap";
+        }
     }
 }

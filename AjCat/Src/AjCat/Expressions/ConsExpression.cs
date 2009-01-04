@@ -32,5 +32,10 @@
 
             machine.Push(result);
         }
+
+        public override string ToString()
+        {
+            return "cons";
+        }
     }
 }

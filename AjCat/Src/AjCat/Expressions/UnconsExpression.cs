@@ -33,5 +33,10 @@
             machine.Push(result);
             machine.Push(value);
         }
+
+        public override string ToString()
+        {
+            return "uncons";
+        }
     }
 }

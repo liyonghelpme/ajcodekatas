@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AjCat.Compiler
+﻿namespace AjCat.Compiler
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class UnexpectedTokenException : CompilerException
     {
         public UnexpectedTokenException(Token token)

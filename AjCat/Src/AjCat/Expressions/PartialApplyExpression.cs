@@ -33,5 +33,10 @@
 
             machine.Push(new CompositeExpression(newlist));
         }
+
+        public override string ToString()
+        {
+            return "papply";
+        }
     }
 }

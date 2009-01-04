@@ -1,6 +1,6 @@
 
 Miscellaneous
-Remove PushToken from Parser (is it needed?)
+Refactor Expressions (static class and method -> dynamic)
 
 Level 0
 Type inference
@@ -16,3 +16,4 @@ String
 
 Level 2
 clr_* methods
+

@@ -41,7 +41,7 @@
 
             if (expression1 is CompositeExpression)
             {
-                list = new List<Expression> ( ((CompositeExpression)expression1).Expressions.Concat(list));
+                list = new List<Expression>(((CompositeExpression)expression1).Expressions.Concat(list));
             }
             else
             {
@@ -49,6 +49,11 @@
             }
 
             machine.Push(new CompositeExpression(list));
+        }
+
+        public override string ToString()
+        {
+            return "compose";
         }
     }
 }

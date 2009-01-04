@@ -25,5 +25,10 @@
         {
             machine.Push(machine.Top());
         }
+
+        public override string ToString()
+        {
+            return "dup";
+        }
     }
 }

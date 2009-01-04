@@ -24,6 +24,7 @@
             expressionsByName["dup"] = DupExpression.Instance;
             expressionsByName["swap"] = SwapExpression.Instance;
             expressionsByName["pop"] = PopExpression.Instance;
+            expressionsByName["#clr"] = ClearExpression.Instance;
 
             expressionsByName["nil"] = NilExpression.Instance;
             expressionsByName["cons"] = ConsExpression.Instance;
@@ -59,6 +60,21 @@
             }
 
             throw new ArgumentException(string.Format("Unknown '{0}'", name));
+        }
+
+        public static void DefineExpression(string name, Expression expression)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException("name");
+            }
+
+            if (expression == null)
+            {
+                throw new ArgumentNullException("expression");
+            }
+
+            expressionsByName[name] = expression;
         }
     }
 }

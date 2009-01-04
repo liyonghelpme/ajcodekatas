@@ -8,5 +8,10 @@
     public abstract class Expression
     {
         public abstract void Evaluate(Machine machine);
+
+        public override string ToString()
+        {
+            return "_expression_";
+        }
     }
 }

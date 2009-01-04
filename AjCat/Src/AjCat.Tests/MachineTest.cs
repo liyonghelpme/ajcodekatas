@@ -87,5 +87,19 @@ namespace AjCat.Tests
             Assert.AreEqual("foo", content[1]);
             Assert.AreEqual("bar", content[0]);
         }
+
+        [TestMethod]
+        public void ClearStack()
+        {
+            Machine machine = new Machine();
+
+            machine.Push(1);
+            machine.Push(2);
+            machine.Push(3);
+
+            Assert.AreEqual(3, machine.StackCount);
+            machine.Clear();
+            Assert.AreEqual(0, machine.StackCount);
+        }
     }
 }

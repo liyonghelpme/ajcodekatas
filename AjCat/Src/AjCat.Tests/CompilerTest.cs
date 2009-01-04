@@ -83,6 +83,18 @@
         }
 
         [TestMethod]
+        public void CompileString()
+        {
+            Compiler compiler = new Compiler("\"foo\"");
+
+            Expression expression = compiler.CompileExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(StringExpression));
+            Assert.AreEqual("foo", ((StringExpression)expression).Value);
+        }
+
+        [TestMethod]
         public void CompileQuotation()
         {
             Compiler compiler = new Compiler("[1 2]");
@@ -129,6 +141,28 @@
             Assert.IsInstanceOfType(composite.Expressions[1], typeof(QuotationExpression));
             Assert.IsInstanceOfType(composite.Expressions[2], typeof(IntegerExpression));
             Assert.IsInstanceOfType(composite.Expressions[3], typeof(QuotationExpression));
+        }
+
+        [TestMethod]
+        public void CompileDefine()
+        {
+            Compiler compiler = new Compiler("define foo { 1 2 dup }");
+
+            Expression expression = compiler.CompileExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(DefineExpression));
+
+            DefineExpression define = (DefineExpression)expression;
+
+            Assert.AreEqual("foo", define.Name);
+            Assert.IsNotNull(define.Expressions);
+            Assert.AreEqual(3, define.Expressions.Count);
+            Assert.IsInstanceOfType(define.Expressions[0], typeof(IntegerExpression));
+            Assert.IsInstanceOfType(define.Expressions[1], typeof(IntegerExpression));
+            Assert.IsInstanceOfType(define.Expressions[2], typeof(DupExpression));
+
+            Assert.AreEqual("define foo { 1 2 dup }", define.ToString());
         }
     }
 }

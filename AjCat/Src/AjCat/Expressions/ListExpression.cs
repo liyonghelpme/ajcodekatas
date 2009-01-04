@@ -38,5 +38,10 @@
 
             machine.Push(result);
         }
+
+        public override string ToString()
+        {
+            return "list";
+        }
     }
 }

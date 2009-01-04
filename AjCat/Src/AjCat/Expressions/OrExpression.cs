@@ -28,5 +28,10 @@
 
             machine.Push(op1 || op2);
         }
+
+        public override string ToString()
+        {
+            return "or";
+        }
     }
 }

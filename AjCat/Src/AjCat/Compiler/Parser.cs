@@ -8,7 +8,9 @@
 
     public class Parser : IDisposable
     {
-        private const string Separators = "[]";
+        private const string Separators = "[]{}";
+        private const char StringDelimiter = '"';
+        private const char StringEscapeChar = '\\';
 
         private static string[] otherOperators = new string[] { "**" };
 
@@ -58,6 +60,11 @@
                     return this.NextInteger(ch);
                 }
 
+                if (ch == StringDelimiter) 
+                {
+                    return this.NextString();
+                }
+
                 if (Separators.Contains(ch))
                 {
                     return NextSeparator(ch);
@@ -102,6 +109,21 @@
             this.lastToken = token;
         }
 
+        private static char GetEscapedChar(char ch)
+        {
+            switch (ch)
+            {
+                case 't':
+                    return '\t';
+                case 'r':
+                    return '\r';
+                case 'n':
+                    return '\n';
+            }
+
+            return ch;
+        }
+
         private static Token NextSeparator(char ch)
         {
             return new Token()
@@ -109,6 +131,31 @@
                 TokenType = TokenType.Separator,
                 Value = ch.ToString()
             };
+        }
+
+        private Token NextString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            char ch = this.NextChar();
+
+            while (ch != StringDelimiter)
+            {
+                if (ch == StringEscapeChar)
+                {
+                    ch = GetEscapedChar(this.NextChar());
+                }
+
+                sb.Append(ch);
+
+                ch = this.NextChar();
+            }
+
+            Token token = new Token();
+            token.TokenType = TokenType.String;
+            token.Value = sb.ToString();
+
+            return token;
         }
 
         private Token NextInteger(char ch)
@@ -146,7 +193,7 @@
             {
                 ch = this.NextChar();
 
-                while (!char.IsWhiteSpace(ch))
+                while (!char.IsWhiteSpace(ch) && !Separators.Contains(ch))
                 {
                     name += ch;
                     ch = this.NextChar();

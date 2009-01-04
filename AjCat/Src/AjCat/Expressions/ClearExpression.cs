@@ -5,15 +5,15 @@
     using System.Linq;
     using System.Text;
 
-    public class NotExpression : Expression
+    public class ClearExpression : Expression
     {
-        private static NotExpression instance = new NotExpression();
+        private static ClearExpression instance = new ClearExpression();
 
-        private NotExpression()
+        private ClearExpression()
         {
         }
 
-        public static NotExpression Instance
+        public static ClearExpression Instance
         {
             get
             {
@@ -23,14 +23,12 @@
 
         public override void Evaluate(Machine machine)
         {
-            bool op = (bool)machine.Pop();
-
-            machine.Push(!op);
+            machine.Clear();
         }
 
         public override string ToString()
         {
-            return "not";
+            return "#clr";
         }
     }
 }

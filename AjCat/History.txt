@@ -17,3 +17,8 @@ Nil expression and tests
 Reimplements Papply
 Compiler with tests
 Machine.StackContent
+Console App
+ToString in Expressions
+String parsing, expression and compiling
+Clear
+Define

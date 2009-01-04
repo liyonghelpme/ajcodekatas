@@ -29,5 +29,10 @@
 
             machine.Push(value1.Equals(value2));
         }
+
+        public override string ToString()
+        {
+            return "eq";
+        }
     }
 }

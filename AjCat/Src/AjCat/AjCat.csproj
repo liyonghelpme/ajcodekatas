@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Compiler\Compiler.cs" />
     <Compile Include="Compiler\CompilerException.cs" />
+    <Compile Include="Compiler\NameExpectedException.cs" />
     <Compile Include="Compiler\ExpectedTokenException.cs" />
     <Compile Include="Compiler\EndOfInputException.cs" />
     <Compile Include="Compiler\Expressions.cs" />
@@ -60,6 +61,9 @@
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\ApplyExpression.cs" />
     <Compile Include="Expressions\ComposeExpression.cs" />
+    <Compile Include="Expressions\ClearExpression.cs" />
+    <Compile Include="Expressions\DefineExpression.cs" />
+    <Compile Include="Expressions\StringExpression.cs" />
     <Compile Include="Expressions\NilExpression.cs" />
     <Compile Include="Expressions\PartialApplyExpression.cs" />
     <Compile Include="Expressions\IfExpression.cs" />

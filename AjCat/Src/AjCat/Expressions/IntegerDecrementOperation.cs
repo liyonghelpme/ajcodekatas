@@ -25,5 +25,10 @@
         {
             return operand - 1;
         }
+
+        public override string ToString()
+        {
+            return "dec";
+        }
     }
 }

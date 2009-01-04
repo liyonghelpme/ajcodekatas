@@ -36,5 +36,10 @@
                 elseexpr.Evaluate(machine);
             }
         }
+
+        public override string ToString()
+        {
+            return "if";
+        }
     }
 }

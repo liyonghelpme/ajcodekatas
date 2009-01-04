@@ -5,32 +5,31 @@
     using System.Linq;
     using System.Text;
 
-    public class NotExpression : Expression
+    public class StringExpression : Expression
     {
-        private static NotExpression instance = new NotExpression();
+        private string value;
 
-        private NotExpression()
+        public StringExpression(string value)
         {
+            this.value = value;
         }
 
-        public static NotExpression Instance
+        public string Value
         {
             get
             {
-                return instance;
+                return this.value;
             }
         }
 
         public override void Evaluate(Machine machine)
         {
-            bool op = (bool)machine.Pop();
-
-            machine.Push(!op);
+            machine.Push(this.value);
         }
 
         public override string ToString()
         {
-            return "not";
+            return string.Format("\"{0}\"", this.value.ToString());
         }
     }
 }
