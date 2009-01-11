@@ -83,6 +83,17 @@
         }
 
         [TestMethod]
+        public void CompileDouble()
+        {
+            Compiler compiler = new Compiler("123.45");
+
+            Expression expression = compiler.CompileExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(DoubleExpression));
+        }
+
+        [TestMethod]
         public void CompileString()
         {
             Compiler compiler = new Compiler("\"foo\"");

@@ -255,6 +255,24 @@
         }
 
         [TestMethod]
+        public void ParseDouble()
+        {
+            Parser parser = new Parser("123.45");
+
+            Token token;
+
+            token = parser.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Double, token.TokenType);
+            Assert.AreEqual("123.45", token.Value);
+
+            token = parser.NextToken();
+
+            Assert.IsNull(token);
+        }
+
+        [TestMethod]
         public void ParseNameWithSeparators()
         {
             Parser parser = new Parser("[foo]");

@@ -11,6 +11,7 @@
         private const string Separators = "[]{}";
         private const char StringDelimiter = '"';
         private const char StringEscapeChar = '\\';
+        private const char DecimalPoint = '.';
 
         private static string[] otherOperators = new string[] { "**" };
 
@@ -172,6 +173,11 @@
                     ch = this.NextChar();
                 }
 
+                if (ch == DecimalPoint)
+                {
+                    return this.NextDouble(integer);
+                }
+
                 this.PushChar(ch);
             }
             catch (EndOfInputException)
@@ -181,6 +187,35 @@
             Token token = new Token();
             token.Value = integer;
             token.TokenType = TokenType.Integer;
+
+            return token;
+        }
+
+        private Token NextDouble(string intpart)
+        {
+            string real = intpart + ".";
+
+            char ch;
+
+            try
+            {
+                ch = this.NextChar();
+
+                while (char.IsDigit(ch))
+                {
+                    real += ch;
+                    ch = this.NextChar();
+                }
+
+                this.PushChar(ch);
+            }
+            catch (EndOfInputException)
+            {
+            }
+
+            Token token = new Token();
+            token.Value = real;
+            token.TokenType = TokenType.Double;
 
             return token;
         }

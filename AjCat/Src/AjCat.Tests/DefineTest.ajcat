@@ -259,3 +259,23 @@ define fold
   {
      dig empty [pop2] [uncons swap [swap keep] dip bury fold] if
   }
+
+define sin
+  {
+     sin_dbl
+  }
+
+define asin
+  {
+     asin_dbl
+  }
+
+define cos
+  {
+     cos_dbl
+  }
+
+define acos
+  {
+     acos_dbl
+  }

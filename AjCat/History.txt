@@ -12,7 +12,7 @@ If, Not, And, Or, True, False, Eq Expressions and tests
 Papply, Apply, Compose, Quote, Dip Expressions and tests
 Dec, Inc, Mod Expressions and tests
 
-2009-01-4
+2009-01-04
 Nil expression and tests
 Reimplements Papply
 Compiler with tests
@@ -22,7 +22,6 @@ ToString in Expressions
 String parsing, expression and compiling
 Clear
 Define
-
 Eval
 While
 Id
@@ -31,3 +30,15 @@ Lt_int
 Lteq_int
 Gt_int
 Gteq_int
+Boot.ajcat
+DefineTest.ajcat
+
+2009-01-10
+Adding support for double, parsing, compiling
+DoubleExpression
+add_dbl, sub_dbl, mult_dbl, div_dbl
+as_int, as_bool, as_char, as_string, as_list, as_var, as_dbl
+
+2009-01-11
+A expression (apply one argument to unary function)
+abs_dbl, acos_dbl, cos_dbl, asin_dbl, sin_dbl

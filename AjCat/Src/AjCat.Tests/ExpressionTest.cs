@@ -47,6 +47,16 @@
         }
 
         [TestMethod]
+        public void CreateAndEvaluateConstantExpression()
+        {
+            ConstantExpression expression = new ConstantExpression(12);
+
+            Assert.IsNotNull(expression);
+            Assert.AreEqual(12, expression.Value);
+            Assert.AreEqual("12", expression.ToString());
+        }
+
+        [TestMethod]
         public void GetAndEvaluateIntegerIncrementExpression()
         {
             IntegerIncrementOperation expression = IntegerIncrementOperation.Instance;
@@ -153,6 +163,70 @@
             expression.Evaluate(machine);
 
             Assert.AreEqual(2, machine.Pop());
+            Assert.AreEqual(0, machine.StackCount);
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateDoubleAddExpression()
+        {
+            DoubleAddOperation expression = DoubleAddOperation.Instance;
+
+            Machine machine = new Machine();
+
+            machine.Push(1.5);
+            machine.Push(2.3);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(3.8, machine.Pop());
+            Assert.AreEqual(0, machine.StackCount);
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateDoubleSubtractExpression()
+        {
+            DoubleSubtractOperation expression = DoubleSubtractOperation.Instance;
+
+            Machine machine = new Machine();
+
+            machine.Push(2.5);
+            machine.Push(1.3);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1.2, machine.Pop());
+            Assert.AreEqual(0, machine.StackCount);
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateDoubleMultiplyExpression()
+        {
+            DoubleMultiplyOperation expression = DoubleMultiplyOperation.Instance;
+
+            Machine machine = new Machine();
+
+            machine.Push(3.2);
+            machine.Push(2.0);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(6.4, machine.Pop());
+            Assert.AreEqual(0, machine.StackCount);
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateDoubleDivideExpression()
+        {
+            DoubleDivideOperation expression = DoubleDivideOperation.Instance;
+
+            Machine machine = new Machine();
+
+            machine.Push(355.0);
+            machine.Push(113.0);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(355.0/113.0, machine.Pop());
             Assert.AreEqual(0, machine.StackCount);
         }
 
@@ -1053,6 +1127,24 @@
 
             Assert.AreEqual(1, machine.StackCount);
             Assert.IsFalse((bool)machine.Pop());
+        }
+
+        [TestMethod]
+        public void GetAndEvaluateAExpression()
+        {
+            AExpression expression = AExpression.Instance;
+
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(3);
+            machine.Push(IntegerIncrementOperation.Instance);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.AreEqual(4, machine.Pop());
         }
     }
 }

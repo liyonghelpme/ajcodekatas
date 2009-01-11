@@ -9,6 +9,7 @@
     {
         Name,
         Integer,
+        Double,
         Separator,
         String
     }

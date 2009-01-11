@@ -21,6 +21,16 @@
             expressionsByName["dec"] = IntegerDecrementOperation.Instance;
             expressionsByName["mod_int"] = IntegerModuleOperation.Instance;
 
+            expressionsByName["add_dbl"] = DoubleAddOperation.Instance;
+            expressionsByName["sub_dbl"] = DoubleSubtractOperation.Instance;
+            expressionsByName["mult_dbl"] = DoubleMultiplyOperation.Instance;
+            expressionsByName["div_dbl"] = DoubleDivideOperation.Instance;
+            expressionsByName["abs_dbl"] = DoubleAbsoluteOperation.Instance;
+            expressionsByName["cos_dbl"] = DoubleCosineOperation.Instance;
+            expressionsByName["acos_dbl"] = DoubleArcCosineOperation.Instance;
+            expressionsByName["sin_dbl"] = DoubleSineOperation.Instance;
+            expressionsByName["asin_dbl"] = DoubleArcSineOperation.Instance;
+
             expressionsByName["id"] = IdExpression.Instance;
             expressionsByName["dup"] = DupExpression.Instance;
             expressionsByName["swap"] = SwapExpression.Instance;
@@ -48,12 +58,21 @@
             expressionsByName["gteq_int"] = IntegerGreaterEqualThanExpression.Instance;
 
             expressionsByName["#load"] = LoadExpression.Instance;
+            expressionsByName["A"] = AExpression.Instance;
             expressionsByName["apply"] = ApplyExpression.Instance;
             expressionsByName["eval"] = EvalExpression.Instance;
             expressionsByName["papply"] = PartialApplyExpression.Instance;
             expressionsByName["compose"] = ComposeExpression.Instance;
             expressionsByName["quote"] = QuoteExpression.Instance;
             expressionsByName["dip"] = DipExpression.Instance;
+
+            expressionsByName["as_bool"] = AsBoolExpression.Instance;
+            expressionsByName["as_int"] = AsIntegerExpression.Instance;
+            expressionsByName["as_string"] = AsStringExpression.Instance;
+            expressionsByName["as_char"] = AsCharExpression.Instance;
+            expressionsByName["as_var"] = AsVarExpression.Instance;
+            expressionsByName["as_list"] = AsListExpression.Instance;
+            expressionsByName["as_dbl"] = AsDoubleExpression.Instance;
         }
 
         public static Expression GetByName(string name)

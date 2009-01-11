@@ -5,7 +5,6 @@ Refactor Expressions (static class and method -> dynamic)
 Level 0
 Type inference
 Type checking
-Load file at start
 now
 foreach
 for_each
@@ -15,8 +14,9 @@ print of a list in Console app
 
 Level 1
 Real
-String
+String Functions
 
 Level 2
 clr_* methods
+throw
 

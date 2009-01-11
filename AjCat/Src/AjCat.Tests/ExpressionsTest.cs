@@ -34,6 +34,41 @@
         }
 
         [TestMethod]
+        public void RetrievesDoubleExpressionsByName()
+        {
+            Dictionary<string, Type> types = new Dictionary<string, Type>();
+
+            types["add_dbl"] = typeof(DoubleAddOperation);
+            types["sub_dbl"] = typeof(DoubleSubtractOperation);
+            types["mult_dbl"] = typeof(DoubleMultiplyOperation);
+            types["div_dbl"] = typeof(DoubleDivideOperation);
+
+            types["abs_dbl"] = typeof(DoubleAbsoluteOperation);
+            types["acos_dbl"] = typeof(DoubleArcCosineOperation);
+            types["cos_dbl"] = typeof(DoubleCosineOperation);
+            types["asin_dbl"] = typeof(DoubleArcSineOperation);
+            types["sin_dbl"] = typeof(DoubleSineOperation);
+
+            this.GetTypes(types);
+        }
+
+        [TestMethod]
+        public void RetrievesAsExpressionsByName()
+        {
+            Dictionary<string, Type> types = new Dictionary<string, Type>();
+
+            types["as_int"] = typeof(AsIntegerExpression);
+            types["as_dbl"] = typeof(AsDoubleExpression);
+            types["as_string"] = typeof(AsStringExpression);
+            types["as_bool"] = typeof(AsBoolExpression);
+            types["as_char"] = typeof(AsCharExpression);
+            types["as_var"] = typeof(AsVarExpression);
+            types["as_list"] = typeof(AsListExpression);
+
+            this.GetTypes(types);
+        }
+
+        [TestMethod]
         public void RetrievesStackExpressionsByName()
         {
             Dictionary<string, Type> types = new Dictionary<string, Type>();
@@ -92,6 +127,7 @@
         {
             Dictionary<string, Type> types = new Dictionary<string, Type>();
 
+            types["A"] = typeof(AExpression);
             types["#load"] = typeof(LoadExpression);
             types["eval"] = typeof(EvalExpression);
             types["papply"] = typeof(PartialApplyExpression);

@@ -172,6 +172,8 @@
             {
                 case TokenType.Integer:
                     return new IntegerExpression(Convert.ToInt32(token.Value));
+                case TokenType.Double:
+                    return new DoubleExpression(Convert.ToDouble(token.Value));
                 case TokenType.String:
                     return new StringExpression(token.Value);
                 case TokenType.Name:
