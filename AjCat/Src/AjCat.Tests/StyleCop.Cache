@@ -1,0 +1,60 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/17/2009 09:38:23</timestamp>
+      <milliseconds>468</milliseconds>
+    </settings>
+    <timestamp>01/03/2009 07:08:06</timestamp>
+    <milliseconds>171</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CompilerTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/17/2009 09:38:23</timestamp>
+      <milliseconds>468</milliseconds>
+    </settings>
+    <timestamp>01/17/2009 09:39:06</timestamp>
+    <milliseconds>562</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ExpressionsTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/17/2009 09:38:23</timestamp>
+      <milliseconds>468</milliseconds>
+    </settings>
+    <timestamp>01/17/2009 09:39:18</timestamp>
+    <milliseconds>515</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MachineTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/17/2009 09:38:23</timestamp>
+      <milliseconds>468</milliseconds>
+    </settings>
+    <timestamp>01/17/2009 09:40:22</timestamp>
+    <milliseconds>515</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ParserTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/17/2009 09:38:23</timestamp>
+      <milliseconds>468</milliseconds>
+    </settings>
+    <timestamp>01/17/2009 09:40:37</timestamp>
+    <milliseconds>640</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ExpressionTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/17/2009 09:38:23</timestamp>
+      <milliseconds>468</milliseconds>
+    </settings>
+    <timestamp>01/17/2009 09:43:15</timestamp>
+    <milliseconds>109</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-501871657">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+</stylecopresultscache>

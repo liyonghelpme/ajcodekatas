@@ -1,9 +1,9 @@
 ﻿namespace AjCat.Tests
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
 
     using AjCat.Compiler;
     using AjCat.Expressions;
@@ -48,6 +48,12 @@
             types["cos_dbl"] = typeof(DoubleCosineOperation);
             types["asin_dbl"] = typeof(DoubleArcSineOperation);
             types["sin_dbl"] = typeof(DoubleSineOperation);
+            types["tan_dbl"] = typeof(DoubleTangentOperation);
+            types["atan_dbl"] = typeof(DoubleArcTangentOperation);
+            types["atan2_dbl"] = typeof(DoubleArcTangent2Operation);
+            types["sinh_dbl"] = typeof(DoubleSineHyperbolicOperation);
+            types["cosh_dbl"] = typeof(DoubleCosineHyperbolicOperation);
+            types["tanh_dbl"] = typeof(DoubleTangentHyperbolicOperation);
 
             this.GetTypes(types);
         }
@@ -139,16 +145,6 @@
             this.GetTypes(types);
         }
 
-        private void GetTypes(Dictionary<string, Type> types) 
-        {
-            foreach (string name in types.Keys) 
-            {
-                Expression expression = this.GetByName(name);
-                Assert.IsInstanceOfType(expression, types[name]);
-                Assert.AreEqual(name, expression.ToString());
-            }
-        }
-
         [TestMethod]
         public void DefineNewExpression()
         {
@@ -190,6 +186,16 @@
         private Expression GetByName(string name)
         {
             return Expressions.GetByName(name);
+        }
+
+        private void GetTypes(Dictionary<string, Type> types)
+        {
+            foreach (string name in types.Keys)
+            {
+                Expression expression = this.GetByName(name);
+                Assert.IsInstanceOfType(expression, types[name]);
+                Assert.AreEqual(name, expression.ToString());
+            }
         }
     }
 }

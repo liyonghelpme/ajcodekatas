@@ -279,3 +279,18 @@ define acos
   {
      acos_dbl
   }
+
+define tan
+  {
+     tan_dbl
+  }
+
+define atan
+  {
+     atan_dbl
+  }
+
+define atan2
+  {
+     atan2_dbl
+  }

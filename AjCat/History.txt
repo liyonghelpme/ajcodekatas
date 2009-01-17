@@ -42,3 +42,9 @@ as_int, as_bool, as_char, as_string, as_list, as_var, as_dbl
 2009-01-11
 A expression (apply one argument to unary function)
 abs_dbl, acos_dbl, cos_dbl, asin_dbl, sin_dbl
+
+2009-01-17
+Refactoring some test in ExpressionTest.cs to EvaluateUnaryExpression, EvaluateBinaryExpression
+tan_dbl, atan_dbl, atan2_dbl
+sinh_dbl, cosh_dbl, tanh_dbl
+More test and code coverage for expressions

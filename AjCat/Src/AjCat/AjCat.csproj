@@ -70,6 +70,12 @@
     <Compile Include="Expressions\AsStringExpression.cs" />
     <Compile Include="Expressions\AsVarExpression.cs" />
     <Compile Include="Expressions\AExpression.cs" />
+    <Compile Include="Expressions\DoubleTangentHyperbolicOperation.cs" />
+    <Compile Include="Expressions\DoubleCosineHyperbolicOperation.cs" />
+    <Compile Include="Expressions\DoubleSineHyperbolicOperation.cs" />
+    <Compile Include="Expressions\DoubleArcTangent2Operation.cs" />
+    <Compile Include="Expressions\DoubleArcTangentOperation.cs" />
+    <Compile Include="Expressions\DoubleTangentOperation.cs" />
     <Compile Include="Expressions\DoubleSineOperation.cs" />
     <Compile Include="Expressions\DoubleArcSineOperation.cs" />
     <Compile Include="Expressions\DoubleCosineOperation.cs" />
@@ -120,6 +126,7 @@
     <Compile Include="Expressions\ListExpression.cs" />
     <Compile Include="Expressions\PopExpression.cs" />
     <Compile Include="Expressions\QuotationExpression.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-
-using AjCat;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace AjCat.Tests
+﻿namespace AjCat.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using AjCat;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class MachineTest
     {
@@ -78,7 +78,7 @@ namespace AjCat.Tests
             machine.Push("foo");
             machine.Push("bar");
 
-            object[] content = machine.StackContent;
+            object[] content = (object[]) machine.StackContent;
 
             Assert.IsNotNull(content);
             Assert.AreEqual(4, content.Length);

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Text;
@@ -171,9 +172,9 @@
             switch (token.TokenType) 
             {
                 case TokenType.Integer:
-                    return new IntegerExpression(Convert.ToInt32(token.Value));
+                    return new IntegerExpression(Convert.ToInt32(token.Value, CultureInfo.CurrentCulture));
                 case TokenType.Double:
-                    return new DoubleExpression(Convert.ToDouble(token.Value));
+                    return new DoubleExpression(Convert.ToDouble(token.Value, CultureInfo.CurrentCulture));
                 case TokenType.String:
                     return new StringExpression(token.Value);
                 case TokenType.Name:

@@ -1,10 +1,10 @@
 ﻿namespace AjCat.Tests
 {
     using System;
-    using System.Text;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
 
     using AjCat;
     using AjCat.Compiler;
@@ -16,34 +16,36 @@
     public class ExpressionTest
     {
         [TestMethod]
-        public void CreateIntegerExpression()
+        public void CreateAndEvaluateIntegerExpression()
         {
             IntegerExpression expression = new IntegerExpression(10);
 
             Assert.AreEqual(10, expression.Value);
 
             Assert.AreEqual("10", expression.ToString());
+            this.EvaluateZeroExpression(expression, 10);
         }
 
         [TestMethod]
-        public void CreateStringExpression()
+        public void CreateAndEvaluateDoubleExpression()
+        {
+            DoubleExpression expression = new DoubleExpression(3.14);
+
+            Assert.AreEqual(3.14, expression.Value);
+
+            Assert.AreEqual("3.14", expression.ToString());
+
+            this.EvaluateZeroExpression(expression, 3.14);
+        }
+
+        [TestMethod]
+        public void CreateAndEvaluateStringExpression()
         {
             StringExpression expression = new StringExpression("foo");
 
             Assert.AreEqual("foo", expression.Value);
             Assert.AreEqual("\"foo\"", expression.ToString());
-        }
-
-        [TestMethod]
-        public void CreateAndEvaluateIntegerExpression()
-        {
-            IntegerExpression expression = new IntegerExpression(10);
-            Machine machine = new Machine();
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(10, machine.Pop());
-            Assert.AreEqual(0, machine.StackCount);
+            this.EvaluateZeroExpression(expression, "foo");
         }
 
         [TestMethod]
@@ -226,7 +228,7 @@
 
             expression.Evaluate(machine);
 
-            Assert.AreEqual(355.0/113.0, machine.Pop());
+            Assert.AreEqual(355.0 / 113.0, machine.Pop());
             Assert.AreEqual(0, machine.StackCount);
         }
 
@@ -1012,139 +1014,196 @@
         [TestMethod]
         public void GetAndEvaluateIntegerLessThanExpression()
         {
-            IntegerLessThanExpression expression = IntegerLessThanExpression.Instance;
-
-            Assert.IsNotNull(expression);
-
-            Machine machine = new Machine();
-
-            machine.Push(1);
-            machine.Push(2);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsTrue((bool)machine.Pop());
-
-            machine.Push(2);
-            machine.Push(2);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsFalse((bool)machine.Pop());
+            this.EvaluateBinaryExpression(IntegerLessThanExpression.Instance, 2, 1, false);
+            this.EvaluateBinaryExpression(IntegerLessThanExpression.Instance, 2, 2, false);
+            this.EvaluateBinaryExpression(IntegerLessThanExpression.Instance, 1, 2, true);
         }
 
         [TestMethod]
         public void GetAndEvaluateIntegerLessEqualThanExpression()
         {
-            IntegerLessEqualThanExpression expression = IntegerLessEqualThanExpression.Instance;
-
-            Assert.IsNotNull(expression);
-
-            Machine machine = new Machine();
-
-            machine.Push(1);
-            machine.Push(2);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsTrue((bool)machine.Pop());
-
-            machine.Push(2);
-            machine.Push(2);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsTrue((bool)machine.Pop());
-
-            machine.Push(3);
-            machine.Push(2);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsFalse((bool)machine.Pop());
+            this.EvaluateBinaryExpression(IntegerLessEqualThanExpression.Instance, 2, 1, false);
+            this.EvaluateBinaryExpression(IntegerLessEqualThanExpression.Instance, 2, 2, true);
+            this.EvaluateBinaryExpression(IntegerLessEqualThanExpression.Instance, 1, 2, true);
         }
 
         [TestMethod]
         public void GetAndEvaluateIntegerGreaterThanExpression()
         {
-            IntegerGreaterThanExpression expression = IntegerGreaterThanExpression.Instance;
-
-            Assert.IsNotNull(expression);
-
-            Machine machine = new Machine();
-
-            machine.Push(2);
-            machine.Push(1);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsTrue((bool)machine.Pop());
-
-            machine.Push(2);
-            machine.Push(2);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsFalse((bool)machine.Pop());
+            this.EvaluateBinaryExpression(IntegerGreaterThanExpression.Instance, 2, 1, true);
+            this.EvaluateBinaryExpression(IntegerGreaterThanExpression.Instance, 2, 2, false);
+            this.EvaluateBinaryExpression(IntegerGreaterThanExpression.Instance, 1, 2, false);
         }
 
         [TestMethod]
         public void GetAndEvaluateIntegerGreaterEqualThanExpression()
         {
-            IntegerGreaterEqualThanExpression expression = IntegerGreaterEqualThanExpression.Instance;
-
-            Assert.IsNotNull(expression);
-
-            Machine machine = new Machine();
-
-            machine.Push(2);
-            machine.Push(1);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsTrue((bool)machine.Pop());
-
-            machine.Push(2);
-            machine.Push(2);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsTrue((bool)machine.Pop());
-
-            machine.Push(2);
-            machine.Push(3);
-
-            expression.Evaluate(machine);
-
-            Assert.AreEqual(1, machine.StackCount);
-            Assert.IsFalse((bool)machine.Pop());
+            this.EvaluateBinaryExpression(IntegerGreaterEqualThanExpression.Instance, 2, 1, true);
+            this.EvaluateBinaryExpression(IntegerGreaterEqualThanExpression.Instance, 2, 2, true);
+            this.EvaluateBinaryExpression(IntegerGreaterEqualThanExpression.Instance, 1, 2, false);
         }
 
         [TestMethod]
         public void GetAndEvaluateAExpression()
         {
-            AExpression expression = AExpression.Instance;
+            this.EvaluateBinaryExpression(AExpression.Instance, 3, IntegerIncrementOperation.Instance, 4);
+        }
 
+        [TestMethod]
+        public void EvaluateDoubleCosineOperation() 
+        {
+            this.EvaluateUnaryExpression(DoubleCosineOperation.Instance, 0.5, Math.Cos(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleSineOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleSineOperation.Instance, 0.5, Math.Sin(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleArcCosineOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleArcCosineOperation.Instance, 0.5, Math.Acos(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleArcSineOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleArcSineOperation.Instance, 0.5, Math.Asin(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleAbsoluteOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleAbsoluteOperation.Instance, 0.5, 0.5);
+            this.EvaluateUnaryExpression(DoubleAbsoluteOperation.Instance, -0.5, 0.5);
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleTangentOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleTangentOperation.Instance, 0.5, Math.Tan(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleArcTangentOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleArcTangentOperation.Instance, 0.5, Math.Atan(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleArcTangent2Operation()
+        {
+            this.EvaluateBinaryExpression(DoubleArcTangent2Operation.Instance, 0.5, 0.5, Math.Atan2(0.5, 0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleSineHyperbolicOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleSineHyperbolicOperation.Instance, 0.5, Math.Sinh(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleCosineHyperbolicOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleCosineHyperbolicOperation.Instance, 0.5, Math.Cosh(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateDoubleTangentHyperbolicOperation()
+        {
+            this.EvaluateUnaryExpression(DoubleTangentHyperbolicOperation.Instance, 0.5, Math.Tanh(0.5));
+        }
+
+        [TestMethod]
+        public void EvaluateAsBoolExpression()
+        {
+            this.EvaluateUnaryExpression(AsBoolExpression.Instance, true, true);
+            this.EvaluateUnaryExpression(AsBoolExpression.Instance, false, false);
+        }
+
+        [TestMethod]
+        public void EvaluateAsStringExpression()
+        {
+            this.EvaluateUnaryExpression(AsStringExpression.Instance, "foo", "foo");
+        }
+
+        [TestMethod]
+        public void EvaluateAsCharExpression()
+        {
+            this.EvaluateUnaryExpression(AsCharExpression.Instance, 'a', 'a');
+        }
+
+        [TestMethod]
+        public void EvaluateAsDoubleExpression()
+        {
+            this.EvaluateUnaryExpression(AsDoubleExpression.Instance, 3.14, 3.14);
+        }
+
+        [TestMethod]
+        public void EvaluateAsIntegerExpression()
+        {
+            this.EvaluateUnaryExpression(AsIntegerExpression.Instance, 123, 123);
+        }
+
+        [TestMethod]
+        public void EvaluateAsVarExpression()
+        {
+            object obj = 123;
+            this.EvaluateUnaryExpression(AsVarExpression.Instance, obj, obj);
+        }
+
+        [TestMethod]
+        public void EvaluateAsListExpression()
+        {
+            IList list = new ArrayList();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+
+            this.EvaluateUnaryExpression(AsListExpression.Instance, list, list);
+        }
+
+        private void EvaluateZeroExpression(Expression expression, object expected)
+        {
             Assert.IsNotNull(expression);
 
             Machine machine = new Machine();
 
-            machine.Push(3);
-            machine.Push(IntegerIncrementOperation.Instance);
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.AreEqual(expected, machine.Pop());
+        }
+
+        private void EvaluateUnaryExpression(Expression expression, object argument, object expected) 
+        {
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(argument);
 
             expression.Evaluate(machine);
 
             Assert.AreEqual(1, machine.StackCount);
-            Assert.AreEqual(4, machine.Pop());
+            Assert.AreEqual(expected, machine.Pop());
+        }
+
+        private void EvaluateBinaryExpression(Expression expression, object argument1, object argument2, object expected)
+        {
+            Assert.IsNotNull(expression);
+
+            Machine machine = new Machine();
+
+            machine.Push(argument1);
+            machine.Push(argument2);
+
+            expression.Evaluate(machine);
+
+            Assert.AreEqual(1, machine.StackCount);
+            Assert.AreEqual(expected, machine.Pop());
         }
     }
 }

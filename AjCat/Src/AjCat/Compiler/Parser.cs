@@ -13,8 +13,6 @@
         private const char StringEscapeChar = '\\';
         private const char DecimalPoint = '.';
 
-        private static string[] otherOperators = new string[] { "**" };
-
         private TextReader reader;
         private Token lastToken;
         private char lastChar;

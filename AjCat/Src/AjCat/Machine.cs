@@ -18,7 +18,7 @@
             }
         }
 
-        public object[] StackContent
+        public ICollection StackContent
         {
             get
             {

@@ -1,6 +1,8 @@
 
 Miscellaneous
 Refactor Expressions (static class and method -> dynamic)
+Environment, TopEnvironment
+CurrentCulture or InvariantCulture
 
 Level 0
 Type inference

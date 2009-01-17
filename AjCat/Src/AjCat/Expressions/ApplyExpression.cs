@@ -25,7 +25,6 @@
         public override void Evaluate(Machine machine)
         {
             Expression expression = (Expression)machine.Pop();
-            IList result = new ArrayList();
 
             expression.Evaluate(machine);
         }

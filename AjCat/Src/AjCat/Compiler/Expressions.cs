@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
 
@@ -30,6 +31,12 @@
             expressionsByName["acos_dbl"] = DoubleArcCosineOperation.Instance;
             expressionsByName["sin_dbl"] = DoubleSineOperation.Instance;
             expressionsByName["asin_dbl"] = DoubleArcSineOperation.Instance;
+            expressionsByName["tan_dbl"] = DoubleTangentOperation.Instance;
+            expressionsByName["atan_dbl"] = DoubleArcTangentOperation.Instance;
+            expressionsByName["atan2_dbl"] = DoubleArcTangent2Operation.Instance;
+            expressionsByName["sinh_dbl"] = DoubleSineHyperbolicOperation.Instance;
+            expressionsByName["cosh_dbl"] = DoubleCosineHyperbolicOperation.Instance;
+            expressionsByName["tanh_dbl"] = DoubleTangentHyperbolicOperation.Instance;
 
             expressionsByName["id"] = IdExpression.Instance;
             expressionsByName["dup"] = DupExpression.Instance;
@@ -87,7 +94,7 @@
                 return expressionsByName[name];
             }
 
-            throw new ArgumentException(string.Format("Unknown '{0}'", name));
+            throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "Unknown '{0}'", name));
         }
 
         public static void DefineExpression(string name, Expression expression)

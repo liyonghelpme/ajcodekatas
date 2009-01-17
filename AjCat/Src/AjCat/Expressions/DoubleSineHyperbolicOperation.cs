@@ -5,15 +5,15 @@
     using System.Linq;
     using System.Text;
 
-    public class DoubleSineOperation : DoubleUnaryOperation
+    public class DoubleSineHyperbolicOperation : DoubleUnaryOperation
     {
-        private static DoubleSineOperation instance = new DoubleSineOperation();
+        private static DoubleSineHyperbolicOperation instance = new DoubleSineHyperbolicOperation();
 
-        private DoubleSineOperation()
+        private DoubleSineHyperbolicOperation()
         {
         }
 
-        public static DoubleSineOperation Instance
+        public static DoubleSineHyperbolicOperation Instance
         {
             get
             {
@@ -23,12 +23,12 @@
 
         public override double Apply(double operand)
         {
-            return Math.Sin(operand);
+            return Math.Sinh(operand);
         }
 
         public override string ToString()
         {
-            return "sin_dbl";
+            return "sinh_dbl";
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace AjCat.Console
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -63,19 +64,19 @@
 
         private static void PrintStack(Machine machine)
         {
-            object[] content = machine.StackContent;
+            ICollection content = machine.StackContent;
 
-            if (content == null || content.Length == 0)
+            if (content == null || content.Count == 0)
             {
                 Console.WriteLine("_empty_");
             }
 
             Console.Write("Stack:");
 
-            for (int k = content.Length; --k >= 0; )
+            for (int k = content.Count; --k >= 0;)
             {
                 Console.Write(" ");
-                Console.Write(ObjectToString(content[k]));
+                Console.Write(ObjectToString((object[])content)[k]);
             }
 
             Console.WriteLine();
