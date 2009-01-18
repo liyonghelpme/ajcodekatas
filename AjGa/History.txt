@@ -1,11 +1,17 @@
 
 2008-12-08
-	Initial Project in ajcodekatas
-	AjGa Genetic Algorithms base with templates
-	AjGa.Tsp Traveling Salemen Problem base
-	AjGa.Tests Test for both projects
+Initial Project in ajcodekatas
+AjGa Genetic Algorithms base with templates
+AjGa.Tsp Traveling Salemen Problem base
+AjGa.Tests Test for both projects
 
 2008-12-27
-	GradientMutator in TSP
-	New AjGa.Tsp.Gui WinForm application
-		to test Tsp
+GradientMutator in TSP
+New AjGa.Tsp.Gui WinForm application
+to test Tsp
+
+2009-01-18
+Changes in drawing Tsp
+Changes in Tsp Mutators
+Improvements in Tsp Form
+StyleCop improvements

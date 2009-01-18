@@ -46,15 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEvolution.cs" />
-    <Compile Include="BaseGenoma.cs" />
+    <Compile Include="BaseGenome.cs" />
     <Compile Include="BasePopulation.cs" />
     <Compile Include="IEvolution.cs" />
-    <Compile Include="IGenoma.cs" />
+    <Compile Include="IGenome.cs" />
     <Compile Include="IEvaluator.cs" />
-    <Compile Include="IGenomaCreator.cs" />
-    <Compile Include="IGenomaCrossover.cs" />
-    <Compile Include="IGenomaFactory.cs" />
-    <Compile Include="IGenomaMutator.cs" />
+    <Compile Include="IGenomeCreator.cs" />
+    <Compile Include="IGenomeCrossover.cs" />
+    <Compile Include="IGenomeFactory.cs" />
+    <Compile Include="IGenomeMutator.cs" />
     <Compile Include="IPopulation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

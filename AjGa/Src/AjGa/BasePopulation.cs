@@ -1,37 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AjGa
+﻿namespace AjGa
 {
-    public class BasePopulation<G, V> : IPopulation<G,V>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    public class BasePopulation<G, V> : IPopulation<G, V>
     {
-        private List<IGenoma<G,V>> genomas;
+        private List<IGenome<G, V>> genomes;
 
         public BasePopulation()
         {
-            this.genomas = new List<IGenoma<G, V>>();
+            this.genomes = new List<IGenome<G, V>>();
         }
 
-        public BasePopulation(List<IGenoma<G, V>> genomas)
+        public BasePopulation(List<IGenome<G, V>> genomes)
         {
-            this.genomas = genomas;
+            this.genomes = genomes;
         }
 
         public BasePopulation(IPopulation<G, V> population)
         {
-            this.genomas = population.Genomas;
+            this.genomes = population.Genomes;
         }
 
-        public List<IGenoma<G, V>> Genomas
+        public List<IGenome<G, V>> Genomes
         {
-            get { return this.genomas; }
+            get { return this.genomes; }
         }
 
-        public void AddGenoma(IGenoma<G, V> genoma)
+        public void AddGenome(IGenome<G, V> genome)
         {
-            this.genomas.Add(genoma);
+            this.genomes.Add(genome);
         }
     }
 }

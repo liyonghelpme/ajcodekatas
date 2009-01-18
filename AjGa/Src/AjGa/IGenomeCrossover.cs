@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Text;
 
-    public interface IEvolution<G, V>
+    public interface IGenomeCrossover<G, V> : IGenomeFactory<G, V>
     {
-        IPopulation<G, V> RunGeneration(IPopulation<G, V> population);
+        IGenome<G, V> Crossover(IGenome<G, V> genome1, IGenome<G, V> genome2);
     }
 }
 

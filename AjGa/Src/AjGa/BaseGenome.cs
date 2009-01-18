@@ -5,18 +5,18 @@
     using System.Linq;
     using System.Text;
 
-    public class BaseGenoma<G, V> : IGenoma<G, V>
+    public class BaseGenome<G, V> : IGenome<G, V>
     {
         private List<G> genes;
         private V value;
 
-        public BaseGenoma() 
+        public BaseGenome() 
         {
             this.genes = new List<G>();
             this.value = default(V);
         }
 
-        public BaseGenoma(List<G> genes)
+        public BaseGenome(List<G> genes)
         {
             this.genes = genes;
             this.value = default(V);

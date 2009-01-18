@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AjGa.Tsp
+﻿namespace AjGa.Tsp
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class Position
     {
         private int x;
@@ -16,8 +16,20 @@ namespace AjGa.Tsp
             this.y = y;
         }
 
-        public int X { get { return x; } }
+        public int X 
+        { 
+            get
+            { 
+                return this.x; 
+            } 
+        }
 
-        public int Y { get { return y; } }
+        public int Y 
+        { 
+            get 
+            { 
+                return this.y;
+            }
+        }
     }
 }

@@ -5,8 +5,10 @@
     using System.Linq;
     using System.Text;
 
-    public interface IPopulation<G, V>
+    public interface IGenome<G, V>
     {
-        List<IGenome<G, V>> Genomes { get; }
+        V Value { get; set; }
+
+        List<G> Genes { get; }
     }
 }

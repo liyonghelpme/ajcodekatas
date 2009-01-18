@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using AjGa;
-
-namespace AjGa.Tsp
+﻿namespace AjGa.Tsp
 {
-    public class Creator : IGenomaCreator<int, int>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using AjGa;
+
+    public class Creator : IGenomeCreator<int, int>
     {
         private int size;
         private Mutator mutator = new Mutator();
@@ -17,9 +17,9 @@ namespace AjGa.Tsp
             this.size = size;
         }
 
-        public IGenoma<int, int> Create()  
+        public IGenome<int, int> Create()  
         {
-            return mutator.Mutate(new Genoma(this.size));
+            return this.mutator.Mutate(new Genome(this.size), this.size*3);
         }
     }
 }

@@ -1,0 +1,33 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:55:01</timestamp>
+      <milliseconds>968</milliseconds>
+    </settings>
+    <timestamp>12/08/2008 14:57:22</timestamp>
+    <milliseconds>984</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="1029122858">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="BaseGenomaTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:55:01</timestamp>
+      <milliseconds>968</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 10:55:19</timestamp>
+    <milliseconds>78</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TspTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:55:01</timestamp>
+      <milliseconds>968</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 10:55:32</timestamp>
+    <milliseconds>359</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using AjGa;
-
-namespace AjGa.Tsp
+﻿namespace AjGa.Tsp
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using AjGa;
+
     public class Population : BasePopulation<int, int>
     {
         public Population()
         {
         }
 
-        public Population(List<IGenoma<int,int>> genomas)
-            : base(genomas)
+        public Population(List<IGenome<int, int>> genomes)
+            : base(genomes)
         {
         }
 
@@ -23,12 +23,14 @@ namespace AjGa.Tsp
         {
         }
 
-        public Population(int size, int genomalength)
+        public Population(int size, int genomelength)
         {
-            Creator creator = new Creator(genomalength);
+            Creator creator = new Creator(genomelength);
 
             for (int k = 0; k < size; k++)
-                AddGenoma(creator.Create());
+            {
+                AddGenome(creator.Create());
+            }
         }
     }
 }

@@ -1,51 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-
-namespace AjGa.Tsp.Gui
+﻿namespace AjGa.Tsp.Gui
 {
-    class TravelImage
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Text;
+
+    public class TravelImage
     {
-        private Bitmap image;
-        private Graphics graphics;
-        private Brush brush;
+        private Image image;
         private short width;
         private short height;
-
-        public TravelImage()
-            : this(6, 6)
-        {
-        }
 
         public TravelImage(short width, short height)
         {
             this.width = width;
             this.height = height;
-            image = new Bitmap(width * 40, height * 40);
-            graphics = Graphics.FromImage(image);
-            brush = Brushes.Beige;
         }
 
         public Image Image
         {
-            get { return image; }
+            get
+            {
+                return this.image; 
+            }
         }
 
-        public void DrawTravel(Genoma g, List<Position> positions)
+        public void DrawTravel(int gwidth, int gheight, Genome g, List<Position> positions)
         {
-            graphics.FillRectangle(Brushes.LightGoldenrodYellow, 0, 0, image.Width, image.Height);
+            int gsize = Math.Min(gwidth, gheight);
+            int size = Math.Min(this.width, this.height);
+
+            int cellsize = gsize / size;
+
+            this.image = new Bitmap(cellsize * this.width, cellsize * this.height);
+            Graphics graphics = Graphics.FromImage(this.image);
+            graphics.FillRectangle(Brushes.LightGoldenrodYellow, 0, 0, gwidth, gheight);
+
+            int top = cellsize / 2;
+            int left = cellsize / 2;
 
             Position p1 = null;
 
             foreach (int pos in g.Genes)
             {
                 if (p1 == null)
+                {
                     p1 = positions[pos];
+                }
                 else
                 {
                     Position p2 = positions[pos];
-                    graphics.DrawLine(Pens.Black, 10 + p1.X * 20, 10 + p1.Y * 20, 10 + p2.X * 20, 10 + p2.Y * 20);
+                    graphics.DrawLine(Pens.Black, left + p1.X * cellsize, top + p1.Y * cellsize, left + p2.X * cellsize, top + p2.Y * cellsize);
                     p1 = p2;
                 }
             }

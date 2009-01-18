@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using AjGa;
-
-namespace AjGa.Tsp
+﻿namespace AjGa.Tsp
 {
-    public class Crossing : IGenomaCrossover<int, int>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using AjGa;
+
+    public class Crossing : IGenomeCrossover<int, int>
     {
-        public IGenoma<int, int> Crossover(IGenoma<int, int> genoma1, IGenoma<int, int> genoma2)
+        public IGenome<int, int> Crossover(IGenome<int, int> genome1, IGenome<int, int> genome2)
         {
-            return genoma1;
+            return genome1;
         }
     }
 }

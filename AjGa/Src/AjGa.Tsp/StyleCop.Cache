@@ -1,0 +1,102 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>12/08/2008 15:19:58</timestamp>
+    <milliseconds>156</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Creator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 10:56:24</timestamp>
+    <milliseconds>718</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Crossing.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 10:56:30</timestamp>
+    <milliseconds>203</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Evolution.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 10:57:34</timestamp>
+    <milliseconds>687</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Genoma.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 10:57:47</timestamp>
+    <milliseconds>15</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Evaluator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 10:58:56</timestamp>
+    <milliseconds>125</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.MaintainabilityRules" rule="ArithmeticExpressionsMustDeclarePrecedence" ruleCheckId="SA1407">
+        <context>Insert parenthesis within the arithmetic expression to declare the operator precedence.</context>
+        <line>32</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="Position.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 11:01:04</timestamp>
+    <milliseconds>250</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GradientMutator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 11:01:27</timestamp>
+    <milliseconds>593</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Population.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 11:02:03</timestamp>
+    <milliseconds>812</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="1258392388">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Mutator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/18/2009 10:56:04</timestamp>
+      <milliseconds>656</milliseconds>
+    </settings>
+    <timestamp>01/18/2009 11:04:53</timestamp>
+    <milliseconds>609</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

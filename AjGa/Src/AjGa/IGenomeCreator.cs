@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Text;
 
-    public interface IPopulation<G, V>
+    public interface IGenomeCreator<G, V> : IGenomeFactory<G, V>
     {
-        List<IGenome<G, V>> Genomes { get; }
+        IGenome<G, V> Create();
     }
 }

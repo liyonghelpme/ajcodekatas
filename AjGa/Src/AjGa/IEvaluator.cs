@@ -7,6 +7,6 @@
 
     public interface IEvaluator<G, V>
     {
-        V Evaluate(IGenoma<G,V> genoma);
+        V Evaluate(IGenome<G, V> genome);
     }
 }

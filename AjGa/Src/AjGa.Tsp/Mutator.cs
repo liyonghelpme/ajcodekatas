@@ -1,30 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AjGa.Tsp
+﻿namespace AjGa.Tsp
 {
-    public class Mutator : IGenomaMutator<int, int>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    public class Mutator : IGenomeMutator<int, int>
     {
         private static Random rnd = new Random();
 
-        public IGenoma<int, int> Mutate(IGenoma<int, int> genoma)
+        public IGenome<int, int> Mutate(IGenome<int, int> genome)
         {
-            int [] positions = new int[genoma.Genes.Count];
+            return Mutate(genome, rnd.Next(3) + 1);
+        }
+
+        public IGenome<int, int> Mutate(IGenome<int, int> genome, int nmutations)
+        {
+            int[] positions = new int[genome.Genes.Count];
 
             for (int k = 0; k < positions.Length; k++)
-                positions[k] = genoma.Genes[k];
+            {
+                positions[k] = genome.Genes[k];
+            }
 
-            for (int l = 0; l < positions.Length * 3; l++)
+            for (int l = 0; l < nmutations; l++)
+            {
                 SwapTwo(positions);
+            }
 
             List<int> genes = new List<int>(positions);
 
-            return new Genoma(genes);
+            return new Genome(genes);
         }
 
-        private static void SwapTwo(int [] positions) 
+        private static void SwapTwo(int[] positions) 
         {
             int p1 = rnd.Next(positions.Length);
             int p2 = rnd.Next(positions.Length);

@@ -50,7 +50,7 @@
     <Compile Include="Crossing.cs" />
     <Compile Include="Evaluator.cs" />
     <Compile Include="Evolution.cs" />
-    <Compile Include="Genoma.cs" />
+    <Compile Include="Genome.cs" />
     <Compile Include="Mutator.cs" />
     <Compile Include="Population.cs" />
     <Compile Include="Position.cs" />

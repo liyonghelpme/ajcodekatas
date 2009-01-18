@@ -38,7 +38,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseGenomaTest.cs" />
+    <Compile Include="BaseGenomeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TspTest.cs" />
   </ItemGroup>
