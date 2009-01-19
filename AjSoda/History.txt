@@ -1,0 +1,9 @@
+
+2009-01-19
+Initial Project in ajcodekatas
+IObject, IBehavior
+BaseObject, BaseBehavior
+IMethod
+Tests for BaseObject, BaseBehavior
+MockMethod
+
