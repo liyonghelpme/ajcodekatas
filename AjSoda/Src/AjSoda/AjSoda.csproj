@@ -46,7 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBehavior.cs" />
+    <Compile Include="BaseLookupMethod.cs" />
     <Compile Include="BaseObject.cs" />
+    <Compile Include="BaseAddMethodMethod.cs" />
+    <Compile Include="Behavior.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IBehavior.cs" />
     <Compile Include="IMethod.cs" />

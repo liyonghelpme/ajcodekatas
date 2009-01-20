@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BaseBehaviorTests.cs" />
     <Compile Include="BaseObjectTests.cs" />
+    <Compile Include="BehaviorTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MockMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

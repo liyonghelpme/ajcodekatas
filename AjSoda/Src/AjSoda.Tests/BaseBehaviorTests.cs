@@ -40,7 +40,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RaiseIfSelectorIsNullWhenLookup()
+        public void ShouldRaiseIfSelectorIsNullWhenLookup()
         {
             BaseBehavior behavior = new BaseBehavior();
 
@@ -49,7 +49,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RaiseIfSelectorIsNullWhenAddMethod()
+        public void ShouldRaiseIfSelectorIsNullWhenAddMethod()
         {
             BaseBehavior behavior = new BaseBehavior();
 
@@ -58,11 +58,33 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void RaiseIfMethodIsNullWhenAddMethod()
+        public void ShouldRaiseExceptionIfMethodIsNullWhenAddMethod()
         {
             BaseBehavior behavior = new BaseBehavior();
 
             behavior.AddMethod("aMethod", null);
+        }
+
+        [TestMethod]
+        public void HasLookupMethod()
+        {
+            BaseBehavior behavior = new BaseBehavior();
+
+            IMethod lookupMethod = behavior.Lookup("lookup:");
+
+            Assert.IsNotNull(lookupMethod);
+            Assert.IsInstanceOfType(lookupMethod, typeof(BaseLookupMethod));
+        }
+
+        [TestMethod]
+        public void HasAddMethodMethod()
+        {
+            BaseBehavior behavior = new BaseBehavior();
+
+            IMethod addMethodMethod = behavior.Lookup("addMethod:at:");
+
+            Assert.IsNotNull(addMethodMethod);
+            Assert.IsInstanceOfType(addMethodMethod, typeof(BaseAddMethodMethod));
         }
     }
 }

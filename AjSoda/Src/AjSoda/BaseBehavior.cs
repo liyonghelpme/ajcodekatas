@@ -9,11 +9,17 @@
     {
         private Dictionary<string, IMethod> methods = new Dictionary<string, IMethod>();
 
+        public BaseBehavior()
+        {
+            this.methods.Add("lookup:", new BaseLookupMethod());
+            this.methods.Add("addMethod:at:", new BaseAddMethodMethod());
+        }
+
         public IMethod Lookup(string selector)
         {
             if (selector == null)
             {
-                throw new ArgumentNullException("methodName");
+                throw new ArgumentNullException("selector");
             }
 
             if (this.methods.ContainsKey(selector))

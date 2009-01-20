@@ -9,15 +9,6 @@
     <milliseconds>879</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="IBehavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 12:59:07</timestamp>
-    <milliseconds>32</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/19/2009 12:54:56</timestamp>
@@ -27,27 +18,6 @@
     <milliseconds>472</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="IObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 13:07:51</timestamp>
-    <milliseconds>683</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="BaseBehavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 13:27:19</timestamp>
-    <milliseconds>531</milliseconds>
-    <violations />
-  </sourcecode>
-  <project key="-1595737092">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="IMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/19/2009 12:54:56</timestamp>
@@ -57,13 +27,70 @@
     <milliseconds>187</milliseconds>
     <violations />
   </sourcecode>
+  <sourcecode name="IBehavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/19/2009 12:54:56</timestamp>
+      <milliseconds>317</milliseconds>
+    </settings>
+    <timestamp>01/19/2009 13:35:39</timestamp>
+    <milliseconds>66</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/19/2009 12:54:56</timestamp>
+      <milliseconds>317</milliseconds>
+    </settings>
+    <timestamp>01/20/2009 12:38:01</timestamp>
+    <milliseconds>877</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="BaseObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/19/2009 12:54:56</timestamp>
       <milliseconds>317</milliseconds>
     </settings>
-    <timestamp>01/19/2009 13:33:24</timestamp>
-    <milliseconds>465</milliseconds>
+    <timestamp>01/20/2009 12:40:05</timestamp>
+    <milliseconds>150</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseAddMethodMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/19/2009 12:54:56</timestamp>
+      <milliseconds>317</milliseconds>
+    </settings>
+    <timestamp>01/20/2009 13:15:46</timestamp>
+    <milliseconds>411</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseLookupMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/19/2009 12:54:56</timestamp>
+      <milliseconds>317</milliseconds>
+    </settings>
+    <timestamp>01/20/2009 13:13:47</timestamp>
+    <milliseconds>518</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseBehavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/19/2009 12:54:56</timestamp>
+      <milliseconds>317</milliseconds>
+    </settings>
+    <timestamp>01/20/2009 14:02:55</timestamp>
+    <milliseconds>772</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1595737092">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Behavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/19/2009 12:54:56</timestamp>
+      <milliseconds>317</milliseconds>
+    </settings>
+    <timestamp>01/20/2009 14:04:12</timestamp>
+    <milliseconds>878</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

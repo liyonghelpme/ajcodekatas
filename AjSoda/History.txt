@@ -7,3 +7,10 @@ IMethod
 Tests for BaseObject, BaseBehavior
 MockMethod
 
+2009-01-20
+BaseBehavior as vtable of vtable
+Behavior as vtable
+BaseAddMethodMethod
+BaseLookupMethod
+Behavior tests
+

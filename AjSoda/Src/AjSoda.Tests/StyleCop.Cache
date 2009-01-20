@@ -1,26 +1,5 @@
 <stylecopresultscache>
   <version>10</version>
-  <sourcecode name="BaseObjectTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/21/2008 14:03:48</timestamp>
-      <milliseconds>251</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 13:20:34</timestamp>
-    <milliseconds>920</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="BaseBehaviorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>08/21/2008 14:03:48</timestamp>
-      <milliseconds>251</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 13:20:37</timestamp>
-    <milliseconds>364</milliseconds>
-    <violations />
-  </sourcecode>
-  <project key="-1190263654">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="GlobalSuppressions.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>08/21/2008 14:03:48</timestamp>
@@ -37,6 +16,45 @@
     </settings>
     <timestamp>01/19/2009 13:21:30</timestamp>
     <milliseconds>637</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MockMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/21/2008 14:03:48</timestamp>
+      <milliseconds>251</milliseconds>
+    </settings>
+    <timestamp>01/19/2009 13:33:43</timestamp>
+    <milliseconds>886</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BehaviorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/21/2008 14:03:48</timestamp>
+      <milliseconds>251</milliseconds>
+    </settings>
+    <timestamp>01/20/2009 14:05:18</timestamp>
+    <milliseconds>676</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1190263654">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="BaseBehaviorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/21/2008 14:03:48</timestamp>
+      <milliseconds>251</milliseconds>
+    </settings>
+    <timestamp>01/20/2009 14:07:21</timestamp>
+    <milliseconds>124</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseObjectTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>08/21/2008 14:03:48</timestamp>
+      <milliseconds>251</milliseconds>
+    </settings>
+    <timestamp>01/20/2009 14:08:07</timestamp>
+    <milliseconds>650</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

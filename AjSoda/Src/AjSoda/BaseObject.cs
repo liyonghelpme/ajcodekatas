@@ -8,6 +8,17 @@
 
     public class BaseObject : IObject
     {
+        private object[] values;
+
+        public BaseObject()
+        {
+        }
+
+        public BaseObject(int size)
+        {
+            this.values = new object[size];
+        }
+
         public IBehavior Behavior { get; set; }
 
         public object Send(string selector, object[] arguments)
@@ -30,6 +41,16 @@
             }
 
             return method.Execute(this, arguments);
+        }
+
+        public void SetValueAt(int position, object value)
+        {
+            this.values[position] = value;
+        }
+
+        public object GetValueAt(int position)
+        {
+            return this.values[position];
         }
     }
 }
