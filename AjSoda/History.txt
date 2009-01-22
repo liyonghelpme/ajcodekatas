@@ -14,3 +14,10 @@ BaseAddMethodMethod
 BaseLookupMethod
 Behavior tests
 
+2009-01-22
+Major refactor
+Behavior was dropped
+IBehavior was dropped
+BaseBehavior as vtable of vtable
+Machine with initial Object and Behavior
+Send now sends lookup to Behavior

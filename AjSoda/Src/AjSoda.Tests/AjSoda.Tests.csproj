@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{04BFF745-CE30-4576-9D7E-45674F6BC09E}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -44,6 +44,7 @@
     <Compile Include="BaseObjectTests.cs" />
     <Compile Include="BehaviorTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MachineTests.cs" />
     <Compile Include="MockMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

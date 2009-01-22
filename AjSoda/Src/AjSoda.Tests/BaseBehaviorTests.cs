@@ -16,7 +16,9 @@
             BaseBehavior behavior = new BaseBehavior();
 
             Assert.IsNotNull(behavior);
-            Assert.IsNull(behavior.Behavior);
+            Assert.IsNotNull(behavior.Behavior);
+            Assert.IsNull(behavior.Parent);
+            Assert.IsNotNull(behavior.Methods);
         }
 
         [TestMethod]
@@ -33,7 +35,7 @@
             BaseBehavior behavior = new BaseBehavior();
             MockMethod method = new MockMethod();
 
-            behavior.AddMethod("aMethod", method);
+            behavior.Send("addMethod:at:", "aMethod", method);
 
             Assert.AreEqual(method, behavior.Lookup("aMethod"));
         }
@@ -53,7 +55,7 @@
         {
             BaseBehavior behavior = new BaseBehavior();
 
-            behavior.AddMethod(null, new MockMethod());
+            behavior.Send("addMethod:at:", null, new MockMethod());
         }
 
         [TestMethod]
@@ -62,7 +64,7 @@
         {
             BaseBehavior behavior = new BaseBehavior();
 
-            behavior.AddMethod("aMethod", null);
+            behavior.Send("addMethod:at:", "aMethod", null);
         }
 
         [TestMethod]
@@ -70,7 +72,7 @@
         {
             BaseBehavior behavior = new BaseBehavior();
 
-            IMethod lookupMethod = behavior.Lookup("lookup:");
+            IMethod lookupMethod = (IMethod) behavior.Send("lookup:", "lookup:");
 
             Assert.IsNotNull(lookupMethod);
             Assert.IsInstanceOfType(lookupMethod, typeof(BaseLookupMethod));
@@ -81,7 +83,7 @@
         {
             BaseBehavior behavior = new BaseBehavior();
 
-            IMethod addMethodMethod = behavior.Lookup("addMethod:at:");
+            IMethod addMethodMethod = (IMethod) behavior.Send("lookup:", "addMethod:at:");
 
             Assert.IsNotNull(addMethodMethod);
             Assert.IsInstanceOfType(addMethodMethod, typeof(BaseAddMethodMethod));

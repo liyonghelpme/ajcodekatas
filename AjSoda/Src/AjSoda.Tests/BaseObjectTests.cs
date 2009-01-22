@@ -41,7 +41,7 @@
             MockMethod method = new MockMethod();
 
             Assert.IsFalse(method.Executed);
-            behavior.AddMethod("aMethod", method);
+            behavior.Send("addMethod:at:", "aMethod", method);
 
             Assert.IsNull(obj.Send("aMethod", null));
 

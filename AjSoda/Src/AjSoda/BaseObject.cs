@@ -19,9 +19,22 @@
             this.values = new object[size];
         }
 
-        public IBehavior Behavior { get; set; }
+        public int Size
+        {
+            get
+            {
+                if (this.values == null)
+                {
+                    return 0;
+                }
 
-        public object Send(string selector, object[] arguments)
+                return this.values.Length;
+            }
+        }
+
+        public IObject Behavior { get; set; }
+
+        public virtual object Send(string selector, params object[] arguments)
         {
             if (selector == null)
             {
@@ -33,7 +46,7 @@
                 throw new InvalidOperationException("No behavior in object");
             }
 
-            IMethod method = this.Behavior.Lookup(selector);
+            IMethod method = (IMethod) this.Behavior.Send("lookup:", selector);
 
             if (method == null)
             {

@@ -13,39 +13,40 @@
         [TestMethod]
         public void CreateBehavior()
         {
-            Behavior behavior = new Behavior();
+            IObject behavior = new BaseObject(2);
 
             Assert.IsNotNull(behavior);
             Assert.IsNull(behavior.GetValueAt(0));
-            Assert.IsNotNull(behavior.GetValueAt(1));
-            Assert.IsInstanceOfType(behavior.GetValueAt(1), typeof(IDictionary<string, IMethod>));
+            Assert.IsNull(behavior.GetValueAt(1));
         }
 
         [TestMethod]
         public void CreateBehaviorWithBaseBehavior()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            Behavior behavior = new Behavior(baseBehavior);
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
 
             Assert.IsNotNull(behavior);
             Assert.IsNotNull(behavior.Behavior);
             Assert.IsInstanceOfType(behavior.Behavior, typeof(BaseBehavior));
             Assert.AreEqual(baseBehavior, behavior.Behavior);
-            Assert.IsNotNull(behavior.GetValueAt(1));
-            Assert.IsInstanceOfType(behavior.GetValueAt(1), typeof(IDictionary<string, IMethod>));
+            Assert.IsNull(behavior.GetValueAt(0));
+            Assert.IsNull(behavior.GetValueAt(1));
         }
 
         [TestMethod]
         public void AddMethodAndLookup()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            Behavior behavior = new Behavior(baseBehavior);
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
 
             IMethod method = new MockMethod();
 
-            behavior.AddMethod("aMethod", method);
+            behavior.Send("addMethod:at:", "aMethod", method);
 
-            IMethod retrievedMethod = behavior.Lookup("aMethod");
+            IMethod retrievedMethod = (IMethod) behavior.Send("lookup:", "aMethod");
 
             Assert.IsNotNull(retrievedMethod);
             Assert.AreEqual(method, retrievedMethod);
@@ -55,16 +56,18 @@
         public void LookupWithParent()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            Behavior behavior = new Behavior(baseBehavior);
-            Behavior childBehavior = new Behavior(baseBehavior);
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
+            IObject childBehavior = new BaseObject(2);
+            childBehavior.Behavior = baseBehavior;
 
             childBehavior.SetValueAt(0, behavior);
 
             IMethod method = new MockMethod();
 
-            behavior.AddMethod("aMethod", method);
+            behavior.Send("addMethod:at:", "aMethod", method);
 
-            IMethod retrievedMethod = childBehavior.Lookup("aMethod");
+            IMethod retrievedMethod = (IMethod) childBehavior.Send("lookup:", "aMethod");
 
             Assert.IsNotNull(retrievedMethod);
             Assert.AreEqual(method, retrievedMethod);
@@ -74,9 +77,10 @@
         public void NullIfUnknownMethodInLookup()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            Behavior behavior = new Behavior(baseBehavior);
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
 
-            IMethod retrievedMethod = behavior.Lookup("unknownMethod");
+            IMethod retrievedMethod = (IMethod) behavior.Send("lookup:", "unknownMethod");
 
             Assert.IsNull(retrievedMethod);
         }
@@ -85,13 +89,14 @@
         public void RedefineLookup()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            Behavior behavior = new Behavior(baseBehavior);
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
 
             IMethod method = new BaseLookupMethod();
 
-            behavior.AddMethod("lookup:", method);
+            behavior.Send("addMethod:at:", "lookup:", method);
 
-            IMethod newMethod = behavior.Lookup("lookup:");
+            IMethod newMethod = (IMethod) behavior.Send("lookup:", "lookup:");
 
             Assert.IsNotNull(newMethod);
             Assert.AreEqual(method, newMethod);
@@ -101,22 +106,23 @@
         public void RedefineAddMethod()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            Behavior behavior = new Behavior(baseBehavior);
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
 
             IMethod method = new BaseAddMethodMethod();
 
-            behavior.AddMethod("addMethod:at:", method);
+            behavior.Send("addMethod:at:", "addMethod:at:", method);
 
-            IMethod newMethod = behavior.Lookup("addMethod:at:");
+            IMethod newMethod = (IMethod) behavior.Send("lookup:", "addMethod:at:");
 
             Assert.IsNotNull(newMethod);
             Assert.AreEqual(method, newMethod);
 
             IMethod anotherMethod = new MockMethod();
 
-            behavior.AddMethod("anotherMethod", anotherMethod);
+            behavior.Send("addMethod:at:", "anotherMethod", anotherMethod);
 
-            newMethod = behavior.Lookup("anotherMethod");
+            newMethod = (IMethod) behavior.Send("lookup:", "anotherMethod");
 
             Assert.AreEqual(anotherMethod, newMethod);
         }
@@ -125,27 +131,33 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void ShouldRaiseIfSelectorIsNullWhenLookup()
         {
-            Behavior behavior = new Behavior();
+            BaseBehavior baseBehavior = new BaseBehavior();
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
 
-            behavior.Lookup(null);
+            behavior.Send("lookup:", null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ShouldRaiseIfSelectorIsNullWhenAddMethod()
         {
-            Behavior behavior = new Behavior();
+            BaseBehavior baseBehavior = new BaseBehavior();
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
 
-            behavior.AddMethod(null, new MockMethod());
+            behavior.Send("addMethod:at:", null, new MockMethod());
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ShouldRaiseIfMethodIsNullWhenAddMethod()
         {
-            Behavior behavior = new Behavior();
+            BaseBehavior baseBehavior = new BaseBehavior();
+            IObject behavior = new BaseObject(2);
+            behavior.Behavior = baseBehavior;
 
-            behavior.AddMethod("aMethod", null);
+            behavior.Send("addMethod:at:", "aMethod", null);
         }
     }
 }

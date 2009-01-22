@@ -5,14 +5,51 @@
     using System.Linq;
     using System.Text;
 
-    public class BaseBehavior : BaseObject, IBehavior
+    public class BaseBehavior : BaseObject
     {
-        private Dictionary<string, IMethod> methods = new Dictionary<string, IMethod>();
-
         public BaseBehavior()
+            : base(2)
         {
-            this.methods.Add("lookup:", new BaseLookupMethod());
-            this.methods.Add("addMethod:at:", new BaseAddMethodMethod());
+            this.Behavior = this;
+            this.Methods = new Dictionary<string, IMethod>();
+            this.Methods.Add("lookup:", new BaseLookupMethod());
+            this.Methods.Add("addMethod:at:", new BaseAddMethodMethod());
+        }
+
+        public IDictionary<string, IMethod> Methods
+        {
+            get
+            {
+                return (IDictionary<string, IMethod>)this.GetValueAt(1);
+            }
+
+            private set
+            {
+                this.SetValueAt(1, value);
+            }
+        }
+
+        public IObject Parent
+        {
+            get
+            {
+                return (IObject)this.GetValueAt(0);
+            }
+
+            set
+            {
+                this.SetValueAt(0, value);
+            }
+        }
+
+        public override object Send(string selector, params object[] arguments)
+        {
+            if (selector == "lookup:")
+            {
+                return this.Lookup((string)arguments[0]);
+            }
+
+            return base.Send(selector, arguments);
         }
 
         public IMethod Lookup(string selector)
@@ -22,27 +59,12 @@
                 throw new ArgumentNullException("selector");
             }
 
-            if (this.methods.ContainsKey(selector))
+            if (this.Methods.ContainsKey(selector))
             {
-                return this.methods[selector];
+                return this.Methods[selector];
             }
 
             return null;
-        }
-
-        public void AddMethod(string selector, IMethod method)
-        {
-            if (selector == null)
-            {
-                throw new ArgumentNullException("selector");
-            }
-
-            if (method == null)
-            {
-                throw new ArgumentNullException("method");
-            }
-
-            this.methods[selector] = method;
         }
     }
 }

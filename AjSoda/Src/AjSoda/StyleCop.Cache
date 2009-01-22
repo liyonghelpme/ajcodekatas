@@ -1,86 +1,5 @@
 <stylecopresultscache>
   <version>10</version>
-  <sourcecode name="GlobalSuppressions.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 12:56:07</timestamp>
-    <milliseconds>879</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 12:55:48</timestamp>
-    <milliseconds>472</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="IMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 13:33:35</timestamp>
-    <milliseconds>187</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="IBehavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/19/2009 13:35:39</timestamp>
-    <milliseconds>66</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="IObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/20/2009 12:38:01</timestamp>
-    <milliseconds>877</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="BaseObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/20/2009 12:40:05</timestamp>
-    <milliseconds>150</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="BaseAddMethodMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/20/2009 13:15:46</timestamp>
-    <milliseconds>411</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="BaseLookupMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/20/2009 13:13:47</timestamp>
-    <milliseconds>518</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="BaseBehavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/19/2009 12:54:56</timestamp>
-      <milliseconds>317</milliseconds>
-    </settings>
-    <timestamp>01/20/2009 14:02:55</timestamp>
-    <milliseconds>772</milliseconds>
-    <violations />
-  </sourcecode>
   <project key="-1595737092">
     <configuration>DEBUG;TRACE</configuration>
   </project>
@@ -91,6 +10,99 @@
     </settings>
     <timestamp>01/20/2009 14:04:12</timestamp>
     <milliseconds>878</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseAddMethodMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/22/2009 18:41:57</timestamp>
+    <milliseconds>921</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseLookupMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/22/2009 19:02:41</timestamp>
+    <milliseconds>453</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GlobalSuppressions.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/21/2009 09:26:54</timestamp>
+    <milliseconds>335</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IMethod.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/22/2009 18:16:29</timestamp>
+    <milliseconds>796</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/21/2009 09:26:53</timestamp>
+    <milliseconds>866</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseBehavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/22/2009 19:21:59</timestamp>
+    <milliseconds>843</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/22/2009 19:22:38</timestamp>
+    <milliseconds>281</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IBehavior.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/22/2009 19:23:07</timestamp>
+    <milliseconds>218</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/22/2009 19:23:13</timestamp>
+    <milliseconds>125</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1636439326">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Machine.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:21:26</timestamp>
+      <milliseconds>171</milliseconds>
+    </settings>
+    <timestamp>01/22/2009 19:23:30</timestamp>
+    <milliseconds>578</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

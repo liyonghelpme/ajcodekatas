@@ -4,9 +4,11 @@
 
     public interface IObject
     {
-        IBehavior Behavior { get; set; }
+        IObject Behavior { get; set; }
 
-        object Send(string selector, object[] arguments);
+        int Size { get; }
+
+        object Send(string selector, params object[] arguments);
 
         object GetValueAt(int position);
 

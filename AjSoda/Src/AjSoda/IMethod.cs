@@ -2,6 +2,6 @@
 {
     public interface IMethod
     {
-        object Execute(object receiver, object[] arguments);
+        object Execute(object receiver, params object[] arguments);
     }
 }
