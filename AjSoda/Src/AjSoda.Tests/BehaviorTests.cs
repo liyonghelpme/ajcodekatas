@@ -24,23 +24,39 @@
         public void CreateBehaviorWithBaseBehavior()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
+            IBehavior behavior = baseBehavior.CreateDelegated();
 
             Assert.IsNotNull(behavior);
             Assert.IsNotNull(behavior.Behavior);
+            Assert.IsInstanceOfType(behavior, typeof(BaseBehavior));
             Assert.IsInstanceOfType(behavior.Behavior, typeof(BaseBehavior));
             Assert.AreEqual(baseBehavior, behavior.Behavior);
-            Assert.IsNull(behavior.GetValueAt(0));
-            Assert.IsNull(behavior.GetValueAt(1));
+            Assert.IsNotNull(behavior.Parent);
+            Assert.IsNotNull(behavior.Methods);
+            Assert.AreEqual(behavior.Parent, baseBehavior);
+        }
+
+        [TestMethod]
+        public void CreateBehaviorSendingDelegateMessage()
+        {
+            BaseBehavior baseBehavior = new BaseBehavior();
+            IBehavior behavior = (IBehavior) baseBehavior.Send("delegate");
+
+            Assert.IsNotNull(behavior);
+            Assert.IsNotNull(behavior.Behavior);
+            Assert.IsInstanceOfType(behavior, typeof(BaseBehavior));
+            Assert.IsInstanceOfType(behavior.Behavior, typeof(BaseBehavior));
+            Assert.AreEqual(baseBehavior, behavior.Behavior);
+            Assert.IsNotNull(behavior.Parent);
+            Assert.IsNotNull(behavior.Methods);
+            Assert.AreEqual(behavior.Parent, baseBehavior);
         }
 
         [TestMethod]
         public void AddMethodAndLookup()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
+            IBehavior behavior = baseBehavior.CreateDelegated();
 
             IMethod method = new MockMethod();
 
@@ -56,12 +72,8 @@
         public void LookupWithParent()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
-            IObject childBehavior = new BaseObject(2);
-            childBehavior.Behavior = baseBehavior;
-
-            childBehavior.SetValueAt(0, behavior);
+            IBehavior behavior = baseBehavior.CreateDelegated();
+            IObject childBehavior = behavior.CreateDelegated();
 
             IMethod method = new MockMethod();
 
@@ -77,8 +89,7 @@
         public void NullIfUnknownMethodInLookup()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
+            IBehavior behavior = baseBehavior.CreateDelegated();
 
             IMethod retrievedMethod = (IMethod) behavior.Send("lookup:", "unknownMethod");
 
@@ -89,8 +100,7 @@
         public void RedefineLookup()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
+            IBehavior behavior = baseBehavior.CreateDelegated();
 
             IMethod method = new BaseLookupMethod();
 
@@ -106,8 +116,7 @@
         public void RedefineAddMethod()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
+            IBehavior behavior = baseBehavior.CreateDelegated();
 
             IMethod method = new BaseAddMethodMethod();
 
@@ -132,8 +141,7 @@
         public void ShouldRaiseIfSelectorIsNullWhenLookup()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
+            IBehavior behavior = baseBehavior.CreateDelegated();
 
             behavior.Send("lookup:", null);
         }
@@ -143,8 +151,7 @@
         public void ShouldRaiseIfSelectorIsNullWhenAddMethod()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
+            IBehavior behavior = baseBehavior.CreateDelegated();
 
             behavior.Send("addMethod:at:", null, new MockMethod());
         }
@@ -154,8 +161,7 @@
         public void ShouldRaiseIfMethodIsNullWhenAddMethod()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IObject behavior = new BaseObject(2);
-            behavior.Behavior = baseBehavior;
+            IBehavior behavior = baseBehavior.CreateDelegated();
 
             behavior.Send("addMethod:at:", "aMethod", null);
         }

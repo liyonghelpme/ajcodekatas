@@ -19,6 +19,7 @@
             Assert.IsNotNull(behavior.Behavior);
             Assert.IsNull(behavior.Parent);
             Assert.IsNotNull(behavior.Methods);
+            Assert.AreEqual(0, behavior.Size);
         }
 
         [TestMethod]

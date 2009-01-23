@@ -21,3 +21,8 @@ IBehavior was dropped
 BaseBehavior as vtable of vtable
 Machine with initial Object and Behavior
 Send now sends lookup to Behavior
+
+2009-01-23
+New IBehavior
+New base methods
+CreateDelegated with tests
