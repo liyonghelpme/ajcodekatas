@@ -16,5 +16,7 @@
         void AddMethod(string selector, IMethod method);
 
         IBehavior CreateDelegated();
+
+        IObject Allocate(int size);
     }
 }

@@ -26,3 +26,5 @@ Send now sends lookup to Behavior
 New IBehavior
 New base methods
 CreateDelegated with tests
+Allocate with tests
+AjPepsi: Tokenizer and tests (ported from AjTalk)

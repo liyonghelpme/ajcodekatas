@@ -31,6 +31,37 @@
         }
 
         [TestMethod]
+        public void AllocateObjectWithNoSize()
+        {
+            BaseBehavior behavior = new BaseBehavior();
+
+            IObject obj = behavior.Allocate(0);
+
+            Assert.IsNotNull(obj);
+            Assert.AreEqual(0, obj.Size);
+        }
+
+        [TestMethod]
+        public void AllocateObjectWithSize()
+        {
+            BaseBehavior behavior = new BaseBehavior();
+
+            IObject obj = behavior.Allocate(10);
+
+            Assert.IsNotNull(obj);
+            Assert.AreEqual(10, obj.Size);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ShouldRaiseIfSizeIsNegative()
+        {
+            BaseBehavior behavior = new BaseBehavior();
+
+            IObject obj = behavior.Allocate(-1);
+        }
+
+        [TestMethod]
         public void AddAndLookupMethod()
         {
             BaseBehavior behavior = new BaseBehavior();

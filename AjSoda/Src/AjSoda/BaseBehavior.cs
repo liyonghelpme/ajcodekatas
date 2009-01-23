@@ -83,5 +83,18 @@
 
             return delegated;
         }
+
+        public IObject Allocate(int size)
+        {
+            if (size < 0)
+            {
+                throw new InvalidOperationException("Size is negative in allocate");
+            }
+
+            IObject obj = new BaseObject(size);
+            obj.Behavior = this;
+
+            return obj;
+        }
     }
 }
