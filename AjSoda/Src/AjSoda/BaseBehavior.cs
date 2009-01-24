@@ -16,6 +16,12 @@
             this.Methods.Add("delegate", new BaseDelegateMethod());
         }
 
+        public BaseBehavior(IObject behavior)
+        {
+            this.Behavior = behavior;
+            this.Methods = new Dictionary<string, IMethod>();
+        }
+
         public IDictionary<string, IMethod> Methods { get; set; }
 
         public IObject Parent { get; set; }
@@ -40,7 +46,7 @@
             return base.Send(selector, arguments);
         }
 
-        public IMethod Lookup(string selector)
+        public virtual IMethod Lookup(string selector)
         {
             if (selector == null)
             {
@@ -60,7 +66,7 @@
             return null;
         }
 
-        public void AddMethod(string selector, IMethod method)
+        public virtual void AddMethod(string selector, IMethod method)
         {
             if (selector == null)
             {
@@ -75,16 +81,15 @@
             this.Methods[selector] = method;
         }
 
-        public IBehavior CreateDelegated()
+        public virtual IBehavior CreateDelegated()
         {
-            IBehavior delegated = new BaseBehavior();
-            delegated.Behavior = this.Behavior;
+            IBehavior delegated = new BaseBehavior(this.Behavior);
             delegated.Parent = this;
 
             return delegated;
         }
 
-        public IObject Allocate(int size)
+        public virtual IObject Allocate(int size)
         {
             if (size < 0)
             {

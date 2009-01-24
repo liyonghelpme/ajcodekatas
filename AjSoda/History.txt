@@ -28,3 +28,10 @@ New base methods
 CreateDelegated with tests
 Allocate with tests
 AjPepsi: Tokenizer and tests (ported from AjTalk)
+
+2009-01-24
+IClass
+BaseClass with tests
+BaseBasicNewMethod
+BaseAddVariableMethod
+

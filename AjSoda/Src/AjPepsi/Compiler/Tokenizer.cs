@@ -7,6 +7,9 @@ namespace AjPepsi.Compiler
 
     public class Tokenizer
     {
+        public const char SpecialDotNetTypeMark = '@';
+        public const char SpecialDotNetInvokeMark = '!';
+
         private const string Operators = "^<>:=-+*/&";
         private const string Separators = "().|[]";
 
@@ -69,6 +72,16 @@ namespace AjPepsi.Compiler
                     return this.NextSymbol();
                 }
 
+                if (ch == SpecialDotNetTypeMark)
+                {
+                    return this.NextDotNetTypeName();
+                }
+
+                if (ch == SpecialDotNetInvokeMark)
+                {
+                    return this.NextDotNetInvokeName();
+                }
+
                 if (Operators.IndexOf(ch) >= 0)
                 {
                     return this.NextOperator(ch);
@@ -85,6 +98,15 @@ namespace AjPepsi.Compiler
             {
                 return null;
             }
+        }
+
+        private static Token NextPunctuation(char ch)
+        {
+            Token token = new Token();
+            token.Value = new string(ch, 1);
+            token.Type = TokenType.Punctuation;
+
+            return token;
         }
 
         private void PushChar(char ch)
@@ -226,6 +248,66 @@ namespace AjPepsi.Compiler
             return token;
         }
 
+        private Token NextDotNetTypeName()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(SpecialDotNetTypeMark);
+
+            try
+            {
+                char ch;
+
+                ch = this.NextChar();
+
+                while (!Char.IsWhiteSpace(ch))
+                {
+                    sb.Append(ch);
+                    ch = this.NextChar();
+                }
+
+                this.PushChar(ch);
+            }
+            catch (EndOfInputException)
+            {
+            }
+
+            Token token = new Token();
+            token.Type = TokenType.Name;
+            token.Value = sb.ToString();
+
+            return token;
+        }
+
+        private Token NextDotNetInvokeName()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(SpecialDotNetInvokeMark);
+
+            try
+            {
+                char ch;
+
+                ch = this.NextChar();
+
+                while (!Char.IsWhiteSpace(ch))
+                {
+                    sb.Append(ch);
+                    ch = this.NextChar();
+                }
+
+                this.PushChar(ch);
+            }
+            catch (EndOfInputException)
+            {
+            }
+
+            Token token = new Token();
+            token.Type = TokenType.Name;
+            token.Value = sb.ToString();
+
+            return token;
+        }
+
         private Token NextString()
         {
             string value = string.Empty;
@@ -309,15 +391,6 @@ namespace AjPepsi.Compiler
             Token token = new Token();
             token.Type = TokenType.Operator;
             token.Value = value;
-
-            return token;
-        }
-
-        private static Token NextPunctuation(char ch)
-        {
-            Token token = new Token();
-            token.Value = new string(ch, 1);
-            token.Type = TokenType.Punctuation;
 
             return token;
         }

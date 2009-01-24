@@ -1,0 +1,39 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="380373031">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="BaseClassTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 05:30:46</timestamp>
+    <milliseconds>609</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>4</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/23/2009 19:43:05</timestamp>
+    <milliseconds>15</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TokenizerTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/23/2009 19:51:47</timestamp>
+    <milliseconds>343</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

@@ -60,7 +60,7 @@
 
             IMethod method = new MockMethod();
 
-            behavior.Send("addMethod:at:", "aMethod", method);
+            behavior.Send("addMethod:at:", method, "aMethod");
 
             IMethod retrievedMethod = (IMethod) behavior.Send("lookup:", "aMethod");
 
@@ -77,7 +77,7 @@
 
             IMethod method = new MockMethod();
 
-            behavior.Send("addMethod:at:", "aMethod", method);
+            behavior.Send("addMethod:at:", method, "aMethod");
 
             IMethod retrievedMethod = (IMethod) childBehavior.Send("lookup:", "aMethod");
 
@@ -104,7 +104,7 @@
 
             IMethod method = new BaseLookupMethod();
 
-            behavior.Send("addMethod:at:", "lookup:", method);
+            behavior.Send("addMethod:at:", method, "lookup:");
 
             IMethod newMethod = (IMethod) behavior.Send("lookup:", "lookup:");
 
@@ -120,7 +120,7 @@
 
             IMethod method = new BaseAddMethodMethod();
 
-            behavior.Send("addMethod:at:", "addMethod:at:", method);
+            behavior.Send("addMethod:at:", method, "addMethod:at:");
 
             IMethod newMethod = (IMethod) behavior.Send("lookup:", "addMethod:at:");
 
@@ -129,7 +129,7 @@
 
             IMethod anotherMethod = new MockMethod();
 
-            behavior.Send("addMethod:at:", "anotherMethod", anotherMethod);
+            behavior.Send("addMethod:at:", anotherMethod, "anotherMethod");
 
             newMethod = (IMethod) behavior.Send("lookup:", "anotherMethod");
 
@@ -153,7 +153,7 @@
             BaseBehavior baseBehavior = new BaseBehavior();
             IBehavior behavior = baseBehavior.CreateDelegated();
 
-            behavior.Send("addMethod:at:", null, new MockMethod());
+            behavior.Send("addMethod:at:", new MockMethod(), null);
         }
 
         [TestMethod]
@@ -163,7 +163,7 @@
             BaseBehavior baseBehavior = new BaseBehavior();
             IBehavior behavior = baseBehavior.CreateDelegated();
 
-            behavior.Send("addMethod:at:", "aMethod", null);
+            behavior.Send("addMethod:at:", null, "aMethod");
         }
     }
 }

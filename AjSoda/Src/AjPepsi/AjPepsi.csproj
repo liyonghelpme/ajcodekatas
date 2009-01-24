@@ -45,13 +45,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseAddVariableMethod.cs" />
+    <Compile Include="BaseClass.cs" />
+    <Compile Include="Block.cs" />
+    <Compile Include="ByteCodes.cs" />
+    <Compile Include="Compiler\Compiler.cs" />
+    <Compile Include="Compiler\CompilerException.cs" />
     <Compile Include="Compiler\EndOfInputException.cs" />
     <Compile Include="Compiler\Token.cs" />
     <Compile Include="Compiler\Tokenizer.cs" />
     <Compile Include="Compiler\TokenizerException.cs" />
     <Compile Include="Compiler\TokenType.cs" />
+    <Compile Include="BaseBasicNewMethod.cs" />
+    <Compile Include="DotNetObject.cs" />
+    <Compile Include="ExecutionBlock.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IBlock.cs" />
+    <Compile Include="IClass.cs" />
+    <Compile Include="IPepsiMethod.cs" />
+    <Compile Include="PepsiMachine.cs" />
+    <Compile Include="Method.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AjSoda\AjSoda.csproj">
+      <Project>{B8804EFF-4C8E-483F-8E31-AA5202B0B0D7}</Project>
+      <Name>AjSoda</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

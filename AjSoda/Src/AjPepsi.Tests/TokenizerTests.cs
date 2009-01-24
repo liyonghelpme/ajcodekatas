@@ -40,7 +40,7 @@ namespace AjPepsi.Tests
         }
 
         [TestMethod]
-        public void ShouldSkipMultiLineComment()
+        public void ShouldSkipMultilineComment()
         {
             Tokenizer tokenizer = new Tokenizer("\"This is a \n a multi-line\ncomment\"");
             Assert.IsNull(tokenizer.NextToken());
@@ -272,6 +272,28 @@ namespace AjPepsi.Tests
             token = tokenizer.NextToken();
             Assert.IsNotNull(token);
             Assert.AreEqual("string", token.Value);
+            Assert.AreEqual(TokenType.String, token.Type);
+        }
+
+        [TestMethod]
+        public void ShouldParseDotNetObjectAndMethod()
+        {
+            Tokenizer tokenizer = new Tokenizer("@System.FileInfo !new: 'FooBar.txt'");
+            Token token;
+
+            token = tokenizer.NextToken();
+            Assert.IsNotNull(token);
+            Assert.AreEqual("@System.FileInfo", token.Value);
+            Assert.AreEqual(TokenType.Name, token.Type);
+
+            token = tokenizer.NextToken();
+            Assert.IsNotNull(token);
+            Assert.AreEqual("!new:", token.Value);
+            Assert.AreEqual(TokenType.Name, token.Type);
+
+            token = tokenizer.NextToken();
+            Assert.IsNotNull(token);
+            Assert.AreEqual("FooBar.txt", token.Value);
             Assert.AreEqual(TokenType.String, token.Type);
         }
     }

@@ -67,7 +67,7 @@
             BaseBehavior behavior = new BaseBehavior();
             MockMethod method = new MockMethod();
 
-            behavior.Send("addMethod:at:", "aMethod", method);
+            behavior.Send("addMethod:at:", method, "aMethod");
 
             Assert.AreEqual(method, behavior.Lookup("aMethod"));
         }
@@ -87,7 +87,7 @@
         {
             BaseBehavior behavior = new BaseBehavior();
 
-            behavior.Send("addMethod:at:", null, new MockMethod());
+            behavior.Send("addMethod:at:", new MockMethod(), null);
         }
 
         [TestMethod]
@@ -96,7 +96,7 @@
         {
             BaseBehavior behavior = new BaseBehavior();
 
-            behavior.Send("addMethod:at:", "aMethod", null);
+            behavior.Send("addMethod:at:", null, "aMethod");
         }
 
         [TestMethod]

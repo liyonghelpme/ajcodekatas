@@ -1,17 +1,5 @@
 <stylecopresultscache>
   <version>10</version>
-  <project key="-1206288446">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="EndOfInputException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/23/2009 19:40:24</timestamp>
-      <milliseconds>109</milliseconds>
-    </settings>
-    <timestamp>01/23/2009 19:40:05</timestamp>
-    <milliseconds>921</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="Token.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/23/2009 19:40:24</timestamp>
@@ -19,24 +7,6 @@
     </settings>
     <timestamp>01/23/2009 19:39:07</timestamp>
     <milliseconds>859</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Tokenizer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/23/2009 19:40:24</timestamp>
-      <milliseconds>109</milliseconds>
-    </settings>
-    <timestamp>01/23/2009 19:39:16</timestamp>
-    <milliseconds>500</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="TokenizerException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/23/2009 19:40:24</timestamp>
-      <milliseconds>109</milliseconds>
-    </settings>
-    <timestamp>01/23/2009 19:39:25</timestamp>
-    <milliseconds>515</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="TokenType.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -48,13 +18,99 @@
     <milliseconds>140</milliseconds>
     <violations />
   </sourcecode>
+  <sourcecode name="EndOfInputException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/23/2009 19:40:24</timestamp>
+      <milliseconds>109</milliseconds>
+    </settings>
+    <timestamp>01/23/2009 19:41:57</timestamp>
+    <milliseconds>609</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TokenizerException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/23/2009 19:40:24</timestamp>
+      <milliseconds>109</milliseconds>
+    </settings>
+    <timestamp>01/23/2009 19:42:34</timestamp>
+    <milliseconds>765</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GlobalSuppressions.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/23/2009 19:40:24</timestamp>
+      <milliseconds>109</milliseconds>
+    </settings>
+    <timestamp>01/23/2009 19:42:35</timestamp>
+    <milliseconds>937</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IClass.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/23/2009 19:40:24</timestamp>
+      <milliseconds>109</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 05:13:41</timestamp>
+    <milliseconds>62</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/23/2009 19:40:24</timestamp>
       <milliseconds>109</milliseconds>
     </settings>
-    <timestamp>01/23/2009 19:01:33</timestamp>
-    <milliseconds>640</milliseconds>
+    <timestamp>01/23/2009 19:41:33</timestamp>
+    <milliseconds>859</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseClass.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/23/2009 19:40:24</timestamp>
+      <milliseconds>109</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 05:14:56</timestamp>
+    <milliseconds>906</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to instanceVariableNames must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>48</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="Microsoft.StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to instanceVariableNames must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>53</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <project key="-1206288446">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Compiler.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/23/2009 19:40:24</timestamp>
+      <milliseconds>109</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 07:37:23</timestamp>
+    <milliseconds>812</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CompilerException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/23/2009 19:40:24</timestamp>
+      <milliseconds>109</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 07:34:03</timestamp>
+    <milliseconds>359</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Tokenizer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/23/2009 19:40:24</timestamp>
+      <milliseconds>109</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 06:21:04</timestamp>
+    <milliseconds>171</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

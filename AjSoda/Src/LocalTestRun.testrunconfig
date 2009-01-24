@@ -4,6 +4,7 @@
   <CodeCoverage enabled="true">
     <Regular>
       <CodeCoverageItem binaryFile="AjSoda\bin\Debug\AjSoda.dll" pdbFile="AjSoda\bin\Debug\AjSoda.pdb" instrumentInPlace="true" />
+      <CodeCoverageItem binaryFile="AjPepsi\bin\Debug\AjPepsi.dll" pdbFile="AjPepsi\bin\Debug\AjPepsi.pdb" instrumentInPlace="true" />
     </Regular>
   </CodeCoverage>
   <TestTypeSpecific>
