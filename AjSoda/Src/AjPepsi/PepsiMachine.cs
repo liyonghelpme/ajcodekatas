@@ -14,16 +14,17 @@ namespace AjPepsi
         public PepsiMachine()
         {
             this.baseClass = new BaseClass();
-            IBehavior machineClass = this.baseClass.CreateDelegated();
+            BaseClass machineClass = (BaseClass) this.baseClass.CreateDelegated();
             this.Behavior = machineClass;
-            IBehavior objectClass = this.baseClass.CreateDelegated();
+            machineClass.Machine = this;
 
-            this.SetGlobalObject("Object", objectClass);
+            this.CreateClass("Object");
         }
 
         public IClass CreateClass(string clsname)
         {
-            IClass cls = (IClass) this.baseClass.CreateDelegated();
+            BaseClass cls = (BaseClass) this.baseClass.CreateDelegated();
+            cls.Machine = this;
             this.globals[clsname] = cls;
             return cls;
         }

@@ -30,8 +30,16 @@ Allocate with tests
 AjPepsi: Tokenizer and tests (ported from AjTalk)
 
 2009-01-24
+More Pepsi code (ported from AjTalk)
 IClass
 BaseClass with tests
 BaseBasicNewMethod
 BaseAddVariableMethod
-
+Block, and Method with Tests
+PepsiMachine with Tests
+Compiler with Tests
+Drop PepsiMachine parameter in ExecutionBlock
+Drop Execute with PepsiMachine in IBlock
+New GetGlobalVariable, SetGlobalVariable implementation
+Drop GetSuperclass bytecode
+Drop SetClassVariable, GetClassVariable bytecodes

@@ -63,7 +63,7 @@ namespace AjPepsi.Tests
             block.CompileGetDotNetType("System.IO.FileInfo");
             block.CompileByteCode(ByteCode.ReturnPop);
 
-            object obj = block.Execute(null, null);
+            object obj = block.Execute(null);
 
             Assert.IsNotNull(obj);
             Assert.IsInstanceOfType(obj, typeof(System.Type));
@@ -80,7 +80,7 @@ namespace AjPepsi.Tests
             block.CompileSend("!new:");
             block.CompileByteCode(ByteCode.ReturnPop);
 
-            object obj = block.Execute(null, null);
+            object obj = block.Execute(null);
 
             Assert.IsNotNull(obj);
             Assert.IsInstanceOfType(obj, typeof(System.IO.FileInfo));
@@ -97,7 +97,7 @@ namespace AjPepsi.Tests
 
             PepsiMachine machine = new PepsiMachine();
 
-            block.Execute(machine, null);
+            block.Execute(machine);
 
             Assert.AreEqual(10, machine.GetGlobalObject("Global"));
         }
@@ -134,7 +134,7 @@ namespace AjPepsi.Tests
             block.CompileGet("newX");
             block.CompileSet("GlobalX");
 
-            block.Execute(machine, new object[] { 10 });
+            block.Execute(machine, 10);
 
             Assert.AreEqual(10, machine.GetGlobalObject("GlobalX"));
         }

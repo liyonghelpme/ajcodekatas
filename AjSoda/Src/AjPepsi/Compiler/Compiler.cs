@@ -336,7 +336,7 @@ namespace AjPepsi.Compiler
             // TODO raise failure if not open block, and nested blocks
             if (token.Value == "]")
             {
-                return true;
+                return false;
             }
 
             if (token.Value == "^")

@@ -4,6 +4,7 @@ namespace AjPepsi
     using System.Collections.Generic;
     using System.Text;
 
+    using AjSoda;
     using AjPepsi.Compiler;
 
     public class Block : IBlock
@@ -228,13 +229,7 @@ namespace AjPepsi
 
         public virtual object Execute(object receiver, params object[] arguments)
         {
-            throw new NotImplementedException();
-        }
-
-        // TODO how to implements super, sender
-        public virtual object Execute(PepsiMachine machine, object[] args)
-        {
-            return (new ExecutionBlock(machine, null, this, args)).Execute();
+            return (new ExecutionBlock((IObject)receiver, this, arguments)).Execute();
         }
 
         public virtual void CompileGet(string name)

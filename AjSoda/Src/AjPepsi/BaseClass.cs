@@ -11,6 +11,7 @@
     public class BaseClass : BaseBehavior, IClass
     {
         private List<string> instanceVariableNames;
+        private PepsiMachine machine;
 
         public BaseClass()
         {
@@ -35,6 +36,19 @@
                 }
 
                 return this.instanceVariableNames.Count;
+            }
+        }
+
+        public PepsiMachine Machine
+        {
+            get
+            {
+                return this.machine;
+            }
+
+            internal set
+            {
+                this.machine = value;
             }
         }
 

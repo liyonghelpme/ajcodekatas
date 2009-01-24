@@ -166,6 +166,47 @@ namespace AjPepsi.Tests
         }
 
         [TestMethod]
+        public void ShouldExecuteClass()
+        {
+            PepsiMachine machine = new PepsiMachine();
+
+            object obj = machine.GetGlobalObject("Object");
+
+            Assert.IsNotNull(obj);
+            Assert.IsInstanceOfType(obj, typeof(IClass));
+
+            Compiler compiler = new Compiler("^Object basicNew class");
+            Block block = compiler.CompileBlock();
+
+            Assert.IsNotNull(block);
+
+            object result = block.Execute(machine, null);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IClass));
+        }
+
+        [TestMethod]
+        public void ShouldAddMethod()
+        {
+            PepsiMachine machine = new PepsiMachine();
+
+            object obj = machine.GetGlobalObject("Object");
+
+            Assert.IsNotNull(obj);
+            Assert.IsInstanceOfType(obj, typeof(IClass));
+
+            Compiler compiler = new Compiler("^Object addMethod: [self instSize] at: #newMethod");
+            Block block = compiler.CompileBlock();
+
+            Assert.IsNotNull(block);
+
+            block.Execute(machine, null);
+
+            Assert.IsNotNull(((IClass) obj).Lookup("newMethod"));
+        }
+
+        [TestMethod]
         public void ShouldExecuteInstSizeInRectangle()
         {
             PepsiMachine machine = new PepsiMachine();

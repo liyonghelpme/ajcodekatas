@@ -11,6 +11,8 @@
     {
         int InstanceSize { get; }
 
+        PepsiMachine Machine { get; }
+
         ICollection<string> InstanceVariableNames { get; }
 
         void AddVariable(string name);

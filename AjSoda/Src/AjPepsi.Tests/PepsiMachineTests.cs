@@ -34,12 +34,15 @@ namespace AjPepsi.Tests
             Assert.IsNotNull(cls);
 
             object obj = machine.GetGlobalObject("TestClass");
+
             Assert.AreEqual(cls, obj);
             Assert.AreEqual(-1, cls.GetInstanceVariableOffset("x"));
             Assert.IsNull(cls.Lookup("x"));
             Assert.IsNull(cls.Send("lookup:", "x"));
             Assert.IsNotNull(cls.Parent);
             Assert.IsInstanceOfType(cls.Parent, typeof(BaseClass));
+            Assert.IsNotNull(cls.Machine);
+            Assert.AreEqual(machine, cls.Machine);
         }
 
         [TestMethod]

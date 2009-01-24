@@ -8,6 +8,5 @@ namespace AjPepsi
 
     public interface IBlock : IMethod
     {
-        object Execute(PepsiMachine machine, object[] args);
     }
 }

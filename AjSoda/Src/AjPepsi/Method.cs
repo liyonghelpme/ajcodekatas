@@ -66,22 +66,10 @@ namespace AjPepsi
         }
 
         // TODO how to implements super, sender
-        public override object Execute(PepsiMachine machine, object[] args)
-        {
-            throw new InvalidOperationException("A method needs a self object");
-        }
-
-        // TODO how to implements super, sender
         public override object Execute(object receiver, params object[] args)
         {
             IObject self = (IObject) receiver;
-            return this.Execute(self, self, args);
-        }
-
-        // TODO how to implements super, sender
-        public object Execute(IObject self, IObject receiver, object[] args)
-        {
-            return (new ExecutionBlock(self, receiver, this, args)).Execute();
+            return (new ExecutionBlock(self, this, args)).Execute();
         }
 
         private bool TryCompileGetVariable(string name)

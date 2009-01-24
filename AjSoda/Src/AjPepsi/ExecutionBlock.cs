@@ -8,39 +8,16 @@ namespace AjPepsi
     public class ExecutionBlock
     {
         private Block block;
-        private PepsiMachine machine;
         private IObject self;
-        private IObject receiver;
         private object[] arguments;
         private object[] locals;
 
         private int ip;
         private IList stack;
 
-        public ExecutionBlock(PepsiMachine machine, IObject receiver, Block block, object[] arguments)
-        {
-            this.self = null;
-            this.machine = machine;
-            this.receiver = receiver;
-            this.block = block;
-            this.arguments = arguments;
-            this.stack = new ArrayList(5);
-            if (this.block.NoLocals > 0)
-            {
-                this.locals = new object[this.block.NoLocals];
-            }
-            else
-            {
-                this.locals = null;
-            }
-        }
-
-        public ExecutionBlock(IObject self, IObject receiver, Block block, object[] arguments)
+        public ExecutionBlock(IObject self, Block block, object[] arguments)
         {
             this.self = self;
-            // TODO Review
-            // this.machine = self.Behavior.Machine;
-            this.receiver = receiver;
             this.block = block;
             this.arguments = arguments;
             this.stack = new ArrayList(5);
@@ -75,8 +52,6 @@ namespace AjPepsi
 
                 switch (bc)
                 {
-                    case ByteCode.ReturnSub:
-                        return null;
                     case ByteCode.ReturnPop:
                         return this.Top;
                     case ByteCode.GetConstant:
@@ -90,14 +65,7 @@ namespace AjPepsi
 
                         Block newblock = (Block)this.block.GetConstant(arg);
 
-                        if (this.self == null)
-                        {
-                            this.Push(new ExecutionBlock(this.machine, this.receiver, newblock, this.arguments));
-                        }
-                        else
-                        {
-                            this.Push(new ExecutionBlock(this.self, this.receiver, newblock, this.arguments));
-                        }
+                        this.Push(newblock);
 
                         break;
                     case ByteCode.GetArgument:
@@ -108,12 +76,10 @@ namespace AjPepsi
                     case ByteCode.GetClass:
                         this.Push(((IObject) this.Pop()).Behavior);
                         break;
-                    case ByteCode.GetClassVariable:
-                        throw new Exception("Not implemented");
                     case ByteCode.GetGlobalVariable:
                         this.ip++;
                         arg = this.block.ByteCodes[this.ip];
-                        this.Push(this.machine.GetGlobalObject(this.block.GetGlobalName(arg)));
+                        this.Push(this.GetMachine().GetGlobalObject(this.block.GetGlobalName(arg)));
                         break;
                     case ByteCode.GetDotNetType:
                         this.ip++;
@@ -128,20 +94,10 @@ namespace AjPepsi
                     case ByteCode.GetSelf:
                         this.Push(this.self);
                         break;
-                    case ByteCode.GetSuperClass:
-                        if (this.receiver.Behavior is IBehavior)
-                        {
-                            this.Push(((IBehavior)this.receiver.Behavior).Parent);
-                        }
-                        else
-                        {
-                            this.Push(null);
-                        }
-                        break;
                     case ByteCode.GetVariable:
                         this.ip++;
                         arg = this.block.ByteCodes[this.ip];
-                        this.Push(this.receiver.GetValueAt(arg));
+                        this.Push(this.self.GetValueAt(arg));
                         break;
                     case ByteCode.NewObject:
                         this.Push(((IClass)this.Pop()).CreateInstance());
@@ -247,8 +203,6 @@ namespace AjPepsi
                         arg = this.block.ByteCodes[this.ip];
                         this.arguments[arg] = this.Pop();
                         break;
-                    case ByteCode.SetClassVariable:
-                        throw new Exception("Not implemented");
                     case ByteCode.SetLocal:
                         this.ip++;
                         arg = this.block.ByteCodes[this.ip];
@@ -257,12 +211,12 @@ namespace AjPepsi
                     case ByteCode.SetVariable:
                         this.ip++;
                         arg = this.block.ByteCodes[this.ip];
-                        this.receiver.SetValueAt(arg, this.Pop());
+                        this.self.SetValueAt(arg, this.Pop());
                         break;
                     case ByteCode.SetGlobalVariable:
                         this.ip++;
                         arg = this.block.ByteCodes[this.ip];
-                        this.machine.SetGlobalObject(this.block.GetGlobalName(arg), this.Pop());
+                        this.GetMachine().SetGlobalObject(this.block.GetGlobalName(arg), this.Pop());
                         break;
                     default:
                         throw new Exception("Not implemented");
@@ -284,6 +238,11 @@ namespace AjPepsi
             object obj = this.stack[this.stack.Count - 1];
             this.stack.RemoveAt(this.stack.Count - 1);
             return obj;
+        }
+
+        private PepsiMachine GetMachine()
+        {
+            return ((IClass)this.self.Behavior).Machine;
         }
     }
 }
