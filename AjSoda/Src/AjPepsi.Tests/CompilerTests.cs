@@ -52,7 +52,7 @@ namespace AjPepsi.Tests
             PepsiMachine machine = new PepsiMachine();
             IClass cls = machine.CreateClass("Rectangle");
             cls.AddVariable("x");
-            Compiler compiler = new Compiler("x ^x");
+            Compiler compiler = new Compiler("x [^x]");
             compiler.CompileInstanceMethod(cls);
 
             Assert.IsNotNull(cls.Lookup("x"));
@@ -64,7 +64,7 @@ namespace AjPepsi.Tests
             PepsiMachine machine = new PepsiMachine();
             IClass cls = machine.CreateClass("Rectangle");
             cls.AddVariable("x");
-            Compiler compiler = new Compiler("x | temp | temp := x. ^temp");
+            Compiler compiler = new Compiler("x [| temp | temp := x. ^temp]");
             compiler.CompileInstanceMethod(cls);
 
             Assert.IsNotNull(cls.Lookup("x"));
@@ -76,7 +76,7 @@ namespace AjPepsi.Tests
             PepsiMachine machine = new PepsiMachine();
             IClass cls = machine.CreateClass("Rectangle");
             cls.AddVariable("x");
-            Compiler compiler = new Compiler("x: newX x := newX");
+            Compiler compiler = new Compiler("x: newX [x := newX]");
             compiler.CompileInstanceMethod(cls);
 
             Assert.IsNotNull(cls.Lookup("x:"));
@@ -215,10 +215,10 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "x ^x",
-                    "x: newX x := newX",
-                    "y ^y",
-                    "y: newY y := newY"
+                    "x [^x]",
+                    "x: newX [x := newX]",
+                    "y [^y]",
+                    "y: newY [y := newY]"
                 });
 
             machine.SetGlobalObject("aRectangle", cls.CreateInstance());
@@ -242,10 +242,10 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "x ^x",
-                    "x: newX x := newX",
-                    "y ^y",
-                    "y: newY y := newY"
+                    "x [^x]",
+                    "x: newX [x := newX]",
+                    "y [^y]",
+                    "y: newY [y := newY]"
                 });
 
             IObject iobj = cls.CreateInstance();
@@ -273,10 +273,10 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "x ^x",
-                    "x: newX x := newX",
-                    "y ^y",
-                    "y: newY y := newY"
+                    "x [^x]",
+                    "x: newX [x := newX]",
+                    "y [^y]",
+                    "y: newY [y := newY]"
                 });
 
             IObject iobj = cls.CreateInstance();
@@ -325,10 +325,10 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "x ^x",
-                    "x: newX x := newX",
-                    "y ^y",
-                    "y: newY y := newY"
+                    "x [^x]",
+                    "x: newX [x := newX]",
+                    "y [^y]",
+                    "y: newY [y := newY]"
                 });
 
             Assert.IsNotNull(cls);
@@ -347,10 +347,10 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "x ^x",
-                    "x: newX x := newX",
-                    "y ^y",
-                    "y: newY y := newY"
+                    "x [^x]",
+                    "x: newX [x := newX]",
+                    "y [^y]",
+                    "y: newY [y := newY]"
                 });
 
             Assert.IsNotNull(cls);
@@ -377,7 +377,7 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "side: newSide x := newSide. y := newSide"
+                    "side: newSide [x := newSide. y := newSide]"
                 });
 
             Assert.IsNotNull(cls);
@@ -393,7 +393,7 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "side: newSide | temp | temp := x. x := temp. y := temp"
+                    "side: newSide [| temp | temp := x. x := temp. y := temp]"
                 });
 
             Assert.IsNotNull(cls);
@@ -409,7 +409,7 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "side: newSide x := newSide. y := newSide"
+                    "side: newSide [x := newSide. y := newSide]"
                 });
 
             Assert.IsNotNull(cls);
@@ -430,7 +430,7 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 new string[] 
                 {
-                    "side: newSide | temp | temp := newSide. x := temp. y := temp"
+                    "side: newSide [| temp | temp := newSide. x := temp. y := temp ]"
                 });
 
             Assert.IsNotNull(cls);

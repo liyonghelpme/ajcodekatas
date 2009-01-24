@@ -23,7 +23,7 @@ namespace AjPepsi
         ReturnPop = 24,
 
         Add = 40,
-        Substract = 41,
+        Subtract = 41,
         Multiply = 42,
         Divide = 43,
 

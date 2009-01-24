@@ -43,3 +43,4 @@ Drop Execute with PepsiMachine in IBlock
 New GetGlobalVariable, SetGlobalVariable implementation
 Drop GetSuperclass bytecode
 Drop SetClassVariable, GetClassVariable bytecodes
+Evaluator with tests

@@ -4,23 +4,23 @@ namespace AjPepsi
     using System.Collections.Generic;
     using System.Text;
 
-    using AjSoda;
     using AjPepsi.Compiler;
+    using AjSoda;
 
     public class Block : IBlock
     {
-        private byte[] bytecodes;
-        private short nextbytecode;
+        private byte[] byteCodes;
+        private short nextByteCode;
         private List<object> constants = new List<object>();
-        private List<string> argnames = new List<string>();
-        private List<string> localnames = new List<string>();
-        private List<string> globalnames = new List<string>();
+        private List<string> argumentNames = new List<string>();
+        private List<string> localNames = new List<string>();
+        private List<string> globalNames = new List<string>();
 
         public int Arity
         {
             get
             {
-                return this.argnames.Count;
+                return this.argumentNames.Count;
             }
         }
 
@@ -28,7 +28,7 @@ namespace AjPepsi
         {
             get
             {
-                return this.bytecodes;
+                return this.byteCodes;
             }
         }
 
@@ -36,12 +36,12 @@ namespace AjPepsi
         {
             get
             {
-                if (this.localnames == null)
+                if (this.localNames == null)
                 {
                     return 0;
                 }
 
-                return this.localnames.Count;
+                return this.localNames.Count;
             }
         }
 
@@ -58,14 +58,14 @@ namespace AjPepsi
             }
         }
 
-        public static byte MessageArity(string msgname)
+        public static byte MessageArity(string messageName)
         {
-            if (!Char.IsLetter(msgname[0]))
+            if (!Char.IsLetter(messageName[0]))
             {
                 return 2;
             }
 
-            int p = msgname.IndexOf(':');
+            int p = messageName.IndexOf(':');
 
             if (p < 0)
             {
@@ -74,7 +74,7 @@ namespace AjPepsi
 
             byte n = 0;
 
-            foreach (char ch in msgname)
+            foreach (char ch in messageName)
             {
                 if (ch == ':')
                 {
@@ -85,57 +85,57 @@ namespace AjPepsi
             return n;
         }
 
-        public void CompileArgument(string argname)
+        public void CompileArgument(string argumentName)
         {
-            if (this.argnames.Contains(argname))
+            if (this.argumentNames.Contains(argumentName))
             {
-                throw new Exception("Repeated Argument: " + argname);
+                throw new CompilerException("Repeated Argument: " + argumentName);
             }
 
-            this.argnames.Add(argname);
+            this.argumentNames.Add(argumentName);
         }
 
-        public void CompileLocal(string localname)
+        public void CompileLocal(string localName)
         {
-            if (this.localnames.Contains(localname))
+            if (this.localNames.Contains(localName))
             {
-                throw new Exception("Repeated Local: " + localname);
+                throw new CompilerException("Repeated Local: " + localName);
             }
 
-            this.localnames.Add(localname);
+            this.localNames.Add(localName);
         }
 
-        public byte CompileConstant(object obj)
+        public byte CompileConstant(object value)
         {
-            int p = this.constants.IndexOf(obj);
+            int p = this.constants.IndexOf(value);
 
             if (p >= 0)
             {
                 return (byte)p;
             }
 
-            this.constants.Add(obj);
+            this.constants.Add(value);
 
             return (byte)(this.constants.Count - 1);
         }
 
-        public byte CompileGlobal(string globalname)
+        public byte CompileGlobal(string globalName)
         {
-            int p = this.globalnames.IndexOf(globalname);
+            int p = this.globalNames.IndexOf(globalName);
 
             if (p >= 0)
             {
                 return (byte)p;
             }
 
-            this.globalnames.Add(globalname);
+            this.globalNames.Add(globalName);
 
-            return (byte)(this.globalnames.Count - 1);
+            return (byte)(this.globalNames.Count - 1);
         }
 
-        public void CompileGetConstant(object obj)
+        public void CompileGetConstant(object value)
         {
-            this.CompileByteCode(ByteCode.GetConstant, this.CompileConstant(obj));
+            this.CompileByteCode(ByteCode.GetConstant, this.CompileConstant(value));
         }
 
         public void CompileReturnPop()
@@ -143,87 +143,87 @@ namespace AjPepsi
             this.CompileByteCode(ByteCode.ReturnPop);
         }
 
-        public void CompileGetBlock(object obj)
+        public void CompileGetBlock(object block)
         {
-            this.CompileByteCode(ByteCode.GetBlock, this.CompileConstant(obj));
+            this.CompileByteCode(ByteCode.GetBlock, this.CompileConstant(block));
         }
 
-        public void CompileByteCode(ByteCode b)
+        public void CompileByteCode(ByteCode byteCode)
         {
-            this.CompileByte((byte)b);
+            this.CompileByte((byte)byteCode);
         }
 
-        public void CompileByteCode(ByteCode b, byte arg)
+        public void CompileByteCode(ByteCode byteCode, byte argument)
         {
-            this.CompileByteCode(b);
-            this.CompileByte(arg);
+            this.CompileByteCode(byteCode);
+            this.CompileByte(argument);
         }
 
-        public void CompileByteCode(ByteCode b, byte arg1, byte arg2)
+        public void CompileByteCode(ByteCode byteCode, byte firstArgument, byte secondArgument)
         {
-            this.CompileByteCode(b);
-            this.CompileByte(arg1);
-            this.CompileByte(arg2);
+            this.CompileByteCode(byteCode);
+            this.CompileByte(firstArgument);
+            this.CompileByte(secondArgument);
         }
 
-        public void CompileInvokeDotNet(string msgname)
+        public void CompileInvokeDotNet(string messageName)
         {
-            msgname = msgname.Substring(1);
+            messageName = messageName.Substring(1);
 
-            int p = msgname.IndexOf(':');
+            int p = messageName.IndexOf(':');
 
             string mthname;
 
             if (p >= 0)
             {
-                mthname = msgname.Substring(0, p);
+                mthname = messageName.Substring(0, p);
             }
             else
             {
-                mthname = msgname;
+                mthname = messageName;
             }
 
             if (mthname == "new")
             {
-                this.CompileByteCode(ByteCode.NewDotNetObject, MessageArity(msgname));
+                this.CompileByteCode(ByteCode.NewDotNetObject, MessageArity(messageName));
             }
             else
             {
-                this.CompileByteCode(ByteCode.InvokeDotNetMethod, this.CompileConstant(mthname), MessageArity(msgname));
+                this.CompileByteCode(ByteCode.InvokeDotNetMethod, this.CompileConstant(mthname), MessageArity(messageName));
             }
         }
 
-        public void CompileSend(string msgname)
+        public void CompileSend(string messageName)
         {
-            if (msgname[0] == Tokenizer.SpecialDotNetInvokeMark)
+            if (messageName[0] == Tokenizer.SpecialDotNetInvokeMark)
             {
-                this.CompileInvokeDotNet(msgname);
+                this.CompileInvokeDotNet(messageName);
                 return;
             }
 
-            if (msgname == "instSize")
+            if (messageName == "instSize")
             {
                 this.CompileByteCode(ByteCode.InstSize);
             }
-            else if (msgname == "instAt:")
+            else if (messageName == "instAt:")
             {
                 this.CompileByteCode(ByteCode.InstAt);
             }
-            else if (msgname == "instAt:put:")
+            else if (messageName == "instAt:put:")
             {
                 this.CompileByteCode(ByteCode.InstAtPut);
             }
-            else if (msgname == "basicNew")
+            else if (messageName == "basicNew")
             {
                 this.CompileByteCode(ByteCode.NewObject);
             }
-            else if (msgname == "class")
+            else if (messageName == "class")
             {
                 this.CompileByteCode(ByteCode.GetClass);
             }
             else
             {
-                this.CompileByteCode(ByteCode.Send, this.CompileConstant(msgname), MessageArity(msgname));
+                this.CompileByteCode(ByteCode.Send, this.CompileConstant(messageName), MessageArity(messageName));
             }
         }
 
@@ -264,7 +264,7 @@ namespace AjPepsi
 
         public string GetGlobalName(int ng)
         {
-            return this.globalnames[ng];
+            return this.globalNames[ng];
         }
 
         protected bool TryCompileGet(string name)
@@ -277,9 +277,9 @@ namespace AjPepsi
 
             int p;
 
-            if (this.localnames != null)
+            if (this.localNames != null)
             {
-                p = this.localnames.IndexOf(name);
+                p = this.localNames.IndexOf(name);
 
                 if (p >= 0)
                 {
@@ -289,9 +289,9 @@ namespace AjPepsi
                 }
             }
 
-            if (this.argnames != null)
+            if (this.argumentNames != null)
             {
-                p = this.argnames.IndexOf(name);
+                p = this.argumentNames.IndexOf(name);
 
                 if (p >= 0)
                 {
@@ -307,9 +307,9 @@ namespace AjPepsi
         {
             int p;
 
-            if (this.localnames != null)
+            if (this.localNames != null)
             {
-                p = this.localnames.IndexOf(name);
+                p = this.localNames.IndexOf(name);
 
                 if (p >= 0)
                 {
@@ -318,9 +318,9 @@ namespace AjPepsi
                 }
             }
 
-            if (this.argnames != null)
+            if (this.argumentNames != null)
             {
-                p = this.argnames.IndexOf(name);
+                p = this.argumentNames.IndexOf(name);
 
                 if (p >= 0)
                 {
@@ -334,21 +334,21 @@ namespace AjPepsi
 
         private void CompileByte(byte b)
         {
-            if (this.bytecodes == null)
+            if (this.byteCodes == null)
             {
-                this.bytecodes = new byte[] { b };
-                this.nextbytecode = 1;
+                this.byteCodes = new byte[] { b };
+                this.nextByteCode = 1;
                 return;
             }
 
-            if (this.nextbytecode >= this.bytecodes.Length)
+            if (this.nextByteCode >= this.byteCodes.Length)
             {
-                byte[] aux = new byte[this.bytecodes.Length + 10];
-                Array.Copy(this.bytecodes, aux, this.bytecodes.Length);
-                this.bytecodes = aux;
+                byte[] aux = new byte[this.byteCodes.Length + 10];
+                Array.Copy(this.byteCodes, aux, this.byteCodes.Length);
+                this.byteCodes = aux;
             }
 
-            this.bytecodes[this.nextbytecode++] = b;
+            this.byteCodes[this.nextByteCode++] = b;
         }
     }
 }

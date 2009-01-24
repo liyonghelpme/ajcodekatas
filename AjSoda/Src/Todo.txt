@@ -1,0 +1,19 @@
+
+- Compiler
+	- Implement CompileTopCommand(PepsiMachine machine)
+		accepting
+		
+		NewClass : Object()
+		NewClass : Object(variable1 variable2)
+		aGlobal := [...]
+		[....]
+		NewClass methodnamepars [....]
+
+- Review Smell code
+	- big switch on ByteCodes
+	- use of Machine in ExecutionBlock
+	
+- Compiler to C#
+
+- Exceptions classes
+

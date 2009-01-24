@@ -42,6 +42,7 @@
     <Compile Include="BlockTests.cs" />
     <Compile Include="CompilerTests.cs" />
     <Compile Include="DotNetObjectTest.cs" />
+    <Compile Include="EvaluatorTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="PepsiMachineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

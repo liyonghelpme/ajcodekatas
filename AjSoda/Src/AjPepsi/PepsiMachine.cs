@@ -21,15 +21,15 @@ namespace AjPepsi
             this.CreateClass("Object");
         }
 
-        public IClass CreateClass(string clsname)
+        public IClass CreateClass(string className)
         {
             BaseClass cls = (BaseClass) this.baseClass.CreateDelegated();
             cls.Machine = this;
-            this.globals[clsname] = cls;
+            this.globals[className] = cls;
             return cls;
         }
 
-        public IClass CreateClass(string clsname, IClass superclass)
+        public IClass CreateClass(string clsname, IBehavior superclass)
         {
             IClass cls = (IClass) superclass.CreateDelegated();
             this.globals[clsname] = cls;

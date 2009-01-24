@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		AjSoda.vsmdi = AjSoda.vsmdi
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Todo.txt = Todo.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjPepsi", "AjPepsi\AjPepsi.csproj", "{EF29CFA8-2B0C-40FC-9FC7-AC5549FA33EC}"

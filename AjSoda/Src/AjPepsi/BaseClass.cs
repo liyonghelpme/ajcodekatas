@@ -93,10 +93,14 @@
             int offset = this.instanceVariableNames.IndexOf(name);
 
             if (offset < 0)
+            {
                 return offset;
+            }
 
             if (this.Parent != null && this.Parent is IClass)
+            {
                 return offset + ((IClass)this.Parent).InstanceSize;
+            }
 
             return offset;
         }

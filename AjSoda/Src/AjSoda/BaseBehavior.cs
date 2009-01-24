@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
 
@@ -43,7 +44,15 @@
                 return this.Lookup((string)arguments[0]);
             }
 
-            return base.Send(selector, arguments);
+            IMethod method = (IMethod)this.Send("lookup:", selector);
+
+            if (method == null)
+            {
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Unknown message '{0}'", selector));
+            }
+
+            return method.Execute(this, arguments);
+            // return base.Send(selector, arguments);
         }
 
         public virtual IMethod Lookup(string selector)

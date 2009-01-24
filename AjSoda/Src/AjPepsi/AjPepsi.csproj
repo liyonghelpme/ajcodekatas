@@ -58,6 +58,7 @@
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="BaseBasicNewMethod.cs" />
     <Compile Include="DotNetObject.cs" />
+    <Compile Include="Evaluator.cs" />
     <Compile Include="ExecutionBlock.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IBlock.cs" />

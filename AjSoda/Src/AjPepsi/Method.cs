@@ -66,10 +66,10 @@ namespace AjPepsi
         }
 
         // TODO how to implements super, sender
-        public override object Execute(object receiver, params object[] args)
+        public override object Execute(object receiver, params object[] arguments)
         {
             IObject self = (IObject) receiver;
-            return (new ExecutionBlock(self, this, args)).Execute();
+            return (new ExecutionBlock(self, this, arguments)).Execute();
         }
 
         private bool TryCompileGetVariable(string name)
@@ -86,15 +86,6 @@ namespace AjPepsi
                 CompileByteCode(ByteCode.GetVariable, (byte)p);
                 return true;
             }
-
-            // TODO Review if a class variable can be used in an instance method
-            //p = this.mthclass.GetClassVariableOffset(name);
-
-            //if (p >= 0)
-            //{
-            //    CompileByteCode(ByteCode.GetClassVariable, (byte)p);
-            //    return true;
-            //}
 
             return false;
         }
@@ -113,15 +104,6 @@ namespace AjPepsi
                 this.CompileByteCode(ByteCode.SetVariable, (byte)p);
                 return true;
             }
-
-            // TODO Is this code needed?
-            //p = this.mthclass.GetClassVariableOffset(name);
-
-            //if (p >= 0)
-            //{
-            //    this.CompileByteCode(ByteCode.SetClassVariable, (byte)p);
-            //    return true;
-            //}
 
             return false;
         }

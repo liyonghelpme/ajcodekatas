@@ -25,10 +25,6 @@ namespace AjPepsi
             {
                 this.locals = new object[this.block.NoLocals];
             }
-            else
-            {
-                this.locals = null;
-            }
         }
 
         private object Top
@@ -107,7 +103,7 @@ namespace AjPepsi
                         int x = (int)this.Pop();
                         this.Push(x + y);
                         break;
-                    case ByteCode.Substract:
+                    case ByteCode.Subtract:
                         y = (int)this.Pop();
                         x = (int)this.Pop();
                         this.Push(x - y);
@@ -219,7 +215,7 @@ namespace AjPepsi
                         this.GetMachine().SetGlobalObject(this.block.GetGlobalName(arg), this.Pop());
                         break;
                     default:
-                        throw new Exception("Not implemented");
+                        throw new InvalidOperationException("Not implemented");
                 }
 
                 this.ip++;

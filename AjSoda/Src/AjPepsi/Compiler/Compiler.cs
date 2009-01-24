@@ -2,6 +2,7 @@ namespace AjPepsi.Compiler
 {
     using System;
     using System.Collections;
+    using System.Globalization;
 
     public class Compiler
     {
@@ -27,6 +28,23 @@ namespace AjPepsi.Compiler
             this.CompileBody();
 
             return this.block;
+        }
+
+        public Block CompileEnclosedBlock()
+        {
+            Token token = tokenizer.NextToken();
+
+            if (token == null)
+            {
+                return null;
+            }
+
+            if (token.Value != "[")
+            {
+                throw new CompilerException(string.Format(CultureInfo.InvariantCulture, "Unexpected '{0}'", token.Value));
+            }
+
+            return CompileBlock();
         }
 
         public void CompileInstanceMethod(IClass cls)
@@ -261,7 +279,7 @@ namespace AjPepsi.Compiler
                 }
                 else if (mthname == "-")
                 {
-                    this.block.CompileByteCode(ByteCode.Substract);
+                    this.block.CompileByteCode(ByteCode.Subtract);
                 }
                 else if (mthname == "*")
                 {
@@ -378,6 +396,19 @@ namespace AjPepsi.Compiler
         private void CompileMethod(IClass cls)
         {
             this.CompileArguments();
+
+            Token token = tokenizer.NextToken();
+
+            if (token == null)
+            {
+                throw new EndOfInputException();
+            }
+
+            if (token.Value != "[")
+            {
+                throw new CompilerException(string.Format(CultureInfo.InvariantCulture, "Unexpected '{0}'", token.Value));
+            }
+
             this.CompileLocals();
 
             this.block = new Method(cls, this.methodname);
