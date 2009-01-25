@@ -40,7 +40,7 @@
         public void CreateBehaviorSendingDelegateMessage()
         {
             BaseBehavior baseBehavior = new BaseBehavior();
-            IBehavior behavior = (IBehavior) baseBehavior.Send("delegate");
+            IBehavior behavior = (IBehavior) baseBehavior.Send("delegated");
 
             Assert.IsNotNull(behavior);
             Assert.IsNotNull(behavior.Behavior);
@@ -60,7 +60,7 @@
 
             IMethod method = new MockMethod();
 
-            behavior.Send("addMethod:at:", method, "aMethod");
+            behavior.Send("methodAt:put:", "aMethod", method);
 
             IMethod retrievedMethod = (IMethod) behavior.Send("lookup:", "aMethod");
 
@@ -77,7 +77,7 @@
 
             IMethod method = new MockMethod();
 
-            behavior.Send("addMethod:at:", method, "aMethod");
+            behavior.Send("methodAt:put:", "aMethod", method);
 
             IMethod retrievedMethod = (IMethod) childBehavior.Send("lookup:", "aMethod");
 
@@ -104,7 +104,7 @@
 
             IMethod method = new BaseLookupMethod();
 
-            behavior.Send("addMethod:at:", method, "lookup:");
+            behavior.Send("methodAt:put:", "lookup:", method);
 
             IMethod newMethod = (IMethod) behavior.Send("lookup:", "lookup:");
 
@@ -120,16 +120,16 @@
 
             IMethod method = new BaseAddMethodMethod();
 
-            behavior.Send("addMethod:at:", method, "addMethod:at:");
+            behavior.Send("methodAt:put:", "methodAt:put:", method);
 
-            IMethod newMethod = (IMethod) behavior.Send("lookup:", "addMethod:at:");
+            IMethod newMethod = (IMethod) behavior.Send("lookup:", "methodAt:put:");
 
             Assert.IsNotNull(newMethod);
             Assert.AreEqual(method, newMethod);
 
             IMethod anotherMethod = new MockMethod();
 
-            behavior.Send("addMethod:at:", anotherMethod, "anotherMethod");
+            behavior.Send("methodAt:put:", "anotherMethod", anotherMethod);
 
             newMethod = (IMethod) behavior.Send("lookup:", "anotherMethod");
 
@@ -153,7 +153,7 @@
             BaseBehavior baseBehavior = new BaseBehavior();
             IBehavior behavior = baseBehavior.CreateDelegated();
 
-            behavior.Send("addMethod:at:", new MockMethod(), null);
+            behavior.Send("methodAt:put:", null, new MockMethod());
         }
 
         [TestMethod]
@@ -163,7 +163,7 @@
             BaseBehavior baseBehavior = new BaseBehavior();
             IBehavior behavior = baseBehavior.CreateDelegated();
 
-            behavior.Send("addMethod:at:", null, "aMethod");
+            behavior.Send("methodAt:put:", "aMethod", null);
         }
     }
 }

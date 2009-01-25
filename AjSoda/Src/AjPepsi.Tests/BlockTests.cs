@@ -4,8 +4,8 @@ namespace AjPepsi.Tests
     using System.Collections.Generic;
     using System.Text;
 
-    using AjSoda;
     using AjPepsi;
+    using AjSoda;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -199,6 +199,7 @@ namespace AjPepsi.Tests
             Block block = new Block();
 
             block.CompileGet("Object");
+            block.CompileSend("class");
             block.CompileSend("basicNew");
             block.CompileReturnPop();
 
@@ -225,7 +226,7 @@ namespace AjPepsi.Tests
 
             block.CompileGet("Object");
             block.CompileSend("class");
-            block.CompileSend("delegate");
+            block.CompileSend("delegated");
             block.CompileReturnPop();
 
             object obj = block.Execute(new PepsiMachine(), null);
@@ -245,7 +246,7 @@ namespace AjPepsi.Tests
 
             block.CompileGet("Object");
             block.CompileSend("class");
-            block.CompileSend("delegate");
+            block.CompileSend("delegated");
             block.CompileSet("NewClass");
 
             PepsiMachine machine = new PepsiMachine();

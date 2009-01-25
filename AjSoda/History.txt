@@ -44,3 +44,12 @@ New GetGlobalVariable, SetGlobalVariable implementation
 Drop GetSuperclass bytecode
 Drop SetClassVariable, GetClassVariable bytecodes
 Evaluator with tests
+CreatePrototype in PepsiMachine
+
+2009-01-25
+delegated message in Behavior and Object in AjSoda Machine
+same in PepsiMachine
+support for NewProto : Object() in Evaluator
+refactoring exceptions
+reimplementing basicNew
+first .st files in tests

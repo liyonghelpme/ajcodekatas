@@ -4,9 +4,9 @@ namespace AjPepsi.Tests
     using System.Collections.Generic;
     using System.Text;
 
-    using AjSoda;
     using AjPepsi;
     using AjPepsi.Compiler;
+    using AjSoda;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -15,8 +15,8 @@ namespace AjPepsi.Tests
     {
         public static IClass CompileClass(string clsname, string[] varnames, string[] methods)
         {
-            PepsiMachine PepsiMachine = new PepsiMachine();
-            IClass cls = PepsiMachine.CreateClass();
+            PepsiMachine machine = new PepsiMachine();
+            IClass cls = machine.CreateClass();
 
             if (varnames != null)
             {
@@ -145,6 +145,36 @@ namespace AjPepsi.Tests
         }
 
         [TestMethod]
+        public void ShouldCompileEnclosedBlock()
+        {
+            Compiler compiler = new Compiler("[^0]");
+            Block block = compiler.CompileEnclosedBlock();
+
+            Assert.IsNotNull(block);
+            Assert.AreEqual(0, block.NoLocals);
+            Assert.AreEqual(1, block.NoConstants);
+            Assert.IsNotNull(block.ByteCodes);
+            Assert.AreEqual(0, block.Arity);
+
+            object constant = block.GetConstant(0);
+
+            Assert.IsNotNull(constant);
+        }
+
+        [TestMethod]
+        public void ShouldCompileEnclosedEmptyBlock()
+        {
+            Compiler compiler = new Compiler("[]");
+            Block block = compiler.CompileEnclosedBlock();
+
+            Assert.IsNotNull(block);
+            Assert.AreEqual(0, block.NoLocals);
+            Assert.AreEqual(0, block.NoConstants);
+            Assert.IsNull(block.ByteCodes);
+            Assert.AreEqual(0, block.Arity);
+        }
+
+        [TestMethod]
         public void ShouldExecuteInstSize()
         {
             PepsiMachine machine = new PepsiMachine();
@@ -155,7 +185,7 @@ namespace AjPepsi.Tests
             Assert.IsNotNull(nil);
             Assert.IsInstanceOfType(nil, typeof(IObject));
 
-            Compiler compiler = new Compiler("^nil basicNew instSize");
+            Compiler compiler = new Compiler("^nil class basicNew instSize");
             Block block = compiler.CompileBlock();
 
             Assert.IsNotNull(block);
@@ -175,7 +205,7 @@ namespace AjPepsi.Tests
             Assert.IsNotNull(obj);
             Assert.IsInstanceOfType(obj, typeof(IObject));
 
-            Compiler compiler = new Compiler("^Object basicNew class");
+            Compiler compiler = new Compiler("^Object class basicNew class");
             Block block = compiler.CompileBlock();
 
             Assert.IsNotNull(block);
@@ -196,7 +226,7 @@ namespace AjPepsi.Tests
             Assert.IsNotNull(obj);
             Assert.IsInstanceOfType(obj, typeof(IObject));
 
-            Compiler compiler = new Compiler("^Object class addMethod: [self instSize] at: #newMethod");
+            Compiler compiler = new Compiler("^Object class methodAt: #newMethod put: [self instSize]");
             Block block = compiler.CompileBlock();
 
             Assert.IsNotNull(block);
@@ -212,16 +242,19 @@ namespace AjPepsi.Tests
         public void ShouldExecuteInstSizeInRectangle()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = CompileClass(
-                "Rectangle", 
-                new string[] { "x", "y" },
-                new string[] 
+
+            string[] methods = 
                 {
                     "x [^x]",
                     "x: newX [x := newX]",
                     "y [^y]",
                     "y: newY [y := newY]"
-                });
+                };
+
+            IClass cls = CompileClass(
+                "Rectangle", 
+                new string[] { "x", "y" },
+                methods);
 
             machine.SetGlobalObject("aRectangle", cls.CreateInstance());
 
@@ -239,16 +272,19 @@ namespace AjPepsi.Tests
         public void ShouldExecuteInstAt()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = CompileClass(
-                "Rectangle", 
-                new string[] { "x", "y" },
-                new string[] 
+
+            string[] methods = 
                 {
                     "x [^x]",
                     "x: newX [x := newX]",
                     "y [^y]",
                     "y: newY [y := newY]"
-                });
+                };
+
+            IClass cls = CompileClass(
+                "Rectangle", 
+                new string[] { "x", "y" },
+                methods);
 
             IObject iobj = cls.CreateInstance();
 
@@ -270,16 +306,19 @@ namespace AjPepsi.Tests
         public void ShouldExecuteInstAtPut()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = CompileClass(
-                "Rectangle", 
-                new string[] { "x", "y" },
-                new string[] 
+
+            string[] methods = 
                 {
                     "x [^x]",
                     "x: newX [x := newX]",
                     "y [^y]",
                     "y: newY [y := newY]"
-                });
+                };            
+
+                IClass cls = CompileClass(
+                "Rectangle", 
+                new string[] { "x", "y" },
+                methods);
 
             IObject iobj = cls.CreateInstance();
 
@@ -307,7 +346,7 @@ namespace AjPepsi.Tests
 
             machine.SetGlobalObject("Rectangle", cls.CreateInstance());
 
-            Compiler compiler = new Compiler("^Rectangle basicNew");
+            Compiler compiler = new Compiler("^Rectangle class basicNew");
             Block block = compiler.CompileBlock();
 
             Assert.IsNotNull(block);
@@ -322,16 +361,18 @@ namespace AjPepsi.Tests
         [TestMethod]
         public void ShouldCompileMethods()
         {
-            IClass cls = CompileClass(
-                "Rectangle", 
-                new string[] { "x", "y" },
-                new string[] 
+            string[] methods =
                 {
                     "x [^x]",
                     "x: newX [x := newX]",
                     "y [^y]",
                     "y: newY [y := newY]"
-                });
+                };
+
+            IClass cls = CompileClass(
+                "Rectangle", 
+                new string[] { "x", "y" },
+                methods);
 
             Assert.IsNotNull(cls);
 
@@ -344,22 +385,24 @@ namespace AjPepsi.Tests
         [TestMethod]
         public void ShouldRunMethods()
         {
-            IClass cls = CompileClass(
-                "Rectangle", 
-                new string[] { "x", "y" },
-                new string[] 
+            string[] methods =
                 {
                     "x [^x]",
                     "x: newX [x := newX]",
                     "y [^y]",
                     "y: newY [y := newY]"
-                });
+                };
+
+            IClass cls = CompileClass(
+                "Rectangle", 
+                new string[] { "x", "y" },
+                methods);
 
             Assert.IsNotNull(cls);
 
             IObject obj = cls.CreateInstance();
 
-            obj.Send("x:", 10 );
+            obj.Send("x:", 10);
 
             Assert.AreEqual(10, obj.GetValueAt(0));
 
@@ -374,13 +417,15 @@ namespace AjPepsi.Tests
         [TestMethod]
         public void ShouldCompileMultiCommandMethod()
         {
+            string[] methods =
+                {
+                    "side: newSide [x := newSide. y := newSide]"
+                };
+
             IClass cls = CompileClass(
                 "Rectangle", 
                 new string[] { "x", "y" },
-                new string[] 
-                {
-                    "side: newSide [x := newSide. y := newSide]"
-                });
+                methods);
 
             Assert.IsNotNull(cls);
 
@@ -390,13 +435,15 @@ namespace AjPepsi.Tests
         [TestMethod]
         public void ShouldCompileMultiCommandMethodWithLocal()
         {
+            string[] methods =
+                {
+                    "side: newSide [| temp | temp := x. x := temp. y := temp]"
+                };
+
             IClass cls = CompileClass(
                 "Rectangle", 
                 new string[] { "x", "y" },
-                new string[] 
-                {
-                    "side: newSide [| temp | temp := x. x := temp. y := temp]"
-                });
+                methods);
 
             Assert.IsNotNull(cls);
 
@@ -406,13 +453,15 @@ namespace AjPepsi.Tests
         [TestMethod]
         public void ShouldRunMultiCommandMethod()
         {
+            string[] methods =
+                {
+                    "side: newSide [x := newSide. y := newSide]"
+                };
+
             IClass cls = CompileClass(
                 "Rectangle", 
                 new string[] { "x", "y" },
-                new string[] 
-                {
-                    "side: newSide [x := newSide. y := newSide]"
-                });
+                methods);
 
             Assert.IsNotNull(cls);
 
@@ -427,13 +476,15 @@ namespace AjPepsi.Tests
         [TestMethod]
         public void ShouldRunMultiCommandMethodWithLocal()
         {
+            string[] methods =
+                {
+                    "side: newSide [| temp | temp := newSide. x := temp. y := temp ]"
+                };
+
             IClass cls = CompileClass(
                 "Rectangle", 
                 new string[] { "x", "y" },
-                new string[] 
-                {
-                    "side: newSide [| temp | temp := newSide. x := temp. y := temp ]"
-                });
+                methods);
 
             Assert.IsNotNull(cls);
 

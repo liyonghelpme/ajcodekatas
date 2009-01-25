@@ -54,7 +54,7 @@
 
             if (token.Value == "[")
             {
-                tokenizer.PushToken(token);
+                this.tokenizer.PushToken(token);
                 Compiler.Compiler compiler = new Compiler.Compiler(this.tokenizer);
                 Block block = compiler.CompileEnclosedBlock();
                 block.Execute(this.machine);
@@ -72,7 +72,7 @@
 
         private void EvaluateName(string name)
         {
-            Token token = tokenizer.NextToken();
+            Token token = this.tokenizer.NextToken();
 
             if (token == null)
             {
@@ -87,35 +87,42 @@
 
             if (token.Value == ":")
             {
-                this.EvaluateSubclass(name);
+                this.EvaluateSubprototype(name);
                 return;
             }
 
             if (token.Type == TokenType.Name)
             {
-                tokenizer.PushToken(token);
+                this.tokenizer.PushToken(token);
                 this.EvaluateDefine(name);
                 return;
             }
 
-            throw new Compiler.CompilerException(string.Format(CultureInfo.InvariantCulture, "Unexpected '{0}'", name));
+            throw new UnexpectedTokenException(token);
         }
 
-        private void EvaluateSubclass(string name)
+        private void EvaluateSubprototype(string name)
         {
-            Token token = tokenizer.NextToken();
+            Token token = this.GetName();
+            string superName = token.Value;
 
-            if (token == null)
+            this.GetToken("(");
+
+            List<string> variableNames = new List<string>();
+
+            token = this.tokenizer.NextToken();
+
+            while (token != null && token.Type == TokenType.Name)
             {
-                throw new Compiler.EndOfInputException();
+                variableNames.Add(token.Value);
+                token = this.tokenizer.NextToken();
             }
 
-            if (token.Type != TokenType.Name)
-            {
-                throw new Compiler.CompilerException(string.Format(CultureInfo.InvariantCulture, "Unexpected '{0}'", token.Value));
-            }
+            this.tokenizer.PushToken(token);
 
-            this.machine.CreatePrototype(name, token.Value);
+            this.GetToken(")");
+
+            this.machine.CreatePrototype(name, superName, variableNames);
         }
 
         private void EvaluateAssignment(string name)
@@ -134,6 +141,41 @@
             Compiler.Compiler compiler = new Compiler.Compiler(this.tokenizer);
 
             compiler.CompileInstanceMethod(((IClass)obj.Behavior));
+        }
+
+        private Token GetName()
+        {
+            Token token = this.tokenizer.NextToken();
+
+            if (token == null)
+            {
+                throw new EndOfInputException();
+            }
+
+            if (token.Type != TokenType.Name)
+            {
+                throw new UnexpectedTokenException(token);
+            }
+
+            return token;
+        }
+
+
+        private Token GetToken(string value)
+        {
+            Token token = this.tokenizer.NextToken();
+
+            if (token == null)
+            {
+                throw new EndOfInputException();
+            }
+
+            if (token.Value != value)
+            {
+                throw new UnexpectedTokenException(token);
+            }
+
+            return token;
         }
     }
 }

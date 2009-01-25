@@ -5,18 +5,14 @@
     using System.Linq;
     using System.Text;
 
-    public class BaseAddMethodMethod : IMethod
+    public class BaseAllocateMethod : IMethod
     {
         public object Execute(object receiver, params object[] arguments)
         {
             IBehavior self = (IBehavior)receiver;
-            string selector = (string)arguments[0];
-            IMethod method = (IMethod)arguments[1];
+            int size = (int) arguments[0];
 
-            self.AddMethod(selector, method);
-
-            // TODO review this return
-            return null;
+            return self.Allocate(size);
         }
     }
 }

@@ -1,30 +1,39 @@
 <stylecopresultscache>
   <version>10</version>
-  <project key="380373031">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="BaseClassTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+  <sourcecode name="DotNetObjectTest.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/24/2009 05:31:57</timestamp>
       <milliseconds>453</milliseconds>
     </settings>
-    <timestamp>01/24/2009 05:30:46</timestamp>
-    <milliseconds>609</milliseconds>
-    <violations>
-      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
-        <context>Using directives must be sorted alphabetically by the namespaces.</context>
-        <line>4</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
+    <timestamp>01/24/2009 07:41:32</timestamp>
+    <milliseconds>578</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GlobalSuppressions.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 05:34:05</timestamp>
+    <milliseconds>328</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PepsiMachineTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 22:02:39</timestamp>
+    <milliseconds>265</milliseconds>
+    <violations />
   </sourcecode>
   <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/24/2009 05:31:57</timestamp>
       <milliseconds>453</milliseconds>
     </settings>
-    <timestamp>01/23/2009 19:43:05</timestamp>
-    <milliseconds>15</milliseconds>
+    <timestamp>01/24/2009 05:33:19</timestamp>
+    <milliseconds>546</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="TokenizerTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -32,8 +41,47 @@
       <timestamp>01/24/2009 05:31:57</timestamp>
       <milliseconds>453</milliseconds>
     </settings>
-    <timestamp>01/23/2009 19:51:47</timestamp>
-    <milliseconds>343</milliseconds>
+    <timestamp>01/24/2009 06:21:54</timestamp>
+    <milliseconds>265</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BlockTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 07:23:59</timestamp>
+    <milliseconds>656</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseClassTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 07:25:56</timestamp>
+    <milliseconds>578</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CompilerTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 07:30:26</timestamp>
+    <milliseconds>265</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="380373031">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="EvaluatorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/24/2009 05:31:57</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 07:30:49</timestamp>
+    <milliseconds>109</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

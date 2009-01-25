@@ -28,7 +28,7 @@ namespace AjPepsi.Tests
         }
 
         [TestMethod]
-        public void ShouldCreateClass()
+        public void ShouldCreatePrototype()
         {
             PepsiMachine machine = new PepsiMachine();
             IObject proto = machine.CreatePrototype("TestPrototype");
@@ -49,6 +49,28 @@ namespace AjPepsi.Tests
             Assert.IsInstanceOfType(cls.Parent, typeof(BaseClass));
             Assert.IsNotNull(cls.Machine);
             Assert.AreEqual(machine, cls.Machine);
+        }
+
+        [TestMethod]
+        public void ShouldGetObjectBehavior()
+        {
+            PepsiMachine machine = new PepsiMachine();
+
+            IObject obj = (IObject)machine.GetGlobalObject("Object");
+
+            Assert.AreEqual(obj.Behavior, obj.Send("vtable"));
+        }
+
+        [TestMethod]
+        public void ShouldDelegateObject()
+        {
+            PepsiMachine machine = new PepsiMachine();
+
+            IObject obj = (IObject)machine.GetGlobalObject("Object");
+            IObject delegated = (IObject) obj.Send("delegated");
+
+            Assert.AreEqual(obj.Behavior, ((IBehavior)delegated.Behavior).Parent);
+            Assert.AreEqual(obj.Behavior.Behavior, delegated.Behavior.Behavior);
         }
 
         [TestMethod]

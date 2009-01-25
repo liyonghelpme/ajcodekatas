@@ -213,10 +213,6 @@ namespace AjPepsi
             {
                 this.CompileByteCode(ByteCode.InstAtPut);
             }
-            else if (messageName == "basicNew")
-            {
-                this.CompileByteCode(ByteCode.NewObject);
-            }
             else if (messageName == "class")
             {
                 this.CompileByteCode(ByteCode.GetClass);

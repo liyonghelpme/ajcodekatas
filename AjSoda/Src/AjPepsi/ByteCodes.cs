@@ -18,9 +18,8 @@ namespace AjPepsi
 
         GetSelf = 20,
         GetClass = 21,
-        NewObject = 22,
-        Pop = 23,
-        ReturnPop = 24,
+        Pop = 22,
+        ReturnPop = 23,
 
         Add = 40,
         Subtract = 41,

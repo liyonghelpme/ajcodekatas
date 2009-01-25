@@ -13,8 +13,10 @@
             this.Behavior = this;
             this.Methods = new Dictionary<string, IMethod>();
             this.Methods.Add("lookup:", new BaseLookupMethod());
-            this.Methods.Add("addMethod:at:", new BaseAddMethodMethod());
-            this.Methods.Add("delegate", new BaseDelegateMethod());
+            this.Methods.Add("methodAt:put:", new BaseAddMethodMethod());
+            this.Send("methodAt:put:", "delegated", new BaseDelegateMethod());
+            this.Send("methodAt:put:", "vtable", new BaseBehaviorMethod());
+            this.Send("methodAt:put:", "allocate:", new BaseAllocateMethod());
         }
 
         public BaseBehavior(IObject behavior)

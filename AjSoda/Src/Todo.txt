@@ -3,6 +3,7 @@
 	- Implement CompileTopCommand(PepsiMachine machine)
 		accepting
 		
+		Object()
 		NewClass : Object()
 		NewClass : Object(variable1 variable2)
 		aGlobal := [...]
@@ -16,4 +17,8 @@
 - Compiler to C#
 
 - Exceptions classes
+
+- Remove initial prototype Object from PepsiMachine
+
+- Evaluator support of "Object()" and "NewProto : Proto(a b)"
 

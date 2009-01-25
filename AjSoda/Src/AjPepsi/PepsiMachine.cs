@@ -18,7 +18,14 @@ namespace AjPepsi
             this.Behavior = machineClass;
             machineClass.Machine = this;
 
-            this.CreatePrototype("Object");
+            IObject obj = this.CreatePrototype("Object");
+
+            ((IBehavior) obj.Behavior).Parent = null;
+            this.baseClass.Parent = obj.Behavior;
+            machineClass.Parent = obj.Behavior;
+
+            obj.Behavior.Send("methodAt:put:", "vtable", new BaseBehaviorMethod());
+            obj.Behavior.Send("methodAt:put:", "delegated", new BaseObjectDelegateMethod());
         }
 
         public IObject CreatePrototype(string prototypeName)
@@ -37,11 +44,20 @@ namespace AjPepsi
             return cls;
         }
 
-        public IObject CreatePrototype(string prototypeName, string superName)
+        public IObject CreatePrototype(string prototypeName, string superName, List<string> variableNames)
         {
             IObject super = (IObject) this.globals[superName];
             IBehavior superclass = (IBehavior) super.Behavior;
             IClass cls = (IClass) superclass.CreateDelegated();
+
+            if (variableNames != null)
+            {
+                foreach (string name in variableNames)
+                {
+                    cls.AddVariable(name);
+                }
+            }
+
             IObject obj = cls.CreateInstance();
             this.globals[prototypeName] = obj;
             return obj;

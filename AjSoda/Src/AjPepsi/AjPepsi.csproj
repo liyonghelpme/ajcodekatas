@@ -57,6 +57,7 @@
     <Compile Include="Compiler\TokenizerException.cs" />
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="BaseBasicNewMethod.cs" />
+    <Compile Include="Compiler\UnexpectedTokenException.cs" />
     <Compile Include="DotNetObject.cs" />
     <Compile Include="Evaluator.cs" />
     <Compile Include="ExecutionBlock.cs" />

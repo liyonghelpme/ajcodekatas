@@ -41,6 +41,11 @@ namespace AjPepsi
             string mthname;
             object[] args;
 
+            if (this.block.ByteCodes == null)
+            {
+                return this.self;
+            }
+
             while (this.ip < this.block.ByteCodes.Length)
             {
                 ByteCode bc = (ByteCode)this.block.ByteCodes[this.ip];
@@ -95,10 +100,6 @@ namespace AjPepsi
                         arg = this.block.ByteCodes[this.ip];
                         this.Push(this.self.GetValueAt(arg));
                         break;
-                    case ByteCode.NewObject:
-                        IObject iobj = (IObject)this.Pop();
-                        this.Push(((IClass)iobj.Behavior).CreateInstance());
-                        break;
                     case ByteCode.Add:
                         int y = (int)this.Pop();
                         int x = (int)this.Pop();
@@ -125,7 +126,7 @@ namespace AjPepsi
                         this.Pop();
                         break;
                     case ByteCode.InstSize:
-                        iobj = (IObject)this.Pop();
+                        IObject iobj = (IObject)this.Pop();
                         this.Push(iobj.Size);
                         break;
                     case ByteCode.InstAt:

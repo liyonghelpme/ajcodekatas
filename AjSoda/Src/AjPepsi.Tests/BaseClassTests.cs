@@ -44,7 +44,7 @@
         {
             IClass baseClass = new BaseClass();
 
-            baseClass.Send("addVariable:","a");
+            baseClass.Send("addVariable:", "a");
             baseClass.Send("addVariable:", "b");
 
             Assert.AreEqual(2, baseClass.InstanceSize);

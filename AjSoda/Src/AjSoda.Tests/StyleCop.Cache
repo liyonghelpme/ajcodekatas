@@ -3,15 +3,6 @@
   <project key="-1190263654">
     <configuration>DEBUG;TRACE</configuration>
   </project>
-  <sourcecode name="BaseObjectTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/22/2009 19:42:40</timestamp>
-      <milliseconds>578</milliseconds>
-    </settings>
-    <timestamp>01/22/2009 18:47:31</timestamp>
-    <milliseconds>296</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="GlobalSuppressions.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>01/22/2009 19:42:40</timestamp>
@@ -56,8 +47,17 @@
       <timestamp>01/22/2009 19:42:40</timestamp>
       <milliseconds>578</milliseconds>
     </settings>
-    <timestamp>01/23/2009 06:06:48</timestamp>
-    <milliseconds>812</milliseconds>
+    <timestamp>01/24/2009 05:47:05</timestamp>
+    <milliseconds>156</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseObjectTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/22/2009 19:42:40</timestamp>
+      <milliseconds>578</milliseconds>
+    </settings>
+    <timestamp>01/24/2009 05:47:04</timestamp>
+    <milliseconds>984</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="BehaviorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -65,8 +65,8 @@
       <timestamp>01/22/2009 19:42:40</timestamp>
       <milliseconds>578</milliseconds>
     </settings>
-    <timestamp>01/23/2009 06:05:41</timestamp>
-    <milliseconds>281</milliseconds>
+    <timestamp>01/24/2009 05:45:53</timestamp>
+    <milliseconds>203</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

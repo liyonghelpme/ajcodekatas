@@ -32,26 +32,16 @@ namespace AjPepsi.Compiler
 
         public Block CompileEnclosedBlock()
         {
-            Token token = tokenizer.NextToken();
+            this.CompileToken("[");
 
-            if (token == null)
-            {
-                return null;
-            }
-
-            if (token.Value != "[")
-            {
-                throw new CompilerException(string.Format(CultureInfo.InvariantCulture, "Unexpected '{0}'", token.Value));
-            }
-
-            return CompileBlock();
+            return this.CompileBlock();
         }
 
         public void CompileInstanceMethod(IClass cls)
         {
             this.CompileMethod(cls);
             IPepsiMethod method = (IPepsiMethod)this.block;
-            cls.Send("addMethod:at:", method, method.Name);
+            cls.Send("methodAt:put:", method.Name, method);
         }
 
         private Token NextToken()
@@ -397,17 +387,7 @@ namespace AjPepsi.Compiler
         {
             this.CompileArguments();
 
-            Token token = tokenizer.NextToken();
-
-            if (token == null)
-            {
-                throw new EndOfInputException();
-            }
-
-            if (token.Value != "[")
-            {
-                throw new CompilerException(string.Format(CultureInfo.InvariantCulture, "Unexpected '{0}'", token.Value));
-            }
+            this.CompileToken("[");
 
             this.CompileLocals();
 
@@ -424,6 +404,40 @@ namespace AjPepsi.Compiler
             }
 
             this.CompileBody();
+        }
+
+        private Token CompileName()
+        {
+            Token token = this.NextToken();
+
+            if (token == null)
+            {
+                throw new EndOfInputException();
+            }
+
+            if (token.Type != TokenType.Name)
+            {
+                throw new UnexpectedTokenException(token);
+            }
+
+            return token;
+        }
+
+        private Token CompileToken(string value)
+        {
+            Token token = this.NextToken();
+
+            if (token == null)
+            {
+                throw new EndOfInputException();
+            }
+
+            if (token.Value != value)
+            {
+                throw new UnexpectedTokenException(token);
+            }
+
+            return token;
         }
     }
 }

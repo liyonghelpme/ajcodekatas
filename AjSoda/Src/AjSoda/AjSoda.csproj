@@ -50,6 +50,9 @@
     <Compile Include="BaseObject.cs" />
     <Compile Include="BaseAddMethodMethod.cs" />
     <Compile Include="BaseDelegateMethod.cs" />
+    <Compile Include="BaseBehaviorMethod.cs" />
+    <Compile Include="BaseAllocateMethod.cs" />
+    <Compile Include="BaseObjectDelegateMethod.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IBehavior.cs" />
     <Compile Include="IMethod.cs" />
