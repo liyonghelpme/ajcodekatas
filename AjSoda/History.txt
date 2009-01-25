@@ -53,3 +53,6 @@ support for NewProto : Object() in Evaluator
 refactoring exceptions
 reimplementing basicNew
 first .st files in tests
+Class diagrams in AjSoda
+Post
+http://ajlopez.wordpress.com/2009/01/25/presenting-ajsoda/
