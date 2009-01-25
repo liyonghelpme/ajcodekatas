@@ -15,8 +15,6 @@ namespace AjPepsi.Tests
         [TestMethod]
         public void ShouldBeCreated()
         {
-            PepsiMachine machine = new PepsiMachine();
-            IClass cls = machine.CreateClass("TestClass");
             IBlock block = new Block();
 
             Assert.IsNotNull(block);
@@ -26,7 +24,7 @@ namespace AjPepsi.Tests
         public void ShouldCompile()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = machine.CreateClass("TestClass");
+            IClass cls = machine.CreateClass();
             cls.AddVariable("x");
 
             Block block;
@@ -106,7 +104,7 @@ namespace AjPepsi.Tests
         public void ShouldCompileWithLocals()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = machine.CreateClass("TestClass");
+            IClass cls = machine.CreateClass();
             cls.AddVariable("x");
 
             Block block;
@@ -214,7 +212,9 @@ namespace AjPepsi.Tests
             IObject obj2 = (IObject)obj;
 
             Assert.IsNotNull(obj2.Behavior);
-            Assert.AreEqual(obj2.Behavior, machine.GetGlobalObject("Object"));
+
+            IObject obj3 = (IObject) machine.GetGlobalObject("Object");
+            Assert.AreEqual(obj2.Behavior, obj3.Behavior);
             Assert.AreEqual(0, obj2.Size);
         }
 
@@ -224,6 +224,7 @@ namespace AjPepsi.Tests
             Block block = new Block();
 
             block.CompileGet("Object");
+            block.CompileSend("class");
             block.CompileSend("delegate");
             block.CompileReturnPop();
 
@@ -243,6 +244,7 @@ namespace AjPepsi.Tests
             Block block = new Block();
 
             block.CompileGet("Object");
+            block.CompileSend("class");
             block.CompileSend("delegate");
             block.CompileSet("NewClass");
 
@@ -253,9 +255,10 @@ namespace AjPepsi.Tests
             object obj = machine.GetGlobalObject("NewClass");
 
             Assert.IsNotNull(obj);
-            Assert.IsInstanceOfType(obj, typeof(IClass));
+            Assert.IsInstanceOfType(obj, typeof(IObject));
 
-            IClass cls = (IClass)obj;
+            IObject iobj = (IObject)obj;
+            IClass cls = (IClass)iobj.Behavior;
 
             Assert.AreEqual(0, cls.InstanceSize);
         }

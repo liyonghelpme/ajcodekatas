@@ -8,6 +8,7 @@
     using System.Text;
 
     using AjPepsi.Compiler;
+    using AjSoda;
 
     public class Evaluator
     {
@@ -84,6 +85,12 @@
                 return;
             }
 
+            if (token.Value == ":")
+            {
+                this.EvaluateSubclass(name);
+                return;
+            }
+
             if (token.Type == TokenType.Name)
             {
                 tokenizer.PushToken(token);
@@ -92,6 +99,23 @@
             }
 
             throw new Compiler.CompilerException(string.Format(CultureInfo.InvariantCulture, "Unexpected '{0}'", name));
+        }
+
+        private void EvaluateSubclass(string name)
+        {
+            Token token = tokenizer.NextToken();
+
+            if (token == null)
+            {
+                throw new Compiler.EndOfInputException();
+            }
+
+            if (token.Type != TokenType.Name)
+            {
+                throw new Compiler.CompilerException(string.Format(CultureInfo.InvariantCulture, "Unexpected '{0}'", token.Value));
+            }
+
+            this.machine.CreatePrototype(name, token.Value);
         }
 
         private void EvaluateAssignment(string name)
@@ -105,11 +129,11 @@
 
         private void EvaluateDefine(string name)
         {
-            IClass cls = (IClass)this.machine.GetGlobalObject(name);
+            IObject obj = (IObject)this.machine.GetGlobalObject(name);
 
             Compiler.Compiler compiler = new Compiler.Compiler(this.tokenizer);
 
-            compiler.CompileInstanceMethod(cls);
+            compiler.CompileInstanceMethod(((IClass)obj.Behavior));
         }
     }
 }

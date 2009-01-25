@@ -96,7 +96,8 @@ namespace AjPepsi
                         this.Push(this.self.GetValueAt(arg));
                         break;
                     case ByteCode.NewObject:
-                        this.Push(((IClass)this.Pop()).CreateInstance());
+                        IObject iobj = (IObject)this.Pop();
+                        this.Push(((IClass)iobj.Behavior).CreateInstance());
                         break;
                     case ByteCode.Add:
                         int y = (int)this.Pop();
@@ -124,7 +125,7 @@ namespace AjPepsi
                         this.Pop();
                         break;
                     case ByteCode.InstSize:
-                        IObject iobj = (IObject)this.Pop();
+                        iobj = (IObject)this.Pop();
                         this.Push(iobj.Size);
                         break;
                     case ByteCode.InstAt:

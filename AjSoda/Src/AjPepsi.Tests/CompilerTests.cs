@@ -16,7 +16,7 @@ namespace AjPepsi.Tests
         public static IClass CompileClass(string clsname, string[] varnames, string[] methods)
         {
             PepsiMachine PepsiMachine = new PepsiMachine();
-            IClass cls = PepsiMachine.CreateClass(clsname);
+            IClass cls = PepsiMachine.CreateClass();
 
             if (varnames != null)
             {
@@ -50,7 +50,7 @@ namespace AjPepsi.Tests
         public void ShouldCompileMethod()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = machine.CreateClass("Rectangle");
+            IClass cls = machine.CreateClass();
             cls.AddVariable("x");
             Compiler compiler = new Compiler("x [^x]");
             compiler.CompileInstanceMethod(cls);
@@ -62,7 +62,7 @@ namespace AjPepsi.Tests
         public void ShouldCompileMethodWithLocals()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = machine.CreateClass("Rectangle");
+            IClass cls = machine.CreateClass();
             cls.AddVariable("x");
             Compiler compiler = new Compiler("x [| temp | temp := x. ^temp]");
             compiler.CompileInstanceMethod(cls);
@@ -74,7 +74,7 @@ namespace AjPepsi.Tests
         public void ShouldCompileSetMethod()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = machine.CreateClass("Rectangle");
+            IClass cls = machine.CreateClass();
             cls.AddVariable("x");
             Compiler compiler = new Compiler("x: newX [x := newX]");
             compiler.CompileInstanceMethod(cls);
@@ -149,11 +149,11 @@ namespace AjPepsi.Tests
         {
             PepsiMachine machine = new PepsiMachine();
 
-            machine.CreateClass("nil");
+            machine.CreatePrototype("nil");
             object nil = machine.GetGlobalObject("nil");
 
             Assert.IsNotNull(nil);
-            Assert.IsInstanceOfType(nil, typeof(IClass));
+            Assert.IsInstanceOfType(nil, typeof(IObject));
 
             Compiler compiler = new Compiler("^nil basicNew instSize");
             Block block = compiler.CompileBlock();
@@ -173,7 +173,7 @@ namespace AjPepsi.Tests
             object obj = machine.GetGlobalObject("Object");
 
             Assert.IsNotNull(obj);
-            Assert.IsInstanceOfType(obj, typeof(IClass));
+            Assert.IsInstanceOfType(obj, typeof(IObject));
 
             Compiler compiler = new Compiler("^Object basicNew class");
             Block block = compiler.CompileBlock();
@@ -194,16 +194,18 @@ namespace AjPepsi.Tests
             object obj = machine.GetGlobalObject("Object");
 
             Assert.IsNotNull(obj);
-            Assert.IsInstanceOfType(obj, typeof(IClass));
+            Assert.IsInstanceOfType(obj, typeof(IObject));
 
-            Compiler compiler = new Compiler("^Object addMethod: [self instSize] at: #newMethod");
+            Compiler compiler = new Compiler("^Object class addMethod: [self instSize] at: #newMethod");
             Block block = compiler.CompileBlock();
 
             Assert.IsNotNull(block);
 
             block.Execute(machine, null);
 
-            Assert.IsNotNull(((IClass) obj).Lookup("newMethod"));
+            IObject iobj = (IObject)obj;
+
+            Assert.IsNotNull(((IClass) iobj.Behavior).Lookup("newMethod"));
         }
 
         [TestMethod]
@@ -303,7 +305,7 @@ namespace AjPepsi.Tests
                 new string[] { "x", "y" },
                 null);
 
-            machine.SetGlobalObject("Rectangle", cls);
+            machine.SetGlobalObject("Rectangle", cls.CreateInstance());
 
             Compiler compiler = new Compiler("^Rectangle basicNew");
             Block block = compiler.CompileBlock();

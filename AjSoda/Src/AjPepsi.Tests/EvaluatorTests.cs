@@ -61,7 +61,9 @@
 
             Assert.IsNotNull(newObject);
             Assert.IsInstanceOfType(newObject, typeof(AjSoda.IObject));
-            Assert.AreEqual(((AjSoda.IObject)newObject).Behavior, machine.GetGlobalObject("Object"));
+
+            IObject obj = (IObject)machine.GetGlobalObject("Object");
+            Assert.AreEqual(((AjSoda.IObject)newObject).Behavior, obj.Behavior);
         }
 
         [TestMethod]
@@ -93,7 +95,26 @@
 
             Assert.IsNotNull(newObject);
             Assert.IsInstanceOfType(newObject, typeof(AjSoda.IObject));
-            Assert.AreEqual(((AjSoda.IObject)newObject).Behavior, machine.GetGlobalObject("Object"));
+
+            IObject obj = (IObject) machine.GetGlobalObject("Object");
+            Assert.AreEqual(((AjSoda.IObject)newObject).Behavior, obj.Behavior);
+        }
+
+        [TestMethod]
+        public void ShouldEvaluateSubclass()
+        {
+            PepsiMachine machine = new PepsiMachine();
+            Evaluator evaluator = new Evaluator(machine, "List : Object");
+
+            evaluator.Evaluate();
+
+            IObject listObject = (IObject)machine.GetGlobalObject("List");
+            IObject objObject = (IObject)machine.GetGlobalObject("Object");
+
+            Assert.IsNotNull(listObject);
+            Assert.IsNotNull(objObject);
+
+            Assert.AreEqual(((IBehavior) listObject.Behavior).Parent, objObject.Behavior);
         }
 
         [TestMethod]
@@ -106,7 +127,7 @@
 
             IObject obj = (IObject) machine.GetGlobalObject("Object");
 
-            Assert.IsNotNull(obj.Send("lookup:", "new"));
+            Assert.IsNotNull(obj.Behavior.Send("lookup:", "new"));
         }
 
         [TestMethod]
@@ -118,8 +139,12 @@
             evaluator.Evaluate();
 
             IObject obj = (IObject)machine.GetGlobalObject("newObject");
+            IObject obj2 = (IObject)machine.GetGlobalObject("Object");
 
             Assert.IsNotNull(obj);
+            Assert.IsNotNull(obj2);
+
+            Assert.AreEqual(obj.Behavior, obj2.Behavior);
         }
     }
 }

@@ -44,15 +44,7 @@
                 return this.Lookup((string)arguments[0]);
             }
 
-            IMethod method = (IMethod)this.Send("lookup:", selector);
-
-            if (method == null)
-            {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Unknown message '{0}'", selector));
-            }
-
-            return method.Execute(this, arguments);
-            // return base.Send(selector, arguments);
+            return base.Send(selector, arguments);
         }
 
         public virtual IMethod Lookup(string selector)

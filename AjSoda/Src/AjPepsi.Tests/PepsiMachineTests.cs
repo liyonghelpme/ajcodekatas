@@ -4,6 +4,8 @@ namespace AjPepsi.Tests
     using System.Collections.Generic;
     using System.Text;
 
+    using AjSoda;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -29,13 +31,17 @@ namespace AjPepsi.Tests
         public void ShouldCreateClass()
         {
             PepsiMachine machine = new PepsiMachine();
-            IClass cls = machine.CreateClass("TestClass");
+            IObject proto = machine.CreatePrototype("TestPrototype");
 
-            Assert.IsNotNull(cls);
+            Assert.IsNotNull(proto);
 
-            object obj = machine.GetGlobalObject("TestClass");
+            object obj = machine.GetGlobalObject("TestPrototype");
 
-            Assert.AreEqual(cls, obj);
+            Assert.AreEqual(proto, obj);
+
+            Assert.IsInstanceOfType(proto.Behavior, typeof(IClass));
+
+            IClass cls = (IClass) proto.Behavior;
             Assert.AreEqual(-1, cls.GetInstanceVariableOffset("x"));
             Assert.IsNull(cls.Lookup("x"));
             Assert.IsNull(cls.Send("lookup:", "x"));
