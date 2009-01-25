@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjGammon", "AjGammon\AjGammon.csproj", "{DD1F8023-3AFA-43AF-AFC6-EC17AC325552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjGammon.Tests", "AjGammon.Tests\AjGammon.Tests.csproj", "{7ED4B95D-EAAC-4FCB-B196-D2C728022020}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F27B3B0D-900B-44A9-8CC0-4C7BE8C504FF}"
+	ProjectSection(SolutionItems) = preProject
+		AjGammon.vsmdi = AjGammon.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = AjGammon.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD1F8023-3AFA-43AF-AFC6-EC17AC325552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1F8023-3AFA-43AF-AFC6-EC17AC325552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1F8023-3AFA-43AF-AFC6-EC17AC325552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1F8023-3AFA-43AF-AFC6-EC17AC325552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ED4B95D-EAAC-4FCB-B196-D2C728022020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ED4B95D-EAAC-4FCB-B196-D2C728022020}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ED4B95D-EAAC-4FCB-B196-D2C728022020}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ED4B95D-EAAC-4FCB-B196-D2C728022020}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

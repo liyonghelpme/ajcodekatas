@@ -1,0 +1,51 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:45:04</timestamp>
+      <milliseconds>703</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 17:21:32</timestamp>
+    <milliseconds>171</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BoardPositionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:45:04</timestamp>
+      <milliseconds>703</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 18:06:29</timestamp>
+    <milliseconds>343</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1102603941">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="DynamicEvaluatorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:45:04</timestamp>
+      <milliseconds>703</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 19:35:59</timestamp>
+    <milliseconds>390</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GeneratorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:45:04</timestamp>
+      <milliseconds>703</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 19:36:05</timestamp>
+    <milliseconds>109</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="StaticEvaluatorTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:45:04</timestamp>
+      <milliseconds>703</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 19:36:23</timestamp>
+    <milliseconds>265</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

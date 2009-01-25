@@ -1,0 +1,66 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="Color.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:20:44</timestamp>
+      <milliseconds>187</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 17:14:36</timestamp>
+    <milliseconds>437</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:20:44</timestamp>
+      <milliseconds>187</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 16:50:07</timestamp>
+    <milliseconds>93</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="StaticEvaluator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:20:44</timestamp>
+      <milliseconds>187</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 18:51:48</timestamp>
+    <milliseconds>796</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-974928135">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="BoardPosition.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:20:44</timestamp>
+      <milliseconds>187</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 19:27:38</timestamp>
+    <milliseconds>656</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="DynamicEvaluator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:20:44</timestamp>
+      <milliseconds>187</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 19:14:01</timestamp>
+    <milliseconds>671</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
+        <context>The call to staticEvaluator must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
+        <line>37</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="Generator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/25/2009 17:20:44</timestamp>
+      <milliseconds>187</milliseconds>
+    </settings>
+    <timestamp>01/25/2009 18:56:19</timestamp>
+    <milliseconds>296</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
