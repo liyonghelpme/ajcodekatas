@@ -1,0 +1,58 @@
+
+2009-01-19
+Initial Project in ajcodekatas
+IObject, IBehavior
+BaseObject, BaseBehavior
+IMethod
+Tests for BaseObject, BaseBehavior
+MockMethod
+
+2009-01-20
+BaseBehavior as vtable of vtable
+Behavior as vtable
+BaseAddMethodMethod
+BaseLookupMethod
+Behavior tests
+
+2009-01-22
+Major refactor
+Behavior was dropped
+IBehavior was dropped
+BaseBehavior as vtable of vtable
+Machine with initial Object and Behavior
+Send now sends lookup to Behavior
+
+2009-01-23
+New IBehavior
+New base methods
+CreateDelegated with tests
+Allocate with tests
+AjPepsi: Tokenizer and tests (ported from AjTalk)
+
+2009-01-24
+More Pepsi code (ported from AjTalk)
+IClass
+BaseClass with tests
+BaseBasicNewMethod
+BaseAddVariableMethod
+Block, and Method with Tests
+PepsiMachine with Tests
+Compiler with Tests
+Drop PepsiMachine parameter in ExecutionBlock
+Drop Execute with PepsiMachine in IBlock
+New GetGlobalVariable, SetGlobalVariable implementation
+Drop GetSuperclass bytecode
+Drop SetClassVariable, GetClassVariable bytecodes
+Evaluator with tests
+CreatePrototype in PepsiMachine
+
+2009-01-25
+delegated message in Behavior and Object in AjSoda Machine
+same in PepsiMachine
+support for NewProto : Object() in Evaluator
+refactoring exceptions
+reimplementing basicNew
+first .st files in tests
+Class diagrams in AjSoda
+Post
+http://ajlopez.wordpress.com/2009/01/25/presenting-ajsoda/
