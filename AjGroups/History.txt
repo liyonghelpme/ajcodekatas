@@ -4,3 +4,15 @@ Create Solution
 Element with tests
 Element Equals and Hash
 Element Multiply
+
+2009-01-29
+IGroup
+BaseGroup with equality
+GeneratedGroup
+SymmetricGroup
+CompleteGroup
+Multiply of Groups
+Elements closure
+Groups closure
+Subgroups of a Group
+

@@ -8,6 +8,7 @@
     public class Element
     {
         private byte[] values;
+        private int calculatedOrder;
 
         public Element(params byte[] values)
         {
@@ -30,12 +31,76 @@
             this.values = (byte[])values.Clone();
         }
 
-        public int Size 
-        { 
-            get 
-            { 
-                return this.values.Length; 
-            } 
+        public int Size
+        {
+            get
+            {
+                return this.values.Length;
+            }
+        }
+
+        public int Order
+        {
+            get
+            {
+                if (this.calculatedOrder > 0)
+                {
+                    return this.calculatedOrder;
+                }
+
+                Element element = this;
+
+                while (!element.IsIdentity())
+                {
+                    element = this.Multiply(element);
+                    this.calculatedOrder++;
+                }
+
+                this.calculatedOrder++;
+
+                return this.calculatedOrder;
+            }
+        }
+
+        internal byte[] Values
+        {
+            get
+            {
+                return this.values;
+            }
+        }
+
+        public static Element CreateIdentity(int size)
+        {
+            byte[] values = new byte[size];
+
+            for (int k = 0; k < size; k++)
+            {
+                values[k] = (byte) k;
+            }
+
+            return new Element(values);
+        }
+
+        public static Element CreateSwap(int size) 
+        {
+            Element element = CreateIdentity(size);
+            element.values[0] = 1;
+            element.values[1] = 0;
+
+            return element;
+        }
+
+        public static Element CreateRotation(int size)
+        {
+            byte[] values = new byte[size];
+
+            for (int k = 0; k < size; k++)
+            {
+                values[k] = (byte)(k == size - 1 ? 0 : k + 1);
+            }
+
+            return new Element(values);
         }
 
         public override bool Equals(object obj)
@@ -53,6 +118,11 @@
             Element element = (Element)obj;
 
             if (this.values.Length != element.values.Length)
+            {
+                return false;
+            }
+
+            if (this.Order != element.Order)
             {
                 return false;
             }
@@ -105,20 +175,20 @@
                 }
             }
 
-            //int j;
-
-            //for (j = newlength - 1; j >= 0 && newvalues[j] == j; j--)
-            //{
-            //}
-
-            //if (j + 1 < newlength)
-            //{
-            //    byte[] newvalues2 = new byte[j + 1];
-            //    Array.Copy(newvalues, newvalues2, j + 1);
-            //    newvalues = newvalues2;
-            //}
-
             return new Element(newvalues);
+        }
+
+        private Boolean IsIdentity()
+        {
+            for (int k = 0; k < this.values.Length; k++)
+            {
+                if (values[k] != k)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

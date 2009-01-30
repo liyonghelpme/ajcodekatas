@@ -92,6 +92,39 @@
             Assert.AreEqual(element2, element.Multiply(element));
             Assert.AreEqual(identity, element2.Multiply(element));
         }
+
+        [TestMethod]
+        public void ShouldCreateIdentity()
+        {
+            Element element = Element.CreateIdentity(4);
+            Element identity = new Element(0, 1, 2, 3);
+
+            Assert.IsNotNull(element);
+            Assert.IsTrue(element.Equals(identity));
+            Assert.AreEqual(1, element.Order);
+        }
+
+        [TestMethod]
+        public void ShouldCreateSwap()
+        {
+            Element element = Element.CreateSwap(4);
+            Element swap = new Element(1, 0, 2, 3);
+
+            Assert.IsNotNull(element);
+            Assert.IsTrue(element.Equals(swap));
+            Assert.AreEqual(2, element.Order);
+        }
+
+        [TestMethod]
+        public void ShouldCreateRotation()
+        {
+            Element element = Element.CreateRotation(4);
+            Element rotation = new Element(1, 2, 3, 0);
+
+            Assert.IsNotNull(element);
+            Assert.IsTrue(element.Equals(rotation));
+            Assert.AreEqual(4, element.Order);
+        }
     }
 }
 
