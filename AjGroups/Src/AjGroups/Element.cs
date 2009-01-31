@@ -178,11 +178,11 @@
             return new Element(newvalues);
         }
 
-        private Boolean IsIdentity()
+        private bool IsIdentity()
         {
             for (int k = 0; k < this.values.Length; k++)
             {
-                if (values[k] != k)
+                if (this.values[k] != k)
                 {
                     return false;
                 }

@@ -41,10 +41,10 @@
         {
             IGroup group = new SymmetricGroup(2);
 
-            List<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
+            IEnumerable<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
 
             Assert.IsNotNull(subgroups);
-            Assert.AreEqual(2, subgroups.Count);
+            Assert.AreEqual(2, subgroups.Count());
         }
 
         [TestMethod]
@@ -52,10 +52,10 @@
         {
             IGroup group = new SymmetricGroup(3);
 
-            List<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
+            IEnumerable<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
 
             Assert.IsNotNull(subgroups);
-            Assert.AreEqual(6, subgroups.Count);
+            Assert.AreEqual(6, subgroups.Count());
         }
 
         [TestMethod]
@@ -63,10 +63,10 @@
         {
             IGroup group = new SymmetricGroup(4);
 
-            List<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
+            IEnumerable<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
 
             Assert.IsNotNull(subgroups);
-            Assert.AreEqual(30, subgroups.Count);
+            Assert.AreEqual(30, subgroups.Count());
         }
 
         [TestMethod]
@@ -74,10 +74,10 @@
         {
             IGroup group = new GeneratedGroup(Element.CreateRotation(4));
 
-            List<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
+            IEnumerable<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
 
             Assert.IsNotNull(subgroups);
-            Assert.AreEqual(3, subgroups.Count);
+            Assert.AreEqual(3, subgroups.Count());
         }
 
         [TestMethod]
@@ -85,10 +85,10 @@
         {
             IGroup group = new GeneratedGroup(Element.CreateRotation(5));
 
-            List<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
+            IEnumerable<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
 
             Assert.IsNotNull(subgroups);
-            Assert.AreEqual(2, subgroups.Count);
+            Assert.AreEqual(2, subgroups.Count());
         }
 
         [TestMethod]
@@ -96,10 +96,10 @@
         {
             IGroup group = new GeneratedGroup(Element.CreateRotation(7));
 
-            List<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
+            IEnumerable<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
 
             Assert.IsNotNull(subgroups);
-            Assert.AreEqual(2, subgroups.Count);
+            Assert.AreEqual(2, subgroups.Count());
         }
     }
 }

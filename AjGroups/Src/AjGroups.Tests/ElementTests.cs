@@ -94,6 +94,28 @@
         }
 
         [TestMethod]
+        public void ShouldMultiplyDifferentSizes()
+        {
+            Element swap3 = Element.CreateSwap(3);
+            Element swap7 = Element.CreateSwap(7);
+            Element identity7 = Element.CreateIdentity(7);
+
+            Element element = swap3.Multiply(swap7);
+
+            Assert.IsNotNull(element);
+            Assert.AreEqual(7, element.Size);
+            Assert.AreEqual(1, element.Order);
+            Assert.IsTrue(element.Equals(identity7));
+
+            element = swap7.Multiply(swap3);
+
+            Assert.IsNotNull(element);
+            Assert.AreEqual(7, element.Size);
+            Assert.AreEqual(1, element.Order);
+            Assert.IsTrue(element.Equals(identity7));
+        }
+
+        [TestMethod]
         public void ShouldCreateIdentity()
         {
             Element element = Element.CreateIdentity(4);

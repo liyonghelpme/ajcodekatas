@@ -1,36 +1,45 @@
 <stylecopresultscache>
   <version>10</version>
-  <project key="-1139054702">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/29/2009 10:38:22</timestamp>
-      <milliseconds>344</milliseconds>
-    </settings>
-    <timestamp>01/29/2009 10:38:22</timestamp>
-    <milliseconds>328</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ElementTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/29/2009 10:38:22</timestamp>
-      <milliseconds>344</milliseconds>
-    </settings>
-    <timestamp>01/30/2009 12:14:24</timestamp>
-    <milliseconds>876</milliseconds>
-    <violations />
-  </sourcecode>
   <project key="-2136614894">
     <configuration>DEBUG;TRACE</configuration>
   </project>
-  <sourcecode name="GeneratedGroupTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+  <sourcecode name="ElementTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>01/29/2009 10:38:22</timestamp>
-      <milliseconds>344</milliseconds>
+      <timestamp>01/28/2009 18:59:41</timestamp>
+      <milliseconds>921</milliseconds>
     </settings>
-    <timestamp>01/30/2009 12:51:24</timestamp>
-    <milliseconds>859</milliseconds>
+    <timestamp>01/31/2009 12:30:29</timestamp>
+    <milliseconds>406</milliseconds>
     <violations />
   </sourcecode>
+  <sourcecode name="GeneratedGroupTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/28/2009 18:59:41</timestamp>
+      <milliseconds>921</milliseconds>
+    </settings>
+    <timestamp>01/31/2009 07:53:23</timestamp>
+    <milliseconds>140</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GroupUtilitiesTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/28/2009 18:59:41</timestamp>
+      <milliseconds>921</milliseconds>
+    </settings>
+    <timestamp>01/31/2009 07:53:23</timestamp>
+    <milliseconds>46</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>01/28/2009 18:59:41</timestamp>
+      <milliseconds>921</milliseconds>
+    </settings>
+    <timestamp>01/28/2009 18:57:43</timestamp>
+    <milliseconds>437</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1139054702">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
 </stylecopresultscache>
