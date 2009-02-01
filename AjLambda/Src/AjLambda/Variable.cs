@@ -7,16 +7,31 @@
 
     public class Variable : Expression
     {
-        public string Name { get; set; }
+        private string name;
 
         public Variable(string name)
         {
-            this.Name = name;
+            this.name = name;
         }
+
+        public string Name { get { return this.name; } }
 
         public override string ToString()
         {
             return this.Name;
+        }
+
+        public override Expression Replace(Variable variable, Expression expression)
+        {
+            if (this == variable)
+                return expression;
+
+            return this;
+        }
+
+        public override Expression Reduce()
+        {
+            return this;
         }
     }
 }

@@ -1,0 +1,9 @@
+
+2009-01-31
+Create Solution
+Lambda, Variable, Pair with tests
+
+2009-02-01
+Expression as abstract class
+Reduce
+Replace (without free var collision)

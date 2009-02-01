@@ -7,6 +7,8 @@
 
     public abstract class Expression
     {
-        public virtual Expression Replace(Variable variable, Expression expression);
+        public abstract Expression Replace(Variable variable, Expression expression);
+
+        public abstract Expression Reduce();
     }
 }

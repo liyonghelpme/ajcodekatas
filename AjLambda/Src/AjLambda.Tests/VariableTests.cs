@@ -21,5 +21,27 @@
             Assert.AreEqual("x", variable.Name);
             Assert.AreEqual("x", variable.ToString());
         }
+
+        [TestMethod]
+        public void ShouldBeReplaced()
+        {
+            Variable variable = new Variable("x");
+            Variable newVariable = new Variable("y");
+
+            Expression expression = variable.Replace(variable, newVariable);
+
+            Assert.AreEqual(newVariable, expression);
+        }
+
+        [TestMethod]
+        public void ShouldNotBeReplaced()
+        {
+            Variable variable = new Variable("x");
+            Variable newVariable = new Variable("y");
+
+            Expression expression = variable.Replace(newVariable, newVariable);
+
+            Assert.AreEqual(variable, expression);
+        }
     }
 }

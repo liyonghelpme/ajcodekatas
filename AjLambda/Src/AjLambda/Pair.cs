@@ -32,5 +32,32 @@
 
             return leftText + rightText;
         }
+
+        public override Expression Replace(Variable variable, Expression expression)
+        {
+            Expression newLeft = this.left.Replace(variable, expression);
+            Expression newRight = this.right.Replace(variable, expression);
+
+            // Optimization
+            if (newLeft == this.left && newRight == this.right)
+                return this;
+
+            return new Pair(newLeft, newRight);
+        }
+
+        public override Expression Reduce()
+        {
+            if (this.left is Lambda)
+                return ((Lambda)this.left).Apply(this.right);
+
+            Expression newLeft = this.left.Reduce();
+            Expression newRight = this.right.Reduce();
+
+            // Optimization
+            if (newLeft == this.left && newRight == this.right)
+                return this;
+
+            return new Pair(newLeft, newRight);
+        }
     }
 }
