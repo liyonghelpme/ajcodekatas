@@ -43,5 +43,34 @@
 
             Assert.AreEqual(variable, expression);
         }
+
+        [TestMethod]
+        public void ShouldGetFreeVariables()
+        {
+            Variable variable = new Variable("x");
+
+            IEnumerable<Variable> freeVariables = variable.FreeVariables();
+
+            Assert.IsNotNull(freeVariables);
+            Assert.AreEqual(1, freeVariables.Count());
+            Assert.AreEqual(variable, freeVariables.First());
+        }
+
+        [TestMethod]
+        public void ShouldRenameVariable()
+        {
+            List<Variable> freeVariables = new List<Variable>();
+
+            freeVariables.Add(new Variable("a"));
+            freeVariables.Add(new Variable("b"));
+            freeVariables.Add(new Variable("c"));
+
+            Variable variableX = new Variable("x");
+
+            Variable variable = variableX.RenameVariable(freeVariables);
+
+            Assert.IsNotNull(variable);
+            Assert.AreEqual("d", variable.Name);
+        }
     }
 }

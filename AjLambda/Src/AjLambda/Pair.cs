@@ -59,5 +59,10 @@
 
             return new Pair(newLeft, newRight);
         }
+
+        public override IEnumerable<Variable> FreeVariables()
+        {
+            return this.left.FreeVariables().Union(this.right.FreeVariables());
+        }
     }
 }

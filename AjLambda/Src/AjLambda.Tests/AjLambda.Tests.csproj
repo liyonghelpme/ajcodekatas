@@ -39,7 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LambdaTests.cs" />
+    <Compile Include="LexerTests.cs" />
     <Compile Include="PairTests.cs" />
+    <Compile Include="ParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VariableTests.cs" />
   </ItemGroup>

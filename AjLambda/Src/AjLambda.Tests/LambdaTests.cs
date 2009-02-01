@@ -23,6 +23,17 @@
         }
 
         [TestMethod]
+        public void ShouldCreateWithLambdaInBody()
+        {
+            Variable variableX = new Variable("x");
+            Variable variableY = new Variable("y");
+            Lambda lambda = new Lambda(variableX, new Lambda(variableY, new Pair(variableX, variableY)));
+
+            Assert.IsNotNull(lambda);
+            Assert.AreEqual(@"\xy.xy", lambda.ToString());
+        }
+
+        [TestMethod]
         public void ShouldReplaceFreeVariable()
         {
             Variable variableX = new Variable("x");
@@ -38,6 +49,23 @@
             Assert.IsNotNull(expression);
             Assert.IsInstanceOfType(expression, typeof(Lambda));
             Assert.AreEqual(@"\x.xz", expression.ToString());
+        }
+
+        [TestMethod]
+        public void ShouldReplaceFreeVariableRenamingParameter()
+        {
+            Variable variableX = new Variable("x");
+            Variable variableY = new Variable("y");
+
+            Pair pair = new Pair(variableX, variableY);
+
+            Lambda lambda = new Lambda(variableX, pair);
+
+            Expression expression = lambda.Replace(variableY, variableX);
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Lambda));
+            Assert.AreEqual(@"\a.ax", expression.ToString());
         }
 
         [TestMethod]
@@ -73,6 +101,22 @@
             Assert.IsNotNull(expression);
             Assert.IsInstanceOfType(expression, typeof(Lambda));
             Assert.AreEqual(lambda, expression);
+        }
+
+        public void ShouldGetFreeVariables()
+        {
+            Variable variableX = new Variable("x");
+            Variable variableY = new Variable("y");
+
+            Pair pair = new Pair(variableX, variableY);
+
+            Lambda lambda = new Lambda(variableX, pair);
+
+            IEnumerable<Variable> freeVariables = lambda.FreeVariables();
+
+            Assert.IsNotNull(freeVariables);
+            Assert.AreEqual(1, freeVariables.Count());
+            Assert.IsTrue(freeVariables.Contains(variableY));
         }
     }
 }

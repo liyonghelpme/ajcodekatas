@@ -97,5 +97,23 @@
             Assert.IsInstanceOfType(expression, typeof(Pair));
             Assert.AreEqual("zy", expression.ToString());
         }
+
+        [TestMethod]
+        public void ShouldGetFreeVariables()
+        {
+            Variable variableX = new Variable("x");
+            Variable variableY = new Variable("y");
+            Variable variableZ = new Variable("z");
+
+            Pair pair = new Pair(new Pair(variableX, variableY), variableZ);
+
+            IEnumerable<Variable> freeVariables = pair.FreeVariables();
+
+            Assert.IsNotNull(freeVariables);
+            Assert.AreEqual(3, freeVariables.Count());
+            Assert.IsTrue(freeVariables.Contains(variableX));
+            Assert.IsTrue(freeVariables.Contains(variableY));
+            Assert.IsTrue(freeVariables.Contains(variableZ));
+        }
     }
 }

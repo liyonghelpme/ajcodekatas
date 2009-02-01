@@ -10,5 +10,7 @@
         public abstract Expression Replace(Variable variable, Expression expression);
 
         public abstract Expression Reduce();
+
+        public abstract IEnumerable<Variable> FreeVariables();
     }
 }

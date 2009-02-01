@@ -18,6 +18,9 @@
 
         public override string ToString()
         {
+            if (this.body is Lambda)
+                return "\\" + this.parameter.ToString() + this.body.ToString().Substring(1);
+
             return "\\" + this.parameter.ToString() + "." + this.body.ToString();
         }
 
@@ -27,13 +30,24 @@
             if (variable.Name == this.parameter.Name)
                 return this;
 
-            // TODO: case parameter collision with free variables in expression, rename parameter
-            Expression newBody = this.body.Replace(variable, expression);
+            IEnumerable<Variable> freeVariables = expression.FreeVariables();
+            IEnumerable<string> freeNames = freeVariables.Select(v => v.Name);
 
-            if (newBody == this.body)
+            Expression newBody = this.body;
+            Variable newParameter = this.parameter;
+
+            if (freeNames.Contains(this.parameter.Name))
+            {
+                newParameter = this.parameter.RenameVariable(freeVariables);
+                newBody = newBody.Replace(this.parameter, newParameter);
+            }
+
+            newBody = newBody.Replace(variable, expression);
+
+            if (newBody == this.body && newParameter == this.parameter)
                 return this;
 
-            return new Lambda(this.parameter, newBody);
+            return new Lambda(newParameter, newBody);
         }
 
         public override Expression Reduce()
@@ -49,6 +63,11 @@
         public Expression Apply(Expression value)
         {
             return this.body.Replace(this.parameter, value);
+        }
+
+        public override IEnumerable<Variable> FreeVariables()
+        {
+            return this.body.FreeVariables().Except(this.parameter.FreeVariables());
         }
     }
 }

@@ -7,3 +7,6 @@ Lambda, Variable, Pair with tests
 Expression as abstract class
 Reduce
 Replace (without free var collision)
+FreeVariables
+Replace with free var collision resolution
+Lexer, Parser with tests

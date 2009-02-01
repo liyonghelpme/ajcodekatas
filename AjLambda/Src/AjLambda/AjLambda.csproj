@@ -45,6 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compiler\ParserExpectedTokenException.cs" />
+    <Compile Include="Compiler\ParserException.cs" />
+    <Compile Include="Compiler\Lexer.cs" />
+    <Compile Include="Compiler\LexerEndOfInputException.cs" />
+    <Compile Include="Compiler\LexerException.cs" />
+    <Compile Include="Compiler\Parser.cs" />
+    <Compile Include="Compiler\ParserUnexpectedTokenException.cs" />
+    <Compile Include="Compiler\Token.cs" />
+    <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="Lambda.cs" />
     <Compile Include="Pair.cs" />
