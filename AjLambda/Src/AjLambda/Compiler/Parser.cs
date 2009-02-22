@@ -1,6 +1,5 @@
 ﻿namespace AjLambda.Compiler
 {
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -9,14 +8,26 @@
     public class Parser
     {
         private Lexer lexer;
+        private Environment environment;
 
-        public Parser(Lexer lexer)
+        public Parser(Lexer lexer, Environment environment)
         {
             this.lexer = lexer;
+            this.environment = environment;
+        }
+
+        public Parser(Lexer lexer)
+            : this(lexer, new Environment())
+        {
         }
 
         public Parser(string text)
             : this(new Lexer(text))
+        {
+        }
+
+        public Parser(string text, Environment environment)
+            : this(new Lexer(text), environment)
         {
         }
 
@@ -25,10 +36,39 @@
         {
         }
 
+        public Parser(TextReader reader, Environment environment)
+            : this(new Lexer(reader), environment)
+        {
+        }
+
         public Expression ParseExpression()
         {
             Expression expression;
             Expression result = null;
+
+            Token token = this.NextToken();
+
+            if (token == null)
+                return null;
+
+            if (token.TokenType == TokenType.Name)
+            {
+                Token token2 = this.NextToken();
+
+                if (token2 != null)
+                {
+                    if (token2.Value == "=")
+                    {
+                        expression = this.ParseExpression();
+                        this.environment.DefineValue(token.Value, expression);
+                        return expression;
+                    }
+
+                    this.PushToken(token2);
+                }
+            }
+
+            this.PushToken(token);
 
             expression = this.ParseSimpleExpression();
 
@@ -47,7 +87,7 @@
 
         private Expression ParseSimpleExpression()
         {
-            Token token = NextToken();
+            Token token = this.NextToken();
 
             if (token == null)
                 return null;
@@ -65,11 +105,14 @@
             else if (token.TokenType == TokenType.Operator)
             {
                 if (token.Value == @"\")
-                    return ParseLambda();
+                    return this.ParseLambda();
             }
 
             if (token.TokenType == TokenType.Variable)
                 return new Variable(token.Value);
+
+            if (token.TokenType == TokenType.Name)
+                return this.environment.GetValue(token.Value);
 
             this.PushToken(token);
 
@@ -99,7 +142,7 @@
 
             Expression body = this.ParseExpression();
 
-            while (parameters.Count>0)
+            while (parameters.Count > 0)
             {
                 parameter = parameters.Pop();
                 body = new Lambda(parameter, body);

@@ -1,6 +1,5 @@
 ﻿namespace AjLambda.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -130,6 +129,67 @@
             Assert.IsNotNull(expression);
             Assert.IsInstanceOfType(expression, typeof(Lambda));
             Assert.AreEqual(@"\xy.yx", expression.ToString());
+        }
+
+        [TestMethod]
+        public void ShouldParseThreeLambdas()
+        {
+            Parser parser = new Parser(@"\xyz.zyx");
+
+            Expression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Lambda));
+            Assert.AreEqual(@"\xyz.zyx", expression.ToString());
+        }
+
+        [TestMethod]
+        public void ShouldParseSetName()
+        {
+            Environment environment = new Environment();
+            Parser parser = new Parser(@"F = \xyz.zyx", environment);
+
+            Expression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Lambda));
+            Assert.AreEqual(@"\xyz.zyx", expression.ToString());
+
+            Expression value = environment.GetValue("F");
+
+            Assert.IsNotNull(value);
+            Assert.AreEqual(value, expression);
+        }
+
+        [TestMethod]
+        public void ShouldParseName()
+        {
+            Environment environment = new Environment();
+            environment.DefineValue("F", new Variable("x"));
+
+            Parser parser = new Parser("F", environment);
+
+            Expression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Variable));
+            Assert.AreEqual("x", expression.ToString());
+        }
+
+        [TestMethod]
+        public void ShouldParseTwoNames()
+        {
+            Environment environment = new Environment();
+            environment.DefineValue("A", new Variable("x"));
+            environment.DefineValue("B", new Variable("y"));
+
+            Parser parser = new Parser("A B", environment);
+
+            Expression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Pair));
+            Assert.AreEqual("xy", expression.ToString());
         }
     }
 }

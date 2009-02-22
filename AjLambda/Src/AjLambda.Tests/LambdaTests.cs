@@ -34,6 +34,55 @@
         }
 
         [TestMethod]
+        public void ShouldGetFreeVariable()
+        {
+            Variable variableX = new Variable("x");
+            Variable variableX2 = new Variable("x");
+            Variable variableY = new Variable("y");
+
+            Pair pair = new Pair(variableX, variableY);
+
+            Lambda lambda = new Lambda(variableX2, pair);
+
+            IEnumerable<Variable> freeVars = lambda.FreeVariables();
+
+            Assert.IsNotNull(freeVars);
+            Assert.AreEqual(1, freeVars.Count());
+            Assert.AreEqual("y", freeVars.First().ToString());
+        }
+
+        [TestMethod]
+        public void ShouldGetNoFreeVariable()
+        {
+            Variable variableX = new Variable("x");
+            Variable variableX2 = new Variable("x");
+
+            Lambda lambda = new Lambda(variableX, variableX2);
+
+            IEnumerable<Variable> freeVars = lambda.FreeVariables();
+
+            Assert.IsNotNull(freeVars);
+            Assert.AreEqual(0, freeVars.Count());
+        }
+
+        [TestMethod]
+        public void ShouldGetNoNestedFreeVariable()
+        {
+            Variable variableX = new Variable("x");
+            Variable variableX2 = new Variable("x");
+            Variable variableY = new Variable("y");
+
+            Lambda innerLambda = new Lambda(variableY, variableX);
+
+            Lambda lambda = new Lambda(variableX2, innerLambda);
+
+            IEnumerable<Variable> freeVars = lambda.FreeVariables();
+
+            Assert.IsNotNull(freeVars);
+            Assert.AreEqual(0, freeVars.Count());
+        }
+
+        [TestMethod]
         public void ShouldReplaceFreeVariable()
         {
             Variable variableX = new Variable("x");

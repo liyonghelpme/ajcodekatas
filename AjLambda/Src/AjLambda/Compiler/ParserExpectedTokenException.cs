@@ -9,7 +9,7 @@
     public class ParserExpectedTokenException : ParserException
     {
         public ParserExpectedTokenException(string value)
-            : base(string.Format(CultureInfo.CurrentCulture, "Expected {0}",value))
+            : base(string.Format(CultureInfo.CurrentCulture, "Expected {0}", value))
         {
         }
     }

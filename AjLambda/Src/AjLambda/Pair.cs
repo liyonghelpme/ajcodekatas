@@ -51,10 +51,13 @@
                 return ((Lambda)this.left).Apply(this.right);
 
             Expression newLeft = this.left.Reduce();
+
+            if (newLeft != this.left)
+                return new Pair(newLeft, this.right);
+
             Expression newRight = this.right.Reduce();
 
-            // Optimization
-            if (newLeft == this.left && newRight == this.right)
+            if (newRight == this.right)
                 return this;
 
             return new Pair(newLeft, newRight);

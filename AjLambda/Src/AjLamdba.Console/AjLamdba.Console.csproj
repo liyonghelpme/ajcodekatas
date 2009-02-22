@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F641B8D4-B443-48DF-9901-6F4C7475334D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{47DB6784-E907-4A91-90F8-79112DC92621}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AjLambda</RootNamespace>
-    <AssemblyName>AjLambda</AssemblyName>
+    <RootNamespace>AjLamdba.Console</RootNamespace>
+    <AssemblyName>AjLamdba.Console</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,21 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compiler\ParserExpectedTokenException.cs" />
-    <Compile Include="Compiler\ParserException.cs" />
-    <Compile Include="Compiler\Lexer.cs" />
-    <Compile Include="Compiler\LexerEndOfInputException.cs" />
-    <Compile Include="Compiler\LexerException.cs" />
-    <Compile Include="Compiler\Parser.cs" />
-    <Compile Include="Compiler\ParserUnexpectedTokenException.cs" />
-    <Compile Include="Compiler\Token.cs" />
-    <Compile Include="Compiler\TokenType.cs" />
-    <Compile Include="Environment.cs" />
-    <Compile Include="Expression.cs" />
-    <Compile Include="Lambda.cs" />
-    <Compile Include="Pair.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Variable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AjLambda\AjLambda.csproj">
+      <Project>{F641B8D4-B443-48DF-9901-6F4C7475334D}</Project>
+      <Name>AjLambda</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Boot.l">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

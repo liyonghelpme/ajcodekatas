@@ -65,6 +65,28 @@
 
             return varNames;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (obj == this)
+                return true;
+
+            if (!(obj is Variable))
+                return false;
+
+            if (((Variable)obj).Name == this.Name)
+                return true;
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
+        }
     }
 }
 

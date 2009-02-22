@@ -10,3 +10,8 @@ Replace (without free var collision)
 FreeVariables
 Replace with free var collision resolution
 Lexer, Parser with tests
+
+2009-02-22
+Console App
+FreeVariable fix bug
+Boot.l
