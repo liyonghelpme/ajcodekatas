@@ -15,3 +15,7 @@ Lexer, Parser with tests
 Console App
 FreeVariable fix bug
 Boot.l
+
+2009-02-24
+Draft of post
+Class diagram

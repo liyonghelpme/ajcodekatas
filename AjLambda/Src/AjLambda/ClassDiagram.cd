@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AjLambda.Expression">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACA=</HashCode>
+      <FileName>Expression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjLambda.Variable">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAgAAAAAAAEgAAAAAQAAAAkAIAgAAAAAgAAACA=</HashCode>
+      <FileName>Variable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjLambda.Lambda">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAABAAAAAEAAAAAAAAAQAAAAAAEAAAAgAAACA=</HashCode>
+      <FileName>Lambda.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjLambda.Pair">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAAAAAAAAAIAAAAAAAAAgAAgCA=</HashCode>
+      <FileName>Pair.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
