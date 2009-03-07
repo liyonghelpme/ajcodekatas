@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjProcessor", "AjProcessor\AjProcessor.csproj", "{088AC5A6-B5A8-4A6F-A811-ABFBBEC87A71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjProcessor.Tests", "AjProcessor.Tests\AjProcessor.Tests.csproj", "{7C9B2809-7A7B-4EB7-A95D-D820C2AF86DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{387ACF3A-261E-425E-92B2-A6ED5368E983}"
+	ProjectSection(SolutionItems) = preProject
+		AjProcessor.vsmdi = AjProcessor.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = AjProcessor.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{088AC5A6-B5A8-4A6F-A811-ABFBBEC87A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088AC5A6-B5A8-4A6F-A811-ABFBBEC87A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088AC5A6-B5A8-4A6F-A811-ABFBBEC87A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088AC5A6-B5A8-4A6F-A811-ABFBBEC87A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C9B2809-7A7B-4EB7-A95D-D820C2AF86DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C9B2809-7A7B-4EB7-A95D-D820C2AF86DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C9B2809-7A7B-4EB7-A95D-D820C2AF86DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C9B2809-7A7B-4EB7-A95D-D820C2AF86DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

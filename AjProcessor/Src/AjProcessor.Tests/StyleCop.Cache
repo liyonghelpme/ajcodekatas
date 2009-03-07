@@ -1,0 +1,48 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="-382810315">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="MessageTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:43:39</timestamp>
+      <milliseconds>265</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 18:42:36</timestamp>
+    <milliseconds>937</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:43:39</timestamp>
+      <milliseconds>265</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 18:20:03</timestamp>
+    <milliseconds>0</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="PropertiesTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:43:39</timestamp>
+      <milliseconds>265</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 18:36:31</timestamp>
+    <milliseconds>359</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TestPayload.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:43:39</timestamp>
+      <milliseconds>265</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 18:43:14</timestamp>
+    <milliseconds>500</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.MaintainabilityRules" rule="AccessModifierMustBeDeclared" ruleCheckId="SA1400">
+        <context>The class must have an access modifier.</context>
+        <line>8</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+</stylecopresultscache>

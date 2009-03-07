@@ -1,0 +1,78 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 18:19:38</timestamp>
+    <milliseconds>156</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Properties.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 18:31:28</timestamp>
+    <milliseconds>703</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Message.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 18:47:01</timestamp>
+    <milliseconds>0</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IMessageProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 18:56:40</timestamp>
+    <milliseconds>703</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 19:08:47</timestamp>
+    <milliseconds>437</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 19:10:51</timestamp>
+    <milliseconds>656</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="MethodInvoker.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 19:15:57</timestamp>
+    <milliseconds>687</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-326457313">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="PipelineProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 19:16:42</timestamp>
+    <milliseconds>875</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
