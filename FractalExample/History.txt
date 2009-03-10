@@ -1,8 +1,11 @@
 
 2008-12-17
-	Initial version
+Initial version
 
 2008-12-25
-	Console version
-	GUI reading file version
-	MPI version
+Console version
+GUI reading file version
+MPI version
+
+2009-03-10
+Fractal.Parallel using Task Parallel Library from Microsoft (June 2008)
