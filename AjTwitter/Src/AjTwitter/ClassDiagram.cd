@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AjTwitter.User">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgIAAAACAAAAAgGAAAAAwAAAEAEAABAAQAAQAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjTwitter.Message">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAACAAAAAA=</HashCode>
+      <FileName>Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjTwitter.UserList">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjTwitter.MessageList">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MessageList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjTwitter.ObjectList&lt;T&gt;">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAIAAAAAAAAAAAAABAAQJAQIAAAACAAAAAAAABAAAAA=</HashCode>
+      <FileName>ObjectList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

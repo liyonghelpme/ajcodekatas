@@ -1,0 +1,10 @@
+
+2000-03-15
+Initial Project in ajcodekatas
+Message
+User
+ObjectList, ObjectListNode
+UserList
+MessageList
+User.GetMessages
+First Tests

@@ -1,0 +1,42 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/15/2009 16:56:05</timestamp>
+      <milliseconds>812</milliseconds>
+    </settings>
+    <timestamp>03/15/2009 16:10:57</timestamp>
+    <milliseconds>250</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ObjectListTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/15/2009 16:56:05</timestamp>
+      <milliseconds>812</milliseconds>
+    </settings>
+    <timestamp>03/15/2009 17:34:42</timestamp>
+    <milliseconds>937</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="1483125039">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="MessageListTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/15/2009 16:56:05</timestamp>
+      <milliseconds>812</milliseconds>
+    </settings>
+    <timestamp>03/15/2009 19:26:29</timestamp>
+    <milliseconds>500</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UserTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/15/2009 16:56:05</timestamp>
+      <milliseconds>812</milliseconds>
+    </settings>
+    <timestamp>03/15/2009 19:26:55</timestamp>
+    <milliseconds>406</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
