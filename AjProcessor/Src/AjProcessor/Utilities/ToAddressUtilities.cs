@@ -27,7 +27,7 @@
             if (position < 0)
                 return toAddress;
 
-            return toAddress.Substring(position+1);
+            return toAddress.Substring(position + 1);
         }
     }
 }

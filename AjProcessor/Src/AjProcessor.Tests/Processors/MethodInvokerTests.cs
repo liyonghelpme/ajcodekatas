@@ -50,7 +50,7 @@ using AjProcessor.Processors;
             MethodInvoker processor = new MethodInvoker() { Object = testObject, MethodName = "Increment" };
             TestProcessor receiverProcessor = new TestProcessor();
 
-            processor.ForwardMessage += receiverProcessor.ProcessMessage;
+            processor.RegisterProcessor(receiverProcessor);
 
             processor.ProcessMessage(new Message(1));
 

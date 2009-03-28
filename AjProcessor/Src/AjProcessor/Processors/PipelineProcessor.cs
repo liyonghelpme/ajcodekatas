@@ -26,13 +26,13 @@
             foreach (IProcessor processor in this.Processors)
             {
                 if (lastProcessor != null)
-                    lastProcessor.ForwardMessage += processor.ProcessMessage;
+                    lastProcessor.RegisterProcessor(processor);
 
                 lastProcessor = processor;
             }
 
             if (lastProcessor != null)
-                lastProcessor.ForwardMessage += this.PostMessage;
+                lastProcessor.RegisterProcessor(new PipelineEndProcessor(this));
 
             this.initialized = true;
         }

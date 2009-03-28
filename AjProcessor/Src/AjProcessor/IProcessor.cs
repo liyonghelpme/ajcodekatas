@@ -9,7 +9,8 @@
 
     public interface IProcessor
     {
-        event MessageHandler ForwardMessage;
         void ProcessMessage(Message message);
+        void PostMessage(Message message);
+        void RegisterProcessor(IProcessor processor);
     }
 }

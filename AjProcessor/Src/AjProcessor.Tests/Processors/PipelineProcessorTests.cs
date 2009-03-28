@@ -28,10 +28,13 @@
             TestProcessor receiverProcessor = new TestProcessor();
             ICollection<IProcessor> processors = new List<IProcessor>();
             processors.Add(testProcessor);
-            processor.ForwardMessage += receiverProcessor.ProcessMessage;
+            processor.RegisterProcessor(receiverProcessor);
             processor.Processors = processors;
 
             processor.ProcessMessage(new Message("foo"));
+
+            testProcessor.AutoEvent.WaitOne();
+            receiverProcessor.AutoEvent.WaitOne();
 
             Assert.IsNotNull(testProcessor.ProcessedMessage);
             Assert.AreEqual("foo", testProcessor.ProcessedMessage.Payload);
@@ -49,10 +52,14 @@
             ICollection<IProcessor> processors = new List<IProcessor>();
             processors.Add(testProcessor1);
             processors.Add(testProcessor2);
-            processor.ForwardMessage += receiverProcessor.ProcessMessage;
+            processor.RegisterProcessor(receiverProcessor);
             processor.Processors = processors;
 
             processor.ProcessMessage(new Message("foo"));
+
+            testProcessor1.AutoEvent.WaitOne();
+            testProcessor2.AutoEvent.WaitOne();
+            receiverProcessor.AutoEvent.WaitOne();
 
             Assert.IsNotNull(testProcessor1.ProcessedMessage);
             Assert.AreEqual("foo", testProcessor1.ProcessedMessage.Payload);

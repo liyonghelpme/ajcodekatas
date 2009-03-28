@@ -41,8 +41,8 @@
       <timestamp>03/07/2009 18:30:48</timestamp>
       <milliseconds>46</milliseconds>
     </settings>
-    <timestamp>03/07/2009 19:08:47</timestamp>
-    <milliseconds>437</milliseconds>
+    <timestamp>03/28/2009 17:50:02</timestamp>
+    <milliseconds>312</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="BaseProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -50,8 +50,8 @@
       <timestamp>03/07/2009 18:30:48</timestamp>
       <milliseconds>46</milliseconds>
     </settings>
-    <timestamp>03/07/2009 19:10:51</timestamp>
-    <milliseconds>656</milliseconds>
+    <timestamp>03/28/2009 17:51:19</timestamp>
+    <milliseconds>0</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="MethodInvoker.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -59,20 +59,104 @@
       <timestamp>03/07/2009 18:30:48</timestamp>
       <milliseconds>46</milliseconds>
     </settings>
-    <timestamp>03/07/2009 19:15:57</timestamp>
-    <milliseconds>687</milliseconds>
+    <timestamp>03/07/2009 19:30:14</timestamp>
+    <milliseconds>15</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ActionRouteProvider.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 20:14:12</timestamp>
+    <milliseconds>593</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ApplicationRouteProvider.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 20:08:18</timestamp>
+    <milliseconds>312</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IRouteProvider.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 20:03:57</timestamp>
+    <milliseconds>187</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ProcessorRouteProvider.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 20:08:47</timestamp>
+    <milliseconds>656</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ToRouteProvider.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/07/2009 20:08:04</timestamp>
+    <milliseconds>62</milliseconds>
     <violations />
   </sourcecode>
   <project key="-326457313">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <sourcecode name="PipelineEndProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/28/2009 17:59:17</timestamp>
+    <milliseconds>828</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBePlacedWithinNamespace" ruleCheckId="SA1200">
+        <context>All using directives must be placed inside of the namespace.</context>
+        <line>1</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBePlacedWithinNamespace" ruleCheckId="SA1200">
+        <context>All using directives must be placed inside of the namespace.</context>
+        <line>2</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBePlacedWithinNamespace" ruleCheckId="SA1200">
+        <context>All using directives must be placed inside of the namespace.</context>
+        <line>3</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBePlacedWithinNamespace" ruleCheckId="SA1200">
+        <context>All using directives must be placed inside of the namespace.</context>
+        <line>4</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
   <sourcecode name="PipelineProcessor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/07/2009 18:30:48</timestamp>
       <milliseconds>46</milliseconds>
     </settings>
-    <timestamp>03/07/2009 19:16:42</timestamp>
-    <milliseconds>875</milliseconds>
+    <timestamp>03/28/2009 17:59:28</timestamp>
+    <milliseconds>765</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ToAddressUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/07/2009 18:30:48</timestamp>
+      <milliseconds>46</milliseconds>
+    </settings>
+    <timestamp>03/28/2009 17:58:05</timestamp>
+    <milliseconds>718</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

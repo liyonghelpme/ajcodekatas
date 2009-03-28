@@ -27,7 +27,7 @@
 
             TestProcessor testProcessor = new TestProcessor();
 
-            processor.ForwardMessage += testProcessor.ProcessMessage;
+            processor.RegisterProcessor(testProcessor);
 
             Message message = new Message("foo");
 
