@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{13FB649F-B96E-43D3-8E0E-F094C9DB6A60}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ast\LanguageNode.cs" />
+    <Compile Include="Ast\LanguageElement.cs" />
+    <Compile Include="Ast\ModuleNode.cs" />
+    <Compile Include="Ast\TextLiteral.cs" />
+    <Compile Include="Ast\TokenElement.cs" />
     <Compile Include="Compiler\EndOfInputException.cs" />
     <Compile Include="Compiler\ExpectedTokenException.cs" />
     <Compile Include="Compiler\InvalidInputException.cs" />
     <Compile Include="Compiler\Lexer.cs" />
     <Compile Include="Compiler\LexerException.cs" />
+    <Compile Include="Compiler\Parser.cs" />
     <Compile Include="Compiler\Token.cs" />
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Compiler\UnexpectedEndOfInputException.cs" />

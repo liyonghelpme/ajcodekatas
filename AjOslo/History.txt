@@ -3,3 +3,11 @@
 Initial Project in ajcodekatas
 Lexer (borrowed from AjRuby)
 First test
+
+2009-04-06
+Ast folder
+First version of Parser
+Parse empty module
+Parse empty language
+Parse module with empty language
+
