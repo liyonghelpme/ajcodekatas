@@ -1,0 +1,96 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="154562321">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="EndOfInputException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:36</timestamp>
+    <milliseconds>328</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ExpectedTokenException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:34</timestamp>
+    <milliseconds>968</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="InvalidInputException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:35</timestamp>
+    <milliseconds>125</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LexerException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:35</timestamp>
+    <milliseconds>640</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Token.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:34</timestamp>
+    <milliseconds>718</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TokenType.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:35</timestamp>
+    <milliseconds>343</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UnexpectedEndOfInputException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:32</timestamp>
+    <milliseconds>828</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="UnexpectedTokenException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:34</timestamp>
+    <milliseconds>15</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:04:44</timestamp>
+    <milliseconds>703</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Lexer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/05/2009 21:11:59</timestamp>
+      <milliseconds>453</milliseconds>
+    </settings>
+    <timestamp>04/05/2009 21:06:35</timestamp>
+    <milliseconds>765</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
