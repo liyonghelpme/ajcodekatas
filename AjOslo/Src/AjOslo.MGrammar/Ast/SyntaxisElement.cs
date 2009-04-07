@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Text;
 
-    public class TokenElement : LanguageElement
+    public class SyntaxElement : LanguageElement
     {
         private List<PrimaryExpression> expressions = new List<PrimaryExpression>();
 
-        public TokenElement(string name)
+        public SyntaxElement(string name)
         {
             this.Name = name;
         }

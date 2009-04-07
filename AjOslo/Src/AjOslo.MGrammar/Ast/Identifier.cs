@@ -5,13 +5,13 @@
     using System.Linq;
     using System.Text;
 
-    public class TextLiteral : PrimaryExpression
+    public class Identifier : PrimaryExpression
     {
-        public TextLiteral(string value)
+        public Identifier(string name)
         {
-            this.Value = value;
+            this.Name = name;
         }
 
-        public string Value { get; private set; }
+        public string Name { get; private set; }
     }
 }

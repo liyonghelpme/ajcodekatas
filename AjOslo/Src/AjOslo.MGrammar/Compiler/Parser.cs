@@ -11,7 +11,7 @@
     {
         private Lexer lexer;
 
-        public Parser(string text) 
+        public Parser(string text)
             : this(new Lexer(text))
         {
         }
@@ -50,6 +50,7 @@
         public LanguageNode ParseLanguage()
         {
             ParseToken("language");
+
             string name = ParseName();
 
             ParseToken("{");
@@ -57,6 +58,93 @@
             ParseToken("}");
 
             return new LanguageNode(name);
+        }
+
+        public TokenElement ParseToken()
+        {
+            ParseToken("token");
+
+            string name = ParseName();
+
+            TokenElement token = new TokenElement(name);
+
+            ParseToken("=");
+
+            for (Token tk = this.PeekToken(); tk != null && tk.Value != ";"; tk = this.PeekToken())
+                switch (tk.TokenType)
+                {
+                    case TokenType.Name:
+                        token.AddPrimaryExpression(this.ParseIdentifier());
+                        break;
+                    case TokenType.String:
+                        token.AddPrimaryExpression(this.ParseTextLiteral());
+                        break;
+                    default:
+                        throw new UnexpectedTokenException(tk);
+                }
+
+            ParseToken(";");
+
+            return token;
+        }
+
+        public SyntaxElement ParseSyntax()
+        {
+            ParseToken("syntax");
+
+            string name = ParseName();
+
+            SyntaxElement syntax = new SyntaxElement(name);
+
+            ParseToken("=");
+
+            for (Token tk = this.PeekToken(); tk != null && tk.Value != ";"; tk = this.PeekToken())
+                switch (tk.TokenType)
+                {
+                    case TokenType.Name:
+                        syntax.AddPrimaryExpression(this.ParseIdentifier());
+                        break;
+                    case TokenType.String:
+                        syntax.AddPrimaryExpression(this.ParseTextLiteral());
+                        break;
+                    default:
+                        throw new UnexpectedTokenException(tk);
+                }
+
+            ParseToken(";");
+
+            return syntax;
+        }
+
+        public Identifier ParseIdentifier()
+        {
+            string name = ParseName();
+
+            return new Identifier(name);
+        }
+
+        private Token PeekToken()
+        {
+            Token token = lexer.NextToken();
+
+            if (token == null)
+                return null;
+
+            lexer.PushToken(token);
+
+            return token;
+        }
+
+        private string PeekTokenValue()
+        {
+            Token token = lexer.NextToken();
+
+            if (token == null)
+                return null;
+
+            lexer.PushToken(token);
+
+            return token.Value;
         }
 
         private string ParseName()

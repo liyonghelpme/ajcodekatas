@@ -10,4 +10,7 @@ First version of Parser
 Parse empty module
 Parse empty language
 Parse module with empty language
+Parse simple syntax
+Parse simple token
+Parse module with languages
 
