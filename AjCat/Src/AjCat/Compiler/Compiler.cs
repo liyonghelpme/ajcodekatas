@@ -12,6 +12,7 @@
     public class Compiler
     {
         private Parser parser;
+        private ExpressionEnvironment environment;
 
         public Compiler(Parser parser)
         {
@@ -21,6 +22,7 @@
             }
 
             this.parser = parser;
+            this.environment = new TopExpressionEnvironment();
         }
 
         public Compiler(string text)
@@ -144,7 +146,7 @@
         {
             Token nametoken = this.CompileName();
             CompositeExpression composite = new CompositeExpression(new List<Expression>());
-            Expressions.DefineExpression(nametoken.Value, composite);
+            this.environment.DefineExpression(nametoken.Value, composite);
 
             this.CompileToken("{");
 
@@ -183,7 +185,7 @@
                         return this.CompileDefineExpression();
                     }
 
-                    return Expressions.GetByName(token.Value);
+                    return this.environment.GetByName(token.Value);
                 case TokenType.Separator:
                     if (token.Value == "[")
                     {
