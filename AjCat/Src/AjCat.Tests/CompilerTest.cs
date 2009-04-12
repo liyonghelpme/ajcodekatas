@@ -18,7 +18,7 @@
         [TestMethod]
         public void CreateWithParser()
         {
-            Compiler compiler = new Compiler(new Parser("name"));
+            Compiler compiler = new Compiler(new Lexer("name"));
 
             Assert.IsNotNull(compiler);
         }
@@ -27,7 +27,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void RaiseIfParserIsNull()
         {
-            Compiler compiler = new Compiler((Parser)null);
+            Compiler compiler = new Compiler((Lexer)null);
         }
 
         [TestMethod]

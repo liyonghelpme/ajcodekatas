@@ -14,6 +14,7 @@
     public class Program
     {
         private static Machine machine = new Machine();
+        private static ExpressionEnvironment environment = new TopExpressionEnvironment();
 
         public static void Main(string[] args)
         {
@@ -28,7 +29,11 @@
                 try
                 {
                     line = GetLine();
-                    Compiler compiler = new Compiler(line);
+
+                    if (line == "bye")
+                        break;
+
+                    Compiler compiler = new Compiler(line, environment);
                     Expression expression = compiler.CompileExpression();
 
                     if (expression == null)
@@ -59,6 +64,7 @@
         {
             Console.WriteLine("AjCat 0.1");
             Console.WriteLine("by http://www.ajlopez.com/ http://ajlopez.wordpress.com");
+            Console.WriteLine("(enter 'bye' to exit)");
             Console.WriteLine();
         }
 
@@ -76,7 +82,7 @@
             for (int k = content.Count; --k >= 0;)
             {
                 Console.Write(" ");
-                Console.Write(ObjectToString((object[])content)[k]);
+                Console.Write(ObjectToString(((object[])content)[k]));
             }
 
             Console.WriteLine();
@@ -101,7 +107,7 @@
                 return;
             }
 
-            Compiler compiler = new Compiler(File.OpenText("Boot.ajcat"));
+            Compiler compiler = new Compiler(File.OpenText("Boot.ajcat"), environment);
 
             Expression expression = compiler.CompileExpression();
 

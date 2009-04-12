@@ -12,12 +12,12 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class ParserTest
+    public class LexerTest
     {
         [TestMethod]
         public void CreateWithString()
         {
-            Parser parser = new Parser("text");
+            Lexer parser = new Lexer("text");
 
             Assert.IsNotNull(parser);
         }
@@ -25,7 +25,7 @@
         [TestMethod]
         public void CreateWithTextReader()
         {
-            Parser parser = new Parser(new StringReader("text"));
+            Lexer parser = new Lexer(new StringReader("text"));
 
             Assert.IsNotNull(parser);
         }
@@ -34,20 +34,20 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void RaiseIfTextIsNull()
         {
-            Parser parser = new Parser((string)null);
+            Lexer parser = new Lexer((string)null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RaiseIfTextReaderIsNull()
         {
-            Parser parser = new Parser((TextReader)null);
+            Lexer parser = new Lexer((TextReader)null);
         }
 
         [TestMethod]
         public void ParseString()
         {
-            Parser parser = new Parser("\"foo and bar\"");
+            Lexer parser = new Lexer("\"foo and bar\"");
 
             Token token = parser.NextToken();
 
@@ -63,7 +63,7 @@
         [TestMethod]
         public void ParseStringWithEscapedCharacters()
         {
-            Parser parser = new Parser("\"foo\\t\\\\\\r\\n\\\"and bar\"");
+            Lexer parser = new Lexer("\"foo\\t\\\\\\r\\n\\\"and bar\"");
 
             Token token = parser.NextToken();
 
@@ -80,7 +80,7 @@
         public void ParseSeparators()
         {
             string separators = "[]{}";
-            using (Parser parser = new Parser(separators))
+            using (Lexer parser = new Lexer(separators))
             {
                 Token token;
 
@@ -102,7 +102,7 @@
         [TestMethod]
         public void ParseName()
         {
-            Parser parser = new Parser("name");
+            Lexer parser = new Lexer("name");
 
             Token token;
 
@@ -120,7 +120,7 @@
         [TestMethod]
         public void ParseAndPushToken()
         {
-            Parser parser = new Parser("name");
+            Lexer parser = new Lexer("name");
 
             Token token;
 
@@ -147,7 +147,7 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void RaiseIfTokenIsNull()
         {
-            Parser parser = new Parser("text");
+            Lexer parser = new Lexer("text");
 
             parser.PushToken(null);
         }
@@ -156,7 +156,7 @@
         [ExpectedException(typeof(InvalidOperationException))]
         public void RaiseIfPushTwice()
         {
-            Parser parser = new Parser("text");
+            Lexer parser = new Lexer("text");
 
             Token token = parser.NextToken();
 
@@ -167,7 +167,7 @@
         [TestMethod]
         public void ParseNameWithSpaces()
         {
-            Parser parser = new Parser(" name ");
+            Lexer parser = new Lexer(" name ");
 
             Token token;
 
@@ -185,7 +185,7 @@
         [TestMethod]
         public void ParseNamesWithSpecialChars()
         {
-            Parser parser = new Parser("() ( ) ++ ");
+            Lexer parser = new Lexer("() ( ) ++ ");
 
             Token token;
 
@@ -221,7 +221,7 @@
         [TestMethod]
         public void ParseInteger()
         {
-            Parser parser = new Parser("123");
+            Lexer parser = new Lexer("123");
 
             Token token;
 
@@ -239,7 +239,7 @@
         [TestMethod]
         public void ParseIntegerWithSpaces()
         {
-            Parser parser = new Parser(" 123 ");
+            Lexer parser = new Lexer(" 123 ");
 
             Token token;
 
@@ -257,7 +257,7 @@
         [TestMethod]
         public void ParseDouble()
         {
-            Parser parser = new Parser("123.45");
+            Lexer parser = new Lexer("123.45");
 
             Token token;
 
@@ -275,7 +275,7 @@
         [TestMethod]
         public void ParseNameWithSeparators()
         {
-            Parser parser = new Parser("[foo]");
+            Lexer parser = new Lexer("[foo]");
 
             Token token;
 

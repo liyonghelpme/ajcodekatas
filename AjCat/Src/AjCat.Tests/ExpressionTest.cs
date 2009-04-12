@@ -252,8 +252,6 @@
             Assert.AreEqual(0, machine.StackCount);
             expression.Evaluate(machine);
             Assert.AreEqual(0, machine.StackCount);
-
-//            Assert.IsNotNull(Expressions.GetByName("foo"));
         }
 
         [TestMethod]

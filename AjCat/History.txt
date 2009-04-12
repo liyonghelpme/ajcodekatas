@@ -52,3 +52,9 @@ More test and code coverage for expressions
 2009-04-10
 Drop Expressions
 Refactoring to ExpressionEnvironment, TopExpressionEnvironment
+
+2009-04-11
+New Compiler constructors, accepting ExpressionEnvironment
+Minor changes to console application
+Blog post (not published yet)
+

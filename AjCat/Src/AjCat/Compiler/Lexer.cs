@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Text;
 
-    public class Parser : IDisposable
+    public class Lexer : IDisposable
     {
         private const string Separators = "[]{}";
         private const char StringDelimiter = '"';
@@ -18,7 +18,7 @@
         private char lastChar;
         private bool hasChar;
 
-        public Parser(string text)
+        public Lexer(string text)
         {
             if (text == null)
             {
@@ -28,7 +28,7 @@
             this.reader = new StringReader(text);
         }
 
-        public Parser(TextReader reader)
+        public Lexer(TextReader reader)
         {
             if (reader == null)
             {

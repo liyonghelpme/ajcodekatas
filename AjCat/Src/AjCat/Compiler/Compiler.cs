@@ -11,10 +11,25 @@
 
     public class Compiler
     {
-        private Parser parser;
+        private Lexer parser;
         private ExpressionEnvironment environment;
 
-        public Compiler(Parser parser)
+        public Compiler(Lexer parser)
+            : this(parser, new TopExpressionEnvironment())
+        {
+        }
+
+        public Compiler(string text)
+            : this(new Lexer(text), new TopExpressionEnvironment())
+        {
+        }
+
+        public Compiler(TextReader reader)
+            : this(new Lexer(reader), new TopExpressionEnvironment())
+        {
+        }
+
+        public Compiler(Lexer parser, ExpressionEnvironment environment)
         {
             if (parser == null)
             {
@@ -22,16 +37,16 @@
             }
 
             this.parser = parser;
-            this.environment = new TopExpressionEnvironment();
+            this.environment = environment;
         }
 
-        public Compiler(string text)
-            : this(new Parser(text))
+        public Compiler(string text, ExpressionEnvironment environment)
+            : this(new Lexer(text), environment)
         {
         }
 
-        public Compiler(TextReader reader)
-            : this(new Parser(reader))
+        public Compiler(TextReader reader, ExpressionEnvironment environment)
+            : this(new Lexer(reader), environment)
         {
         }
 
