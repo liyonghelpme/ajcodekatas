@@ -10,13 +10,13 @@
     {
         private const string SingleCharOperators = "=$%+-*/:><#^";
 
-        private const string SingleCharDelimiters = "[]{}";
+        private const string SingleCharDelimiters = "[]{},";
 
         private static string[] twoCharOperators = new string[] { ":=", "==", ">=", "<=", "->", "--", "++", "+=", "-=", "*=", "/=", "^=", "%=" };
 
         private TextReader reader;
-        private char lastChar;
-        private bool hasChar = false;
+        private Stack<char> stackedChars = new Stack<char>();
+        private Stack<Token> stackedTokens = new Stack<Token>();
 
         public Lexer(TextReader reader)
         {
@@ -28,8 +28,16 @@
         {
         }
 
+        public void PushToken(Token token)
+        {
+            this.stackedTokens.Push(token);
+        }
+
         public Token NextToken()
         {
+            if (this.stackedTokens.Count > 0)
+                return this.stackedTokens.Pop();
+
             char ch;
 
             try
@@ -191,16 +199,14 @@
 
         private void PushChar(char ch)
         {
-            this.lastChar = ch;
-            this.hasChar = true;
+            this.stackedChars.Push(ch);
         }
 
         private char NextChar()
         {
-            if (this.hasChar)
+            if (this.stackedChars.Count > 0)
             {
-                this.hasChar = false;
-                return this.lastChar;
+                return this.stackedChars.Pop();
             }
 
             int ch;
@@ -216,10 +222,9 @@
 
         private int TryNextChar()
         {
-            if (this.hasChar)
+            if (this.stackedChars.Count>0)
             {
-                this.hasChar = false;
-                return this.lastChar;
+                return (int) this.stackedChars.Pop();
             }
 
             int ch;

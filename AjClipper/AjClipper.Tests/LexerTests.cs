@@ -150,7 +150,7 @@
         [TestMethod]
         public void ShouldParseDelimiters()
         {
-            string delimiters = "[]{}";
+            string delimiters = "[]{},";
             Lexer lexer = new Lexer(delimiters);
 
             Token token;
@@ -180,6 +180,23 @@
                 Assert.AreEqual(TokenType.Operator, token.TokenType);
                 Assert.AreEqual(1, token.Value.Length);
                 Assert.AreEqual(ch, token.Value[0]);
+            }
+        }
+
+        [TestMethod]
+        public void ShouldParseTwoCharOperators()
+        {
+            string operators = ":= == >= <= -> -- ++ += -= *= /= ^= %=";
+            Lexer lexer = new Lexer(operators);
+
+            Token token;
+
+            foreach (string oper in operators.Split(' '))
+            {
+                token = lexer.NextToken();
+                Assert.IsNotNull(token);
+                Assert.AreEqual(TokenType.Operator, token.TokenType);
+                Assert.AreEqual(oper, token.Value);
             }
         }
     }

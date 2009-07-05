@@ -41,9 +41,57 @@
                 return null;
 
             if (token.Value == "?")
-                return new PrintLineCommand(this.ParseExpression());
+                return new PrintLineCommand(this.ParseExpressionList());
+
+            if (token.TokenType == TokenType.Name)
+            {
+                Token token2 = lexer.NextToken();
+
+                if (token2 != null && (token2.Value == ":=" || token2.Value == "="))
+                    return new SetVariableCommand(token.Value, this.ParseExpression());
+            }
 
             throw new ParserException(string.Format("Unknown command: {0}", token.Value));
+        }
+
+        private List<IExpression> ParseExpressionList()
+        {
+            List<IExpression> expressions = new List<IExpression>();
+
+            IExpression expression = this.ParseExpression();
+
+            if (expression == null)
+                return expressions;
+
+            expressions.Add(expression);
+
+            while (TryParse(","))
+            {
+                expression = this.ParseExpression();
+
+                if (expression == null)
+                    throw new ParserException("Invalid list of expressions");
+
+                expressions.Add(expression);
+            }
+
+            return expressions;
+        }
+
+        private bool TryParse(string value)
+        {
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return false;
+
+            if (token.Value != value)
+            {
+                this.lexer.PushToken(token);
+                return false;
+            }
+
+            return true;
         }
 
         private IExpression ParseExpression()

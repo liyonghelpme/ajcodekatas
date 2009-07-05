@@ -144,5 +144,15 @@
             Assert.IsInstanceOfType(value, typeof(string));
             Assert.AreEqual("foobar", (string)value);
         }
+
+        [TestMethod]
+        public void ShouldEvaluateName()
+        {
+            IExpression expression = new NameExpression("foo");
+            ValueEnvironment environment = new ValueEnvironment();
+            environment.SetValue("foo", "bar");
+
+            Assert.AreEqual("bar", expression.Evaluate(environment));
+        }
     }
 }

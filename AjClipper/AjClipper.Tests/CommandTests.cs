@@ -75,5 +75,16 @@
 
             Assert.AreEqual("Hello World\r\n", writer.ToString());
         }
+
+        [TestMethod]
+        public void ShouldSetVariable()
+        {
+            ICommand command = new SetVariableCommand("foo", new ConstantExpression("bar"));
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            Assert.AreEqual("bar", environment.GetValue("foo"));
+        }
     }
 }

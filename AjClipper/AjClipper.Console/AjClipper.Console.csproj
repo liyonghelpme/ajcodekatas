@@ -55,6 +55,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="SimpleTest.prg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="HelloWorld.prg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

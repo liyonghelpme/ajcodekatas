@@ -47,5 +47,41 @@
 
             Assert.AreEqual("Hello World\r\n", writer.ToString());
         }
+
+        [TestMethod]
+        public void ShouldParseAndExecutePrintLineCommandWithListOfExpressions()
+        {
+            Parser parser = new Parser("? \"Hello\", \" \", \"World\"");
+
+            ICommand command = parser.ParseCommand();
+
+            StringWriter writer = new StringWriter();
+
+            lock (System.Console.Out)
+            {
+                TextWriter originalWriter = System.Console.Out;
+                System.Console.SetOut(writer);
+
+                command.Execute(null, null);
+
+                System.Console.SetOut(originalWriter);
+            }
+
+            Assert.AreEqual("Hello World\r\n", writer.ToString());
+        }
+
+        [TestMethod]
+        public void ShouldParseAndExecuteSetVariableCommand()
+        {
+            Parser parser = new Parser("foo := \"bar\"");
+
+            ICommand command = parser.ParseCommand();
+
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            Assert.AreEqual("bar", environment.GetValue("foo"));
+        }
     }
 }
