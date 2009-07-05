@@ -1,0 +1,10 @@
+
+2009-07-05
+Initial Project in ajcodekatas
+Lexer and tests, initial version
+PrintCommand
+PrintLineCommand
+AddExpression, SubtractExpression
+Parser and tests, initial version
+AjClipper.Console running HelloWorld.prg
+

@@ -1,0 +1,114 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="EndOfInputException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 16:30:34</timestamp>
+    <milliseconds>905</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Token.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 16:30:34</timestamp>
+    <milliseconds>171</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TokenType.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 16:48:45</timestamp>
+    <milliseconds>761</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 17:06:01</timestamp>
+    <milliseconds>285</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BinaryExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 17:11:29</timestamp>
+    <milliseconds>175</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ConstantExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 17:07:19</timestamp>
+    <milliseconds>727</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Machine.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 16:27:01</timestamp>
+    <milliseconds>76</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 17:11:40</timestamp>
+    <milliseconds>841</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 16:04:17</timestamp>
+    <milliseconds>920</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ValueEnvironment.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 16:24:07</timestamp>
+    <milliseconds>68</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="LexerException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 17:17:31</timestamp>
+    <milliseconds>232</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="2076494680">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Lexer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>07/05/2009 17:17:12</timestamp>
+      <milliseconds>220</milliseconds>
+    </settings>
+    <timestamp>07/05/2009 17:18:35</timestamp>
+    <milliseconds>222</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
