@@ -26,7 +26,7 @@
             object leftValue = this.leftExpression.Evaluate(environment);
             object rightValue = this.rightExpression.Evaluate(environment);
 
-            return EvaluateValues(leftValue, rightValue);
+            return this.EvaluateValues(leftValue, rightValue);
         }
 
         protected abstract object EvaluateValues(object leftValue, object rightValue);

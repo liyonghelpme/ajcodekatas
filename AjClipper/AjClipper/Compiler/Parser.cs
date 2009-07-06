@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.IO;
+    using System.Linq;
     using System.Text;
 
     using AjClipper.Commands;
@@ -30,12 +30,12 @@
 
         public ICommand ParseCommand()
         {
-            return ParseLineCommand();
+            return this.ParseLineCommand();
         }
 
         private ICommand ParseLineCommand()
         {
-            Token token = lexer.NextToken();
+            Token token = this.lexer.NextToken();
 
             if (token == null)
                 return null;
@@ -45,13 +45,49 @@
 
             if (token.TokenType == TokenType.Name)
             {
-                Token token2 = lexer.NextToken();
+                if (token.Value == "if")
+                    return this.ParseIfCommand();
+
+                Token token2 = this.lexer.NextToken();
 
                 if (token2 != null && (token2.Value == ":=" || token2.Value == "="))
                     return new SetVariableCommand(token.Value, this.ParseExpression());
             }
 
-            throw new ParserException(string.Format("Unknown command: {0}", token.Value));
+            this.lexer.PushToken(token);
+
+            return null;
+        }
+
+        private ICommand ParseIfCommand()
+        {
+            IfCommand ifCommand = new IfCommand();
+            IExpression condition = this.ParseExpression();
+            ICommand command = this.ParseCommandList("endif");
+            ifCommand.AddConditionAndCommand(condition, command);
+            this.lexer.NextToken();
+            return ifCommand;
+        }
+
+        private ICommand ParseCommandList(params string[] terminators)
+        {
+            CompositeCommand commands = new CompositeCommand();
+
+            Token token = this.lexer.NextToken();
+
+            while (token != null && !terminators.Contains(token.Value))
+            {
+                this.lexer.PushToken(token);
+                ICommand command = this.ParseLineCommand();
+                commands.AddCommand(command);
+
+                token = this.lexer.NextToken();
+            }
+
+            if (token != null)
+                this.lexer.PushToken(token);
+
+            return commands;
         }
 
         private List<IExpression> ParseExpressionList()
@@ -65,7 +101,7 @@
 
             expressions.Add(expression);
 
-            while (TryParse(","))
+            while (this.TryParse(","))
             {
                 expression = this.ParseExpression();
 
@@ -96,7 +132,7 @@
 
         private IExpression ParseExpression()
         {
-            Token token = lexer.NextToken();
+            Token token = this.lexer.NextToken();
 
             if (token == null)
                 return null;
@@ -105,6 +141,8 @@
             {
                 case TokenType.String:
                     return new ConstantExpression(token.Value);
+                case TokenType.Integer:
+                    return new ConstantExpression(Int32.Parse(token.Value));
             }
 
             throw new ParserException(string.Format("Invalid expression: {0}", token.Value));

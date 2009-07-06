@@ -9,7 +9,7 @@
 
     public class PrintLineCommand : BaseCommand
     {
-        public List<IExpression> expressions;
+        private List<IExpression> expressions;
 
         public PrintLineCommand(IExpression expression)
         {

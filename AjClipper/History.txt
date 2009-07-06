@@ -8,3 +8,5 @@ AddExpression, SubtractExpression
 Parser and tests, initial version
 AjClipper.Console running HelloWorld.prg
 
+2009-07-06
+If Command parsing and execution (initial version)

@@ -83,5 +83,48 @@
 
             Assert.AreEqual("bar", environment.GetValue("foo"));
         }
+
+        [TestMethod]
+        public void ShouldParseSimpleIfCommand()
+        {
+            Parser parser = new Parser("if 0\r\n  a:=1\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(IfCommand));
+
+            Assert.IsNull(parser.ParseCommand());
+        }
+
+        [TestMethod]
+        public void ShouldExecuteSimpleIfCommand()
+        {
+            Parser parser = new Parser("if 1\r\n  a:=1\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            object value = environment.GetValue("a");
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(int));
+            Assert.AreEqual(1, (int)value);
+        }
+
+        [TestMethod]
+        public void ShouldParseIfCommandWithMultipleCommands()
+        {
+            Parser parser = new Parser("if 0\r\n  a:=1\r\n  b:=1\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(IfCommand));
+
+            Assert.IsNull(parser.ParseCommand());
+        }
     }
 }

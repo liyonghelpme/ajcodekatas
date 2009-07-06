@@ -75,7 +75,7 @@
                     return new Token() { TokenType = TokenType.Delimiter, Value = new string(ch, 1) };
 
                 if (SingleCharOperators.IndexOf(ch) >= 0)
-                    return NextOperator(ch);
+                    return this.NextOperator(ch);
             }
             catch (EndOfInputException)
             {
@@ -222,10 +222,8 @@
 
         private int TryNextChar()
         {
-            if (this.stackedChars.Count>0)
-            {
+            if (this.stackedChars.Count > 0)
                 return (int) this.stackedChars.Pop();
-            }
 
             int ch;
             ch = this.reader.Read();
