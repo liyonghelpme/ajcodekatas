@@ -36,5 +36,21 @@
 
             return this.values[key];
         }
+
+        public void SetLocalValue(string key, object value)
+        {
+            this.values[key] = value;
+        }
+
+        public void SetGlobalValue(string key, object value)
+        {
+            if (this.parent != null)
+            {
+                this.parent.SetGlobalValue(key, value);
+                return;
+            }
+
+            this.values[key] = value;
+        }
     }
 }

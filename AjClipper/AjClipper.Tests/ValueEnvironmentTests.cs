@@ -36,5 +36,29 @@
 
             Assert.AreEqual("bar", environment.GetValue("foo"));
         }
+
+        [TestMethod]
+        public void ShouldSetAndGetLocalValue()
+        {
+            ValueEnvironment parent = new ValueEnvironment();
+            ValueEnvironment environment = new ValueEnvironment(parent);
+
+            environment.SetLocalValue("foo", "bar");
+
+            Assert.AreEqual("bar", environment.GetValue("foo"));
+            Assert.IsNull(parent.GetValue("foo"));
+        }
+
+        [TestMethod]
+        public void ShouldSetAndGetGlobalValue()
+        {
+            ValueEnvironment parent = new ValueEnvironment();
+            ValueEnvironment environment = new ValueEnvironment(parent);
+
+            environment.SetGlobalValue("foo", "bar");
+
+            Assert.AreEqual("bar", environment.GetValue("foo"));
+            Assert.AreEqual("bar", parent.GetValue("foo"));
+        }
     }
 }

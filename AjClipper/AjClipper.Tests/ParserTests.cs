@@ -360,5 +360,18 @@
             Assert.IsInstanceOfType(expression.Evaluate(environment), typeof(int));
             Assert.AreEqual(-1, (int)(expression.Evaluate(environment)));
         }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateArithmeticExpression()
+        {
+            Parser parser = new Parser("1+2*3");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(AddExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
+            Assert.AreEqual(7, (int)(expression.Evaluate(null)));
+        }
     }
 }

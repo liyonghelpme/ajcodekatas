@@ -49,10 +49,38 @@
                 switch (token.Value[0])
                 {
                     case '+':
-                        expression = new AddExpression(expression, this.ParseSimpleExpression());
+                        expression = new AddExpression(expression, this.ParseBinaryExpressionLevel2());
                         break;
                     case '-':
-                        expression = new SubtractExpression(expression, this.ParseSimpleExpression
+                        expression = new SubtractExpression(expression, this.ParseBinaryExpressionLevel2
+());
+                        break;
+                }
+
+                token = this.lexer.NextToken();
+            }
+
+            if (token != null)
+                this.lexer.PushToken(token);
+
+            return expression;
+        }
+
+        private IExpression ParseBinaryExpressionLevel2()
+        {
+            IExpression expression = this.ParseSimpleExpression();
+
+            Token token = this.lexer.NextToken();
+
+            while (token != null && (token.Value == "*" || token.Value == "/"))
+            {
+                switch (token.Value[0])
+                {
+                    case '*':
+                        expression = new MultiplyExpression(expression, this.ParseSimpleExpression());
+                        break;
+                    case '/':
+                        expression = new DivideExpression(expression, this.ParseSimpleExpression
 ());
                         break;
                 }

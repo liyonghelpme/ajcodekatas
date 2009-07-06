@@ -15,3 +15,5 @@ If with ElseIf
 While command with tests
 Initial binary expressions Add Subtract
 Name expression
+Multiply, Divide Expression
+Parse Binary Expression Level 1 and 2

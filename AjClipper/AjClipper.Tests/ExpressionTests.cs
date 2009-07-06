@@ -154,5 +154,53 @@
 
             Assert.AreEqual("bar", expression.Evaluate(environment));
         }
+
+        [TestMethod]
+        public void ShouldMultiplyTwoIntegerNumbers()
+        {
+            IExpression expression = new MultiplyExpression(3, 2);
+
+            object value = expression.Evaluate(null);
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(int));
+            Assert.AreEqual(6, (int)value);
+        }
+
+        [TestMethod]
+        public void ShouldMultiplyTwoRealNumbers()
+        {
+            IExpression expression = new MultiplyExpression(3.0, 2.0);
+
+            object value = expression.Evaluate(null);
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(double));
+            Assert.AreEqual(6.0, (double)value);
+        }
+
+        [TestMethod]
+        public void ShouldDivideTwoIntegerNumbers()
+        {
+            IExpression expression = new DivideExpression(4, 2);
+
+            object value = expression.Evaluate(null);
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(double));
+            Assert.AreEqual(2.0, (double)value);
+        }
+
+        [TestMethod]
+        public void ShouldDivideTwoRealNumbers()
+        {
+            IExpression expression = new DivideExpression(3.0, 2.0);
+
+            object value = expression.Evaluate(null);
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(double));
+            Assert.AreEqual(1.5, (double)value);
+        }
     }
 }
