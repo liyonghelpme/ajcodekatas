@@ -12,3 +12,6 @@ AjClipper.Console running HelloWorld.prg
 If Command parsing and execution (initial version)
 If with Else
 If with ElseIf
+While command with tests
+Initial binary expressions Add Subtract
+Name expression

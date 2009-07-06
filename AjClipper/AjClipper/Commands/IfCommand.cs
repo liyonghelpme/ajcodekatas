@@ -18,22 +18,22 @@
 
         public void AddConditionAndCommand(IExpression expression, ICommand command)
         {
-            conditions.Add(expression);
-            commands.Add(command);
+            this.conditions.Add(expression);
+            this.commands.Add(command);
         }
 
         public void AddElseCommand(ICommand command)
         {
-            commands.Add(command);
+            this.commands.Add(command);
         }
 
         public override void Execute(Machine machine, ValueEnvironment environment)
         {
             int nc = 0;
 
-            foreach (IExpression condition in conditions)
+            foreach (IExpression condition in this.conditions)
             {
-                ICommand command = commands[nc];
+                ICommand command = this.commands[nc];
 
                 if (ExpressionUtilities.IsTrue(condition.Evaluate(environment)))
                 {
@@ -44,8 +44,8 @@
                 nc++;
             }
 
-            if (commands.Count > conditions.Count)
-                commands[conditions.Count].Execute(machine, environment);
+            if (this.commands.Count > this.conditions.Count)
+                this.commands[this.conditions.Count].Execute(machine, environment);
         }
     }
 }

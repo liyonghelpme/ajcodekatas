@@ -20,7 +20,7 @@
 
         public override void Execute(Machine machine, ValueEnvironment environment)
         {
-            foreach (ICommand command in commands)
+            foreach (ICommand command in this.commands)
                 command.Execute(machine, environment);
         }
     }

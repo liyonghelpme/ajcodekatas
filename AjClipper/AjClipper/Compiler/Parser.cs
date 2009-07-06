@@ -33,6 +33,59 @@
             return this.ParseLineCommand();
         }
 
+        public IExpression ParseExpression()
+        {
+            return this.ParseBinaryExpressionLevel1();
+        }
+
+        private IExpression ParseBinaryExpressionLevel1()
+        {
+            IExpression expression = this.ParseSimpleExpression();
+
+            Token token = this.lexer.NextToken();
+
+            while (token != null && (token.Value == "+" || token.Value == "-"))
+            {
+                switch (token.Value[0])
+                {
+                    case '+':
+                        expression = new AddExpression(expression, this.ParseSimpleExpression());
+                        break;
+                    case '-':
+                        expression = new SubtractExpression(expression, this.ParseSimpleExpression
+());
+                        break;
+                }
+
+                token = this.lexer.NextToken();
+            }
+
+            if (token != null)
+                this.lexer.PushToken(token);
+
+            return expression;
+        }
+
+        private IExpression ParseSimpleExpression()
+        {
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return null;
+
+            switch (token.TokenType)
+            {
+                case TokenType.String:
+                    return new ConstantExpression(token.Value);
+                case TokenType.Integer:
+                    return new ConstantExpression(Int32.Parse(token.Value));
+                case TokenType.Name:
+                    return new NameExpression(token.Value);
+            }
+
+            throw new ParserException(string.Format("Invalid expression: {0}", token.Value));
+        }
+
         private ICommand ParseLineCommand()
         {
             Token token = this.lexer.NextToken();
@@ -48,6 +101,9 @@
                 if (token.Value == "if")
                     return this.ParseIfCommand();
 
+                if (token.Value == "while")
+                    return this.ParseWhileCommand();
+
                 Token token2 = this.lexer.NextToken();
 
                 if (token2 != null && (token2.Value == ":=" || token2.Value == "="))
@@ -59,6 +115,16 @@
             return null;
         }
 
+        private ICommand ParseWhileCommand()
+        {
+            IExpression condition = this.ParseExpression();
+            ICommand command = this.ParseCommandList("end", "enddo");
+
+            WhileCommand whileCommand = new WhileCommand(condition, command);
+
+            return whileCommand;
+        }
+
         private ICommand ParseIfCommand()
         {
             IfCommand ifCommand = new IfCommand();
@@ -68,14 +134,14 @@
             while (token != null && token.Value == "elseif")
             {
                 IExpression condition = this.ParseExpression();
-                ICommand command = this.ParseCommandList("endif", "elseif", "else");
+                ICommand command = this.ParseCommandList("endif", "elseif", "else", "end");
                 ifCommand.AddConditionAndCommand(condition, command);
                 token = this.lexer.NextToken();
             }
 
             if (token != null && token.Value == "else")
             {
-                ICommand command = this.ParseCommandList("endif");
+                ICommand command = this.ParseCommandList("endif", "end");
                 ifCommand.AddElseCommand(command);
             }
 
@@ -142,24 +208,6 @@
             }
 
             return true;
-        }
-
-        private IExpression ParseExpression()
-        {
-            Token token = this.lexer.NextToken();
-
-            if (token == null)
-                return null;
-
-            switch (token.TokenType)
-            {
-                case TokenType.String:
-                    return new ConstantExpression(token.Value);
-                case TokenType.Integer:
-                    return new ConstantExpression(Int32.Parse(token.Value));
-            }
-
-            throw new ParserException(string.Format("Invalid expression: {0}", token.Value));
         }
     }
 }

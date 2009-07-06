@@ -230,5 +230,135 @@
             Assert.IsInstanceOfType(value, typeof(int));
             Assert.AreEqual(2, (int)value);
         }
+
+        [TestMethod]
+        public void ShouldParseSimpleWhile()
+        {
+            Parser parser = new Parser("while 1\r\n a:=1\r\nenddo");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(WhileCommand));
+
+            Assert.IsNull(parser.ParseCommand());
+        }
+
+        [TestMethod]
+        public void ShouldExecuteSimpleWhile()
+        {
+            Parser parser = new Parser("while a\r\n a:=0\r\nenddo");
+
+            ICommand command = parser.ParseCommand();
+            ValueEnvironment environment = new ValueEnvironment();
+            environment.SetValue("a", 1);
+
+            command.Execute(null, environment);
+
+            object value = environment.GetValue("a");
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(int));
+            Assert.AreEqual(0, (int)value);
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateIntegerExpression()
+        {
+            Parser parser = new Parser("123");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(ConstantExpression));
+            Assert.IsInstanceOfType(((ConstantExpression)expression).Evaluate(null), typeof(int));
+            Assert.AreEqual(123, (int)((ConstantExpression)expression).Evaluate(null));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateStringExpression()
+        {
+            Parser parser = new Parser("\"foo\"");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(ConstantExpression));
+            Assert.IsInstanceOfType(((ConstantExpression)expression).Evaluate(null), typeof(string));
+            Assert.AreEqual("foo", (string)((ConstantExpression)expression).Evaluate(null));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateNameExpression()
+        {
+            Parser parser = new Parser("foo");
+
+            IExpression expression = parser.ParseExpression();
+            ValueEnvironment environment = new ValueEnvironment();
+            environment.SetValue("foo", "bar");
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(NameExpression));
+            Assert.IsInstanceOfType(((NameExpression)expression).Evaluate(environment), typeof(string));
+            Assert.AreEqual("bar", (string)((NameExpression)expression).Evaluate(environment));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateAddExpression()
+        {
+            Parser parser = new Parser("1+2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(AddExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
+            Assert.AreEqual(3, (int)(expression.Evaluate(null)));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateAddVariablesExpression()
+        {
+            Parser parser = new Parser("a+b");
+
+            IExpression expression = parser.ParseExpression();
+            ValueEnvironment environment = new ValueEnvironment();
+            environment.SetValue("a", 1);
+            environment.SetValue("b", 2);
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(AddExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(environment), typeof(int));
+            Assert.AreEqual(3, (int)(expression.Evaluate(environment)));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateSubtractExpression()
+        {
+            Parser parser = new Parser("1-2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(SubtractExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
+            Assert.AreEqual(-1, (int)(expression.Evaluate(null)));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateSubtractVariablesExpression()
+        {
+            Parser parser = new Parser("a-b");
+
+            IExpression expression = parser.ParseExpression();
+            ValueEnvironment environment = new ValueEnvironment();
+            environment.SetValue("a", 1);
+            environment.SetValue("b", 2);
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(SubtractExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(environment), typeof(int));
+            Assert.AreEqual(-1, (int)(expression.Evaluate(environment)));
+        }
     }
 }
