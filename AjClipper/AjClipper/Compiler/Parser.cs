@@ -62,9 +62,23 @@
         private ICommand ParseIfCommand()
         {
             IfCommand ifCommand = new IfCommand();
-            IExpression condition = this.ParseExpression();
-            ICommand command = this.ParseCommandList("endif");
-            ifCommand.AddConditionAndCommand(condition, command);
+
+            Token token = new Token() { TokenType = TokenType.Name, Value = "elseif" };
+
+            while (token != null && token.Value == "elseif")
+            {
+                IExpression condition = this.ParseExpression();
+                ICommand command = this.ParseCommandList("endif", "elseif", "else");
+                ifCommand.AddConditionAndCommand(condition, command);
+                token = this.lexer.NextToken();
+            }
+
+            if (token != null && token.Value == "else")
+            {
+                ICommand command = this.ParseCommandList("endif");
+                ifCommand.AddElseCommand(command);
+            }
+
             this.lexer.NextToken();
             return ifCommand;
         }

@@ -10,3 +10,5 @@ AjClipper.Console running HelloWorld.prg
 
 2009-07-06
 If Command parsing and execution (initial version)
+If with Else
+If with ElseIf

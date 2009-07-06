@@ -126,5 +126,109 @@
 
             Assert.IsNull(parser.ParseCommand());
         }
+
+        [TestMethod]
+        public void ShouldExecuteIfCommandWithMultipleCommands()
+        {
+            Parser parser = new Parser("if 1\r\n  a:=1\r\n  b:=2\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            object value = environment.GetValue("a");
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(int));
+            Assert.AreEqual(1, (int)value);
+
+            value = environment.GetValue("b");
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(int));
+            Assert.AreEqual(2, (int)value);
+        }
+
+        [TestMethod]
+        public void ShouldSkipIfCommandsIfFalse()
+        {
+            Parser parser = new Parser("if 0\r\n  a:=1\r\n  b:=2\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            object value = environment.GetValue("a");
+
+            Assert.IsNull(value);
+
+            value = environment.GetValue("b");
+
+            Assert.IsNull(value);
+        }
+
+        [TestMethod]
+        public void ShouldParseIfCommandWithElse()
+        {
+            Parser parser = new Parser("if 0\r\n  a:=1\r\nelse\r\n  a:=2\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(IfCommand));
+
+            Assert.IsNull(parser.ParseCommand());
+        }
+
+        [TestMethod]
+        public void ShouldExecuteIfCommandWithElse()
+        {
+            Parser parser = new Parser("if 0\r\n  a:=1\r\nelse\r\n  a:=2\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            object value = environment.GetValue("a");
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(int));
+            Assert.AreEqual(2, (int)value);
+        }
+
+        [TestMethod]
+        public void ShouldParseIfCommandWithElseIf()
+        {
+            Parser parser = new Parser("if 0\r\n  a:=1\r\nelseif 1\r\n  a:=2\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(IfCommand));
+
+            Assert.IsNull(parser.ParseCommand());
+        }
+
+        [TestMethod]
+        public void ShouldExecuteIfCommandWithElseIf()
+        {
+            Parser parser = new Parser("if 0\r\n  a:=1\r\nelseif 1\r\n  a:=2\r\nendif");
+
+            ICommand command = parser.ParseCommand();
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            object value = environment.GetValue("a");
+
+            Assert.IsNotNull(value);
+            Assert.IsInstanceOfType(value, typeof(int));
+            Assert.AreEqual(2, (int)value);
+        }
     }
 }
