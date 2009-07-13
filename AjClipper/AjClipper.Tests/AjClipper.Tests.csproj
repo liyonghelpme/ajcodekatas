@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandTests.cs" />
+    <Compile Include="ExamplesTests.cs" />
     <Compile Include="ExpressionTests.cs" />
     <Compile Include="ExpressionUtilitiesTests.cs" />
     <Compile Include="LexerTests.cs" />
@@ -54,6 +55,11 @@
       <Project>{75870656-39C6-4578-8827-152B9D472F9D}</Project>
       <Name>AjClipper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Examples\SimpleAssignment.prg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,7 +10,7 @@
     {
         private const string SingleCharOperators = "=$%+-*/:><#^";
 
-        private const string SingleCharDelimiters = "[]{},";
+        private const string SingleCharDelimiters = "[]{},()";
 
         private static string[] twoCharOperators = new string[] { ":=", "==", ">=", "<=", "->", "--", "++", "+=", "-=", "*=", "/=", "^=", "%=" };
 

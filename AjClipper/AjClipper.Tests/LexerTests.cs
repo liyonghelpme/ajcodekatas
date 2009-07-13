@@ -150,7 +150,7 @@
         [TestMethod]
         public void ShouldParseDelimiters()
         {
-            string delimiters = "[]{},";
+            string delimiters = "[]{},()";
             Lexer lexer = new Lexer(delimiters);
 
             Token token;

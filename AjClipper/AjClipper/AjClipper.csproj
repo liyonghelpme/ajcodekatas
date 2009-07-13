@@ -52,6 +52,7 @@
     <Compile Include="Commands\PrintLineCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\PrintCommand.cs" />
+    <Compile Include="Commands\ProcedureCommand.cs" />
     <Compile Include="Commands\SetVariableCommand.cs" />
     <Compile Include="Commands\WhileCommand.cs" />
     <Compile Include="Compiler\ParserException.cs" />

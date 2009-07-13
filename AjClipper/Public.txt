@@ -1,0 +1,88 @@
+ PUBLIC
+ Create and initialize public memory variables and arrays
+------------------------------------------------------------------------------
+ Syntax
+
+     PUBLIC <identifier> [[:= <initializer>], ... ]
+
+ Arguments
+
+     <identifier> is the name of a public variable or array to create.
+     If the <identifier> is followed by square brackets ([ ]), it is created
+     as an array.  If the <identifier> is an array, the syntax for specifying
+     the number of elements for each dimension can be array[<nElements>,
+     <nElements2>,...] or array[<nElements>][<nElements2>]....  The maximum
+     number of elements per dimension is 4096.  The maximum number of
+     dimensions per array is limited only by available memory.
+
+     <initializer> is the optional assignment of a value to a new public
+     variable.  Array identifiers, however, cannot be given values with an
+     <initializer>.  An <initializer> for a public variable consists of the
+     inline assignment operator (:=) followed by any valid CA-Clipper
+     expression including a literal array.  Except for arrays, if no
+     <initializer> is specified, public variables are initialized to false
+     (.F.).  This is an exception to the general rule that uninitialized
+     variables are NIL.  With arrays, however, the initial value of each
+     element is NIL.
+
+     A list of variables and arrays can be created and, optionally,
+     initialized with one PUBLIC statement if each definition is separated by
+     a comma.
+
+ Description
+
+     The PUBLIC statement creates variables and arrays visible to all
+     procedures and user-defined functions in a program.  Public variables
+     exist for the duration of the program or until explicitly released with
+     CLEAR ALL, CLEAR MEMORY, or RELEASE.  Declaring private, local, or
+     static variables or arrays with the same name as existing public
+     variables temporarily hides those public variables until the overriding
+     variables are released or are no longer visible.  An attempt to create a
+     public variable with the same name as an existing and visible private
+     variable is simply ignored (see Notes below for an exception).
+
+     Attempting to specify a PUBLIC variable that conflicts with a previous
+     FIELD, LOCAL, or STATIC declaration of the same name results in a fatal
+     compiler error.  This is true regardless of the scope of the
+     declaration.
+
+     PUBLIC statements are executable statements and, therefore, must be
+     specified within the body of a procedure or user-defined function
+     definition.  They also must follow all compile-time declarations, such
+     as FIELD, LOCAL, MEMVAR, and STATIC.
+
+     The maximum number of public and private variables and arrays that can
+     simultaneously exist in a single program is 2048.
+
+     For more information on variable declarations and scoping, refer to the
+     Variables section in the "Basic Concepts" chapter of the Programming and
+     Utilities Guide.
+
+ Notes
+
+     .  PUBLIC Clipper:  To include CA-Clipper extensions in a program
+        and still allow the program to run under dBASE III PLUS, the special
+        public variable, Clipper, is initialized to true (.T.) when created
+        PUBLIC.
+
+     .  Public array name conflicts with existing private variables: 
+        The statement, PUBLIC x[10], will not create the public array x if
+        there is already a private or public variable x.  It will, however,
+        destroy the contents of the existing x, replacing it with a reference
+        to a ten-element array.
+
+ Examples
+
+     .  This example creates two PUBLIC arrays and one PUBLIC
+        variable:
+
+        PUBLIC aArray1[10, 10], var2
+        PUBLIC aArray2[20][10]
+
+     .  The following PUBLIC statements create variables and
+        initialize them with values:
+
+        PUBLIC cString := SPACE(10), cColor := SETCOLOR()
+        PUBLIC aArray := {1, 2, 3}, aArray2 := ARRAY(12, 24)
+
+

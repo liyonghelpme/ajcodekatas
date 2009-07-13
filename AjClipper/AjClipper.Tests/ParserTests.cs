@@ -373,5 +373,62 @@
             Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
             Assert.AreEqual(7, (int)(expression.Evaluate(null)));
         }
+
+        [TestMethod]
+        public void ShouldParseSimpleProcedure()
+        {
+            Parser parser = new Parser("Procedure DoBar\r\na := 1\r\nreturn");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(ProcedureCommand));
+        }
+
+        [TestMethod]
+        public void ShouldParseSimpleProcedureWithParameter()
+        {
+            Parser parser = new Parser("Procedure DoBar(b)\r\na := b\r\nreturn");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(ProcedureCommand));
+
+            ProcedureCommand proc = (ProcedureCommand)command;
+
+            Assert.AreEqual("dobar", proc.Name);
+            Assert.IsNotNull(proc.ParameterNames);
+            Assert.AreEqual(1, proc.ParameterNames.Count);
+            Assert.AreEqual("b", proc.ParameterNames[0]);
+        }
+
+        [TestMethod]
+        public void ShouldParseSimpleProcedureWithTwoParameters()
+        {
+            Parser parser = new Parser("Procedure DoBar(b,c)\r\na := b+c\r\nreturn");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(ProcedureCommand));
+
+            ProcedureCommand proc = (ProcedureCommand)command;
+
+            Assert.AreEqual("dobar", proc.Name);
+            Assert.IsNotNull(proc.ParameterNames);
+            Assert.AreEqual(2, proc.ParameterNames.Count);
+            Assert.AreEqual("b", proc.ParameterNames[0]);
+            Assert.AreEqual("c", proc.ParameterNames[1]);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ParserException))]
+        public void ShouldRaiseIfIncompleteParameterList()
+        {
+            Parser parser = new Parser("Procedure DoBar(b,c\r\na := b+c\r\nreturn");
+
+            parser.ParseCommand();
+        }
     }
 }

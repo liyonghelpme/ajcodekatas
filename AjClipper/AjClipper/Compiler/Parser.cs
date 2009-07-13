@@ -38,6 +38,27 @@
             return this.ParseBinaryExpressionLevel1();
         }
 
+        public ICommand ParseCommandList(params string[] terminators)
+        {
+            CompositeCommand commands = new CompositeCommand();
+
+            Token token = this.lexer.NextToken();
+
+            while (token != null && !terminators.Contains(token.Value))
+            {
+                this.lexer.PushToken(token);
+                ICommand command = this.ParseLineCommand();
+                commands.AddCommand(command);
+
+                token = this.lexer.NextToken();
+            }
+
+            if (token != null)
+                this.lexer.PushToken(token);
+
+            return commands;
+        }
+
         private IExpression ParseBinaryExpressionLevel1()
         {
             IExpression expression = this.ParseSimpleExpression();
@@ -132,6 +153,9 @@
                 if (token.Value == "while")
                     return this.ParseWhileCommand();
 
+                if (token.Value == "procedure")
+                    return this.ParseProcedureCommand();
+
                 Token token2 = this.lexer.NextToken();
 
                 if (token2 != null && (token2.Value == ":=" || token2.Value == "="))
@@ -150,7 +174,57 @@
 
             WhileCommand whileCommand = new WhileCommand(condition, command);
 
+            this.lexer.NextToken();
             return whileCommand;
+        }
+
+        private ICommand ParseProcedureCommand()
+        {
+            string name = this.ParseName();
+            List<string> parameterNames = this.ParseParameterList();
+            ICommand command = this.ParseCommandList("return");
+
+            ProcedureCommand procedureCommand = new ProcedureCommand(name, parameterNames, command);
+
+            this.lexer.NextToken();
+
+            return procedureCommand;
+        }
+
+        private List<string> ParseParameterList()
+        {
+            List<string> names = new List<string>();
+
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return names;
+
+            if (token.Value != "(")
+            {
+                this.lexer.PushToken(token);
+                return names;
+            }
+
+            string name;
+
+            name = this.ParseName();
+            names.Add(name);
+
+            token = this.lexer.NextToken();
+
+            while (token != null && token.Value == ",")
+            {
+                name = this.ParseName();
+                names.Add(name);
+
+                token = this.lexer.NextToken();
+            }
+
+            if (token == null || token.Value != ")")
+                throw new ParserException("')' expected");
+
+            return names;
         }
 
         private ICommand ParseIfCommand()
@@ -177,25 +251,14 @@
             return ifCommand;
         }
 
-        private ICommand ParseCommandList(params string[] terminators)
+        private string ParseName()
         {
-            CompositeCommand commands = new CompositeCommand();
-
             Token token = this.lexer.NextToken();
 
-            while (token != null && !terminators.Contains(token.Value))
-            {
-                this.lexer.PushToken(token);
-                ICommand command = this.ParseLineCommand();
-                commands.AddCommand(command);
+            if (token == null || token.TokenType != TokenType.Name)
+                throw new ParserException("Name expected");
 
-                token = this.lexer.NextToken();
-            }
-
-            if (token != null)
-                this.lexer.PushToken(token);
-
-            return commands;
+            return token.Value;
         }
 
         private List<IExpression> ParseExpressionList()
