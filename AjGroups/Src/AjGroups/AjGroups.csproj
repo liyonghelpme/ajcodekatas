@@ -51,7 +51,9 @@
     <Compile Include="ElementComparer.cs" />
     <Compile Include="ElementUtilities.cs" />
     <Compile Include="GeneratedGroup.cs" />
+    <Compile Include="OperationTable.cs" />
     <Compile Include="GroupUtilities.cs" />
+    <Compile Include="IElement.cs" />
     <Compile Include="IGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SymmetricGroup.cs" />

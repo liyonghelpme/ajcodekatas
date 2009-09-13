@@ -3,97 +3,129 @@
   <project key="1199980244">
     <configuration>DEBUG;TRACE</configuration>
   </project>
-  <sourcecode name="BaseGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
-    </settings>
-    <timestamp>01/31/2009 07:53:22</timestamp>
-    <milliseconds>328</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CompleteGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
-    </settings>
-    <timestamp>01/31/2009 07:53:22</timestamp>
-    <milliseconds>328</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="Element.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
-    </settings>
-    <timestamp>01/31/2009 12:35:27</timestamp>
-    <milliseconds>218</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ElementComparer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
-    </settings>
-    <timestamp>01/31/2009 07:53:22</timestamp>
-    <milliseconds>234</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ElementUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
-    </settings>
-    <timestamp>01/31/2009 07:53:22</timestamp>
-    <milliseconds>312</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="GeneratedGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
-    </settings>
-    <timestamp>01/31/2009 07:53:22</timestamp>
-    <milliseconds>203</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="IGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
-    </settings>
-    <timestamp>01/31/2009 07:53:22</timestamp>
-    <milliseconds>296</milliseconds>
-    <violations />
-  </sourcecode>
+  <project key="900415817">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="SymmetricGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
     </settings>
-    <timestamp>01/31/2009 07:53:22</timestamp>
-    <milliseconds>421</milliseconds>
+    <timestamp>05/25/2009 10:32:15</timestamp>
+    <milliseconds>997</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
     </settings>
-    <timestamp>01/28/2009 18:52:51</timestamp>
-    <milliseconds>859</milliseconds>
+    <timestamp>05/25/2009 10:32:15</timestamp>
+    <milliseconds>951</milliseconds>
     <violations />
   </sourcecode>
-  <project key="900415817">
+  <project key="1780004732">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <sourcecode name="CompleteGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:02:40</timestamp>
+    <milliseconds>583</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BaseGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:03:07</timestamp>
+    <milliseconds>892</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ElementComparer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:12:15</timestamp>
+    <milliseconds>372</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ElementUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:06:26</timestamp>
+    <milliseconds>960</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GeneratedGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:05:49</timestamp>
+    <milliseconds>301</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="GroupTable.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:22:35</timestamp>
+    <milliseconds>477</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Element.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:11:58</timestamp>
+    <milliseconds>953</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="GroupUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>01/31/2009 12:36:37</timestamp>
-      <milliseconds>718</milliseconds>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
     </settings>
-    <timestamp>01/31/2009 12:38:54</timestamp>
-    <milliseconds>859</milliseconds>
+    <timestamp>09/13/2009 10:20:44</timestamp>
+    <milliseconds>435</milliseconds>
     <violations />
+  </sourcecode>
+  <sourcecode name="IGroup.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:04:23</timestamp>
+    <milliseconds>270</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IElement.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>05/25/2009 10:32:15</timestamp>
+      <milliseconds>979</milliseconds>
+    </settings>
+    <timestamp>09/13/2009 10:11:48</timestamp>
+    <milliseconds>987</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
+        <context>All methods must be placed after all properties.</context>
+        <line>7</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="Microsoft.StyleCop.CSharp.LayoutRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SA1516">
+        <context>Adjacent elements must be separated by a blank line.</context>
+        <line>8</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
   </sourcecode>
 </stylecopresultscache>

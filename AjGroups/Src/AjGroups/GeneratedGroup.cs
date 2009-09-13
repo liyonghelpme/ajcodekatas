@@ -7,10 +7,10 @@
 
     public class GeneratedGroup : BaseGroup
     {
-        private List<Element> generators = new List<Element>();
+        private List<IElement> generators = new List<IElement>();
         private CompleteGroup internalGroup;
 
-        public GeneratedGroup(params Element[] generators)
+        public GeneratedGroup(params IElement[] generators)
         {
             foreach (Element generator in generators)
             {
@@ -20,7 +20,7 @@
                 }
             }
 
-            List<Element> elements = this.GenerateElements();
+            List<IElement> elements = this.GenerateElements();
 
             this.internalGroup = new CompleteGroup(elements);
         }
@@ -33,7 +33,7 @@
             }
         }
 
-        public override List<Element> Elements
+        public override List<IElement> Elements
         {
             get
             {
@@ -41,7 +41,7 @@
             }
         }
 
-        private List<Element> GenerateElements()
+        private List<IElement> GenerateElements()
         {
             return ElementUtilities.ElementsClosure(this.generators);
         }

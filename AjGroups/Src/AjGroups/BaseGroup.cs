@@ -7,7 +7,7 @@
 
     public abstract class BaseGroup : IGroup
     {
-        public abstract List<Element> Elements { get; }
+        public abstract List<IElement> Elements { get; }
 
         public abstract int Order { get; }
 
@@ -31,7 +31,7 @@
         {
             int hash = 0;
 
-            foreach (Element element in this.Elements)
+            foreach (IElement element in this.Elements)
             {
                 hash *= 5;
                 hash += element.GetHashCode();

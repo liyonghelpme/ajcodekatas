@@ -7,7 +7,7 @@
 
     public interface IGroup
     {
-        List<Element> Elements { get; }
+        List<IElement> Elements { get; }
 
         int Order { get; }
     }

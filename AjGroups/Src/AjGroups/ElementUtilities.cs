@@ -7,20 +7,20 @@
 
     public static class ElementUtilities
     {
-        internal static List<Element> ElementsClosure(ICollection<Element> initialElements)
+        internal static List<IElement> ElementsClosure(ICollection<IElement> initialElements)
         {
-            List<Element> elements = new List<Element>(initialElements);
+            List<IElement> elements = new List<IElement>(initialElements);
             int lastprocessed = 0;
 
             while (lastprocessed < elements.Count)
             {
-                List<Element> newelements = new List<Element>();
+                List<IElement> newelements = new List<IElement>();
 
                 for (int k = 0; k < elements.Count; k++)
                 {
                     for (int j = lastprocessed; j < elements.Count; j++)
                     {
-                        Element newelement = elements[k].Multiply(elements[j]);
+                        IElement newelement = elements[k].Multiply(elements[j]);
 
                         if (!newelements.Contains(newelement) && !elements.Contains(newelement))
                         {
@@ -44,11 +44,11 @@
             return elements;
         }
 
-        internal static List<Element> ElementsUnion(ICollection<Element> elements1, ICollection<Element> elements2) 
+        internal static List<IElement> ElementsUnion(ICollection<IElement> elements1, ICollection<IElement> elements2) 
         {
-            List<Element> elements = new List<Element>(elements1);
+            List<IElement> elements = new List<IElement>(elements1);
 
-            foreach (Element element in elements2)
+            foreach (IElement element in elements2)
             {
                 if (!elements.Contains(element))
                 {

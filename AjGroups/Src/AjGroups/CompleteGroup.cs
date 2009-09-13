@@ -8,11 +8,11 @@
     public class CompleteGroup : BaseGroup
     {
         private static ElementComparer comparer = new ElementComparer();
-        private List<Element> elements;
+        private List<IElement> elements;
 
-        public CompleteGroup(List<Element> elements)
+        public CompleteGroup(List<IElement> elements)
         {
-            this.elements = new List<Element>(elements);
+            this.elements = new List<IElement>(elements);
             this.elements.Sort(comparer);
         }
 
@@ -24,7 +24,7 @@
             }
         }
 
-        public override List<Element> Elements
+        public override List<IElement> Elements
         {
             get
             {

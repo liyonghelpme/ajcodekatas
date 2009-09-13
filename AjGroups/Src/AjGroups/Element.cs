@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class Element
+    public class Element : AjGroups.IElement
     {
         private byte[] values;
         private int calculatedOrder;
@@ -103,6 +103,38 @@
             return new Element(values);
         }
 
+        public int CompareTo(IElement element)
+        {
+            if (this.Equals(element))
+                return 0;
+
+            if (this.Order < element.Order)
+                return -1;
+
+            if (this.Order > element.Order)
+                return 1;
+
+            if (!(element is Element))
+                throw new InvalidOperationException("Element is not comparable");
+
+            Element elem = (Element)element;
+
+            for (int k = 0; k < this.Size; k++)
+            {
+                if (this.Values[k] < elem.Values[k])
+                {
+                    return -1;
+                }
+
+                if (this.Values[k] > elem.Values[k])
+                {
+                    return 1;
+                }
+            }
+
+            return 0;
+        }
+
         public override bool Equals(object obj)
         {
             if (this == obj)
@@ -149,6 +181,11 @@
             }
 
             return hash;
+        }
+
+        public IElement Multiply(IElement element)
+        {
+            return this.Multiply((Element)element);
         }
 
         public Element Multiply(Element element)

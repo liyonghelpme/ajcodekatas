@@ -16,7 +16,7 @@
         {
             List<IGroup> cyclicGroups = new List<IGroup>();
 
-            foreach (Element element in group.Elements)
+            foreach (IElement element in group.Elements)
             {
                 IGroup newgroup = new GeneratedGroup(element);
 
@@ -63,6 +63,7 @@
             return true;
         }
 
+        // TODO Complete algorithm
         public static bool AreIsomorphic(IGroup group1, IGroup group2)
         {
             if (group1.Order != group2.Order)
