@@ -1,0 +1,44 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="-224880684">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Domain.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/03/2009 17:13:10</timestamp>
+      <milliseconds>11</milliseconds>
+    </settings>
+    <timestamp>10/03/2009 17:12:52</timestamp>
+    <milliseconds>344</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Container.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/03/2009 17:13:10</timestamp>
+      <milliseconds>11</milliseconds>
+    </settings>
+    <timestamp>10/03/2009 17:13:15</timestamp>
+    <milliseconds>431</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.LayoutRules" rule="OpeningCurlyBracketsMustNotBeFollowedByBlankLine" ruleCheckId="SA1505">
+        <context>An opening curly bracket must not be followed by a blank line.</context>
+        <line>9</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="Microsoft.StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketsMustNotBePrecededByBlankLine" ruleCheckId="SA1508">
+        <context>A closing curly bracket must not be preceded by a blank line.</context>
+        <line>11</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/03/2009 17:13:10</timestamp>
+      <milliseconds>11</milliseconds>
+    </settings>
+    <timestamp>10/03/2009 17:11:01</timestamp>
+    <milliseconds>142</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

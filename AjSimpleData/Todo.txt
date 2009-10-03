@@ -1,0 +1,7 @@
+
+AjSimpleBase To do list
+
+- Resolve cloud storage
+- Resolve persistence
+- Query object
+- Query language

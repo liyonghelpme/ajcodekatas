@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjSimpleData", "AjSimpleData\AjSimpleData.csproj", "{E83F4326-D7EC-473E-86B8-68FDEE62766F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjSimpleData.Tests", "AjSimpleData.Tests\AjSimpleData.Tests.csproj", "{1BD10C6E-2AEF-4391-87BA-673F7256D772}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{53E3174D-FCA5-40CD-A5BD-FA0D1CF7516B}"
+	ProjectSection(SolutionItems) = preProject
+		AjSimpleData.vsmdi = AjSimpleData.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = AjSimpleData.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E83F4326-D7EC-473E-86B8-68FDEE62766F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E83F4326-D7EC-473E-86B8-68FDEE62766F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E83F4326-D7EC-473E-86B8-68FDEE62766F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E83F4326-D7EC-473E-86B8-68FDEE62766F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BD10C6E-2AEF-4391-87BA-673F7256D772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD10C6E-2AEF-4391-87BA-673F7256D772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD10C6E-2AEF-4391-87BA-673F7256D772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD10C6E-2AEF-4391-87BA-673F7256D772}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

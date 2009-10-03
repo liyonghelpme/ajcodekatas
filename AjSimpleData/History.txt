@@ -1,0 +1,8 @@
+
+2009-10-03
+Initial Project in ajcodekatas
+Container, Domain, Item w/tests
+Container.CreateDomain
+Domain.CreateItem
+Item.SetValue, GetValue, AddValue, RemoveValue, GetValues
+Domain.GetItems with tests
