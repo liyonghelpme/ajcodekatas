@@ -23,26 +23,69 @@
 
         public Item CreateItem(object id)
         {
-            if (items.ContainsKey(id))
-                throw new InvalidOperationException(string.Format("Item {0} already exists", id));
+            if (id == null)
+                throw new ArgumentNullException("id");
 
-            Item item = new Item(id, this);
-            items[id] = item;
+            lock (this)
+            {
+                if (items.ContainsKey(id))
+                    throw new InvalidOperationException(string.Format("Item {0} already exists", id));
 
-            return item;
+                Item item = new Item(id, this);
+                items[id] = item;
+
+                return item;
+            }
         }
 
         public Item GetItem(object id)
         {
-            return items[id];
+            if (id == null)
+                throw new ArgumentNullException("id");
+
+            lock (this)
+            {
+                if (!items.ContainsKey(id))
+                    throw new InvalidOperationException(string.Format("Unknown Item with Id '{0}'", id.ToString()));
+
+                return items[id];
+            }
+        }
+
+        public bool HasItem(object id)
+        {
+            if (id == null)
+                throw new ArgumentNullException("id");
+
+            lock (this)
+            {
+                return this.items.ContainsKey(id);
+            }
+        }
+
+        public void RemoveItem(object id)
+        {
+            if (id == null)
+                throw new ArgumentNullException("id");
+
+            lock (this)
+            {
+                if (!items.ContainsKey(id))
+                    throw new InvalidOperationException(string.Format("Unknown Item with Id '{0}'", id.ToString()));
+
+                items.Remove(id);
+            }
         }
 
         public IEnumerable<Item> GetItems(Predicate<Item> filter)
         {
-            if (filter == null)
-                return this.items.Values;
+            lock (this)
+            {
+                if (filter == null)
+                    return new List<Item>(from v in this.items.Values select v.CloneItem());
 
-            return from v in this.items.Values where filter(v) select v;
+                return new List<Item>(from v in this.items.Values where filter(v) select v.CloneItem());
+            }
         }
     }
 }

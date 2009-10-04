@@ -9,7 +9,7 @@
     {
         private Domain domain;
         private object id;
-        private Dictionary<string, object> values = new Dictionary<string, object>();
+        private Dictionary<string, object> values;
 
         internal Item(object id, Domain domain)
         {
@@ -18,6 +18,13 @@
 
             this.id = id;
             this.domain = domain;
+            this.values = new Dictionary<string, object>();
+        }
+
+        internal Item(object id, Dictionary<string, object> values)
+        {
+            this.id = id;
+            this.values = new Dictionary<string, object>(values);
         }
 
         public object Id { get { return this.id; } }
@@ -29,15 +36,25 @@
         public void SetValue(string name, object value)
         {
             ValidateValue(value);
-            this.values[name] = value;
+
+            lock (this.Domain)
+            {
+                lock (this)
+                {
+                    this.values[name] = value;
+                }
+            }
         }
 
         public object GetValue(string name)
         {
-            if (!this.values.ContainsKey(name))
-                return null;
+            lock (this)
+            {
+                if (!this.values.ContainsKey(name))
+                    return null;
 
-            return this.values[name];
+                return this.values[name];
+            }
         }
 
         public IList<object> GetValues(string name)
@@ -45,16 +62,19 @@
             if (!this.values.ContainsKey(name))
                 return null;
 
-            object value = this.values[name];
+            lock (this)
+            {
+                object value = this.values[name];
 
-            if (value is IList<object>)
-                return ((IList<object>)value);
+                if (value is IList<object>)
+                    return ((IList<object>)value);
 
-            IList<object> values = new List<object>();
+                IList<object> values = new List<object>();
 
-            values.Add(value);
+                values.Add(value);
 
-            return values;
+                return values;
+            }
         }
 
         public void RemoveValue(string name)
@@ -62,7 +82,13 @@
             if (!this.values.ContainsKey(name))
                 return;
 
-            this.values.Remove(name);
+            lock (this.Domain)
+            {
+                lock (this)
+                {
+                    this.values.Remove(name);
+                }
+            }
         }
 
         public void RemoveValue(string name, object value)
@@ -70,45 +96,62 @@
             if (!this.values.ContainsKey(name))
                 return;
 
-            object v = this.values[name];
-
-            if (v.Equals(value))
+            lock (this.Domain)
             {
-                this.values.Remove(name);
-                return;
+                lock (this)
+                {
+                    object v = this.values[name];
+
+                    if (v.Equals(value))
+                    {
+                        this.values.Remove(name);
+                        return;
+                    }
+
+                    if (!(v is IList<object>))
+                        return;
+
+                    IList<object> list = (IList<object>)v;
+
+                    if (list.Contains(value))
+                        list.Remove(value);
+                }
             }
-
-            if (!(v is IList<object>))
-                return;
-
-            IList<object> list = (IList<object>)v;
-
-            if (list.Contains(value))
-                list.Remove(value);
         }
 
         public void AddValue(string name, object value)
         {
-            if (!this.values.ContainsKey(name))
+            lock (this.Domain)
             {
-                this.SetValue(name, value);
-                return;
+                lock (this)
+                {
+                    if (!this.values.ContainsKey(name))
+                    {
+                        this.SetValue(name, value);
+                        return;
+                    }
+
+                    object oldvalue = this.values[name];
+
+                    IList<object> list;
+
+                    if (oldvalue is IList<object>)
+                        list = (IList<object>)oldvalue;
+                    else
+                    {
+                        list = new List<object>();
+                        list.Add(oldvalue);
+                        this.values[name] = list;
+                    }
+
+                    list.Add(value);
+                }
             }
+        }
 
-            object oldvalue = this.values[name];
-
-            IList<object> list;
-
-            if (oldvalue is IList<object>)
-                list = (IList<object>)oldvalue;
-            else
-            {
-                list = new List<object>();
-                list.Add(oldvalue);
-                this.values[name] = list;
-            }
-
-            list.Add(value);
+        public Item CloneItem()
+        {
+            return new Item(this.id, this.values);
         }
 
         private void ValidateValue(object value)

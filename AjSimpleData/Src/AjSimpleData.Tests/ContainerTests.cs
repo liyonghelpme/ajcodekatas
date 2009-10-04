@@ -64,5 +64,14 @@
         {
             this.container.GetDomain("Unknown");
         }
+
+        [TestMethod]
+        public void HasDomain()
+        {
+            Assert.IsFalse(this.container.HasDomain("Customers"));
+            this.container.CreateDomain("Customers");
+            Assert.IsTrue(this.container.HasDomain("Customers"));
+            Assert.IsFalse(this.container.HasDomain("Suppliers"));
+        }
     }
 }

@@ -30,5 +30,10 @@
 
             return domains[name];
         }
+
+        public bool HasDomain(string name)
+        {
+            return domains.ContainsKey(name);
+        }
     }
 }

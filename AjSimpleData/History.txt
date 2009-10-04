@@ -6,3 +6,10 @@ Container.CreateDomain
 Domain.CreateItem
 Item.SetValue, GetValue, AddValue, RemoveValue, GetValues
 Domain.GetItems with tests
+
+2009-10-04
+locks in Domain, Item
+Item.CloneItem
+Improve code coverage
+queries on Domain return a copy of items
+
