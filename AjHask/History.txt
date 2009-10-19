@@ -1,0 +1,6 @@
+
+2009-10-18
+Initial Project
+IExpression, IFunction
+PartialFunction w/Tests
+ApplyFunction w/Tests

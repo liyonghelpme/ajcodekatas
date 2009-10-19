@@ -1,0 +1,51 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="ApplyExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/18/2009 23:01:59</timestamp>
+      <milliseconds>196</milliseconds>
+    </settings>
+    <timestamp>10/18/2009 22:55:49</timestamp>
+    <milliseconds>553</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="IExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/18/2009 23:01:59</timestamp>
+      <milliseconds>196</milliseconds>
+    </settings>
+    <timestamp>10/18/2009 22:47:25</timestamp>
+    <milliseconds>856</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/18/2009 23:01:59</timestamp>
+      <milliseconds>196</milliseconds>
+    </settings>
+    <timestamp>10/18/2009 22:44:25</timestamp>
+    <milliseconds>106</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ConstantExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/18/2009 23:01:59</timestamp>
+      <milliseconds>196</milliseconds>
+    </settings>
+    <timestamp>10/18/2009 23:02:10</timestamp>
+    <milliseconds>455</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1829926449">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="IFunction.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/18/2009 23:01:59</timestamp>
+      <milliseconds>196</milliseconds>
+    </settings>
+    <timestamp>10/18/2009 23:02:30</timestamp>
+    <milliseconds>59</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
