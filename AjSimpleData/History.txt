@@ -13,3 +13,4 @@ Item.CloneItem
 Improve code coverage
 queries on Domain return a copy of items
 
+improve Item.CloneItem to share values

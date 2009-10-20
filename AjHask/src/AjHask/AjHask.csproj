@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Expressions\ApplyExpression.cs" />
-    <Compile Include="Expressions\ConstantExpression.cs" />
-    <Compile Include="Expressions\IExpression.cs" />
+    <Compile Include="Language\CombineFunction.cs" />
+    <Compile Include="Language\ComposeFunction.cs" />
+    <Compile Include="Language\ConstantFunction.cs" />
     <Compile Include="Language\IFunction.cs" />
     <Compile Include="Language\PartialFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

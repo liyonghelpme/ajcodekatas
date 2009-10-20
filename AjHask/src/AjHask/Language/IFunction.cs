@@ -9,8 +9,10 @@
     {
         int Arity { get; }
 
-        object Apply(object parameter);
+        object Value { get; }
 
-        object Apply(List<object> parameters);
+        IFunction Apply(IFunction parameter);
+
+        IFunction Apply(IList<IFunction> parameters);
     }
 }

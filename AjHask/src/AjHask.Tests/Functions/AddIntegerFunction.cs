@@ -14,18 +14,20 @@
             get { return 2; }
         }
 
-        public object Apply(object parameter)
+        public object Value { get { return this; } }
+
+        public IFunction Apply(IFunction parameter)
         {
             PartialFunction function = new PartialFunction(this);
             return function.Apply(parameter);
         }
 
-        public object Apply(List<object> parameters)
+        public IFunction Apply(IList<IFunction> parameters)
         {
             if (parameters == null || parameters.Count != this.Arity)
                 throw new InvalidOperationException("Invalid number of parameters");
 
-            return (int)parameters[0] + (int)parameters[1];
+            return new ConstantFunction((int)(parameters[0].Value) + (int)(parameters[1].Value));
         }
     }
 }

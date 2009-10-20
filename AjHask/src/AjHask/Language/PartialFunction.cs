@@ -8,7 +8,7 @@
     public class PartialFunction : IFunction
     {
         private IFunction function;
-        private List<object> parameters = new List<object>();
+        private List<IFunction> parameters = new List<IFunction>();
 
         public PartialFunction(IFunction function)
         {
@@ -20,7 +20,9 @@
             get { return this.function.Arity - parameters.Count; }
         }
 
-        public object Apply(object parameter)
+        public object Value { get { return this; } }
+
+        public IFunction Apply(IFunction parameter)
         {
             parameters.Add(parameter);
 
@@ -30,7 +32,7 @@
             return this;
         }
 
-        public object Apply(List<object> parameters)
+        public IFunction Apply(IList<IFunction> parameters)
         {
             throw new NotImplementedException();
         }

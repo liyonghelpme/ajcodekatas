@@ -9,12 +9,12 @@
 
     class IncrementFunction : IFunction
     {
-        public object Apply(object parameter)
+        public IFunction Apply(IFunction parameter)
         {
-            return ((int)parameter) + 1;
+            return new ConstantFunction(((int)(parameter.Value)) + 1);
         }
 
-        public object Apply(List<object> parameters)
+        public IFunction Apply(IList<IFunction> parameters)
         {
             throw new NotImplementedException();
         }
@@ -23,5 +23,7 @@
         {
             get { return 1; }
         }
+
+        public object Value { get { return this; } }
     }
 }

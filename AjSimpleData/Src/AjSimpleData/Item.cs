@@ -10,6 +10,7 @@
         private Domain domain;
         private object id;
         private Dictionary<string, object> values;
+        private bool sharedValues;
 
         internal Item(object id, Domain domain)
         {
@@ -24,7 +25,8 @@
         internal Item(object id, Dictionary<string, object> values)
         {
             this.id = id;
-            this.values = new Dictionary<string, object>(values);
+            this.values = values;
+            this.sharedValues = true;
         }
 
         public object Id { get { return this.id; } }
@@ -41,6 +43,9 @@
             {
                 lock (this)
                 {
+                    if (this.sharedValues)
+                        this.CloneValues();
+
                     this.values[name] = value;
                 }
             }
@@ -86,6 +91,9 @@
             {
                 lock (this)
                 {
+                    if (this.sharedValues)
+                        this.CloneValues();
+
                     this.values.Remove(name);
                 }
             }
@@ -104,6 +112,9 @@
 
                     if (v.Equals(value))
                     {
+                        if (this.sharedValues)
+                            this.CloneValues();
+
                         this.values.Remove(name);
                         return;
                     }
@@ -114,7 +125,16 @@
                     IList<object> list = (IList<object>)v;
 
                     if (list.Contains(value))
+                    {
+                        if (this.sharedValues)
+                        {
+                            this.CloneValues();
+                            list = new List<object>(list);
+                            this.values[name] = list;
+                        }
+
                         list.Remove(value);
+                    }
                 }
             }
         }
@@ -141,6 +161,15 @@
                     {
                         list = new List<object>();
                         list.Add(oldvalue);
+                        if (this.sharedValues)
+                            this.CloneValues();
+                        this.values[name] = list;
+                    }
+
+                    if (this.sharedValues)
+                    {
+                        this.CloneValues();
+                        list = new List<object>(list);
                         this.values[name] = list;
                     }
 
@@ -151,6 +180,7 @@
 
         public Item CloneItem()
         {
+            this.sharedValues = true;
             return new Item(this.id, this.values);
         }
 
@@ -163,6 +193,12 @@
                 return;
 
             throw new InvalidOperationException(string.Format("Invalid value type {0}", value.GetType().Name));
+        }
+
+        private void CloneValues()
+        {
+            this.values = new Dictionary<string, object>(this.values);
+            this.sharedValues = false;
         }
     }
 }

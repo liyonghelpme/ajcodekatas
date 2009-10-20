@@ -4,3 +4,9 @@ Initial Project
 IExpression, IFunction
 PartialFunction w/Tests
 ApplyFunction w/Tests
+
+2009-10-19
+New IFunction
+Drop Expressions
+ConstantFunction w/tests
+ComposeFunction w/tests

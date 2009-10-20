@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExpressionsTests.cs" />
+    <Compile Include="FunctionsTests.cs" />
     <Compile Include="Functions\AddIntegerFunction.cs" />
     <Compile Include="Functions\IncrementFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
