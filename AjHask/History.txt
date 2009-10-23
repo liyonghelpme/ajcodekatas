@@ -10,3 +10,9 @@ New IFunction
 Drop Expressions
 ConstantFunction w/tests
 ComposeFunction w/tests
+
+2009-10-23
+IMultiFunction
+ParameterFunction w/tests
+Notes.txt
+First steps on .Bind()

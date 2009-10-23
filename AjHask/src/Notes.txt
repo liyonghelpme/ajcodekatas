@@ -1,0 +1,17 @@
+
+addn n : add n
+addnm n m : addn n m
+
+addn.Apply(n).Apply(m)
+
+addn = add.Apply(n) = new Combine(add,par(0))
+
+addn.Apply(n) = new Combine(addn, par(0))
+
+addn.Apply(n).Apply(m) = new Combine(new Combine(addn, par(0)), par(1))
+
+addn.Apply(n).Apply(m).Bind({1,2}) = addn.Apply(1).Apply(2)
+
+= (new Combine(add, par(0)).Apply(1).Apply(2)
+= add.Apply(1).Apply(2)
+= add.Bind({1,2})

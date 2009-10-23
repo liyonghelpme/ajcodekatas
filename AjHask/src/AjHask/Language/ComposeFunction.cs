@@ -24,10 +24,5 @@
         {
             return this.second.Apply(this.first.Apply(parameter));
         }
-
-        public IFunction Apply(IList<IFunction> parameters)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

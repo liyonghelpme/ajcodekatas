@@ -66,13 +66,6 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void RaiseIfApplyParametersToConstantFunction()
-        {
-            (new ConstantFunction(0)).Apply(new IFunction[] { new ConstantFunction(1) });
-        }
-
-        [TestMethod]
         public void ComposeFunctions()
         {
             IFunction incr = new IncrementFunction();
@@ -86,6 +79,43 @@
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ConstantFunction));
             Assert.AreEqual(3, result.Value);
+        }
+
+        [TestMethod]
+        public void BindFirstParameter()
+        {
+            ParameterFunction parameter = new ParameterFunction(0, 0);
+
+            IFunction result = parameter.Bind(new IFunction[] { new ConstantFunction(0) });
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ConstantFunction));
+            Assert.AreEqual(0, result.Value);
+        }
+
+        [TestMethod]
+        public void BindSecondParameter()
+        {
+            ParameterFunction parameter = new ParameterFunction(1, 0);
+
+            IFunction result = parameter.Bind(new IFunction[] { new ConstantFunction(0), new ConstantFunction(1) });
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ConstantFunction));
+            Assert.AreEqual(1, result.Value);
+        }
+
+        [TestMethod]
+        public void BindThirdFreeParameter()
+        {
+            ParameterFunction parameter = new ParameterFunction(2, 0);
+
+            IFunction result = parameter.Bind(new IFunction[] { new ConstantFunction(0), new ConstantFunction(1) });
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ParameterFunction));
+
+            Assert.AreEqual(0, ((ParameterFunction)result).Position);
         }
     }
 }

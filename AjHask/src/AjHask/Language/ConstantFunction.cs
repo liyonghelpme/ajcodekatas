@@ -22,10 +22,5 @@
         {
             throw new NotSupportedException();
         }
-
-        public IFunction Apply(IList<IFunction> parameters)
-        {
-            throw new NotSupportedException();
-        }
     }
 }

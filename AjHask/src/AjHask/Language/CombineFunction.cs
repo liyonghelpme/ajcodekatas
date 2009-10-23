@@ -16,8 +16,8 @@
             this.right = right;
         }
 
-        // TODO review if + 1
-        public int Arity { get { return this.left.Arity + 1; } }
+        // TODO review if - 1
+        public int Arity { get { return this.left.Arity - 1; } }
 
         public object Value { get { return this; } }
 
@@ -30,11 +30,6 @@
                 return this;
 
             return newleft.Apply(newright);
-        }
-
-        public IFunction Apply(IList<IFunction> parameters)
-        {
-            throw new NotImplementedException();
         }
     }
 }

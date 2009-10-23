@@ -5,14 +5,8 @@
     using System.Linq;
     using System.Text;
 
-    public interface IFunction
+    public interface IMultiFunction : IFunction
     {
-        int Arity { get; }
-
-        object Value { get; }
-
-        IFunction Apply(IFunction parameter);
+        IFunction Apply(IList<IFunction> parameters);
     }
 }
-
-

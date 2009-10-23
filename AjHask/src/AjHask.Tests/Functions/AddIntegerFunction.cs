@@ -7,7 +7,7 @@
 
     using AjHask.Language;
 
-    class AddIntegerFunction : IFunction
+    class AddIntegerFunction : IMultiFunction
     {
         public int Arity
         {
@@ -18,8 +18,7 @@
 
         public IFunction Apply(IFunction parameter)
         {
-            PartialFunction function = new PartialFunction(this);
-            return function.Apply(parameter);
+            return new PartialFunction(this, parameter);
         }
 
         public IFunction Apply(IList<IFunction> parameters)

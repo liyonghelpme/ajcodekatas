@@ -48,7 +48,9 @@
     <Compile Include="Language\CombineFunction.cs" />
     <Compile Include="Language\ComposeFunction.cs" />
     <Compile Include="Language\ConstantFunction.cs" />
+    <Compile Include="Language\IMultiFunction.cs" />
     <Compile Include="Language\IFunction.cs" />
+    <Compile Include="Language\ParameterFunction.cs" />
     <Compile Include="Language\PartialFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
