@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class ParameterFunction : IFunction
+    public class ParameterFunction : BaseFunction
     {
         private int position;
         private int arity;
@@ -16,23 +16,21 @@
             this.arity = arity;
         }
 
-        public int Arity { get { return this.arity; } }
-
-        public object Value { get { return this; } }
+        public override int Arity { get { return this.arity; } }
 
         public int Position { get { return this.position; } }
 
-        public IFunction Apply(IFunction parameter)
+        public override IFunction Apply(IFunction parameter)
         {
             return new CombineFunction(this, parameter);
         }
 
-        public IFunction Bind(IList<IFunction> parameters)
+        public override IFunction Bind(IList<IFunction> parameters)
         {
             if (this.position < parameters.Count)
                 return parameters[this.position];
 
             return new ParameterFunction(this.position - parameters.Count, this.arity);
-        }        
+        }
     }
 }

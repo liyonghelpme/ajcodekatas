@@ -45,10 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compiler\EndOfInputException.cs" />
+    <Compile Include="Compiler\Lexer.cs" />
+    <Compile Include="Compiler\LexerException.cs" />
+    <Compile Include="Compiler\Token.cs" />
+    <Compile Include="Compiler\TokenType.cs" />
+    <Compile Include="Language\BaseFunction.cs" />
     <Compile Include="Language\CombineFunction.cs" />
     <Compile Include="Language\ComposeFunction.cs" />
     <Compile Include="Language\ConstantFunction.cs" />
-    <Compile Include="Language\IMultiFunction.cs" />
     <Compile Include="Language\IFunction.cs" />
     <Compile Include="Language\ParameterFunction.cs" />
     <Compile Include="Language\PartialFunction.cs" />

@@ -7,23 +7,16 @@
 
     using AjHask.Language;
 
-    class IncrementFunction : IFunction
+    class IncrementFunction : BaseFunction
     {
-        public IFunction Apply(IFunction parameter)
+        public override IFunction Apply(IFunction parameter)
         {
             return new ConstantFunction(((int)(parameter.Value)) + 1);
         }
 
-        public IFunction Apply(IList<IFunction> parameters)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Arity
+        public override int Arity
         {
             get { return 1; }
         }
-
-        public object Value { get { return this; } }
     }
 }

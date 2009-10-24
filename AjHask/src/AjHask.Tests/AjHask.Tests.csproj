@@ -43,6 +43,7 @@
     <Compile Include="FunctionsTests.cs" />
     <Compile Include="Functions\AddIntegerFunction.cs" />
     <Compile Include="Functions\IncrementFunction.cs" />
+    <Compile Include="LexerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

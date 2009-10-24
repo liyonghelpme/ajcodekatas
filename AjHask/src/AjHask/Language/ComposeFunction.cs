@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class ComposeFunction : IFunction
+    public class ComposeFunction : BaseFunction
     {
         private IFunction first;
         private IFunction second;
@@ -16,13 +16,27 @@
             this.second = second;
         }
 
-        public int Arity { get { return this.first.Arity; } }
+        public override int Arity { get { return this.first.Arity; } }
 
-        public object Value { get { return this; } }
-
-        public IFunction Apply(IFunction parameter)
+        public override IFunction Apply(IFunction parameter)
         {
-            return this.second.Apply(this.first.Apply(parameter));
+            IFunction result = this.first.Apply(parameter);
+
+            if (result.Arity == 0)
+                return this.second.Apply(result);
+
+            return new ComposeFunction(result, this.second);
+        }
+
+        public override IFunction Bind(IList<IFunction> parameters)
+        {
+            IFunction newfirst = this.first.Bind(parameters);
+            IFunction newsecond = this.second.Bind(parameters);
+
+            if (newfirst.Equals(this.first) && newsecond.Equals(this.second))
+                return this;
+
+            return new ComposeFunction(newfirst, newsecond);
         }
     }
 }

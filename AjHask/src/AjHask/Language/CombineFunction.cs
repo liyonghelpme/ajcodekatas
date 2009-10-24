@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class CombineFunction : IFunction
+    public class CombineFunction : BaseFunction
     {
         private IFunction left;
         private IFunction right;
@@ -17,14 +17,17 @@
         }
 
         // TODO review if - 1
-        public int Arity { get { return this.left.Arity - 1; } }
+        public override int Arity { get { return this.left.Arity - 1; } }
 
-        public object Value { get { return this; } }
-
-        public IFunction Apply(IFunction parameter)
+        public override IFunction Apply(IFunction parameter)
         {
-            IFunction newleft = this.left.Apply(parameter);
-            IFunction newright = this.right.Apply(parameter);
+            return new CombineFunction(this, parameter);
+        }
+
+        public override IFunction Bind(IList<IFunction> parameters)
+        {
+            IFunction newleft = this.left.Bind(parameters);
+            IFunction newright = this.right.Bind(parameters);
 
             if (newleft.Equals(this.left) && newright.Equals(this.right))
                 return this;

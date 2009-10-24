@@ -16,3 +16,11 @@ IMultiFunction
 ParameterFunction w/tests
 Notes.txt
 First steps on .Bind()
+
+2009-10-24
+BaseFunction
+IFunction.Evaluate
+IFunciton.Bind
+Drop IMultiFunction
+Lexer initial version w/tests
+

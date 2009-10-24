@@ -15,3 +15,9 @@ addn.Apply(n).Apply(m).Bind({1,2}) = addn.Apply(1).Apply(2)
 = (new Combine(add, par(0)).Apply(1).Apply(2)
 = add.Apply(1).Apply(2)
 = add.Bind({1,2})
+
+combine.Apply(x) = new Combine(this, x)
+combine.Bind({x...}) = combine.left.Bind({x...}).Apply(combine.right.Bind({x...}))
+
+partial.Bind({x...}) = partial.function.Bind({partial.parameter,x...})
+

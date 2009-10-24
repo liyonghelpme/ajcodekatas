@@ -7,21 +7,19 @@
 
     using AjHask.Language;
 
-    class AddIntegerFunction : IMultiFunction
+    class AddIntegerFunction : BaseFunction
     {
-        public int Arity
+        public override int Arity
         {
             get { return 2; }
         }
 
-        public object Value { get { return this; } }
-
-        public IFunction Apply(IFunction parameter)
+        public override IFunction Apply(IFunction parameter)
         {
             return new PartialFunction(this, parameter);
         }
 
-        public IFunction Apply(IList<IFunction> parameters)
+        public override IFunction Evaluate(IList<IFunction> parameters)
         {
             if (parameters == null || parameters.Count != this.Arity)
                 throw new InvalidOperationException("Invalid number of parameters");

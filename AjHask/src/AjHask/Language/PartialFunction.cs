@@ -5,41 +5,38 @@
     using System.Linq;
     using System.Text;
 
-    public class PartialFunction : IMultiFunction
+    public class PartialFunction : BaseFunction
     {
-        private IMultiFunction function;
-        private IFunction parameter;
+        private IFunction function;
+        private IList<IFunction> parameters;
 
-        public PartialFunction(IMultiFunction function, IFunction parameter)
+        public PartialFunction(IFunction function, IList<IFunction> parameters)
         {
             this.function = function;
-            this.parameter = parameter;
+            this.parameters = parameters;
         }
 
-        public int Arity
+        public PartialFunction(IFunction function, IFunction parameter)
         {
-            get { return this.function.Arity - 1; }
+            this.function = function;
+            this.parameters = new List<IFunction>();
+            this.parameters.Add(parameter);
         }
 
-        public object Value { get { return this; } }
-
-        public IFunction Apply(IFunction parameter)
+        public override int Arity
         {
-            if (this.function.Arity == 2)
-            {
-                IList<IFunction> parameters = new List<IFunction>();
-                parameters.Add(this.parameter);
-                parameters.Add(parameter);
-                return this.function.Apply(parameters);
-            }
-
-            return new PartialFunction(this, parameter);
+            get { return this.function.Arity - this.parameters.Count; }
         }
 
-        public IFunction Apply(IList<IFunction> parameters)
+        public override IFunction Apply(IFunction parameter)
         {
-            parameters.Insert(0, this.parameter);
-            return this.function.Apply(parameters);
+            IList<IFunction> newparameters = new List<IFunction>(this.parameters);
+            newparameters.Add(parameter);
+
+            if (this.function.Arity <= newparameters.Count)
+                return this.function.Evaluate(newparameters);
+
+            return new PartialFunction(this.function, newparameters);
         }
     }
 }

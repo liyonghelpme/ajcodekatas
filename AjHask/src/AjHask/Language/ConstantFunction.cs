@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class ConstantFunction : IFunction
+    public class ConstantFunction : BaseFunction
     {
         private object value;
 
@@ -14,13 +14,13 @@
             this.value = value;
         }
 
-        public int Arity { get { return 0; } }
+        public override int Arity { get { return 0; } }
 
-        public object Value { get { return this.value; } }
+        public override object Value { get { return this.value; } }
 
-        public IFunction Apply(IFunction parameter)
+        public override IFunction Apply(IFunction parameter)
         {
-            throw new NotSupportedException();
+            throw new InvalidOperationException();
         }
     }
 }
