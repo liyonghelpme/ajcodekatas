@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScrapping.Tests", "WebScrapping.Tests\WebScrapping.Tests.csproj", "{F9507E33-55E4-4470-BB66-D04C8A677487}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AA00DA8E-2E3E-4E29-9E5E-5E29AB5987AD}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		WebScrappingExample.vsmdi = WebScrappingExample.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScrapping", "WebScrapping\WebScrapping.csproj", "{B807D573-4786-4521-8C13-F8657971DA88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebScrapping.Demo", "WebScrapping.Demo\WebScrapping.Demo.csproj", "{B25A325A-5A82-4D60-9E85-C9719490BE45}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WebScrappingExample.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9507E33-55E4-4470-BB66-D04C8A677487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9507E33-55E4-4470-BB66-D04C8A677487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9507E33-55E4-4470-BB66-D04C8A677487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9507E33-55E4-4470-BB66-D04C8A677487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B807D573-4786-4521-8C13-F8657971DA88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B807D573-4786-4521-8C13-F8657971DA88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B807D573-4786-4521-8C13-F8657971DA88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B807D573-4786-4521-8C13-F8657971DA88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B25A325A-5A82-4D60-9E85-C9719490BE45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B25A325A-5A82-4D60-9E85-C9719490BE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B25A325A-5A82-4D60-9E85-C9719490BE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B25A325A-5A82-4D60-9E85-C9719490BE45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

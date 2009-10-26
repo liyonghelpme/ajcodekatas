@@ -1,0 +1,39 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:18:03</timestamp>
+      <milliseconds>558</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 16:15:25</timestamp>
+    <milliseconds>122</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-649935568">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="HtmlParserTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:18:03</timestamp>
+      <milliseconds>558</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 18:28:09</timestamp>
+    <milliseconds>111</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="HtmlUtilitiesTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:18:03</timestamp>
+      <milliseconds>558</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 18:28:22</timestamp>
+    <milliseconds>490</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.SpacingRules" rule="CommasMustBeSpacedCorrectly" ruleCheckId="SA1001">
+        <context>Invalid spacing around the comma.</context>
+        <line>67</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+</stylecopresultscache>

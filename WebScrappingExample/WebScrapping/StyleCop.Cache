@@ -1,0 +1,80 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:16:53</timestamp>
+      <milliseconds>26</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 16:15:55</timestamp>
+    <milliseconds>966</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="HtmlTokenType.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:16:53</timestamp>
+      <milliseconds>26</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 17:38:00</timestamp>
+    <milliseconds>944</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="HtmlUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:16:53</timestamp>
+      <milliseconds>26</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 17:27:17</timestamp>
+    <milliseconds>47</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="EndOfInputException.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:16:53</timestamp>
+      <milliseconds>26</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 18:01:41</timestamp>
+    <milliseconds>753</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="HtmlToken.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:16:53</timestamp>
+      <milliseconds>26</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 18:01:56</timestamp>
+    <milliseconds>472</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-509901611">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="WebPage.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:16:53</timestamp>
+      <milliseconds>26</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 19:05:26</timestamp>
+    <milliseconds>49</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="HtmlParser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>10/25/2009 16:16:53</timestamp>
+      <milliseconds>26</milliseconds>
+    </settings>
+    <timestamp>10/25/2009 18:57:15</timestamp>
+    <milliseconds>256</milliseconds>
+    <violations>
+      <violation namespace="Microsoft.StyleCop.CSharp.ReadabilityRules" rule="UseStringEmptyForEmptyStrings" ruleCheckId="SA1122">
+        <context>Use string.Empty rather than "".</context>
+        <line>192</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="Microsoft.StyleCop.CSharp.SpacingRules" rule="SymbolsMustBeSpacedCorrectly" ruleCheckId="SA1003">
+        <context>The spacing around the symbol '==' is invalid.</context>
+        <line>165</line>
+        <warning>False</warning>
+      </violation>
+    </violations>
+  </sourcecode>
+</stylecopresultscache>
