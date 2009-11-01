@@ -1,10 +1,15 @@
 
 2008-05-xx
-	Begin port of my original AjProlog VB.NET interpreter to C#
+Begin port of my original AjProlog VB.NET interpreter to C#
 
 2008-12-06
-	Version in my google code project ajcodekatas
-	Upgrade to VS2008
-	Add primitives
-	Add initial tests
+Version in my google code project ajcodekatas
+Upgrade to VS2008
+Add primitives
+Add initial tests
+
+2009-11-01
+Upgrade to Visual Studio 2008
+
+
 
