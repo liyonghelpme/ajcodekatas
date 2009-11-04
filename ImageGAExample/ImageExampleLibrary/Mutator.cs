@@ -31,27 +31,34 @@ namespace ImageExampleLibrary
             if ((random.Next() % 10) != 0)
                 return polygon;
 
-            Point[] newpoints = new Point[polygon.Points.Count];
-            for (int k = 0; k < polygon.Points.Count; k++)
+            Color newcolor = polygon.Color;
+            Point[] newpoints = new Point[polygon.Points.Length];
+
+            newcolor = MutateColor(polygon.Color);
+            for (int k = 0; k < newpoints.Length; k++)
                 newpoints[k] = MutatePoint(polygon.Points[k]);
 
-            Color newcolor = MutateColor(polygon.Color);
+            //Point[] newpoints = new Point[polygon.Points.Count];
+            //for (int k = 0; k < polygon.Points.Count; k++)
+            //    newpoints[k] = MutatePoint(polygon.Points[k]);
+
+            //Color newcolor = MutateColor(polygon.Color);
 
             return new Polygon(newpoints, newcolor);
         }
 
         private Point MutatePoint(Point point)
         {
-            Point newpoint = new Point(point.X + random.Next(6) - 3, point.Y + random.Next(6) - 3);
+            Point newpoint = new Point(point.X + random.Next(20) - 10, point.Y + random.Next(20) - 10);
             return newpoint;
         }
 
         private Color MutateColor(Color color)
         {
-            Color newcolor = Color.FromArgb((color.A + random.Next(6) - 3 + 256) % 256,
-                     (color.R + random.Next(6) - 3 + 256) % 256,
-                     (color.G + random.Next(6) - 3 + 256) % 256,
-                     (color.B + random.Next(6) - 3 + 256) % 256);
+            Color newcolor = Color.FromArgb((color.A + random.Next(20) - 10 + 256) % 256,
+                     (color.R + random.Next(20) - 10 + 256) % 256,
+                     (color.G + random.Next(20) - 10 + 256) % 256,
+                     (color.B + random.Next(20) - 10 + 256) % 256);
 
             return newcolor;
         }

@@ -59,7 +59,7 @@ namespace ImageExample
 
             this.evaluator = new Evaluator(this.bitmap);
 
-            this.population = CreateUtilities.CreatePopulation(50, width, height, (width / 10) * (height / 10), 3);
+            this.population = CreateUtilities.CreatePopulation(100, width, height, (width / 10) * (height / 10), 3);
 
             this.population.Evaluate(this.evaluator);
         }
@@ -69,6 +69,7 @@ namespace ImageExample
             image.DrawBitmap(this.bitmap2);
 
             this.picImage.Image = this.bitmap2;
+            this.lblDistance.Text = image.Distance.ToString();
         }
 
         private void drawNewImageToolStripMenuItem_Click(object sender, EventArgs e)

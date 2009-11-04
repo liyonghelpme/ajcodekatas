@@ -39,6 +39,7 @@
             this.mutateNewImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mutateToBetterImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lblDistance = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -128,11 +129,21 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // lblDistance
+            // 
+            this.lblDistance.AutoSize = true;
+            this.lblDistance.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblDistance.Location = new System.Drawing.Point(0, 251);
+            this.lblDistance.Name = "lblDistance";
+            this.lblDistance.Size = new System.Drawing.Size(0, 13);
+            this.lblDistance.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 264);
+            this.Controls.Add(this.lblDistance);
             this.Controls.Add(this.picImage);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -159,6 +170,7 @@
         private System.Windows.Forms.ToolStripMenuItem drawNewImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mutateNewImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mutateToBetterImageToolStripMenuItem;
+        private System.Windows.Forms.Label lblDistance;
     }
 }
 

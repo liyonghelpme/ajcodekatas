@@ -62,7 +62,8 @@ namespace ImageExampleLibrary
             for (int k = 0; k < newimages.Length / 2; k++)
             {
                 // newimages[k] = mutator.Mutate(newimages[k]);
-                newimages[k + newimages.Length / 2] = mutator.Mutate(newimages[k]);
+                // newimages[k + newimages.Length / 2] = mutator.Mutate(newimages[k]);
+                newimages[k + newimages.Length / 2] = newimages[k];
             }
 
             return new Population(newimages);

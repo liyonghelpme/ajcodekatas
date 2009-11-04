@@ -11,7 +11,7 @@ namespace ImageExampleLibrary
         private Point[] points;
         private Color color;
 
-        public IList<Point> Points { get { return this.points; } }
+        public Point[] Points { get { return this.points; } }
         public Color Color { get { return this.color; } }
 
         public Polygon(Point[] points, Color color)
