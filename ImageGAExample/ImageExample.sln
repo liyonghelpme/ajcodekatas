@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageExample", "ImageExample\ImageExample.csproj", "{49B9CD06-3138-4446-9148-E4C5EABE26FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageExampleLibrary", "ImageExampleLibrary\ImageExampleLibrary.csproj", "{80696C6C-97ED-4B25-AAA1-3CDD72844D28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49B9CD06-3138-4446-9148-E4C5EABE26FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B9CD06-3138-4446-9148-E4C5EABE26FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B9CD06-3138-4446-9148-E4C5EABE26FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B9CD06-3138-4446-9148-E4C5EABE26FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80696C6C-97ED-4B25-AAA1-3CDD72844D28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80696C6C-97ED-4B25-AAA1-3CDD72844D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80696C6C-97ED-4B25-AAA1-3CDD72844D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80696C6C-97ED-4B25-AAA1-3CDD72844D28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
