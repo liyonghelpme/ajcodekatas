@@ -202,5 +202,27 @@
             Assert.IsInstanceOfType(value, typeof(double));
             Assert.AreEqual(1.5, (double)value);
         }
+
+        [TestMethod]
+        public void EvaluateCompareEqualExpressions()
+        {
+            Assert.IsTrue((bool)(new CompareExpression(0, 0, CompareOperator.Equal)).Evaluate(null));
+            Assert.IsFalse((bool)(new CompareExpression(1, 0, CompareOperator.Equal)).Evaluate(null));
+            Assert.IsFalse((bool)(new CompareExpression(0, 1, CompareOperator.Equal)).Evaluate(null));
+            Assert.IsTrue((bool)(new CompareExpression("foo", "foo", CompareOperator.Equal)).Evaluate(null));
+            Assert.IsFalse((bool)(new CompareExpression("foo", "bar", CompareOperator.Equal)).Evaluate(null));
+            Assert.IsFalse((bool)(new CompareExpression("bar", "foo", CompareOperator.Equal)).Evaluate(null));
+        }
+
+        [TestMethod]
+        public void EvaluateCompareNotEqualExpressions()
+        {
+            Assert.IsFalse((bool)(new CompareExpression(0, 0, CompareOperator.NotEqual)).Evaluate(null));
+            Assert.IsTrue((bool)(new CompareExpression(1, 0, CompareOperator.NotEqual)).Evaluate(null));
+            Assert.IsTrue((bool)(new CompareExpression(0, 1, CompareOperator.NotEqual)).Evaluate(null));
+            Assert.IsFalse((bool)(new CompareExpression("foo", "foo", CompareOperator.NotEqual)).Evaluate(null));
+            Assert.IsTrue((bool)(new CompareExpression("foo", "bar", CompareOperator.NotEqual)).Evaluate(null));
+            Assert.IsTrue((bool)(new CompareExpression("bar", "foo", CompareOperator.NotEqual)).Evaluate(null));
+        }
     }
 }

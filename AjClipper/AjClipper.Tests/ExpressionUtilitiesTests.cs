@@ -26,6 +26,12 @@
         }
 
         [TestMethod]
+        public void ShouldEvaluateTrueAsNotFalse()
+        {
+            Assert.IsFalse(ExpressionUtilities.IsFalse(true));
+        }
+
+        [TestMethod]
         public void ShouldEvaluateTrue()
         {
             Assert.IsTrue(ExpressionUtilities.IsTrue("1"));

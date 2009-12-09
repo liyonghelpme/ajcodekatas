@@ -28,5 +28,31 @@
 
             Assert.AreEqual("bar", environment.GetValue("foo"));
         }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\SimpleIf.prg")]
+        public void ShouldParseAndEvaluateSimpleIf()
+        {
+            Parser parser = new Parser(File.OpenText("SimpleIf.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            Assert.AreEqual("positive", environment.GetValue("bar"));
+        }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\SimpleProcedure.prg")]
+        public void ShouldParseAndEvaluateSimpleProcedure()
+        {
+            Parser parser = new Parser(File.OpenText("SimpleProcedure.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment();
+
+            command.Execute(null, environment);
+
+            Assert.AreEqual("foo", environment.GetValue("bar"));
+        }
     }
 }

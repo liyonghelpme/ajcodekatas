@@ -186,7 +186,7 @@
         [TestMethod]
         public void ShouldParseTwoCharOperators()
         {
-            string operators = ":= == >= <= -> -- ++ += -= *= /= ^= %=";
+            string operators = ":= == >= <= -> -- ++ += -= *= /= ^= %= <> !=";
             Lexer lexer = new Lexer(operators);
 
             Token token;

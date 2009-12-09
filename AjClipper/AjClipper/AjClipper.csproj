@@ -65,7 +65,9 @@
     <Compile Include="Expressions\AddExpression.cs" />
     <Compile Include="Expressions\BaseExpression.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />
+    <Compile Include="Expressions\CompareOperator.cs" />
     <Compile Include="Expressions\ConstantExpression.cs" />
+    <Compile Include="Expressions\CompareExpression.cs" />
     <Compile Include="Expressions\DivideExpression.cs" />
     <Compile Include="Expressions\MultiplyExpression.cs" />
     <Compile Include="Expressions\ExpressionUtilities.cs" />

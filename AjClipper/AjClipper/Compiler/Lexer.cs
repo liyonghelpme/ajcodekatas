@@ -8,11 +8,11 @@
 
     public class Lexer
     {
-        private const string SingleCharOperators = "=$%+-*/:><#^";
+        private const string SingleCharOperators = "=$%+-*/:><#^!";
 
         private const string SingleCharDelimiters = "[]{},()";
 
-        private static string[] twoCharOperators = new string[] { ":=", "==", ">=", "<=", "->", "--", "++", "+=", "-=", "*=", "/=", "^=", "%=" };
+        private static string[] twoCharOperators = new string[] { ":=", "==", ">=", "<=", "<>", "!=", "->", "--", "++", "+=", "-=", "*=", "/=", "^=", "%=" };
 
         private TextReader reader;
         private Stack<char> stackedChars = new Stack<char>();

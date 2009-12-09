@@ -35,7 +35,7 @@
 
         public IExpression ParseExpression()
         {
-            return this.ParseBinaryExpressionLevel1();
+            return this.ParseBinaryExpressionLevel0();
         }
 
         public ICommand ParseCommandList(params string[] terminators)
@@ -59,9 +59,39 @@
             return commands;
         }
 
+        private IExpression ParseBinaryExpressionLevel0()
+        {
+            IExpression expression = this.ParseBinaryExpressionLevel1();
+
+            Token token = this.lexer.NextToken();
+
+            while (token != null && token.TokenType == TokenType.Operator && (token.Value == ">" || token.Value == "<" || token.Value == "<=" || token.Value == ">=" || token.Value == "<>" || token.Value == "!=" || token.Value == "=="))
+            {
+                if (token.Value == ">")
+                    expression = new CompareExpression(expression, this.ParseBinaryExpressionLevel1(), CompareOperator.Greater);
+                else if (token.Value == "<")
+                    expression = new CompareExpression(expression, this.ParseBinaryExpressionLevel1(), CompareOperator.Less);
+                else if (token.Value == ">=")
+                    expression = new CompareExpression(expression, this.ParseBinaryExpressionLevel1(), CompareOperator.GreaterEqual);
+                else if (token.Value == "<=")
+                    expression = new CompareExpression(expression, this.ParseBinaryExpressionLevel1(), CompareOperator.LessEqual);
+                else if (token.Value == "<>" || token.Value == "!=")
+                    expression = new CompareExpression(expression, this.ParseBinaryExpressionLevel1(), CompareOperator.NotEqual);
+                else if (token.Value == "==")
+                    expression = new CompareExpression(expression, this.ParseBinaryExpressionLevel1(), CompareOperator.Equal);
+
+                token = this.lexer.NextToken();
+            }
+
+            if (token != null)
+                this.lexer.PushToken(token);
+
+            return expression;
+        }
+
         private IExpression ParseBinaryExpressionLevel1()
         {
-            IExpression expression = this.ParseSimpleExpression();
+            IExpression expression = this.ParseBinaryExpressionLevel2();
 
             Token token = this.lexer.NextToken();
 

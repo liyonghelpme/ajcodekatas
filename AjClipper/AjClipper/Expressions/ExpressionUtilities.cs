@@ -18,7 +18,7 @@
                 return true;
 
             if (value is bool)
-                return (bool)value;
+                return (bool)value == false;
 
             if (value is string)
                 return string.IsNullOrEmpty((string)value);

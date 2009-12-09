@@ -430,5 +430,103 @@
 
             parser.ParseCommand();
         }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateSimpleEqualExpression()
+        {
+            Parser parser = new Parser("1==2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(CompareExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(bool));
+            Assert.AreEqual(false, expression.Evaluate(null));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateSimpleGreaterExpression()
+        {
+            Parser parser = new Parser("1>2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(CompareExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(bool));
+            Assert.AreEqual(false, expression.Evaluate(null));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateGreaterExpression()
+        {
+            Parser parser = new Parser("1+3>2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(CompareExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(bool));
+            Assert.AreEqual(true, expression.Evaluate(null));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateSimpleLessExpression()
+        {
+            Parser parser = new Parser("1<2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(CompareExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(bool));
+            Assert.AreEqual(true, expression.Evaluate(null));
+        }
+
+        [TestMethod]
+        public void ShouldParseAndEvaluateLessExpression()
+        {
+            Parser parser = new Parser("1+3<2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(CompareExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(bool));
+            Assert.AreEqual(false, expression.Evaluate(null));
+        }
+
+        [TestMethod]
+        public void ParseAndEvaluateIntegerComparisons()
+        {
+            Assert.IsTrue(ParseAndEvaluateBoolean("1<2"));
+            Assert.IsTrue(ParseAndEvaluateBoolean("2==2"));
+            Assert.IsTrue(ParseAndEvaluateBoolean("2>1"));
+
+            Assert.IsTrue(ParseAndEvaluateBoolean("1<=2"));
+            Assert.IsFalse(ParseAndEvaluateBoolean("2<>2"));
+            Assert.IsFalse(ParseAndEvaluateBoolean("2!=2"));
+            Assert.IsTrue(ParseAndEvaluateBoolean("2>=1"));
+        }
+
+        [TestMethod]
+        public void ParseAndEvaluateStringComparisons()
+        {
+            Assert.IsTrue(ParseAndEvaluateBoolean("\"bar\"<\"foo\""));
+            Assert.IsTrue(ParseAndEvaluateBoolean("\"bar\"==\"bar\""));
+            Assert.IsFalse(ParseAndEvaluateBoolean("\"bar\">\"foo\""));
+
+            Assert.IsFalse(ParseAndEvaluateBoolean("\"foo\"<=\"bar\""));
+            Assert.IsFalse(ParseAndEvaluateBoolean("\"bar\"<>\"bar\""));
+            Assert.IsFalse(ParseAndEvaluateBoolean("\"bar\"!=\"bar\""));
+            Assert.IsFalse(ParseAndEvaluateBoolean("\"bar\">=\"foo\""));
+        }
+
+        private static bool ParseAndEvaluateBoolean(string text)
+        {
+            Parser parser = new Parser(text);
+            IExpression expression = parser.ParseExpression();
+            return (bool)expression.Evaluate(null);
+        }
     }
 }
