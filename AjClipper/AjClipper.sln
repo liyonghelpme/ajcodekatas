@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		AjClipper.vsmdi = AjClipper.vsmdi
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Todo.txt = Todo.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjClipper.Console", "AjClipper.Console\AjClipper.Console.csproj", "{D31B2D55-E922-4D85-88D1-D849E85710F1}"
