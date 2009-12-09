@@ -28,3 +28,5 @@ CompareExpression w/Tests
 Compare in Parser w/Tests
 SimpleIf.prg
 SimpleProcedure.prg Work in progress
+Local, Public, Normal environments with tests
+Define local and public variables in environments with tests

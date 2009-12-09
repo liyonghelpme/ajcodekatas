@@ -10,7 +10,7 @@
         private ValueEnvironment environment;
 
         public Machine()
-            : this(new ValueEnvironment())
+            : this(new ValueEnvironment(ValueEnvironmentType.Public))
         {
         }
 
