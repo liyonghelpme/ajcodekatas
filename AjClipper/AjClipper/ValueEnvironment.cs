@@ -5,6 +5,13 @@
     using System.Linq;
     using System.Text;
 
+    public enum ValueEnvironmentType
+    {
+        Normal,
+        Public,
+        Local
+    }
+
     public class ValueEnvironment
     {
         private ValueEnvironmentType type;
@@ -129,12 +136,5 @@
 
             return null;
         }
-    }
-
-    public enum ValueEnvironmentType
-    {
-        Normal,
-        Public,
-        Local
     }
 }

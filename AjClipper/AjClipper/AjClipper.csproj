@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\CompositeCommand.cs" />
+    <Compile Include="Commands\PublicCommand.cs" />
     <Compile Include="Commands\DoProcedureCommand.cs" />
     <Compile Include="Commands\IfCommand.cs" />
     <Compile Include="Commands\PrintLineCommand.cs" />

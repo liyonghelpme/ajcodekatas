@@ -103,8 +103,7 @@
                         expression = new AddExpression(expression, this.ParseBinaryExpressionLevel2());
                         break;
                     case '-':
-                        expression = new SubtractExpression(expression, this.ParseBinaryExpressionLevel2
-());
+                        expression = new SubtractExpression(expression, this.ParseBinaryExpressionLevel2());
                         break;
                 }
 
@@ -131,8 +130,7 @@
                         expression = new MultiplyExpression(expression, this.ParseSimpleExpression());
                         break;
                     case '/':
-                        expression = new DivideExpression(expression, this.ParseSimpleExpression
-());
+                        expression = new DivideExpression(expression, this.ParseSimpleExpression());
                         break;
                 }
 
@@ -189,15 +187,16 @@
                 if (token.Value == "do")
                     return this.ParseDoProcedureCommand();
 
+                if (token.Value == "public")
+                    return this.ParsePublicCommand();
+
                 Token token2 = this.lexer.NextToken();
 
                 if (token2 != null && (token2.Value == ":=" || token2.Value == "="))
                     return new SetVariableCommand(token.Value, this.ParseExpression());
             }
 
-            this.lexer.PushToken(token);
-
-            return null;
+            throw new ParserException(string.Format("Unexpected token {0}", token.Value));
         }
 
         private ICommand ParseWhileCommand()
@@ -209,6 +208,13 @@
 
             this.lexer.NextToken();
             return whileCommand;
+        }
+
+        private ICommand ParsePublicCommand()
+        {
+            List<string> names = this.ParseNameList();
+
+            return new PublicCommand(names);
         }
 
         private ICommand ParseDoProcedureCommand()
@@ -268,6 +274,38 @@
             return names;
         }
 
+        private List<string> ParseNameList()
+        {
+            List<string> names = new List<string>();
+
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return names;
+
+            this.lexer.PushToken(token);
+
+            string name;
+
+            name = this.ParseName();
+            names.Add(name);
+
+            token = this.lexer.NextToken();
+
+            while (token != null && token.Value == ",")
+            {
+                name = this.ParseName();
+                names.Add(name);
+
+                token = this.lexer.NextToken();
+            }
+
+            if (token != null)
+                this.lexer.PushToken(token);
+
+            return names;
+        }
+
         private List<IExpression> ParseArguments()
         {
             List<IExpression> arguments = new List<IExpression>();
@@ -285,10 +323,12 @@
 
             token = this.lexer.NextToken();
 
-            if (token != null && token.TokenType == TokenType.Delimiter && token.Value != ")")
-                this.lexer.PushToken(token);
+            if (token != null && token.TokenType == TokenType.Delimiter && token.Value == ")")
+                return arguments;
 
-            while (token != null && token.TokenType == TokenType.Delimiter && token.Value != ")")
+            this.lexer.PushToken(token);
+
+            while (token == null || token.TokenType != TokenType.Delimiter || token.Value != ")")
             {
                 arguments.Add(this.ParseExpression());
 

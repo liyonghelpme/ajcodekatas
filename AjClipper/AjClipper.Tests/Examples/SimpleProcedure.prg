@@ -1,5 +1,3 @@
-﻿do SetBar()
-
-procedure SetBar
+﻿procedure SetBar
 bar := "foo"
 return

@@ -539,22 +539,39 @@
             Assert.AreEqual(0, docmd.Arguments.Count);
         }
 
-        //[TestMethod]
-        //public void ParseDoProcedureWithArguments()
-        //{
-        //    Parser parser = new Parser("do FooProcedure(1,2)");
+        [TestMethod]
+        public void ParseDoProcedureWithArguments()
+        {
+            Parser parser = new Parser("do FooProcedure(1, 2)");
 
-        //    ICommand command = parser.ParseCommand();
+            ICommand command = parser.ParseCommand();
 
-        //    Assert.IsNotNull(command);
-        //    Assert.IsInstanceOfType(command, typeof(DoProcedureCommand));
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(DoProcedureCommand));
 
-        //    DoProcedureCommand docmd = (DoProcedureCommand)command;
+            DoProcedureCommand docmd = (DoProcedureCommand)command;
 
-        //    Assert.AreEqual("fooprocedure", docmd.Name);
-        //    Assert.IsNotNull(docmd.Arguments);
-        //    Assert.AreEqual(2, docmd.Arguments.Count);
-        //}
+            Assert.AreEqual("fooprocedure", docmd.Name);
+            Assert.IsNotNull(docmd.Arguments);
+            Assert.AreEqual(2, docmd.Arguments.Count);
+        }
+
+        [TestMethod]
+        public void ParsePublicVariables()
+        {
+            Parser parser = new Parser("public foo, bar");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(PublicCommand));
+
+            PublicCommand pubcmd = (PublicCommand)command;
+
+            Assert.AreEqual(2, pubcmd.Names.Count);
+            Assert.AreEqual("foo", pubcmd.Names.First());
+            Assert.AreEqual("bar", pubcmd.Names.Skip(1).First());
+        }
 
         private static bool ParseAndEvaluateBoolean(string text)
         {
