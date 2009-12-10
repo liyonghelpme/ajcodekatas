@@ -186,6 +186,9 @@
                 if (token.Value == "procedure")
                     return this.ParseProcedureCommand();
 
+                if (token.Value == "do")
+                    return this.ParseDoProcedureCommand();
+
                 Token token2 = this.lexer.NextToken();
 
                 if (token2 != null && (token2.Value == ":=" || token2.Value == "="))
@@ -208,10 +211,18 @@
             return whileCommand;
         }
 
+        private ICommand ParseDoProcedureCommand()
+        {
+            string name = this.ParseName();
+            IList<IExpression> arguments = this.ParseArguments();
+
+            return new DoProcedureCommand(name, arguments);
+        }
+
         private ICommand ParseProcedureCommand()
         {
             string name = this.ParseName();
-            List<string> parameterNames = this.ParseParameterList();
+            List<string> parameterNames = this.ParseParameterNameList();
             ICommand command = this.ParseCommandList("return");
 
             ProcedureCommand procedureCommand = new ProcedureCommand(name, parameterNames, command);
@@ -221,7 +232,7 @@
             return procedureCommand;
         }
 
-        private List<string> ParseParameterList()
+        private List<string> ParseParameterNameList()
         {
             List<string> names = new List<string>();
 
@@ -255,6 +266,42 @@
                 throw new ParserException("')' expected");
 
             return names;
+        }
+
+        private List<IExpression> ParseArguments()
+        {
+            List<IExpression> arguments = new List<IExpression>();
+
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return arguments;
+
+            if (token.Value != "(")
+            {
+                this.lexer.PushToken(token);
+                return arguments;
+            }
+
+            token = this.lexer.NextToken();
+
+            if (token != null && token.TokenType == TokenType.Delimiter && token.Value != ")")
+                this.lexer.PushToken(token);
+
+            while (token != null && token.TokenType == TokenType.Delimiter && token.Value != ")")
+            {
+                arguments.Add(this.ParseExpression());
+
+                token = this.lexer.NextToken();
+
+                if (token == null || token.TokenType != TokenType.Delimiter || token.Value != ",")
+                    break;
+            }
+
+            if (token == null || token.TokenType != TokenType.Delimiter || token.Value != ")")
+                throw new ParserException("')' expected");
+
+            return arguments;
         }
 
         private ICommand ParseIfCommand()

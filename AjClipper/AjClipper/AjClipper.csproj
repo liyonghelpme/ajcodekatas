@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\CompositeCommand.cs" />
+    <Compile Include="Commands\DoProcedureCommand.cs" />
     <Compile Include="Commands\IfCommand.cs" />
     <Compile Include="Commands\PrintLineCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Expressions\NameExpression.cs" />
     <Compile Include="Expressions\SubtractExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
+    <Compile Include="Language\Procedure.cs" />
     <Compile Include="ValueEnvironment.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

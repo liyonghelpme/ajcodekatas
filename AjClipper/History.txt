@@ -30,3 +30,8 @@ SimpleIf.prg
 SimpleProcedure.prg Work in progress
 Local, Public, Normal environments with tests
 Define local and public variables in environments with tests
+
+2009-12-10
+Procedure
+DoProcedureCommand
+Parse do with initial tests

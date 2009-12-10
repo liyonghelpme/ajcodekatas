@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using AjClipper.Language;
 
     public class ProcedureCommand : BaseCommand
     {
@@ -24,7 +25,8 @@
 
         public override void Execute(Machine machine, ValueEnvironment environment)
         {
-            this.command.Execute(machine, environment);
+            Procedure procedure = new Procedure(this.name, this.parameterNames, this.command, machine, environment);
+            environment.SetPublicValue(this.name, procedure);
         }
     }
 }

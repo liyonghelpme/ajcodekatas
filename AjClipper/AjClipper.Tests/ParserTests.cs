@@ -16,7 +16,7 @@
     public class ParserTests
     {
         [TestMethod]
-        public void ShouldParsePrintLineCommand()
+        public void ParsePrintLineCommand()
         {
             Parser parser = new Parser("? \"Hello World\"");
 
@@ -27,7 +27,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndExecutePrintLineCommand()
+        public void ParseAndExecutePrintLineCommand()
         {
             Parser parser = new Parser("? \"Hello World\"");
 
@@ -49,7 +49,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndExecutePrintLineCommandWithListOfExpressions()
+        public void ParseAndExecutePrintLineCommandWithListOfExpressions()
         {
             Parser parser = new Parser("? \"Hello\", \" \", \"World\"");
 
@@ -71,7 +71,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndExecuteSetVariableCommand()
+        public void ParseAndExecuteSetVariableCommand()
         {
             Parser parser = new Parser("foo := \"bar\"");
 
@@ -85,7 +85,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseSimpleIfCommand()
+        public void ParseSimpleIfCommand()
         {
             Parser parser = new Parser("if 0\r\n  a:=1\r\nendif");
 
@@ -98,7 +98,7 @@
         }
 
         [TestMethod]
-        public void ShouldExecuteSimpleIfCommand()
+        public void ExecuteSimpleIfCommand()
         {
             Parser parser = new Parser("if 1\r\n  a:=1\r\nendif");
 
@@ -115,7 +115,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseIfCommandWithMultipleCommands()
+        public void ParseIfCommandWithMultipleCommands()
         {
             Parser parser = new Parser("if 0\r\n  a:=1\r\n  b:=1\r\nendif");
 
@@ -128,7 +128,7 @@
         }
 
         [TestMethod]
-        public void ShouldExecuteIfCommandWithMultipleCommands()
+        public void ExecuteIfCommandWithMultipleCommands()
         {
             Parser parser = new Parser("if 1\r\n  a:=1\r\n  b:=2\r\nendif");
 
@@ -152,7 +152,7 @@
         }
 
         [TestMethod]
-        public void ShouldSkipIfCommandsIfFalse()
+        public void SkipIfCommandsIfFalse()
         {
             Parser parser = new Parser("if 0\r\n  a:=1\r\n  b:=2\r\nendif");
 
@@ -172,7 +172,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseIfCommandWithElse()
+        public void ParseIfCommandWithElse()
         {
             Parser parser = new Parser("if 0\r\n  a:=1\r\nelse\r\n  a:=2\r\nendif");
 
@@ -185,7 +185,7 @@
         }
 
         [TestMethod]
-        public void ShouldExecuteIfCommandWithElse()
+        public void ExecuteIfCommandWithElse()
         {
             Parser parser = new Parser("if 0\r\n  a:=1\r\nelse\r\n  a:=2\r\nendif");
 
@@ -202,7 +202,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseIfCommandWithElseIf()
+        public void ParseIfCommandWithElseIf()
         {
             Parser parser = new Parser("if 0\r\n  a:=1\r\nelseif 1\r\n  a:=2\r\nendif");
 
@@ -215,7 +215,7 @@
         }
 
         [TestMethod]
-        public void ShouldExecuteIfCommandWithElseIf()
+        public void ExecuteIfCommandWithElseIf()
         {
             Parser parser = new Parser("if 0\r\n  a:=1\r\nelseif 1\r\n  a:=2\r\nendif");
 
@@ -232,7 +232,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseSimpleWhile()
+        public void ParseSimpleWhile()
         {
             Parser parser = new Parser("while 1\r\n a:=1\r\nenddo");
 
@@ -245,7 +245,7 @@
         }
 
         [TestMethod]
-        public void ShouldExecuteSimpleWhile()
+        public void ExecuteSimpleWhile()
         {
             Parser parser = new Parser("while a\r\n a:=0\r\nenddo");
 
@@ -263,7 +263,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateIntegerExpression()
+        public void ParseAndEvaluateIntegerExpression()
         {
             Parser parser = new Parser("123");
 
@@ -276,7 +276,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateStringExpression()
+        public void ParseAndEvaluateStringExpression()
         {
             Parser parser = new Parser("\"foo\"");
 
@@ -289,7 +289,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateNameExpression()
+        public void ParseAndEvaluateNameExpression()
         {
             Parser parser = new Parser("foo");
 
@@ -304,7 +304,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateAddExpression()
+        public void ParseAndEvaluateAddExpression()
         {
             Parser parser = new Parser("1+2");
 
@@ -317,7 +317,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateAddVariablesExpression()
+        public void ParseAndEvaluateAddVariablesExpression()
         {
             Parser parser = new Parser("a+b");
 
@@ -333,7 +333,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateSubtractExpression()
+        public void ParseAndEvaluateSubtractExpression()
         {
             Parser parser = new Parser("1-2");
 
@@ -346,7 +346,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateSubtractVariablesExpression()
+        public void ParseAndEvaluateSubtractVariablesExpression()
         {
             Parser parser = new Parser("a-b");
 
@@ -362,7 +362,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateArithmeticExpression()
+        public void ParseAndEvaluateArithmeticExpression()
         {
             Parser parser = new Parser("1+2*3");
 
@@ -375,7 +375,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseSimpleProcedure()
+        public void ParseSimpleProcedure()
         {
             Parser parser = new Parser("Procedure DoBar\r\na := 1\r\nreturn");
 
@@ -386,7 +386,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseSimpleProcedureWithParameter()
+        public void ParseSimpleProcedureWithParameter()
         {
             Parser parser = new Parser("Procedure DoBar(b)\r\na := b\r\nreturn");
 
@@ -404,7 +404,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseSimpleProcedureWithTwoParameters()
+        public void ParseSimpleProcedureWithTwoParameters()
         {
             Parser parser = new Parser("Procedure DoBar(b,c)\r\na := b+c\r\nreturn");
 
@@ -424,7 +424,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(ParserException))]
-        public void ShouldRaiseIfIncompleteParameterList()
+        public void RaiseIfIncompleteParameterList()
         {
             Parser parser = new Parser("Procedure DoBar(b,c\r\na := b+c\r\nreturn");
 
@@ -432,7 +432,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateSimpleEqualExpression()
+        public void ParseAndEvaluateSimpleEqualExpression()
         {
             Parser parser = new Parser("1==2");
 
@@ -445,7 +445,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateSimpleGreaterExpression()
+        public void ParseAndEvaluateSimpleGreaterExpression()
         {
             Parser parser = new Parser("1>2");
 
@@ -458,7 +458,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateGreaterExpression()
+        public void ParseAndEvaluateGreaterExpression()
         {
             Parser parser = new Parser("1+3>2");
 
@@ -471,7 +471,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateSimpleLessExpression()
+        public void ParseAndEvaluateSimpleLessExpression()
         {
             Parser parser = new Parser("1<2");
 
@@ -484,7 +484,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseAndEvaluateLessExpression()
+        public void ParseAndEvaluateLessExpression()
         {
             Parser parser = new Parser("1+3<2");
 
@@ -521,6 +521,40 @@
             Assert.IsFalse(ParseAndEvaluateBoolean("\"bar\"!=\"bar\""));
             Assert.IsFalse(ParseAndEvaluateBoolean("\"bar\">=\"foo\""));
         }
+
+        [TestMethod]
+        public void ParseDoProcedure()
+        {
+            Parser parser = new Parser("do FooProcedure()");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(DoProcedureCommand));
+
+            DoProcedureCommand docmd = (DoProcedureCommand)command;
+
+            Assert.AreEqual("fooprocedure", docmd.Name);
+            Assert.IsNotNull(docmd.Arguments);
+            Assert.AreEqual(0, docmd.Arguments.Count);
+        }
+
+        //[TestMethod]
+        //public void ParseDoProcedureWithArguments()
+        //{
+        //    Parser parser = new Parser("do FooProcedure(1,2)");
+
+        //    ICommand command = parser.ParseCommand();
+
+        //    Assert.IsNotNull(command);
+        //    Assert.IsInstanceOfType(command, typeof(DoProcedureCommand));
+
+        //    DoProcedureCommand docmd = (DoProcedureCommand)command;
+
+        //    Assert.AreEqual("fooprocedure", docmd.Name);
+        //    Assert.IsNotNull(docmd.Arguments);
+        //    Assert.AreEqual(2, docmd.Arguments.Count);
+        //}
 
         private static bool ParseAndEvaluateBoolean(string text)
         {
