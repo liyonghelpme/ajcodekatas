@@ -7,11 +7,11 @@
 
     using AjClipper.Expressions;
 
-    public class PublicCommand : BaseCommand
+    public class PrivateCommand : BaseCommand
     {
         private ICollection<string> names;
 
-        public PublicCommand(ICollection<string> names)
+        public PrivateCommand(ICollection<string> names)
         {
             this.names = names;
         }
@@ -20,11 +20,11 @@
 
         public override void Execute(Machine machine, ValueEnvironment environment)
         {
-            ValueEnvironment pubenv = environment.GetPublicEnvironment();
+            ValueEnvironment privateenv = environment.GetNormalEnvironment();
 
             foreach (string name in this.names)
-                if (pubenv.GetValue(name) == null)
-                    pubenv.SetEnvironmentValue(name, null);
+                if (privateenv.GetValue(name) == null)
+                    privateenv.SetEnvironmentValue(name, null);
         }
     }
 }

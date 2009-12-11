@@ -1,0 +1,64 @@
+[<<Previous Entry] <ngc26c8.html> [^^Up^^] <nga979b.html> [Next Entry>>]
+<ngc340a.html> [Menu] <menu.html> [About The Guide] <info.html>
+------------------------------------------------------------------------
+
+ *COMMIT*
+ Perform a solid-disk write for all active work areas
+------------------------------------------------------------------------------
+ *Syntax*
+
+     *COMMIT*
+
+ *Description*
+
+     COMMIT is a database command that flushes CA-Clipper buffers and
+     performs a solid-disk write for all work areas with open database and
+     index files.  The solid-disk write capability is available under DOS
+     version 3.3 and above.  Under DOS 3.2 or less, COMMIT flushes CA-Clipper
+     buffers to DOS.
+
+     In a network environment, issuing a GO TO RECNO() or a SKIP0 will flush
+     CA-Clipper's database and index buffers, but only a COMMIT will flush
+     the buffers and perform a solid-disk write.  Thus to insure updates are
+     visible to other processes, you must issue a COMMIT after all database
+     update commands (e.g., APPEND, REPLACE).  To insure data integrity,
+     COMMIT should be issued before an UNLOCK operation.  Refer to the
+     "Network Programming" chapter in the Programming and Utilities Guide for
+     more information on update visibility.
+
+ *Notes*
+
+     *.*  COMMIT uses DOS interrupt 21h function 68h to perform the
+        solid-disk write.  It is up to the network operating system to
+        properly implement this request.  Check with the network vendor to
+        see if this is supported.
+
+ *Examples*
+
+     *.*  In this example, COMMIT forces a write to disk after a series
+        of memory variables are assigned to field variables:
+
+        USE Sales EXCLUSIVE NEW
+        MEMVAR->Name := Sales->Name
+        MEMVAR->Amount := Sales->Amount
+        //
+        @ 10, 10 GET MEMVAR->Name
+        @ 11, 10 GET MEMVAR->Amount
+        READ
+        //
+        IF UPDATED()
+           APPEND BLANK
+           REPLACE Sales->Name WITH MEMVAR->Name
+           REPLACE Sales->Amount WITH MEMVAR->Amount
+           COMMIT
+        ENDIF
+
+ *Files*   Library is CLIPPER.LIB.
+
+------------------------------------------------------------------------
+*See Also:* DBCOMMIT() <ng1df26.html> DBCOMMITALL() <ng1e62d.html> GO
+<ngcc35b.html> SKIP <ngf31ef.html>
+------------------------------------------------------------------------
+This page created by ng2html v1.05, the Norton guide to HTML conversion
+utility. Written by Dave Pearson <http://www.acemake.com/hagbard>
+------------------------------------------------------------------------

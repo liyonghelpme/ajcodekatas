@@ -57,6 +57,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Examples\SimplePrivateVariable.prg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Examples\SimpleLocalVariable.prg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Examples\SimplePublicVariable.prg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

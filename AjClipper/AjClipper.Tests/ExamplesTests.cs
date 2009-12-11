@@ -71,5 +71,32 @@
 
             Assert.AreEqual("foo", environment.GetValue("bar"));
         }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\SimpleLocalVariable.prg")]
+        public void ParseAndEvaluateSimpleLocalVariable()
+        {
+            Parser parser = new Parser(File.OpenText("SimpleLocalVariable.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment(ValueEnvironmentType.Public);
+
+            command.Execute(null, environment);
+
+            Assert.AreEqual("publicbar", environment.GetValue("bar"));
+            Assert.AreEqual("localbar", environment.GetValue("foo"));
+        }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\SimplePrivateVariable.prg")]
+        public void ParseAndEvaluateSimplePrivateVariable()
+        {
+            Parser parser = new Parser(File.OpenText("SimplePrivateVariable.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment(ValueEnvironmentType.Public);
+
+            command.Execute(null, environment);
+
+            Assert.AreEqual("privatebar", environment.GetValue("foo"));
+        }
     }
 }

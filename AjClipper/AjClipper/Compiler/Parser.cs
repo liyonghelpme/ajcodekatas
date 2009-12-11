@@ -190,6 +190,12 @@
                 if (token.Value == "public")
                     return this.ParsePublicCommand();
 
+                if (token.Value == "local")
+                    return this.ParseLocalCommand();
+
+                if (token.Value == "private")
+                    return this.ParsePrivateCommand();
+
                 Token token2 = this.lexer.NextToken();
 
                 if (token2 != null && (token2.Value == ":=" || token2.Value == "="))
@@ -215,6 +221,20 @@
             List<string> names = this.ParseNameList();
 
             return new PublicCommand(names);
+        }
+
+        private ICommand ParseLocalCommand()
+        {
+            List<string> names = this.ParseNameList();
+
+            return new LocalCommand(names);
+        }
+
+        private ICommand ParsePrivateCommand()
+        {
+            List<string> names = this.ParseNameList();
+
+            return new PrivateCommand(names);
         }
 
         private ICommand ParseDoProcedureCommand()

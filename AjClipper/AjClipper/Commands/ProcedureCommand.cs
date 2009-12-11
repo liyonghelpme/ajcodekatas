@@ -25,7 +25,7 @@
 
         public override void Execute(Machine machine, ValueEnvironment environment)
         {
-            Procedure procedure = new Procedure(this.name, this.parameterNames, this.command, machine, environment);
+            Procedure procedure = new Procedure(this.name, this.parameterNames, this.command, machine);
             environment.SetPublicValue(this.name, procedure);
         }
     }

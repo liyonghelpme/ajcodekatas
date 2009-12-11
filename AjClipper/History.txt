@@ -42,3 +42,5 @@ Parse public var1,var2 w/test
 
 2009-12-11
 Public variable with test SimplePublicVariable.prg
+PrivateCommand, LocalCommand with tests
+Private, local, public variables with tests

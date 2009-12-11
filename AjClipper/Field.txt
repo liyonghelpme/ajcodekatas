@@ -1,0 +1,78 @@
+[<<Previous Entry] <ng101299.html> [^^Up^^] <ngfbcd2.html> [Next
+Entry>>] <ng102596.html> [Menu] <menu.html> [About The Guide] <info.html>
+------------------------------------------------------------------------
+
+ *FIELD*
+ Declare database field names
+------------------------------------------------------------------------------
+ *Syntax*
+
+     *FIELD <idField list> [IN <idAlias>]*
+
+ *Arguments*
+
+     *<idField list>* is a list of names to declare as fields to the
+     compiler.
+
+     *IN <idAlias>* specifies an alias to assume when there are unaliased
+     references to the names specified in the <idField list>.  Unaliased
+     references to variables in <idField list> are treated as if they are
+     preceded by the special field alias (FIELD->).
+
+ *Description*
+
+     The FIELD statement declares the names of database fields to the
+     compiler, and optionally supplies an implicit alias for each name.  This
+     allows the compiler to resolve references to variables with no explicit
+     alias--by implicitly assuming the specified <idAlias>.  Only explicit,
+     unaliased references to the specified fields in the <idField list> are
+     affected.  The FIELD statement, like all declarations, has no effect on
+     references made within macro expressions or variables.
+
+     The FIELD statement neither opens a database file nor verifies the
+     existence of the specified fields.  It is useful primarily to ensure
+     correct references to fields whose accessibility is known at runtime.
+     Attempting to access the fields when the associated database is not in
+     USE will cause an error.
+
+     The scope of the FIELD declaration is the procedure or function in which
+     it occurs, or the entire program (.prg) file if the declaration precedes
+     all PROCEDURE or FUNCTION declarations and the /N compiler option is
+     specified.
+
+     FIELD statements, like other declarations, must precede any executable
+     statements in the procedure or function definition or the program (.prg)
+     file if the declaration has filewide scope.
+
+     FIELD used with the /W compiler option performs compile-time checking
+     for undeclared variables.
+
+     For more information on variable declarations and scoping, refer to the
+     Variables section in the "Basic Concepts" chapter of the Programming and
+     Utilities Guide.
+
+ *Examples*
+
+     *.*  This user-defined function includes statements to declare
+        database field names in both the current and Employee work areas:
+
+        FUNCTION DisplayRecord
+           FIELD CustNo, OrderNo, Salesman
+           FIELD EmpName, EmpCode IN Employee
+           USE Employee NEW
+           USE Orders NEW
+           //
+           ? CustNo               // Refers to Orders->CustNo
+           ? EmpName              // Refers to Employee->EmpName
+           //
+           CLOSE Orders
+           CLOSE Employee
+           RETURN NIL
+
+------------------------------------------------------------------------
+*See Also:* FUNCTION <ng10316b.html> LOCAL <ng106eaa.html> MEMVAR
+<ng1082ed.html> PROCEDURE <ng10a778.html> STATIC <ng10ec05.html>
+------------------------------------------------------------------------
+This page created by ng2html v1.05, the Norton guide to HTML conversion
+utility. Written by Dave Pearson <http://www.acemake.com/hagbard>
+------------------------------------------------------------------------

@@ -573,6 +573,40 @@
             Assert.AreEqual("bar", pubcmd.Names.Skip(1).First());
         }
 
+        [TestMethod]
+        public void ParseLocalVariables()
+        {
+            Parser parser = new Parser("local foo, bar");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(LocalCommand));
+
+            LocalCommand localcmd = (LocalCommand)command;
+
+            Assert.AreEqual(2, localcmd.Names.Count);
+            Assert.AreEqual("foo", localcmd.Names.First());
+            Assert.AreEqual("bar", localcmd.Names.Skip(1).First());
+        }
+
+        [TestMethod]
+        public void ParsePrivateVariables()
+        {
+            Parser parser = new Parser("private foo, bar");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(PrivateCommand));
+
+            PrivateCommand privatecmd = (PrivateCommand)command;
+
+            Assert.AreEqual(2, privatecmd.Names.Count);
+            Assert.AreEqual("foo", privatecmd.Names.First());
+            Assert.AreEqual("bar", privatecmd.Names.Skip(1).First());
+        }
+
         private static bool ParseAndEvaluateBoolean(string text)
         {
             Parser parser = new Parser(text);

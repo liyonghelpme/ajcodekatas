@@ -13,20 +13,18 @@
         private List<string> parameterNames;
         private ICommand command;
         private Machine machine;
-        private ValueEnvironment environment;
 
-        public Procedure(string name, List<string> parameterNames, ICommand command, Machine machine, ValueEnvironment environment)
+        public Procedure(string name, List<string> parameterNames, ICommand command, Machine machine)
         {
             this.name = name;
             this.parameterNames = parameterNames;
             this.command = command;
             this.machine = machine;
-            this.environment = environment;
         }
 
-        public object Apply(IList<object> parameters)
+        public object Apply(IList<object> parameters, ValueEnvironment environment)
         {
-            ValueEnvironment normalenv = new ValueEnvironment(this.environment);
+            ValueEnvironment normalenv = new ValueEnvironment(environment);
 
             ValueEnvironment localenv = new ValueEnvironment(normalenv, ValueEnvironmentType.Local);
 

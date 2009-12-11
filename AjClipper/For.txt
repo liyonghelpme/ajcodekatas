@@ -1,0 +1,92 @@
+[<<Previous Entry] <ng101b88.html> [^^Up^^] <ngfbcd2.html> [Next
+Entry>>] <ng10316b.html> [Menu] <menu.html> [About The Guide] <info.html>
+------------------------------------------------------------------------
+
+ *FOR*
+ Execute a block of statements a specified number of times
+------------------------------------------------------------------------------
+ *Syntax*
+
+     *FOR <idCounter> := <nStart> TO <nEnd>*
+     *   [STEP <nIncrement>]*
+     *   <statements>...*
+     *   [EXIT]*
+     *   <statements>...*
+     *   [LOOP]*
+     *NEXT*
+
+ *Arguments*
+
+     *<idCounter>* is the name of the loop control or counter variable.  If
+     the specified <idCounter> is not visible or does not exist, a private
+     variable is created.
+
+     *<nStart>* is the initial value assigned to <idCounter>.  If
+     <nIncrement> is negative, <nStart> must be less than <nEnd>.
+
+     *TO <nEnd>* defines the final value of <idCounter>.  If <nIncrement>
+     is negative, <nStart> must be greater than <nEnd>; otherwise, <nStart>
+     must be less than <nEnd>.
+
+     *STEP <nIncrement>* defines the amount <idCounter> is changed for each
+     iteration of the loop.  <nIncrement> can be either positive or negative.
+     If the STEP clause is not specified, <idCounter> is incremented by one
+     for each iteration of the loop.
+
+     *EXIT* unconditionally branches control from within a FOR...NEXT
+     construct to the statement immediately following the nearest NEXT
+     statement.
+
+     *LOOP* branches control to the most recently executed FOR or DO WHILE
+     statement.
+
+ *Description*
+
+     FOR...NEXT is a control structure that executes a block of statements a
+     specified number of times.  The control structure loops from the initial
+     value of <idCounter> to the boundary specified by <nEnd>, moving through
+     the range of values of the control variable for an increment specified
+     by <nIncrement>.  All expressions in the FOR statement are reevaluated
+     for each iteration of the loop.  The <nStart> and <nEnd> expressions,
+     therefore, can be changed as the control structure operates.
+
+     A FOR loop operates until <idCounter> is greater than <nEnd> or an EXIT
+     statement is encountered.  Control then branches to the statement
+     following the corresponding NEXT statement.  If a LOOP statement is
+     encountered, control branches back to the current FOR statement.
+
+     If <nIncrement> is a negative value, <idCounter> is decremented rather
+     than incremented.  The FOR loop, however, continues until <idCounter> is
+     less than <nEnd>.  This means that <nEnd> must be less than <nStart>
+     when the FOR loop begins.
+
+     FOR loops are useful for traversing arrays where <idCounter> is used as
+     the array subscript.  See the example below.
+
+     FOR...NEXT constructs may be nested within any other control structures
+     to any depth.  The only requirement is that each control structure is
+     properly nested.
+
+ *Examples*
+
+     *.*  This example traverses an array in ascending order:
+
+        nLenArray := LEN(aArray)
+        FOR i := 1 TO nLenArray
+           <statements>...
+        NEXT
+
+     *.*  To traverse an array in descending order:
+
+        nLenArray := LEN(aArray)
+        FOR i := nLenArray TO 1 STEP -1
+           <statements>...
+        NEXT
+
+------------------------------------------------------------------------
+*See Also:* AEVAL() <ng9170.html> BEGIN SEQUENCE <ngfc7b7.html> DO CASE
+<ngfef37.html> DO WHILE <ngff79f.html> IF <ng1054c7.html>
+------------------------------------------------------------------------
+This page created by ng2html v1.05, the Norton guide to HTML conversion
+utility. Written by Dave Pearson <http://www.acemake.com/hagbard>
+------------------------------------------------------------------------

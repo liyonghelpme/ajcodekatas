@@ -32,7 +32,7 @@
 
             Procedure procedure = (Procedure)environment.GetValue(this.name);
 
-            procedure.Apply(values);
+            procedure.Apply(values, environment);
         }
     }
 }

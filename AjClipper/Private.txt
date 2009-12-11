@@ -1,0 +1,104 @@
+[<<Previous Entry] <ng108d37.html> [^^Up^^] <ngfbcd2.html> [Next
+Entry>>] <ng10a778.html> [Menu] <menu.html> [About The Guide] <info.html>
+------------------------------------------------------------------------
+
+ *PRIVATE*
+ Create and initialize private memory variables and arrays
+------------------------------------------------------------------------------
+ *Syntax*
+
+     *PRIVATE <identifier> [[:= <initializer>], ... ]*
+
+ *Arguments*
+
+     *<identifier>* is the name of a private variable or array to create.
+     If the <identifier> is followed by square brackets ([ ]), an array is
+     created and assigned to the <identifier>.  When the <identifier>
+     specification indicates an array, the syntax for specifying the number
+     of elements for each dimension can be array[<nElements>,
+     <nElements2>,...] or array[<nElements>][<nElements2>]...  The maximum
+     number of elements per dimension is 4096.  The maximum number of
+     dimensions is limited only by available memory.
+
+     *<initializer>* is the optional assignment of a value to a new private
+     variable.  An array cannot be given values with an <initializer>.  An
+     <initializer> for a private variable consists of the inline assignment
+     operator (:=) followed by any valid CA-Clipper expression including a
+     literal array.  If no explicit <initializer> is specified, the variable
+     is initialized to NIL.  In the case of an array, each element is
+     initialized to NIL.
+
+     You can create and, optionally, initialize a list of variables and
+     arrays with one PRIVATE statement if the definitions are separated by
+     commas.
+
+ *Description*
+
+     The PRIVATE statement creates variables and arrays visible within the
+     current and invoked procedures or user-defined functions.  This class of
+     variable is said to have dynamic scope.  Private variables exist for the
+     duration of the active procedure or until explicitly released with CLEAR
+     ALL, CLEAR MEMORY, or RELEASE.  When a private variable or array is
+     created, existing and visible private and public variables of the same
+     name are hidden until the current procedure or user-defined function
+     terminates.
+
+     Attempting to specify a PRIVATE variable that conflicts with a previous
+     FIELD, LOCAL, or STATIC declaration of the same name results in a fatal
+     compiler error.  This is true regardless of the scope of the
+     declaration.
+
+     PRIVATE statements are executable statements and, therefore, must be
+     specified within the body of a procedure or user-defined function and
+     must follow all variable declarations, such as FIELD, LOCAL, MEMVAR, and
+     STATIC.
+
+     In addition to the PRIVATE statement, private variables are also created
+     in two other ways:
+
+     *.*  Assignment to a variable that does not exist or is not visible
+        will create a private variable
+
+     *.*  Parameters received using the PARAMETERS statement are created
+        as private variables with the same lifetime and visibility
+
+     No more than 2048 private and public variables and arrays can
+     simultaneously exist in a single program.
+
+     For more information on variable declarations and scoping, refer to the
+     Variables section in the "Basic Concepts" chapter of the Programming and
+     Utilities Guide.
+
+ *Notes*
+
+     *.  Compatibility: * The ALL, LIKE, and EXCEPT clauses of the
+        PRIVATE statement supported by other dBASE dialects are not supported
+        by CA-Clipper.
+
+ *Examples*
+
+     *.*  This example creates two PRIVATE arrays and three other
+        PRIVATE variables:
+
+        PRIVATE aArray1[10], aArray2[20], var1, var2, var3
+
+     *.*  This example creates a multidimensional private array using
+        each element addressing convention:
+
+        PRIVATE aArray[10][10][10], aArray2[10, 10, 10]
+
+     *.*  This example uses PRIVATE statements to create and initialize
+        arrays and variables:
+
+        PRIVATE aArray := { 1, 2, 3, 4 }, ;
+              aArray2 := ARRAY(12, 24)
+        PRIVATE cChar := SPACE(10), cColor := SETCOLOR()
+
+------------------------------------------------------------------------
+*See Also:* FIELD <ng101b88.html> LOCAL <ng106eaa.html> MEMVAR
+<ng1082ed.html> PARAMETERS <ng108d37.html> PUBLIC <ng10cb5c.html> STATIC
+<ng10ec05.html>
+------------------------------------------------------------------------
+This page created by ng2html v1.05, the Norton guide to HTML conversion
+utility. Written by Dave Pearson <http://www.acemake.com/hagbard>
+------------------------------------------------------------------------

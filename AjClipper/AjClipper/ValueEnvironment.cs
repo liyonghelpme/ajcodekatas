@@ -49,21 +49,12 @@
                 return;
             }
 
-            if (this.type == ValueEnvironmentType.Local)
+            ValueEnvironment environment = this.GetNonLocalEnvironmentContaining(key);
+
+            if (environment != null)
             {
-                this.parent.SetValue(key, value);
+                environment.SetValue(key, value);
                 return;
-            }
-
-            if (this.type == ValueEnvironmentType.Normal)
-            {
-                ValueEnvironment pubenv = this.GetPublicEnvironmentContaining(key);
-
-                if (pubenv != null)
-                {
-                    pubenv.SetValue(key, value);
-                    return;
-                }
             }
 
             this.values[key] = value;
@@ -87,6 +78,11 @@
             if (this.type != ValueEnvironmentType.Local)
                 throw new InvalidOperationException("No Local Environment");
 
+            this.values[key] = value;
+        }
+
+        public void SetEnvironmentValue(string key, object value)
+        {
             this.values[key] = value;
         }
 
@@ -126,15 +122,42 @@
             throw new InvalidOperationException("No Public Environment");
         }
 
-        public ValueEnvironment GetPublicEnvironmentContaining(string key)
+        public ValueEnvironment GetLocalEnvironment()
         {
-            if (this.type == ValueEnvironmentType.Public && this.values.ContainsKey(key))
+            if (this.type == ValueEnvironmentType.Local)
                 return this;
 
             if (this.parent != null)
-                return this.parent.GetPublicEnvironmentContaining(key);
+                return this.parent.GetLocalEnvironment();
+
+            throw new InvalidOperationException("No Local Environment");
+        }
+
+        public ValueEnvironment GetNormalEnvironment()
+        {
+            if (this.type == ValueEnvironmentType.Normal)
+                return this;
+
+            if (this.parent != null)
+                return this.parent.GetNormalEnvironment();
+
+            throw new InvalidOperationException("No Normal Environment");
+        }
+
+        public ValueEnvironment GetNonLocalEnvironmentContaining(string key)
+        {
+            if (this.type != ValueEnvironmentType.Local && this.values.ContainsKey(key))
+                return this;
+
+            if (this.parent != null)
+                return this.parent.GetNonLocalEnvironmentContaining(key);
 
             return null;
+        }
+
+        public bool ContainsValue(string key)
+        {
+            return values.ContainsKey(key);
         }
     }
 }

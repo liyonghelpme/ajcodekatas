@@ -36,6 +36,20 @@
         }
 
         [TestMethod]
+        public void SetAndGetValueInParentEnvironment()
+        {
+            ValueEnvironment parent = new ValueEnvironment();
+            ValueEnvironment environment = new ValueEnvironment(parent);
+
+            parent.SetValue("foo", "bar");
+            environment.SetValue("foo", "newbar");
+            Assert.AreEqual("newbar", environment.GetValue("foo"));
+            Assert.AreEqual("newbar", parent.GetValue("foo"));
+            Assert.IsTrue(parent.ContainsValue("foo"));
+            Assert.IsFalse(environment.ContainsValue("foo"));
+        }
+
+        [TestMethod]
         public void GetNullIfNoValue()
         {
             ValueEnvironment environment = new ValueEnvironment();
