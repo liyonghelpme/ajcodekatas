@@ -19,7 +19,7 @@
     {
         [TestMethod]
         [DeploymentItem("Examples\\SimpleAssignment.prg")]
-        public void ShouldParseAndEvaluateSimpleAssignment()
+        public void ParseAndEvaluateSimpleAssignment()
         {
             Parser parser = new Parser(File.OpenText("SimpleAssignment.prg"));
             ICommand command = parser.ParseCommandList();
@@ -32,7 +32,7 @@
 
         [TestMethod]
         [DeploymentItem("Examples\\SimpleIf.prg")]
-        public void ShouldParseAndEvaluateSimpleIf()
+        public void ParseAndEvaluateSimpleIf()
         {
             Parser parser = new Parser(File.OpenText("SimpleIf.prg"));
             ICommand command = parser.ParseCommandList();
@@ -45,7 +45,7 @@
 
         [TestMethod]
         [DeploymentItem("Examples\\SimpleProcedure.prg")]
-        public void ShouldParseAndEvaluateSimpleProcedure()
+        public void ParseAndEvaluateSimpleProcedure()
         {
             Parser parser = new Parser(File.OpenText("SimpleProcedure.prg"));
             ICommand command = parser.ParseCommandList();
@@ -57,6 +57,19 @@
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(Procedure));
+        }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\SimplePublicVariable.prg")]
+        public void ParseAndEvaluateSimplePublicVariable()
+        {
+            Parser parser = new Parser(File.OpenText("SimplePublicVariable.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment(ValueEnvironmentType.Public);
+
+            command.Execute(null, environment);
+
+            Assert.AreEqual("foo", environment.GetValue("bar"));
         }
     }
 }

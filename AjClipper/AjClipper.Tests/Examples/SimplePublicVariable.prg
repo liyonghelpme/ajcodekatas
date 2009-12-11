@@ -1,4 +1,6 @@
-﻿procedure SetBar
+﻿
+procedure SetBar
+public bar
 bar := "foo"
 return
 
