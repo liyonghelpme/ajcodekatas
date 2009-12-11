@@ -103,6 +103,13 @@
                     ch = this.NextChar();
                 }
 
+                if (ch == '.')
+                {
+                    name += ch;
+
+                    return this.NextComplexName(name);
+                }
+
                 this.PushChar(ch);
             }
             catch (EndOfInputException)
@@ -110,6 +117,31 @@
             }
 
             Token token = new Token() { TokenType = TokenType.Name, Value = name.ToLower() };
+
+            return token;
+        }
+
+        private Token NextComplexName(string name)
+        {
+            char ch;
+
+            try
+            {
+                ch = this.NextChar();
+
+                while (char.IsLetterOrDigit(ch) || ch=='.')
+                {
+                    name += ch;
+                    ch = this.NextChar();
+                }
+
+                this.PushChar(ch);
+            }
+            catch (EndOfInputException)
+            {
+            }
+
+            Token token = new Token() { TokenType = TokenType.Name, Value = name };
 
             return token;
         }

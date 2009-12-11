@@ -607,6 +607,38 @@
             Assert.AreEqual("bar", privatecmd.Names.Skip(1).First());
         }
 
+        [TestMethod]
+        public void ParseNewExpressionWithoutParameters()
+        {
+            Parser parser = new Parser("new System.Int32()");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(NewExpression));
+
+            NewExpression newexpr = (NewExpression)expression;
+
+            Assert.AreEqual("System.Int32", newexpr.TypeName);
+            Assert.AreEqual(0, newexpr.Arguments.Count);
+        }
+
+        [TestMethod]
+        public void ParseNewExpression()
+        {
+            Parser parser = new Parser("new System.IO.FileInfo(filename)");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(NewExpression));
+
+            NewExpression newexpr = (NewExpression)expression;
+
+            Assert.AreEqual("System.IO.FileInfo", newexpr.TypeName);
+            Assert.AreEqual(1, newexpr.Arguments.Count);
+        }
+
         private static bool ParseAndEvaluateBoolean(string text)
         {
             Parser parser = new Parser(text);

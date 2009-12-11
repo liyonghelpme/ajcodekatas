@@ -13,7 +13,7 @@
     public class LexerTests
     {
         [TestMethod]
-        public void ShouldParseName()
+        public void ParseName()
         {
             Lexer lexer = new Lexer("foo");
 
@@ -27,7 +27,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseUpperCaseName()
+        public void ParseUpperCaseName()
         {
             Lexer lexer = new Lexer("FOO");
 
@@ -41,7 +41,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseQuestionMarkAsName()
+        public void ParseQuestionMarkAsName()
         {
             Lexer lexer = new Lexer("?");
 
@@ -55,7 +55,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseTwoQuestionMarksAsName()
+        public void ParseTwoQuestionMarksAsName()
         {
             Lexer lexer = new Lexer("??");
 
@@ -69,7 +69,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseNameWithSurroundingSpaces()
+        public void ParseNameWithSurroundingSpaces()
         {
             Lexer lexer = new Lexer("  foo  ");
 
@@ -83,7 +83,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseString()
+        public void ParseString()
         {
             Lexer lexer = new Lexer("\"foo bar\"");
 
@@ -97,7 +97,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseStringWithEmbeddedDoubleQuotes()
+        public void ParseStringWithEmbeddedDoubleQuotes()
         {
             Lexer lexer = new Lexer("\"foo \\\"bar\\\"\"");
 
@@ -111,7 +111,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseMultipleLineString()
+        public void ParseMultipleLineString()
         {
             Lexer lexer = new Lexer("\"foo\r\nbar\"");
 
@@ -126,7 +126,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(LexerException), "Unclosed string")]
-        public void ShouldRaiseIfStringIsUnclosed()
+        public void RaiseIfStringIsUnclosed()
         {
             Lexer lexer = new Lexer("\"Unclosed");
 
@@ -134,7 +134,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseInteger()
+        public void ParseInteger()
         {
             Lexer lexer = new Lexer("123");
 
@@ -148,7 +148,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseDelimiters()
+        public void ParseDelimiters()
         {
             string delimiters = "[]{},()";
             Lexer lexer = new Lexer(delimiters);
@@ -166,7 +166,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseSingleCharOperators()
+        public void ParseSingleCharOperators()
         {
             string operators = "=$%+-*/:><#^";
             Lexer lexer = new Lexer(operators);
@@ -184,7 +184,7 @@
         }
 
         [TestMethod]
-        public void ShouldParseTwoCharOperators()
+        public void ParseTwoCharOperators()
         {
             string operators = ":= == >= <= -> -- ++ += -= *= /= ^= %= <> !=";
             Lexer lexer = new Lexer(operators);
@@ -198,6 +198,30 @@
                 Assert.AreEqual(TokenType.Operator, token.TokenType);
                 Assert.AreEqual(oper, token.Value);
             }
+        }
+
+        [TestMethod]
+        public void ParseComplexName()
+        {
+            Lexer lexer = new Lexer("System.Int32");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual("System.Int32", token.Value);
+            Assert.AreEqual(TokenType.Name, token.TokenType);
+        }
+
+        [TestMethod]
+        public void ParseComplexNameWithTwoLevelsNamespace()
+        {
+            Lexer lexer = new Lexer("System.IO.File");
+
+            Token token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual("System.IO.File", token.Value);
+            Assert.AreEqual(TokenType.Name, token.TokenType);
         }
     }
 }

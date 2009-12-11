@@ -76,9 +76,11 @@
     <Compile Include="Expressions\MultiplyExpression.cs" />
     <Compile Include="Expressions\ExpressionUtilities.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
+    <Compile Include="Expressions\NewExpression.cs" />
     <Compile Include="Expressions\SubtractExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Language\Procedure.cs" />
+    <Compile Include="TypeUtilities.cs" />
     <Compile Include="ValueEnvironment.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

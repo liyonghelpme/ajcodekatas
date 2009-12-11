@@ -224,5 +224,16 @@
             Assert.IsTrue((bool)(new CompareExpression("foo", "bar", CompareOperator.NotEqual)).Evaluate(null));
             Assert.IsTrue((bool)(new CompareExpression("bar", "foo", CompareOperator.NotEqual)).Evaluate(null));
         }
+
+        [TestMethod]
+        public void EvaluateNewExpression()
+        {
+            NewExpression expression = new NewExpression("System.IO.FileInfo", new IExpression[] { new ConstantExpression("myfile.txt") });
+
+            object result = expression.Evaluate(new ValueEnvironment());
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(System.IO.FileInfo));
+        }
     }
 }

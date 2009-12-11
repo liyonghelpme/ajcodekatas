@@ -35,6 +35,14 @@
 
         public IExpression ParseExpression()
         {
+            Token token = this.lexer.NextToken();
+
+            if (token != null && token.TokenType == TokenType.Name && token.Value == "new")
+                return this.ParseNewExpression();
+
+            if (token != null)
+                this.lexer.PushToken(token);
+
             return this.ParseBinaryExpressionLevel0();
         }
 
@@ -243,6 +251,14 @@
             IList<IExpression> arguments = this.ParseArguments();
 
             return new DoProcedureCommand(name, arguments);
+        }
+
+        private IExpression ParseNewExpression()
+        {
+            string name = this.ParseName();
+            IList<IExpression> arguments = this.ParseArguments();
+
+            return new NewExpression(name, arguments);
         }
 
         private ICommand ParseProcedureCommand()

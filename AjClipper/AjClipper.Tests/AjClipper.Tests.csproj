@@ -47,6 +47,7 @@
     <Compile Include="LexerTests.cs" />
     <Compile Include="MachineTests.cs" />
     <Compile Include="ParserTests.cs" />
+    <Compile Include="TypeUtilitiesTests.cs" />
     <Compile Include="ValueEnvironmentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,6 +58,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Examples\SimpleNewObject.prg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Examples\SimplePrivateVariable.prg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

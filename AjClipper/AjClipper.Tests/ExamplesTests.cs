@@ -98,5 +98,21 @@
 
             Assert.AreEqual("privatebar", environment.GetValue("foo"));
         }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\SimpleNewObject.prg")]
+        public void ParseAndEvaluateSimpleNewObject()
+        {
+            Parser parser = new Parser(File.OpenText("SimpleNewObject.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment(ValueEnvironmentType.Public);
+
+            command.Execute(null, environment);
+
+            object result = environment.GetValue("foo");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(System.IO.FileInfo));
+        }
     }
 }

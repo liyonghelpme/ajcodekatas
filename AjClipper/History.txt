@@ -44,3 +44,7 @@ Parse public var1,var2 w/test
 Public variable with test SimplePublicVariable.prg
 PrivateCommand, LocalCommand with tests
 Private, local, public variables with tests
+NewExpression with Tests
+TypeUtilities with Tests
+new support in Parser
+SimpleNewObject.prg tests
