@@ -719,6 +719,11 @@
 
             Assert.IsNotNull(expression);
             Assert.IsInstanceOfType(expression, typeof(DotExpression));
+
+            DotExpression dotexp = (DotExpression)expression;
+
+            Assert.IsNotNull(dotexp.Arguments);
+            Assert.AreEqual(2, dotexp.Arguments.Count);
         }
 
         [TestMethod]
@@ -738,7 +743,11 @@
         private static IExpression ParseExpression(string text)
         {
             Parser parser = new Parser(text);
-            return parser.ParseExpression();
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNull(parser.ParseExpression());
+
+            return expression;
         }
     }
 }

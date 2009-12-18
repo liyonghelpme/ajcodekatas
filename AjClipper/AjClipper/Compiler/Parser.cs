@@ -183,13 +183,20 @@
         {
             string[] names = name.Split('.');
 
+            IList<IExpression> arguments = this.ParseArguments();
+
             if (names.Length == 1)
                 return new NameExpression(name);
 
             IExpression expression = new NameExpression(name);
 
             for (int k = 1; k < names.Length; k++)
-                expression = new DotExpression(expression, names[k]);
+            {
+                if (k == names.Length - 1 && arguments != null && arguments.Count > 0)
+                    expression = new DotExpression(expression, names[k], arguments);
+                else
+                    expression = new DotExpression(expression, names[k]);
+            }
 
             return expression;
         }
@@ -396,7 +403,7 @@
             if (token == null)
                 return arguments;
 
-            if (token.Value != "(")
+            if (token.Value != "(" || token.TokenType != TokenType.Delimiter)
             {
                 this.lexer.PushToken(token);
                 return arguments;

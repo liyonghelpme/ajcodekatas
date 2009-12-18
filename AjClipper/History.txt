@@ -61,3 +61,5 @@ DotExpression with tests
 support for . in Lexer and Parser
 IObject in Language
 ObjectUtilities with tests
+DataUseDatabase.prg in tests
+DataUseWorkArea.prg in tests

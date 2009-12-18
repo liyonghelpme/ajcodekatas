@@ -70,6 +70,12 @@
     <None Include="Data\TEST.DBT">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Examples\DataUseWorkArea.prg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Examples\DataUseDatabase.prg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Examples\SimpleNewObject.prg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

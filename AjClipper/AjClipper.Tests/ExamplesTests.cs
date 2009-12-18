@@ -13,6 +13,7 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using AjClipper.Language;
+    using AjClipper.Data;
 
     [TestClass]
     public class ExamplesTests
@@ -113,6 +114,46 @@
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(System.IO.FileInfo));
+        }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\DataUseDatabase.prg")]
+        public void ParseAndEvaluateDataUseDatabase()
+        {
+            Parser parser = new Parser(File.OpenText("DataUseDatabase.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment(ValueEnvironmentType.Public);
+
+            command.Execute(null, environment);
+
+            object result = environment.GetValue("testdb");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Database));
+
+            object result2 = environment.GetValue(ValueEnvironment.CurrentDatabase);
+
+            Assert.IsTrue(result == result2);
+        }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\DataUseWorkArea.prg")]
+        public void ParseAndEvaluateDataUseWorkArea()
+        {
+            Parser parser = new Parser(File.OpenText("DataUseWorkArea.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment(ValueEnvironmentType.Public);
+
+            command.Execute(null, environment);
+
+            object result = environment.GetValue("test");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(WorkArea));
+
+            object result2 = environment.GetValue(ValueEnvironment.CurrentWorkArea);
+
+            Assert.IsTrue(result == result2);
         }
     }
 }
