@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandTests.cs" />
+    <Compile Include="DatabaseTests.cs" />
     <Compile Include="ExamplesTests.cs" />
     <Compile Include="ExpressionTests.cs" />
     <Compile Include="ExpressionUtilitiesTests.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="TypeUtilitiesTests.cs" />
     <Compile Include="ValueEnvironmentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkAreaTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AjClipper\AjClipper.csproj">
@@ -58,6 +60,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\TEST.CDX">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TEST.DBF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TEST.DBT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Examples\SimpleNewObject.prg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -79,6 +90,15 @@
     <None Include="Examples\SimpleAssignment.prg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData_log.LDF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>TestData.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

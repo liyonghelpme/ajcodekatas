@@ -66,6 +66,8 @@
     <Compile Include="Compiler\Parser.cs" />
     <Compile Include="Compiler\Token.cs" />
     <Compile Include="Compiler\TokenType.cs" />
+    <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\WorkArea.cs" />
     <Compile Include="Expressions\AddExpression.cs" />
     <Compile Include="Expressions\BaseExpression.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />
