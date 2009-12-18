@@ -48,3 +48,6 @@ NewExpression with Tests
 TypeUtilities with Tests
 new support in Parser
 SimpleNewObject.prg tests
+
+2009-12-18
+Adding original Clipper include files
