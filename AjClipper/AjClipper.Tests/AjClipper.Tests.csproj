@@ -47,6 +47,7 @@
     <Compile Include="ExpressionUtilitiesTests.cs" />
     <Compile Include="LexerTests.cs" />
     <Compile Include="MachineTests.cs" />
+    <Compile Include="ObjectUtilitiesTests.cs" />
     <Compile Include="ParserTests.cs" />
     <Compile Include="TypeUtilitiesTests.cs" />
     <Compile Include="ValueEnvironmentTests.cs" />
@@ -90,15 +91,6 @@
     <None Include="Examples\SimpleAssignment.prg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TestData.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData_log.LDF">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>TestData.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

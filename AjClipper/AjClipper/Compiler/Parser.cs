@@ -165,10 +165,33 @@
                 case TokenType.Integer:
                     return new ConstantExpression(Int32.Parse(token.Value));
                 case TokenType.Name:
-                    return new NameExpression(token.Value);
+                    return this.ParseNameExpression(token.Value);
+                case TokenType.Delimiter:
+                    if (token.Value == "(")
+                    {
+                        IExpression expression = this.ParseExpression();
+                        this.ParseToken(")", TokenType.Delimiter);
+                        return expression;
+                    }
+                    break;
             }
 
             throw new ParserException(string.Format("Invalid expression: {0}", token.Value));
+        }
+
+        private IExpression ParseNameExpression(string name)
+        {
+            string[] names = name.Split('.');
+
+            if (names.Length == 1)
+                return new NameExpression(name);
+
+            IExpression expression = new NameExpression(name);
+
+            for (int k = 1; k < names.Length; k++)
+                expression = new DotExpression(expression, names[k]);
+
+            return expression;
         }
 
         private ICommand ParseLineCommand()
@@ -197,6 +220,12 @@
 
                 if (token.Value == "public")
                     return this.ParsePublicCommand();
+
+                if (token.Value == "usedb")
+                    return this.ParseUseDatabaseCommand();
+
+                if (token.Value == "use")
+                    return this.ParseUseWorkAreaCommand();
 
                 if (token.Value == "local")
                     return this.ParseLocalCommand();
@@ -243,6 +272,22 @@
             List<string> names = this.ParseNameList();
 
             return new PrivateCommand(names);
+        }
+
+        private ICommand ParseUseDatabaseCommand()
+        {
+            string name = this.ParseName();
+            this.ParseName("connectionstring");
+            IExpression connectionExpression = this.ParseExpression();
+            this.ParseName("provider");
+            IExpression providerExpression = this.ParseExpression();
+            return new UseDatabaseCommand(name, connectionExpression, providerExpression);
+        }
+
+        private ICommand ParseUseWorkAreaCommand()
+        {
+            string name = this.ParseName();
+            return new UseWorkAreaCommand(name, null);
         }
 
         private ICommand ParseDoProcedureCommand()
@@ -414,6 +459,12 @@
             return token.Value;
         }
 
+        private void ParseName(string expected)
+        {
+            if (this.ParseName() != expected)
+                throw new ParserException(string.Format("Name '{0}' expected", expected));
+        }
+
         private List<IExpression> ParseExpressionList()
         {
             List<IExpression> expressions = new List<IExpression>();
@@ -425,7 +476,7 @@
 
             expressions.Add(expression);
 
-            while (this.TryParse(","))
+            while (this.TryParse(",", TokenType.Delimiter))
             {
                 expression = this.ParseExpression();
 
@@ -452,6 +503,33 @@
             }
 
             return true;
+        }
+
+        private bool TryParse(string value, TokenType type)
+        {
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return false;
+
+            if (token.Value != value || token.TokenType != type)
+            {
+                this.lexer.PushToken(token);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ParseToken(string value, TokenType type)
+        {
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                throw new LexerException(string.Format("Expected '{0}'", value));
+
+            if (token.Value != value || token.TokenType != type)
+                throw new LexerException(string.Format("Unexpected '{0}'", token.Value));
         }
     }
 }

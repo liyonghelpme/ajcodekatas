@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\CompositeCommand.cs" />
+    <Compile Include="Commands\UseWorkAreaCommand.cs" />
+    <Compile Include="Commands\UseDatabaseCommand.cs" />
     <Compile Include="Commands\PrivateCommand.cs" />
     <Compile Include="Commands\LocalCommand.cs" />
     <Compile Include="Commands\PublicCommand.cs" />
@@ -75,13 +77,16 @@
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\CompareExpression.cs" />
     <Compile Include="Expressions\DivideExpression.cs" />
+    <Compile Include="Expressions\DotExpression.cs" />
     <Compile Include="Expressions\MultiplyExpression.cs" />
     <Compile Include="Expressions\ExpressionUtilities.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
     <Compile Include="Expressions\NewExpression.cs" />
     <Compile Include="Expressions\SubtractExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
+    <Compile Include="Language\IObject.cs" />
     <Compile Include="Language\Procedure.cs" />
+    <Compile Include="ObjectUtilities.cs" />
     <Compile Include="TypeUtilities.cs" />
     <Compile Include="ValueEnvironment.cs" />
     <Compile Include="Machine.cs" />

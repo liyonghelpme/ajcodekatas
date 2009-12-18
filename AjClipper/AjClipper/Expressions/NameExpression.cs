@@ -14,6 +14,8 @@
             this.name = name;
         }
 
+        public string Name { get { return this.name; } }
+
         public override object Evaluate(ValueEnvironment environment)
         {
             return environment.GetValue(this.name);

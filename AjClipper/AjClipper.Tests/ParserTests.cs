@@ -15,6 +15,9 @@
     [TestClass]
     public class ParserTests
     {
+        private const string OleDbProviderFactoryName = "System.Data.OleDb";
+        private const string OleDbConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.;Extended Properties=dBASE IV;User ID=Admin;Password=;";
+
         [TestMethod]
         public void ParsePrintLineCommand()
         {
@@ -276,6 +279,19 @@
         }
 
         [TestMethod]
+        public void ParseAndEvaluateIntegerExpressionWithParenthesis()
+        {
+            Parser parser = new Parser("(123)");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(ConstantExpression));
+            Assert.IsInstanceOfType(((ConstantExpression)expression).Evaluate(null), typeof(int));
+            Assert.AreEqual(123, (int)((ConstantExpression)expression).Evaluate(null));
+        }
+
+        [TestMethod]
         public void ParseAndEvaluateStringExpression()
         {
             Parser parser = new Parser("\"foo\"");
@@ -307,6 +323,19 @@
         public void ParseAndEvaluateAddExpression()
         {
             Parser parser = new Parser("1+2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(AddExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
+            Assert.AreEqual(3, (int)(expression.Evaluate(null)));
+        }
+
+        [TestMethod]
+        public void ParseAndEvaluateAddExpressionWithParenthesis()
+        {
+            Parser parser = new Parser("(1+2)");
 
             IExpression expression = parser.ParseExpression();
 
@@ -372,6 +401,19 @@
             Assert.IsInstanceOfType(expression, typeof(AddExpression));
             Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
             Assert.AreEqual(7, (int)(expression.Evaluate(null)));
+        }
+
+        [TestMethod]
+        public void ParseAndEvaluateArithmeticExpressionWithParenthesis()
+        {
+            Parser parser = new Parser("(1+2)*3");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(MultiplyExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
+            Assert.AreEqual(9, (int)(expression.Evaluate(null)));
         }
 
         [TestMethod]
@@ -639,11 +681,64 @@
             Assert.AreEqual(1, newexpr.Arguments.Count);
         }
 
+        [TestMethod]
+        public void ParseUseDatabaseCommand()
+        {
+            Parser parser = new Parser(string.Format("usedb TestDb connectionstring \"{0}\" provider \"{1}\"", OleDbConnectionString, OleDbProviderFactoryName));
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(UseDatabaseCommand));
+        }
+
+        [TestMethod]
+        public void ParseUseWorkAreaCommand()
+        {
+            Parser parser = new Parser("use Test");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(UseWorkAreaCommand));
+        }
+
+        [TestMethod]
+        public void ParseSimpleDotExpression()
+        {
+            IExpression expression = ParseExpression("a.Length");
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(DotExpression));
+        }
+
+        [TestMethod]
+        public void ParseSimpleDotExpressionWithArguments()
+        {
+            IExpression expression = ParseExpression("foo.Bar(1,2)");
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(DotExpression));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ParserException))]
+        public void RaiseIfUnexpectedTokenDot()
+        {
+            ParseExpression(".");
+        }
+
         private static bool ParseAndEvaluateBoolean(string text)
         {
             Parser parser = new Parser(text);
             IExpression expression = parser.ParseExpression();
             return (bool)expression.Evaluate(null);
+        }
+
+        private static IExpression ParseExpression(string text)
+        {
+            Parser parser = new Parser(text);
+            return parser.ParseExpression();
         }
     }
 }

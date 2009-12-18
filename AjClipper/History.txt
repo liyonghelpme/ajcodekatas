@@ -51,3 +51,13 @@ SimpleNewObject.prg tests
 
 2009-12-18
 Adding original Clipper include files
+WorkArea with tests initial version
+Database with tests initial version
+UseDatabaseCommand with tests
+UseWorkAreaCommand with tests
+usedb in parser with tests
+use in parser with tests
+DotExpression with tests
+support for . in Lexer and Parser
+IObject in Language
+ObjectUtilities with tests

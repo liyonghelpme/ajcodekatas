@@ -18,6 +18,9 @@
         private ValueEnvironment parent;
         private Dictionary<string, object> values = new Dictionary<string, object>();
 
+        public const string CurrentDatabase = "**database";
+        public const string CurrentWorkArea = "**workarea";
+
         public ValueEnvironment()
             : this(ValueEnvironmentType.Normal)
         {

@@ -168,7 +168,7 @@
         [TestMethod]
         public void ParseSingleCharOperators()
         {
-            string operators = "=$%+-*/:><#^";
+            string operators = "=$%+-*/:><#^.";
             Lexer lexer = new Lexer(operators);
 
             Token token;

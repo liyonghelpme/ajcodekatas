@@ -8,7 +8,7 @@
 
     public class Lexer
     {
-        private const string SingleCharOperators = "=$%+-*/:><#^!";
+        private const string SingleCharOperators = "=$%+-*/:><#^!.";
 
         private const string SingleCharDelimiters = "[]{},()";
 

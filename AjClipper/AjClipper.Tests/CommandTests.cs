@@ -10,10 +10,14 @@
     using AjClipper.Expressions;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using AjClipper.Data;
 
     [TestClass]
     public class CommandTests
     {
+        private const string OleDbProviderFactoryName = "System.Data.OleDb";
+        private const string OleDbConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.;Extended Properties=dBASE IV;User ID=Admin;Password=;";
+
         [TestMethod]
         public void PrintHello()
         {
@@ -133,6 +137,55 @@
             Assert.IsFalse(localenv.ContainsValue("foo"));
             Assert.IsFalse(parent.ContainsValue("foo"));
             Assert.IsTrue(privateenv.ContainsValue("foo"));
+        }
+
+        [TestMethod]
+        public void ExecuteUseDatabaseCommand()
+        {
+            UseDatabaseCommand command = new UseDatabaseCommand("testdb", new ConstantExpression(OleDbConnectionString), new ConstantExpression(OleDbProviderFactoryName));
+            Machine machine = new Machine();
+
+            command.Execute(machine, machine.Environment);
+
+            object result = machine.Environment.GetValue(ValueEnvironment.CurrentDatabase);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Database));
+            
+            Database database = (Database) result;
+
+            Assert.AreEqual(OleDbConnectionString, database.ConnectionString);
+            Assert.IsInstanceOfType(database.ProviderFactory, typeof(System.Data.OleDb.OleDbFactory));
+
+            object result2 = machine.Environment.GetValue("testdb");
+
+            Assert.IsTrue(result == result2);
+        }
+
+        [TestMethod]
+        public void ExecuteUseWorkAreaCommand()
+        {
+            UseDatabaseCommand dbcommand = new UseDatabaseCommand("testdb", new ConstantExpression(OleDbConnectionString), new ConstantExpression(OleDbProviderFactoryName));
+            Machine machine = new Machine();
+
+            dbcommand.Execute(machine, machine.Environment);
+
+            UseWorkAreaCommand command = new UseWorkAreaCommand("testwa", null);
+
+            command.Execute(machine, machine.Environment);
+
+            object result = machine.Environment.GetValue(ValueEnvironment.CurrentWorkArea);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(WorkArea));
+
+            WorkArea workarea = (WorkArea)result;
+
+            Assert.AreEqual("testwa", workarea.Name);
+
+            object result2 = machine.Environment.GetValue("testwa");
+
+            Assert.IsTrue(result == result2);
         }
     }
 }
