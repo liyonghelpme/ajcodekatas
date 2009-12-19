@@ -228,11 +228,8 @@
                 if (token.Value == "public")
                     return this.ParsePublicCommand();
 
-                if (token.Value == "usedb")
-                    return this.ParseUseDatabaseCommand();
-
                 if (token.Value == "use")
-                    return this.ParseUseWorkAreaCommand();
+                    return this.ParseUseCommand();
 
                 if (token.Value == "local")
                     return this.ParseLocalCommand();
@@ -281,20 +278,35 @@
             return new PrivateCommand(names);
         }
 
+        private ICommand ParseUseCommand()
+        {
+            if (this.TryParse("database", TokenType.Name))
+                return ParseUseDatabaseCommand();
+
+            this.TryParse("workarea", TokenType.Name);
+
+            return ParseUseWorkAreaCommand();
+        }
+
         private ICommand ParseUseDatabaseCommand()
         {
-            string name = this.ParseName();
+            IExpression nameExpression = this.ParseExpression();
             this.ParseName("connectionstring");
             IExpression connectionExpression = this.ParseExpression();
             this.ParseName("provider");
             IExpression providerExpression = this.ParseExpression();
-            return new UseDatabaseCommand(name, connectionExpression, providerExpression);
+            return new UseDatabaseCommand(nameExpression, connectionExpression, providerExpression);
         }
 
         private ICommand ParseUseWorkAreaCommand()
         {
-            string name = this.ParseName();
-            return new UseWorkAreaCommand(name, null);
+            IExpression nameExpression = this.ParseExpression();
+            IExpression commandExpression = null;
+
+            if (this.TryParse("command", TokenType.Name))
+                commandExpression = this.ParseExpression();
+
+            return new UseWorkAreaCommand(nameExpression, commandExpression);
         }
 
         private ICommand ParseDoProcedureCommand()

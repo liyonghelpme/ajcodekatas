@@ -155,5 +155,22 @@
 
             Assert.IsTrue(result == result2);
         }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\DataGetField.prg")]
+        public void ParseAndEvaluateDataGetField()
+        {
+            Parser parser = new Parser(File.OpenText("DataGetField.prg"));
+            ICommand command = parser.ParseCommandList();
+            Machine machine = new Machine();
+
+            command.Execute(machine, machine.Environment);
+
+            object result = machine.Environment.GetValue("code");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(double));
+            Assert.AreEqual(1.0, result);
+        }
     }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{75870656-39C6-4578-8827-152B9D472F9D}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -70,6 +70,7 @@
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\WorkArea.cs" />
+    <Compile Include="EvaluateUtilities.cs" />
     <Compile Include="Expressions\AddExpression.cs" />
     <Compile Include="Expressions\BaseExpression.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />

@@ -11,17 +11,19 @@
 
     public class UseWorkAreaCommand : BaseCommand
     {
-        private string name;
+        private IExpression nameExpression;
         private IExpression commandExpression;
 
-        public UseWorkAreaCommand(string name, IExpression commandExpression)
+        public UseWorkAreaCommand(IExpression nameExpression, IExpression commandExpression)
         {
-            this.name = name;
+            this.nameExpression = nameExpression;
             this.commandExpression = commandExpression;
         }
 
         public override void Execute(Machine machine, ValueEnvironment environment)
         {
+            string name = EvaluateUtilities.EvaluateAsName(this.nameExpression, environment);
+
             string commandText = null;
             
             if (this.commandExpression != null)
@@ -36,12 +38,12 @@
                 IDbCommand command = database.ProviderFactory.CreateCommand();
                 command.CommandText = commandText;
                 command.Connection = database.GetConnection();
-                workarea = new WorkArea(this.name, command, database.ProviderFactory);
+                workarea = new WorkArea(name, command, database.ProviderFactory);
             }
             else
-                workarea = new WorkArea(this.name, database.GetConnection(), database.ProviderFactory);
+                workarea = new WorkArea(name, database.GetConnection(), database.ProviderFactory);
 
-            environment.SetPublicValue(this.name, workarea);
+            environment.SetPublicValue(name, workarea);
             environment.SetPublicValue(ValueEnvironment.CurrentWorkArea, workarea);
         }
     }

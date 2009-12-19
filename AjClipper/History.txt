@@ -63,3 +63,12 @@ IObject in Language
 ObjectUtilities with tests
 DataUseDatabase.prg in tests
 DataUseWorkArea.prg in tests
+
+2009-12-19
+use database syntax in Parser
+use [workarea] syntax in Parser
+name expression in use database, use workarea
+command syntax in use workarea
+EvaluateUtilities
+DataGetField.prg in tests (till in red)
+

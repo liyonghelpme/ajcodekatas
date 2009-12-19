@@ -10,25 +10,27 @@
 
     public class UseDatabaseCommand : BaseCommand
     {
-        private string name;
+        private IExpression nameExpression;
         private IExpression connectionExpression;
         private IExpression providerExpression;
 
-        public UseDatabaseCommand(string name, IExpression connectionExpression, IExpression providerExpression)
+        public UseDatabaseCommand(IExpression nameExpression, IExpression connectionExpression, IExpression providerExpression)
         {
-            this.name = name;
+            this.nameExpression = nameExpression;
             this.connectionExpression = connectionExpression;
             this.providerExpression = providerExpression;
         }
 
         public override void Execute(Machine machine, ValueEnvironment environment)
         {
+            string name = EvaluateUtilities.EvaluateAsName(this.nameExpression, environment);
+
             string connectionString = (string) this.connectionExpression.Evaluate(environment);
             string providerName = (string) this.providerExpression.Evaluate(environment);
 
-            Database database = new Database(this.name, providerName, connectionString);
+            Database database = new Database(name, providerName, connectionString);
 
-            environment.SetPublicValue(this.name, database);
+            environment.SetPublicValue(name, database);
             environment.SetPublicValue(ValueEnvironment.CurrentDatabase, database);
         }
     }

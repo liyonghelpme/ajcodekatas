@@ -88,6 +88,17 @@
         }
 
         [TestMethod]
+        public void ParseSetVariableToExpressionCommand()
+        {
+            Parser parser = new Parser("foo := bar.Calculate(1,2)");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(SetVariableCommand));
+        }
+
+        [TestMethod]
         public void ParseSimpleIfCommand()
         {
             Parser parser = new Parser("if 0\r\n  a:=1\r\nendif");
@@ -684,7 +695,7 @@
         [TestMethod]
         public void ParseUseDatabaseCommand()
         {
-            Parser parser = new Parser(string.Format("usedb TestDb connectionstring \"{0}\" provider \"{1}\"", OleDbConnectionString, OleDbProviderFactoryName));
+            Parser parser = new Parser(string.Format("use database TestDb connectionstring \"{0}\" provider \"{1}\"", OleDbConnectionString, OleDbProviderFactoryName));
 
             ICommand command = parser.ParseCommand();
 
@@ -724,6 +735,30 @@
 
             Assert.IsNotNull(dotexp.Arguments);
             Assert.AreEqual(2, dotexp.Arguments.Count);
+        }
+
+        [TestMethod]
+        public void ParseSimpleDotExpressionWithNoArguments()
+        {
+            IExpression expression = ParseExpression("foo.Bar()");
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(DotExpression));
+
+            DotExpression dotexp = (DotExpression)expression;
+
+            Assert.IsNull(dotexp.Arguments);
+        }
+
+        [TestMethod]
+        public void ParseAndExecuteDotExpressionWithArguments()
+        {
+            ValueEnvironment environment = new ValueEnvironment();
+            environment.SetValue("dinfo", new System.IO.DirectoryInfo("."));
+            IExpression expression = ParseExpression("dinfo.GetFiles(\"*.exe\")");
+            object result = expression.Evaluate(environment);
+
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
