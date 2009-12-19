@@ -36,6 +36,17 @@
         }
 
         [TestMethod]
+        public void SetAndGetValueIgnoringCase()
+        {
+            ValueEnvironment environment = new ValueEnvironment();
+
+            environment.SetValue("Foo", "bar");
+            Assert.AreEqual("bar", environment.GetValue("foo"));
+            Assert.AreEqual("bar", environment.GetValue("FOO"));
+            Assert.AreEqual("bar", environment.GetValue("fOO"));
+        }
+
+        [TestMethod]
         public void SetAndGetValueInParentEnvironment()
         {
             ValueEnvironment parent = new ValueEnvironment();
@@ -45,8 +56,12 @@
             environment.SetValue("foo", "newbar");
             Assert.AreEqual("newbar", environment.GetValue("foo"));
             Assert.AreEqual("newbar", parent.GetValue("foo"));
+            
             Assert.IsTrue(parent.ContainsValue("foo"));
             Assert.IsFalse(environment.ContainsValue("foo"));
+
+            Assert.IsTrue(parent.ContainsValue("Foo"));
+            Assert.IsFalse(environment.ContainsValue("Foo"));
         }
 
         [TestMethod]
@@ -66,6 +81,7 @@
             parent.SetValue("foo", "bar");
 
             Assert.AreEqual("bar", environment.GetValue("foo"));
+            Assert.AreEqual("bar", environment.GetValue("FOO"));
         }
 
         [TestMethod]
@@ -78,6 +94,9 @@
 
             Assert.AreEqual("bar", environment.GetValue("foo"));
             Assert.AreEqual("bar", parent.GetValue("foo"));
+
+            Assert.AreEqual("bar", environment.GetValue("FOO"));
+            Assert.AreEqual("bar", parent.GetValue("FOO"));
         }
 
         [TestMethod]

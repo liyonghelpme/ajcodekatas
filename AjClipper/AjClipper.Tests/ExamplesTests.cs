@@ -158,6 +158,9 @@
 
         [TestMethod]
         [DeploymentItem("Examples\\DataGetField.prg")]
+        [DeploymentItem("Data\\TEST.DBF")]
+        [DeploymentItem("Data\\TEST.CDX")]
+        [DeploymentItem("Data\\TEST.DBT")]
         public void ParseAndEvaluateDataGetField()
         {
             Parser parser = new Parser(File.OpenText("DataGetField.prg"));

@@ -181,22 +181,39 @@
 
         private IExpression ParseNameExpression(string name)
         {
-            string[] names = name.Split('.');
+            IExpression expression = new NameExpression(name);
+
+            string newname = null;
+
+            while (this.TryParse(".", TokenType.Operator))
+            {
+                if (newname != null)
+                    expression = new DotExpression(expression, newname);
+                newname = this.ParseName();
+            }
 
             IList<IExpression> arguments = this.ParseArguments();
 
-            if (names.Length == 1)
-                return new NameExpression(name);
+            if (arguments == null)
+                if (newname == null)
+                    return expression;
+                else
+                    return new DotExpression(expression, newname);
+
+            if (newname == null)
+                throw new ParserException("Simple invoke not yet supported");
+
+            return new DotExpression(expression, newname, arguments);
+        }
+
+        private IExpression ParseComplexName()
+        {
+            string name = this.ParseName();
 
             IExpression expression = new NameExpression(name);
 
-            for (int k = 1; k < names.Length; k++)
-            {
-                if (k == names.Length - 1 && arguments != null && arguments.Count > 0)
-                    expression = new DotExpression(expression, names[k], arguments);
-                else
-                    expression = new DotExpression(expression, names[k]);
-            }
+            while (this.TryParse(".", TokenType.Operator))
+                expression = new DotExpression(expression, this.ParseName());
 
             return expression;
         }
@@ -213,6 +230,8 @@
 
             if (token.TokenType == TokenType.Name)
             {
+                token.Value = token.Value.ToLower();
+
                 if (token.Value == "if")
                     return this.ParseIfCommand();
 
@@ -319,10 +338,10 @@
 
         private IExpression ParseNewExpression()
         {
-            string name = this.ParseName();
+            IExpression nameExpression = this.ParseComplexName();
             IList<IExpression> arguments = this.ParseArguments();
 
-            return new NewExpression(name, arguments);
+            return new NewExpression(nameExpression, arguments);
         }
 
         private ICommand ParseProcedureCommand()
@@ -413,12 +432,12 @@
             Token token = this.lexer.NextToken();
 
             if (token == null)
-                return arguments;
+                return null;
 
             if (token.Value != "(" || token.TokenType != TokenType.Delimiter)
             {
                 this.lexer.PushToken(token);
-                return arguments;
+                return null;
             }
 
             token = this.lexer.NextToken();

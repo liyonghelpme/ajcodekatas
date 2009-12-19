@@ -450,7 +450,7 @@
 
             ProcedureCommand proc = (ProcedureCommand)command;
 
-            Assert.AreEqual("dobar", proc.Name);
+            Assert.AreEqual("DoBar", proc.Name);
             Assert.IsNotNull(proc.ParameterNames);
             Assert.AreEqual(1, proc.ParameterNames.Count);
             Assert.AreEqual("b", proc.ParameterNames[0]);
@@ -468,7 +468,7 @@
 
             ProcedureCommand proc = (ProcedureCommand)command;
 
-            Assert.AreEqual("dobar", proc.Name);
+            Assert.AreEqual("DoBar", proc.Name);
             Assert.IsNotNull(proc.ParameterNames);
             Assert.AreEqual(2, proc.ParameterNames.Count);
             Assert.AreEqual("b", proc.ParameterNames[0]);
@@ -587,7 +587,7 @@
 
             DoProcedureCommand docmd = (DoProcedureCommand)command;
 
-            Assert.AreEqual("fooprocedure", docmd.Name);
+            Assert.AreEqual("FooProcedure", docmd.Name);
             Assert.IsNotNull(docmd.Arguments);
             Assert.AreEqual(0, docmd.Arguments.Count);
         }
@@ -604,7 +604,7 @@
 
             DoProcedureCommand docmd = (DoProcedureCommand)command;
 
-            Assert.AreEqual("fooprocedure", docmd.Name);
+            Assert.AreEqual("FooProcedure", docmd.Name);
             Assert.IsNotNull(docmd.Arguments);
             Assert.AreEqual(2, docmd.Arguments.Count);
         }
@@ -747,7 +747,8 @@
 
             DotExpression dotexp = (DotExpression)expression;
 
-            Assert.IsNull(dotexp.Arguments);
+            Assert.IsNotNull(dotexp.Arguments);
+            Assert.AreEqual(0, dotexp.Arguments.Count);
         }
 
         [TestMethod]

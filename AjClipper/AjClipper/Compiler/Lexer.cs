@@ -103,12 +103,12 @@
                     ch = this.NextChar();
                 }
 
-                if (ch == '.')
-                {
-                    name += ch;
+                //if (ch == '.')
+                //{
+                //    name += ch;
 
-                    return this.NextComplexName(name);
-                }
+                //    return this.NextComplexName(name);
+                //}
 
                 this.PushChar(ch);
             }
@@ -116,7 +116,7 @@
             {
             }
 
-            Token token = new Token() { TokenType = TokenType.Name, Value = name.ToLower() };
+            Token token = new Token() { TokenType = TokenType.Name, Value = name };
 
             return token;
         }

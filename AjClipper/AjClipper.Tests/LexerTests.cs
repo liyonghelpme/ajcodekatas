@@ -35,7 +35,7 @@
 
             Assert.IsNotNull(token);
             Assert.AreEqual(TokenType.Name, token.TokenType);
-            Assert.AreEqual("foo", token.Value);
+            Assert.AreEqual("FOO", token.Value);
 
             Assert.IsNull(lexer.NextToken());
         }
@@ -208,7 +208,19 @@
             Token token = lexer.NextToken();
 
             Assert.IsNotNull(token);
-            Assert.AreEqual("System.Int32", token.Value);
+            Assert.AreEqual("System", token.Value);
+            Assert.AreEqual(TokenType.Name, token.TokenType);
+
+            token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(".", token.Value);
+            Assert.AreEqual(TokenType.Operator, token.TokenType);
+
+            token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual("Int32", token.Value);
             Assert.AreEqual(TokenType.Name, token.TokenType);
         }
 
@@ -220,7 +232,31 @@
             Token token = lexer.NextToken();
 
             Assert.IsNotNull(token);
-            Assert.AreEqual("System.IO.File", token.Value);
+            Assert.AreEqual("System", token.Value);
+            Assert.AreEqual(TokenType.Name, token.TokenType);
+
+            token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(".", token.Value);
+            Assert.AreEqual(TokenType.Operator, token.TokenType);
+
+            token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual("IO", token.Value);
+            Assert.AreEqual(TokenType.Name, token.TokenType);
+
+            token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual(".", token.Value);
+            Assert.AreEqual(TokenType.Operator, token.TokenType);
+
+            token = lexer.NextToken();
+
+            Assert.IsNotNull(token);
+            Assert.AreEqual("File", token.Value);
             Assert.AreEqual(TokenType.Name, token.TokenType);
         }
     }

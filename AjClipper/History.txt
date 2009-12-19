@@ -70,5 +70,11 @@ use [workarea] syntax in Parser
 name expression in use database, use workarea
 command syntax in use workarea
 EvaluateUtilities
-DataGetField.prg in tests (till in red)
+DataGetField.prg in tests
+ValueEnviroment now use key.ToLower()
+Parser.ParseComplexName()
+Parser.ParseNameExpression() supports dots and optional arguments
+name expression as first parameter in NewExpression constructor
+
+
 

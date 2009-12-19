@@ -228,7 +228,7 @@
         [TestMethod]
         public void EvaluateNewExpression()
         {
-            NewExpression expression = new NewExpression("System.IO.FileInfo", new IExpression[] { new ConstantExpression("myfile.txt") });
+            NewExpression expression = new NewExpression(new ConstantExpression("System.IO.FileInfo"), new IExpression[] { new ConstantExpression("myfile.txt") });
 
             object result = expression.Evaluate(new ValueEnvironment());
 

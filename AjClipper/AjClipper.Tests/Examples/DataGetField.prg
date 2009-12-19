@@ -3,7 +3,7 @@ use database TestDb connectionstring "Provider=Microsoft.Jet.OLEDB.4.0;Data Sour
 
 use Test command "select * from TEST order by CODIGO"
 
-move := Test.MoveNext()
+move := Test.ReadNext()
 code := Test.GetField("CODIGO")
 
 

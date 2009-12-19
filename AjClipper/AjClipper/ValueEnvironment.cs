@@ -46,6 +46,8 @@
 
         public void SetValue(string key, object value)
         {
+            key = key.ToLower();
+
             if (this.values.ContainsKey(key))
             {
                 this.values[key] = value;
@@ -65,6 +67,8 @@
 
         public object GetValue(string key)
         {
+            key = key.ToLower();
+
             if (!this.values.ContainsKey(key))
             {
                 if (this.parent != null)
@@ -81,12 +85,12 @@
             if (this.type != ValueEnvironmentType.Local)
                 throw new InvalidOperationException("No Local Environment");
 
-            this.values[key] = value;
+            this.values[key.ToLower()] = value;
         }
 
         public void SetEnvironmentValue(string key, object value)
         {
-            this.values[key] = value;
+            this.values[key.ToLower()] = value;
         }
 
         public void SetPublicValue(string key, object value)
@@ -100,7 +104,7 @@
                 else
                     throw new InvalidOperationException("No Public Environment");
 
-            this.values[key] = value;
+            this.values[key.ToLower()] = value;
         }
 
         public ValueEnvironment GetNonLocalEnvironment()
@@ -160,7 +164,7 @@
 
         public bool ContainsValue(string key)
         {
-            return values.ContainsKey(key);
+            return values.ContainsKey(key.ToLower());
         }
     }
 }

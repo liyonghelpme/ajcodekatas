@@ -9,26 +9,28 @@
 
     public class NewExpression : IExpression
     {
-        private string name;
+        private IExpression nameExpression;
         private ICollection<IExpression> arguments;
 
-        public NewExpression(string name, ICollection<IExpression> arguments)
+        public NewExpression(IExpression nameExpression, ICollection<IExpression> arguments)
         {
-            this.name = name;
+            this.nameExpression = nameExpression;
             this.arguments = arguments;
         }
 
-        public string TypeName { get { return this.name; } }
-
         public ICollection<IExpression> Arguments { get { return this.arguments; } }
+
+        public string TypeName { get { return EvaluateUtilities.EvaluateAsName(this.nameExpression, null); } }
 
         public object Evaluate(ValueEnvironment environment)
         {
-            object value = environment.GetValue(this.name);
+            string name = EvaluateUtilities.EvaluateAsName(this.nameExpression, environment);
+
+            object value = environment.GetValue(name);
 
             Type type = null;
 
-            type = TypeUtilities.GetType(environment, this.name);
+            type = TypeUtilities.GetType(environment, name);
 
             object[] parameters = null;
 
