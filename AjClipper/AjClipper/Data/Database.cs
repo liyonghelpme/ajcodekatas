@@ -8,6 +8,9 @@
 
     public class Database
     {
+        private const string DefaultFactoryName = "System.Data.SqlClient";
+        private const string DefaultConnectionStringFormat = "server=.\\SQLEXPRESS;database={0};integrated security=yes";
+
         private string name;
         private System.Data.Common.DbProviderFactory providerFactory;
         private string connectionString;
@@ -15,7 +18,15 @@
         public Database(string name, string factoryname, string connectionString)
         {
             this.name = name;
+
+            if (connectionString == null)
+                connectionString = string.Format(DefaultConnectionStringFormat, this.name);
+
             this.connectionString = connectionString;
+
+            if (factoryname == null)
+                factoryname = DefaultFactoryName;
+
             this.providerFactory = System.Data.Common.DbProviderFactories.GetFactory(factoryname);
         }
 

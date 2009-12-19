@@ -310,10 +310,34 @@
         private ICommand ParseUseDatabaseCommand()
         {
             IExpression nameExpression = this.ParseExpression();
-            this.ParseName("connectionstring");
-            IExpression connectionExpression = this.ParseExpression();
-            this.ParseName("provider");
-            IExpression providerExpression = this.ParseExpression();
+
+            IExpression connectionExpression = null;
+            IExpression providerExpression = null;
+
+            while (true)
+            {
+                if (this.TryParseName("connectionstring"))
+                {
+                    if (connectionExpression != null)
+                        throw new ParserException("Connection String already speficied");
+
+                    connectionExpression = this.ParseExpression();
+                    continue;
+                }
+
+                if (this.TryParseName("provider"))
+                {
+                    if (providerExpression != null)
+                        throw new ParserException("Provider already specified");
+
+                    providerExpression = this.ParseExpression();
+
+                    continue;
+                }
+
+                break;
+            }
+
             return new UseDatabaseCommand(nameExpression, connectionExpression, providerExpression);
         }
 
@@ -527,6 +551,11 @@
             return expressions;
         }
 
+        private bool TryParseName(string value)
+        {
+            return this.TryParse(value, TokenType.Name);
+        }
+
         private bool TryParse(string value)
         {
             Token token = this.lexer.NextToken();
@@ -534,7 +563,7 @@
             if (token == null)
                 return false;
 
-            if (token.Value != value)
+            if (!token.Value.Equals(value, StringComparison.InvariantCultureIgnoreCase))
             {
                 this.lexer.PushToken(token);
                 return false;
@@ -550,7 +579,7 @@
             if (token == null)
                 return false;
 
-            if (token.Value != value || token.TokenType != type)
+            if (!token.Value.Equals(value, StringComparison.InvariantCultureIgnoreCase) || token.TokenType != type)
             {
                 this.lexer.PushToken(token);
                 return false;

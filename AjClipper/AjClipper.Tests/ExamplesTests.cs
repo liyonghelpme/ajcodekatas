@@ -14,6 +14,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using AjClipper.Language;
     using AjClipper.Data;
+    using System.Data;
 
     [TestClass]
     public class ExamplesTests
@@ -174,6 +175,49 @@
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(double));
             Assert.AreEqual(1.0, result);
+        }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\DataUseNorthwind.prg")]
+        public void ParseAndEvaluateDataUseNorthwind()
+        {
+            Parser parser = new Parser(File.OpenText("DataUseNorthwind.prg"));
+            ICommand command = parser.ParseCommandList();
+            Machine machine = new Machine();
+
+            command.Execute(machine, machine.Environment);
+
+            object result = machine.Environment.GetValue("Northwind");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Database));
+
+            Database database = (Database)result;
+
+            IDbConnection connection = database.GetConnection();
+
+            Assert.IsNotNull(connection);
+            Assert.IsTrue(connection.State == ConnectionState.Closed);
+        }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\DataUseNorthwindCustomers.prg")]
+        public void ParseAndEvaluateDataUseNorthwindCustomers()
+        {
+            Parser parser = new Parser(File.OpenText("DataUseNorthwindCustomers.prg"));
+            ICommand command = parser.ParseCommandList();
+            Machine machine = new Machine();
+
+            command.Execute(machine, machine.Environment);
+
+            object result = machine.Environment.GetValue("Customers");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(WorkArea));
+
+            WorkArea workarea = (WorkArea)result;
+
+            Assert.IsTrue(workarea.ReadNext());
         }
     }
 }

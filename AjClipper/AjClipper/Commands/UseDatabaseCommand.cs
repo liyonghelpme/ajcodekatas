@@ -25,8 +25,15 @@
         {
             string name = EvaluateUtilities.EvaluateAsName(this.nameExpression, environment);
 
-            string connectionString = (string) this.connectionExpression.Evaluate(environment);
-            string providerName = (string) this.providerExpression.Evaluate(environment);
+            string connectionString = null;
+            
+            if (this.connectionExpression != null)
+                connectionString = (string)this.connectionExpression.Evaluate(environment);
+
+            string providerName = null;
+            
+            if (this.providerExpression != null)
+                providerName = (string)this.providerExpression.Evaluate(environment);
 
             Database database = new Database(name, providerName, connectionString);
 
