@@ -30,7 +30,13 @@
 
         public ICommand ParseCommand()
         {
-            return this.ParseLineCommand();
+            this.SkipEmptyLines();
+            ICommand command = this.ParseLineCommand();
+
+            if (command != null)
+                this.ParseEndOfLine();
+
+            return command;
         }
 
         public IExpression ParseExpression()
@@ -55,8 +61,10 @@
             while (token != null && !terminators.Contains(token.Value))
             {
                 this.lexer.PushToken(token);
-                ICommand command = this.ParseLineCommand();
-                commands.AddCommand(command);
+                ICommand command = this.ParseCommand();
+
+                if (command != null)
+                    commands.AddCommand(command);
 
                 token = this.lexer.NextToken();
             }
@@ -65,6 +73,30 @@
                 this.lexer.PushToken(token);
 
             return commands;
+        }
+
+        private void SkipEmptyLines()
+        {
+            Token token = this.lexer.NextToken();
+
+            while (token != null && token.TokenType == TokenType.EndOfLine)
+                token = this.lexer.NextToken();
+
+            if (token != null)
+                this.lexer.PushToken(token);
+        }
+
+        private void ParseEndOfLine()
+        {
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return;
+
+            if (token.TokenType == TokenType.EndOfLine)
+                return;
+
+            throw new ParserException("Expected end of line");
         }
 
         private IExpression ParseBinaryExpressionLevel0()
@@ -169,9 +201,20 @@
                 case TokenType.Delimiter:
                     if (token.Value == "(")
                     {
-                        IExpression expression = this.ParseExpression();
-                        this.ParseToken(")", TokenType.Delimiter);
-                        return expression;
+                        bool skip = this.lexer.SkipEndOfLine;
+
+                        this.lexer.SkipEndOfLine = true;
+
+                        try
+                        {
+                            IExpression expression = this.ParseExpression();
+                            this.ParseToken(")", TokenType.Delimiter);
+                            return expression;
+                        }
+                        finally
+                        {
+                            this.lexer.SkipEndOfLine = skip;
+                        }
                     }
                     break;
             }
@@ -268,6 +311,7 @@
         private ICommand ParseWhileCommand()
         {
             IExpression condition = this.ParseExpression();
+            this.ParseEndOfLine();
             ICommand command = this.ParseCommandList("end", "enddo");
 
             WhileCommand whileCommand = new WhileCommand(condition, command);
@@ -372,6 +416,7 @@
         {
             string name = this.ParseName();
             List<string> parameterNames = this.ParseParameterNameList();
+            this.ParseEndOfLine();
             ICommand command = this.ParseCommandList("return");
 
             ProcedureCommand procedureCommand = new ProcedureCommand(name, parameterNames, command);
@@ -496,6 +541,7 @@
             while (token != null && token.Value == "elseif")
             {
                 IExpression condition = this.ParseExpression();
+                this.ParseEndOfLine();
                 ICommand command = this.ParseCommandList("endif", "elseif", "else", "end");
                 ifCommand.AddConditionAndCommand(condition, command);
                 token = this.lexer.NextToken();
@@ -503,6 +549,7 @@
 
             if (token != null && token.Value == "else")
             {
+                this.ParseEndOfLine();
                 ICommand command = this.ParseCommandList("endif", "end");
                 ifCommand.AddElseCommand(command);
             }

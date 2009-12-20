@@ -28,6 +28,8 @@
         {
         }
 
+        public bool SkipEndOfLine { get; set; }
+
         public void PushToken(Token token)
         {
             this.stackedTokens.Push(token);
@@ -43,6 +45,7 @@
             try
             {
                 this.SkipBlanks();
+
                 ch = this.NextChar();
 
                 if (char.IsLetter(ch))
@@ -51,13 +54,16 @@
                 if (ch == '"')
                     return this.NextString();
 
+                if (ch == '\r' || ch == '\n')
+                    return this.NextEndOfLine(ch);
+
                 if (ch == '?')
                 {
                     int ich = this.TryNextChar();
 
                     if (ich >= 0)
                     {
-                        ch = (char) ich;
+                        ch = (char)ich;
 
                         if (ch == '?')
                             return new Token() { Value = "??", TokenType = TokenType.Name };
@@ -129,7 +135,7 @@
             {
                 ch = this.NextChar();
 
-                while (char.IsLetterOrDigit(ch) || ch=='.')
+                while (char.IsLetterOrDigit(ch) || ch == '.')
                 {
                     name += ch;
                     ch = this.NextChar();
@@ -146,9 +152,30 @@
             return token;
         }
 
+        private Token NextEndOfLine(char ch)
+        {
+            Token token = new Token() { TokenType = TokenType.EndOfLine, Value = "\r\n" };
+
+            if (ch == '\r')
+            {
+                try
+                {
+                    char ch2 = this.NextChar();
+
+                    if (ch2 != '\n')
+                        this.PushChar(ch2);
+                }
+                catch (EndOfInputException)
+                {
+                }
+            }
+
+            return token;
+        }
+
         private Token NextOperator(char ch)
         {
-            foreach (string oper in twoCharOperators) 
+            foreach (string oper in twoCharOperators)
             {
                 if (oper[0] == ch)
                 {
@@ -156,7 +183,7 @@
 
                     if (ich2 >= 0)
                     {
-                        char ch2 = (char) ich2;
+                        char ch2 = (char)ich2;
 
                         if (oper[1] == ch2)
                         {
@@ -255,7 +282,7 @@
         private int TryNextChar()
         {
             if (this.stackedChars.Count > 0)
-                return (int) this.stackedChars.Pop();
+                return (int)this.stackedChars.Pop();
 
             int ch;
             ch = this.reader.Read();
@@ -269,10 +296,8 @@
 
             ch = this.NextChar();
 
-            while (char.IsWhiteSpace(ch))
-            {
+            while (char.IsWhiteSpace(ch) && (this.SkipEndOfLine || (ch != '\r' && ch != '\n')))
                 ch = this.NextChar();
-            }
 
             this.PushChar(ch);
         }

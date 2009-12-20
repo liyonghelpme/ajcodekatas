@@ -259,5 +259,67 @@
             Assert.AreEqual("File", token.Value);
             Assert.AreEqual(TokenType.Name, token.TokenType);
         }
+
+        [TestMethod]
+        public void ParseEndOfLine()
+        {
+            Lexer lexer = new Lexer("\r\n");
+
+            Token token = lexer.NextToken();
+
+            Assert.AreEqual(TokenType.EndOfLine, token.TokenType);
+            Assert.AreEqual("\r\n", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void ParseTwoEndOfLines()
+        {
+            Lexer lexer = new Lexer("\r\n\r\n");
+
+            Token token = lexer.NextToken();
+
+            Assert.AreEqual(TokenType.EndOfLine, token.TokenType);
+            Assert.AreEqual("\r\n", token.Value);
+
+            token = lexer.NextToken();
+
+            Assert.AreEqual(TokenType.EndOfLine, token.TokenType);
+            Assert.AreEqual("\r\n", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void ParseEndOfLineNewLine()
+        {
+            Lexer lexer = new Lexer("\r\n\n");
+
+            Token token = lexer.NextToken();
+
+            Assert.AreEqual(TokenType.EndOfLine, token.TokenType);
+            Assert.AreEqual("\r\n", token.Value);
+
+            token = lexer.NextToken();
+
+            Assert.AreEqual(TokenType.EndOfLine, token.TokenType);
+            Assert.AreEqual("\r\n", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
+        public void ParseNewLine()
+        {
+            Lexer lexer = new Lexer("\n");
+
+            Token token = lexer.NextToken();
+
+            Assert.AreEqual(TokenType.EndOfLine, token.TokenType);
+            Assert.AreEqual("\r\n", token.Value);
+
+            Assert.IsNull(lexer.NextToken());
+        }
     }
 }

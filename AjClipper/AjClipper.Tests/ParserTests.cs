@@ -344,9 +344,35 @@
         }
 
         [TestMethod]
+        public void ParseAndEvaluateMultilineAddExpression()
+        {
+            Parser parser = new Parser("1+\r\n2");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(AddExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
+            Assert.AreEqual(3, (int)(expression.Evaluate(null)));
+        }
+
+        [TestMethod]
         public void ParseAndEvaluateAddExpressionWithParenthesis()
         {
             Parser parser = new Parser("(1+2)");
+
+            IExpression expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(AddExpression));
+            Assert.IsInstanceOfType(expression.Evaluate(null), typeof(int));
+            Assert.AreEqual(3, (int)(expression.Evaluate(null)));
+        }
+
+        [TestMethod]
+        public void ParseAndEvaluateAddMultilineExpressionWithParenthesis()
+        {
+            Parser parser = new Parser("(\r\n1\r\n+2)");
 
             IExpression expression = parser.ParseExpression();
 

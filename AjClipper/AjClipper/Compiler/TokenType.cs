@@ -6,6 +6,7 @@
         String,
         Integer,
         Delimiter,
-        Operator
+        Operator,
+        EndOfLine
     }
 }
