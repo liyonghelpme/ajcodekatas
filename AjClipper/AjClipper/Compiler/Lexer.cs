@@ -11,12 +11,15 @@
         private const string SingleCharOperators = "=$%+-*/:><#^!.";
 
         private const string SingleCharDelimiters = "[]{},()";
+        private const string OpenDelimiters = "[{,(";
 
         private static string[] twoCharOperators = new string[] { ":=", "==", ">=", "<=", "<>", "!=", "->", "--", "++", "+=", "-=", "*=", "/=", "^=", "%=" };
 
         private TextReader reader;
         private Stack<char> stackedChars = new Stack<char>();
         private Stack<Token> stackedTokens = new Stack<Token>();
+
+        private Token lastToken;
 
         public Lexer(TextReader reader)
         {
@@ -40,53 +43,63 @@
             if (this.stackedTokens.Count > 0)
                 return this.stackedTokens.Pop();
 
-            char ch;
-
             try
             {
-                this.SkipBlanks();
+                if (this.LastTokenWasOpen())
+                    this.SkipBlanksAndEndOfLines();
+                else
+                    this.SkipBlanks();
 
-                ch = this.NextChar();
+                this.lastToken = this.NextInmediateToken();
 
-                if (char.IsLetter(ch))
-                    return this.NextName(ch);
-
-                if (ch == '"')
-                    return this.NextString();
-
-                if (ch == '\r' || ch == '\n')
-                    return this.NextEndOfLine(ch);
-
-                if (ch == '?')
-                {
-                    int ich = this.TryNextChar();
-
-                    if (ich >= 0)
-                    {
-                        ch = (char)ich;
-
-                        if (ch == '?')
-                            return new Token() { Value = "??", TokenType = TokenType.Name };
-
-                        this.PushChar(ch);
-                    }
-
-                    return new Token() { Value = "?", TokenType = TokenType.Name };
-                }
-
-                if (char.IsDigit(ch))
-                    return this.NextInteger(ch);
-
-                if (SingleCharDelimiters.IndexOf(ch) >= 0)
-                    return new Token() { TokenType = TokenType.Delimiter, Value = new string(ch, 1) };
-
-                if (SingleCharOperators.IndexOf(ch) >= 0)
-                    return this.NextOperator(ch);
+                return this.lastToken;
             }
             catch (EndOfInputException)
             {
                 return null;
             }
+        }
+
+        private Token NextInmediateToken()
+        {
+            char ch;
+
+            ch = this.NextChar();
+
+            if (char.IsLetter(ch))
+                return this.NextName(ch);
+
+            if (ch == '"')
+                return this.NextString();
+
+            if (ch == '\r' || ch == '\n')
+                return this.NextEndOfLine(ch);
+
+            if (ch == '?')
+            {
+                int ich = this.TryNextChar();
+
+                if (ich >= 0)
+                {
+                    ch = (char)ich;
+
+                    if (ch == '?')
+                        return new Token() { Value = "??", TokenType = TokenType.Name };
+
+                    this.PushChar(ch);
+                }
+
+                return new Token() { Value = "?", TokenType = TokenType.Name };
+            }
+
+            if (char.IsDigit(ch))
+                return this.NextInteger(ch);
+
+            if (SingleCharDelimiters.IndexOf(ch) >= 0)
+                return new Token() { TokenType = TokenType.Delimiter, Value = new string(ch, 1) };
+
+            if (SingleCharOperators.IndexOf(ch) >= 0)
+                return this.NextOperator(ch);
 
             return null;
         }
@@ -300,6 +313,33 @@
                 ch = this.NextChar();
 
             this.PushChar(ch);
+        }
+
+        private void SkipBlanksAndEndOfLines()
+        {
+            char ch;
+
+            ch = this.NextChar();
+
+            while (char.IsWhiteSpace(ch))
+                ch = this.NextChar();
+
+            this.PushChar(ch);
+        }
+
+        private bool LastTokenWasOpen()
+        {
+            if (this.lastToken == null)
+                return false;
+
+            if (this.lastToken.TokenType == TokenType.Operator)
+                return true;
+
+            if (this.lastToken.TokenType == TokenType.Delimiter)
+                if (this.lastToken.Value.Length == 1 && OpenDelimiters.Contains(this.lastToken.Value[0]))
+                    return true;
+
+            return false;
         }
     }
 }
