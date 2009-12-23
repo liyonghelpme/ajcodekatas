@@ -795,6 +795,20 @@
             ParseExpression(".");
         }
 
+        [TestMethod]
+        public void ParseInvokeExpression()
+        {
+            IExpression expression = ParseExpression("foo(1)");
+            Assert.IsInstanceOfType(expression, typeof(InvokeExpression));
+        }
+
+        [TestMethod]
+        public void ParseExpressionCommand()
+        {
+            ICommand command = ParseCommand("foo(1)");
+            Assert.IsInstanceOfType(command, typeof(ExpressionCommand));
+        }
+
         private static bool ParseAndEvaluateBoolean(string text)
         {
             Parser parser = new Parser(text);
@@ -810,6 +824,16 @@
             Assert.IsNull(parser.ParseExpression());
 
             return expression;
+        }
+
+        private static ICommand ParseCommand(string text)
+        {
+            Parser parser = new Parser(text);
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNull(parser.ParseCommand());
+
+            return command;
         }
     }
 }

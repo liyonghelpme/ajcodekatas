@@ -8,6 +8,8 @@
     using AjClipper.Expressions;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using AjClipper.Language;
+    using AjClipper.Commands;
 
     [TestClass]
     public class ExpressionTests
@@ -258,6 +260,20 @@
             DotExpression dot = new DotExpression(new DotExpression(new DotExpression(new NameExpression("System"), "IO"), "File"), "Exists", new IExpression[] { new ConstantExpression("unknown.txt") });
 
             Assert.IsFalse((bool)dot.Evaluate(new ValueEnvironment()));
+        }
+
+        [TestMethod]
+        public void EvaluateInvokeExpression()
+        {
+            InvokeExpression invoke = new InvokeExpression("foo", new IExpression[] { new ConstantExpression(1) });
+            Machine machine = new Machine();
+            Procedure procedure = new Procedure("foo", new string[] { "x" }, new ReturnCommand(new NameExpression("x")), machine);
+            machine.Environment.SetValue("foo", procedure);
+
+            object result = invoke.Evaluate(machine.Environment);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
         }
     }
 }

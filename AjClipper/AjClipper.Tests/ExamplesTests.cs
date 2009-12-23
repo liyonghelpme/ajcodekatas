@@ -62,6 +62,27 @@
         }
 
         [TestMethod]
+        [DeploymentItem("Examples\\SimpleFunction.prg")]
+        public void ParseAndEvaluateSimpleFunction()
+        {
+            Parser parser = new Parser(File.OpenText("SimpleFunction.prg"));
+            ICommand command = parser.ParseCommandList();
+            ValueEnvironment environment = new ValueEnvironment(ValueEnvironmentType.Public);
+
+            command.Execute(null, environment);
+
+            object func = environment.GetValue("Increment");
+
+            Assert.IsNotNull(func);
+            Assert.IsInstanceOfType(func, typeof(Procedure));
+
+            object result = environment.GetValue("foo");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
         [DeploymentItem("Examples\\SimplePublicVariable.prg")]
         public void ParseAndEvaluateSimplePublicVariable()
         {
@@ -218,6 +239,37 @@
             WorkArea workarea = (WorkArea)result;
 
             Assert.IsTrue(workarea.ReadNext());
+        }
+
+        [TestMethod]
+        [DeploymentItem("Examples\\DataUseNorthwindEmployees.prg")]
+        public void ParseAndEvaluateDataUseNorthwindEmployees()
+        {
+            Parser parser = new Parser(File.OpenText("DataUseNorthwindEmployees.prg"));
+            ICommand command = parser.ParseCommandList();
+            Machine machine = new Machine();
+            StringWriter writer = new StringWriter();
+
+            lock (System.Console.Out)
+            {
+                TextWriter originalWriter = System.Console.Out;
+                System.Console.SetOut(writer);
+
+                command.Execute(machine, machine.Environment);
+
+                System.Console.SetOut(originalWriter);
+            }
+
+            object result = machine.Environment.GetValue("Employees");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(WorkArea));
+
+            WorkArea workarea = (WorkArea)result;
+
+            Assert.IsFalse(workarea.ReadNext());
+
+            Assert.IsTrue(writer.ToString().Length > 10);
         }
     }
 }

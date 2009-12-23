@@ -49,6 +49,7 @@
     <Compile Include="MachineTests.cs" />
     <Compile Include="ObjectUtilitiesTests.cs" />
     <Compile Include="ParserTests.cs" />
+    <Compile Include="ProcedureTests.cs" />
     <Compile Include="TypeUtilitiesTests.cs" />
     <Compile Include="ValueEnvironmentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TEST.DBT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Examples\DataUseNorthwindEmployees.prg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Examples\SimpleFunction.prg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Examples\DataUseNorthwindCustomers.prg">

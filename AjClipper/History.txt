@@ -77,4 +77,13 @@ Parser.ParseNameExpression() supports dots and optional arguments
 name expression as first parameter in NewExpression constructor
 Northwind example
 
+2009-12-20
+Multiline support in Lexer, opened operators, Parser
 
+2009-12-23
+InvokeExpression
+ReturnCommand
+ExpressionCommand
+Improved parser
+ReturnExpression
+Web Running Application

@@ -2,5 +2,5 @@
 bar := "foo"
 return
 
-do SetBar()
+SetBar()
 

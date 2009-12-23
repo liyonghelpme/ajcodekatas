@@ -187,5 +187,22 @@
 
             Assert.IsTrue(result == result2);
         }
+
+        [TestMethod]
+        public void EvaluateReturnCommand()
+        {
+            ReturnCommand retcmd = new ReturnCommand(new ConstantExpression(1));
+
+            Assert.AreEqual(1, retcmd.Evaluate(null));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ReturnException))]
+        public void ExecuteReturnCommand()
+        {
+            ReturnCommand retcmd = new ReturnCommand(new ConstantExpression(1));
+
+            retcmd.Execute(null, null);
+        }
     }
 }

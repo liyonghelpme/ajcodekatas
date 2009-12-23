@@ -52,7 +52,7 @@
             return this.ParseBinaryExpressionLevel0();
         }
 
-        public ICommand ParseCommandList(params string[] terminators)
+        public CompositeCommand ParseCommandList(params string[] terminators)
         {
             CompositeCommand commands = new CompositeCommand();
 
@@ -244,7 +244,7 @@
                     return new DotExpression(expression, newname);
 
             if (newname == null)
-                throw new ParserException("Simple invoke not yet supported");
+                return new InvokeExpression(name, arguments);
 
             return new DotExpression(expression, newname, arguments);
         }
@@ -271,6 +271,9 @@
             if (token.Value == "?")
                 return new PrintLineCommand(this.ParseExpressionList());
 
+            if (token.Value == "??")
+                return new PrintCommand(this.ParseExpressionList());
+
             if (token.TokenType == TokenType.Name)
             {
                 token.Value = token.Value.ToLower();
@@ -283,6 +286,9 @@
 
                 if (token.Value == "procedure")
                     return this.ParseProcedureCommand();
+
+                if (token.Value == "function")
+                    return this.ParseFunctionCommand();
 
                 if (token.Value == "do")
                     return this.ParseDoProcedureCommand();
@@ -299,13 +305,39 @@
                 if (token.Value == "private")
                     return this.ParsePrivateCommand();
 
+                if (token.Value == "return")
+                    return this.ParseReturnCommand();
+
                 Token token2 = this.lexer.NextToken();
 
                 if (token2 != null && (token2.Value == ":=" || token2.Value == "="))
                     return new SetVariableCommand(token.Value, this.ParseExpression());
+
+                if (token2 != null)
+                    this.lexer.PushToken(token2);
+
+                this.lexer.PushToken(token);
+
+                return new ExpressionCommand(this.ParseExpression());
             }
 
             throw new ParserException(string.Format("Unexpected token {0}", token.Value));
+        }
+
+        private ICommand ParseReturnCommand()
+        {
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return new ReturnCommand(null);
+
+            if (token.TokenType == TokenType.EndOfLine)
+            {
+                this.lexer.PushToken(token);
+                return new ReturnCommand(null);
+            }
+
+            return new ReturnCommand(this.ParseExpression());
         }
 
         private ICommand ParseWhileCommand()
@@ -422,6 +454,31 @@
             ProcedureCommand procedureCommand = new ProcedureCommand(name, parameterNames, command);
 
             this.lexer.NextToken();
+
+            return procedureCommand;
+        }
+
+        private ICommand ParseFunctionCommand()
+        {
+            string name = this.ParseName();
+            List<string> parameterNames = this.ParseParameterNameList();
+            this.ParseEndOfLine();
+
+            CompositeCommand command = this.ParseCommandList("return");
+
+            this.lexer.NextToken();
+
+            Token token = this.lexer.NextToken();
+
+            if (token != null)
+            {
+                this.lexer.PushToken(token);
+
+                if (token.TokenType != TokenType.EndOfLine)
+                    command.AddCommand(new ReturnCommand(this.ParseExpression()));
+            }
+
+            ProcedureCommand procedureCommand = new ProcedureCommand(name, parameterNames, command);
 
             return procedureCommand;
         }
