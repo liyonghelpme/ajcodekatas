@@ -8,5 +8,8 @@ AjClipper To do list
 
 - Use <Name>
 
+- See: Open Database as in Fox
+	= as assignment as in Fox
+
 http://www.itlnet.net/Programming/Program/Reference/c53g01c/menu.html
 

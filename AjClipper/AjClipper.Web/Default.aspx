@@ -19,9 +19,9 @@
         <br />
         <asp:Label ID="lblResult" runat="server" Text="" ForeColor="Red"></asp:Label>
     
-    <pre>
-    <%= Result %>
-    </pre>
+<pre>
+<%= Result %>
+</pre>
     </div>
     </form>
 </body>
