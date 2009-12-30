@@ -1,0 +1,7 @@
+
+2009-12-30
+Initial Project in ajcodekatas
+Channel
+Task, ITask
+GoRoutines
+Primes example
