@@ -14,9 +14,11 @@ namespace AjConcurr.Tests
         public void RunGoRoutine()
         {
             int i = 0;
-            GoRoutines.Go(delegate() { i++;  });
+            AutoResetEvent handle = new AutoResetEvent(false);
 
-            Thread.Sleep(100);
+            GoRoutines.Go(delegate() { i++; handle.Set(); });
+
+            handle.WaitOne();
 
             Assert.AreEqual(1, i);
         }
@@ -25,11 +27,37 @@ namespace AjConcurr.Tests
         public void RunGoRoutineWithParameter()
         {
             int i = 0;
-            GoRoutines.Go(x => i = x, 2);
+            AutoResetEvent handle = new AutoResetEvent(false);
+
+            GoRoutines.Go(x => { i = x; handle.Set(); }, 2);
+
+            handle.WaitOne();
+
+            Assert.AreEqual(2, i);
+        }
+
+        [TestMethod]
+        public void RunGoRoutineWithTwoParameters()
+        {
+            int i = 0;
+            AutoResetEvent handle = new AutoResetEvent(false);
+
+            GoRoutines.Go((x, y) => { i = x + y; handle.Set(); }, 2, 3);
+
+            handle.WaitOne();
+
+            Assert.AreEqual(5, i);
+        }
+
+        [TestMethod]
+        public void RunGoRoutineWithThreeParameters()
+        {
+            int i = 0;
+            GoRoutines.Go((x, y, z) => i = x + y + z, 2, 3, 4);
 
             Thread.Sleep(100);
 
-            Assert.AreEqual(2, i);
+            Assert.AreEqual(9, i);
         }
     }
 }
