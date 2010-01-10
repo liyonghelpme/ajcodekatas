@@ -8,3 +8,7 @@ Primes example
 
 2010-01-02
 Test improvements
+
+2010-01-10
+Lock in Channel to support simultaneous consumers/producers
+Traveler Saleman Problem example, initial version
