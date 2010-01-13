@@ -142,7 +142,7 @@
         [TestMethod]
         public void ExecuteUseDatabaseCommand()
         {
-            UseDatabaseCommand command = new UseDatabaseCommand(new NameExpression("testdb"), new ConstantExpression(OleDbConnectionString), new ConstantExpression(OleDbProviderFactoryName));
+            OpenDatabaseCommand command = new OpenDatabaseCommand(new NameExpression("testdb"), new ConstantExpression(OleDbConnectionString), new ConstantExpression(OleDbProviderFactoryName));
             Machine machine = new Machine();
 
             command.Execute(machine, machine.Environment);
@@ -165,7 +165,7 @@
         [TestMethod]
         public void ExecuteUseWorkAreaCommand()
         {
-            UseDatabaseCommand dbcommand = new UseDatabaseCommand(new NameExpression("testdb"), new ConstantExpression(OleDbConnectionString), new ConstantExpression(OleDbProviderFactoryName));
+            OpenDatabaseCommand dbcommand = new OpenDatabaseCommand(new NameExpression("testdb"), new ConstantExpression(OleDbConnectionString), new ConstantExpression(OleDbProviderFactoryName));
             Machine machine = new Machine();
 
             dbcommand.Execute(machine, machine.Environment);

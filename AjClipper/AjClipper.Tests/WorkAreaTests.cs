@@ -30,7 +30,7 @@ namespace AjClipper.Tests
             SqlConnection conn = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=.\\TestData.mdf;Integrated Security=True");
             WorkArea workarea = new WorkArea("TestTable", conn, SqlClientFactory.Instance);
 
-            Assert.IsTrue(workarea.ReadNext());
+            Assert.IsTrue(workarea.MoveNext());
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace AjClipper.Tests
             OleDbConnection conn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.;Extended Properties=dBASE IV;User ID=Admin;Password=;");
             WorkArea workarea = new WorkArea("TEST", conn, OleDbFactory.Instance);
 
-            Assert.IsTrue(workarea.ReadNext());
+            Assert.IsTrue(workarea.MoveNext());
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace AjClipper.Tests
             OleDbCommand cmd = new OleDbCommand("select * from TEST order by CODIGO", conn);
             WorkArea workarea = new WorkArea("TEST", cmd, OleDbFactory.Instance);
 
-            Assert.IsTrue(workarea.ReadNext());
+            Assert.IsTrue(workarea.MoveNext());
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace AjClipper.Tests
             OleDbConnection conn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.;Extended Properties=dBASE IV;User ID=Admin;Password=;");
             WorkArea workarea = new WorkArea("TEST", conn, OleDbFactory.Instance);
 
-            workarea.ReadNext();
+            workarea.MoveNext();
 
             object result = workarea.GetField("CODIGO");
 
@@ -85,7 +85,7 @@ namespace AjClipper.Tests
             OleDbCommand cmd = new OleDbCommand("select * from TEST order by CODIGO", conn);
             WorkArea workarea = new WorkArea("TEST", cmd, OleDbFactory.Instance);
 
-            workarea.ReadNext();
+            workarea.MoveNext();
 
             object result = workarea.GetField("CODIGO");
 
@@ -102,7 +102,7 @@ namespace AjClipper.Tests
             OleDbCommand cmd = new OleDbCommand("select * from TEST order by CODIGO", conn);
             WorkArea workarea = new WorkArea("TEST", cmd, OleDbFactory.Instance);
 
-            workarea.ReadNext();
+            workarea.MoveNext();
 
             object result = workarea.GetField("DETALLE");
 

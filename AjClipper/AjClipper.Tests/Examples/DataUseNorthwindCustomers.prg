@@ -1,5 +1,5 @@
 ﻿
-use database Northwind
+open database Northwind
 
 use Customers
 

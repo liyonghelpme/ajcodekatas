@@ -719,14 +719,14 @@
         }
 
         [TestMethod]
-        public void ParseUseDatabaseCommand()
+        public void ParseOpenDatabaseCommand()
         {
-            Parser parser = new Parser(string.Format("use database TestDb connectionstring \"{0}\" provider \"{1}\"", OleDbConnectionString, OleDbProviderFactoryName));
+            Parser parser = new Parser(string.Format("open database TestDb connectionstring \"{0}\" provider \"{1}\"", OleDbConnectionString, OleDbProviderFactoryName));
 
             ICommand command = parser.ParseCommand();
 
             Assert.IsNotNull(command);
-            Assert.IsInstanceOfType(command, typeof(UseDatabaseCommand));
+            Assert.IsInstanceOfType(command, typeof(OpenDatabaseCommand));
         }
 
         [TestMethod]

@@ -238,7 +238,7 @@
 
             WorkArea workarea = (WorkArea)result;
 
-            Assert.IsTrue(workarea.ReadNext());
+            Assert.IsTrue(workarea.MoveNext());
         }
 
         [TestMethod]
@@ -267,7 +267,7 @@
 
             WorkArea workarea = (WorkArea)result;
 
-            Assert.IsFalse(workarea.ReadNext());
+            Assert.IsFalse(workarea.MoveNext());
 
             Assert.IsTrue(writer.ToString().Length > 10);
         }

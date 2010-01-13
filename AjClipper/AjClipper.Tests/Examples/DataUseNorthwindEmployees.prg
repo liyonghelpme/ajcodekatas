@@ -1,9 +1,9 @@
 ﻿
-use database Northwind
+open database Northwind
 
 use Employees
 
-while Employees.ReadNext()
+while Employees.MoveNext()
 	?? Employees.GetField("EmployeeID")
 	?? " "
 	?? Employees.GetField("FirstName")

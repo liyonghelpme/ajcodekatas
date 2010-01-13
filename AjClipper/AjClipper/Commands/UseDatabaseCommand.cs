@@ -8,13 +8,13 @@
     using AjClipper.Expressions;
     using AjClipper.Data;
 
-    public class UseDatabaseCommand : BaseCommand
+    public class OpenDatabaseCommand : BaseCommand
     {
         private IExpression nameExpression;
         private IExpression connectionExpression;
         private IExpression providerExpression;
 
-        public UseDatabaseCommand(IExpression nameExpression, IExpression connectionExpression, IExpression providerExpression)
+        public OpenDatabaseCommand(IExpression nameExpression, IExpression connectionExpression, IExpression providerExpression)
         {
             this.nameExpression = nameExpression;
             this.connectionExpression = connectionExpression;

@@ -36,7 +36,7 @@
 
         public string Name { get { return this.name; } }
 
-        public bool ReadNext()
+        public bool MoveNext()
         {
             if (this.dataTable == null)
                 this.ReadDataTable();

@@ -90,3 +90,8 @@ Web Running Application
 
 2009-12-24
 Minor changes in Web App
+
+2010-01-13
+Change use database to open database
+Change UseDatabaseCommand to OpenDatabaseCommand
+Post http://ajlopez.wordpress.com/2010/01/13/ajclipper-a-clipper-like-interpreter-that-uses-net/

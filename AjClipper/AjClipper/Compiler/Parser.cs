@@ -299,6 +299,9 @@
                 if (token.Value == "use")
                     return this.ParseUseCommand();
 
+                if (token.Value == "open")
+                    return this.ParseOpenCommand();
+
                 if (token.Value == "local")
                     return this.ParseLocalCommand();
 
@@ -375,15 +378,18 @@
 
         private ICommand ParseUseCommand()
         {
-            if (this.TryParse("database", TokenType.Name))
-                return ParseUseDatabaseCommand();
-
             this.TryParse("workarea", TokenType.Name);
 
             return ParseUseWorkAreaCommand();
         }
 
-        private ICommand ParseUseDatabaseCommand()
+        private ICommand ParseOpenCommand()
+        {
+            this.ParseName("database");
+            return ParseOpenDatabaseCommand();
+        }
+
+        private ICommand ParseOpenDatabaseCommand()
         {
             IExpression nameExpression = this.ParseExpression();
 
@@ -414,7 +420,7 @@
                 break;
             }
 
-            return new UseDatabaseCommand(nameExpression, connectionExpression, providerExpression);
+            return new OpenDatabaseCommand(nameExpression, connectionExpression, providerExpression);
         }
 
         private ICommand ParseUseWorkAreaCommand()
