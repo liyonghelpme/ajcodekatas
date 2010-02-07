@@ -93,16 +93,16 @@ namespace AjConcurr.Tsp
                     Genoma genoma = (Genoma)mutator.Receive();
                     Genoma newgenoma = this.Mutate(genoma);
 
-                    if (rnd.Next(2) == 0)
-                        newgenoma = this.Mutate(newgenoma);
+                    //if (rnd.Next(2) == 0)
+                    //    newgenoma = this.Mutate(newgenoma);
 
-                    //while (newgenoma.value >= genoma.value)
-                    //{
-                    //    if (rnd.Next(3) == 0)
-                    //        break;
+                    while (newgenoma.value >= genoma.value)
+                    {
+                        if (rnd.Next(3) == 0)
+                            break;
 
-                    //    newgenoma = this.Mutate(genoma);
-                    //}
+                        newgenoma = this.Mutate(genoma);
+                    }
 
                     evaluated.Send(newgenoma);
                 }
