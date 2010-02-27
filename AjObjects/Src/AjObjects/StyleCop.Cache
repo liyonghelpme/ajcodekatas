@@ -1,0 +1,33 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/27/2010 17:15:20</timestamp>
+      <milliseconds>177</milliseconds>
+    </settings>
+    <timestamp>02/27/2010 16:25:07</timestamp>
+    <milliseconds>691</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-1132703265">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="BasicObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/27/2010 17:15:20</timestamp>
+      <milliseconds>177</milliseconds>
+    </settings>
+    <timestamp>02/27/2010 17:23:31</timestamp>
+    <milliseconds>18</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="HashUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/27/2010 17:15:20</timestamp>
+      <milliseconds>177</milliseconds>
+    </settings>
+    <timestamp>02/27/2010 17:23:13</timestamp>
+    <milliseconds>694</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>

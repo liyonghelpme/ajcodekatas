@@ -1,0 +1,5 @@
+
+2010-02-27
+Initial project in ajcodekatas
+BasicObject w/initial tests
+Collection w/initial tests
