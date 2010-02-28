@@ -3,3 +3,6 @@
 Initial project in ajcodekatas
 BasicObject w/initial tests
 Collection w/initial tests
+
+2010-02-28
+BasicObjectSerializer initial version and tests

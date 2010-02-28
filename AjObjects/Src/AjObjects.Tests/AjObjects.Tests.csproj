@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0115BB8B-FA73-4330-AE28-07DFAE19186B}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicObjectSerializerTests.cs" />
     <Compile Include="BasicObjectTests.cs" />
     <Compile Include="CollectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
