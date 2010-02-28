@@ -1,33 +1,60 @@
 <stylecopresultscache>
   <version>10</version>
+  <sourcecode name="HashUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/28/2010 15:42:37</timestamp>
+      <milliseconds>769</milliseconds>
+    </settings>
+    <timestamp>02/28/2010 15:42:37</timestamp>
+    <milliseconds>771</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>02/27/2010 17:15:20</timestamp>
-      <milliseconds>177</milliseconds>
+      <timestamp>02/28/2010 15:42:37</timestamp>
+      <milliseconds>769</milliseconds>
     </settings>
-    <timestamp>02/27/2010 16:25:07</timestamp>
-    <milliseconds>691</milliseconds>
+    <timestamp>02/28/2010 15:42:37</timestamp>
+    <milliseconds>688</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BasicObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/28/2010 15:42:37</timestamp>
+      <milliseconds>769</milliseconds>
+    </settings>
+    <timestamp>02/28/2010 18:01:17</timestamp>
+    <milliseconds>488</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Cursor.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/28/2010 15:42:37</timestamp>
+      <milliseconds>769</milliseconds>
+    </settings>
+    <timestamp>02/28/2010 18:00:56</timestamp>
+    <milliseconds>476</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BasicObjectSerializer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>02/28/2010 15:42:37</timestamp>
+      <milliseconds>769</milliseconds>
+    </settings>
+    <timestamp>02/28/2010 18:01:23</timestamp>
+    <milliseconds>224</milliseconds>
     <violations />
   </sourcecode>
   <project key="-1132703265">
     <configuration>DEBUG;TRACE</configuration>
   </project>
-  <sourcecode name="BasicObject.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+  <sourcecode name="Collection.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
-      <timestamp>02/27/2010 17:15:20</timestamp>
-      <milliseconds>177</milliseconds>
+      <timestamp>02/28/2010 15:42:37</timestamp>
+      <milliseconds>769</milliseconds>
     </settings>
-    <timestamp>02/27/2010 17:23:31</timestamp>
-    <milliseconds>18</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="HashUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>02/27/2010 17:15:20</timestamp>
-      <milliseconds>177</milliseconds>
-    </settings>
-    <timestamp>02/27/2010 17:23:13</timestamp>
-    <milliseconds>694</milliseconds>
+    <timestamp>02/28/2010 18:28:21</timestamp>
+    <milliseconds>888</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

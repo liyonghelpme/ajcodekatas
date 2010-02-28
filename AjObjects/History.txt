@@ -6,3 +6,8 @@ Collection w/initial tests
 
 2010-02-28
 BasicObjectSerializer initial version and tests
+Collection.Delete w/tests
+Collection.FindAll w/tests
+Collection.Update w/tests
+Collection.DeleteObject w/test
+Cursor

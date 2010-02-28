@@ -6,6 +6,24 @@
     using System.Linq;
     using System.Text;
 
+    internal enum SerializerType : byte
+    {
+        BasicObject = 0,
+        Byte = 1,
+        Char = 2,
+        Short = 3,
+        Integer = 4,
+        Long = 5,
+        Float = 6,
+        Double = 7,
+        Decimal = 8,
+        DateTime = 9,
+        Guid = 10,
+        String = 11,
+        List = 12,
+        Null = 13
+    }
+
     public class BasicObjectSerializer
     {
         public void Serialize(BasicObject obj, Stream output)
@@ -122,23 +140,5 @@
 
             throw new InvalidDataException("Invalid data deserializing BasicObject");
         }
-    }
-
-    internal enum SerializerType : byte
-    {
-        BasicObject = 0,
-        Byte = 1,
-        Char = 2,
-        Short = 3,
-        Integer = 4,
-        Long = 5,
-        Float = 6,
-        Double = 7,
-        Decimal = 8,
-        DateTime = 9,
-        Guid = 10,
-        String = 11,
-        List = 12,
-        Null = 13
     }
 }

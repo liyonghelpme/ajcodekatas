@@ -111,7 +111,7 @@
 
             foreach (string name in this.names)
             {
-                Object value = this.values[name];
+                object value = this.values[name];
 
                 if (value is ICloneable)
                     value = ((ICloneable)value).Clone();
@@ -122,7 +122,7 @@
             return newobj;
         }
 
-        public Object Clone()
+        public object Clone()
         {
             return this.MakeDeepCopy();
         }
