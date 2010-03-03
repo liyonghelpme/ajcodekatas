@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AjObjects.Collection">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="AjObjects.Collection.PositionObject" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAIAAAAAIQAAAAAQEIAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Collection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
