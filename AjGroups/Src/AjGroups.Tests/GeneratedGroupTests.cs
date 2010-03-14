@@ -11,7 +11,7 @@
     public class GeneratedGroupTests
     {
         [TestMethod]
-        public void ShouldCreateWithIdentity()
+        public void CreateWithIdentity()
         {
             GeneratedGroup group = new GeneratedGroup(Element.CreateIdentity(4));
 
@@ -20,7 +20,7 @@
         }
 
         [TestMethod]
-        public void ShouldCreateWithSwapOrderTwo()
+        public void CreateWithSwapOrderTwo()
         {
             GeneratedGroup group = new GeneratedGroup(Element.CreateSwap(2));
 
@@ -29,7 +29,7 @@
         }
 
         [TestMethod]
-        public void ShouldCreateWithSwapOrderSix()
+        public void CreateWithSwapOrderSix()
         {
             GeneratedGroup group = new GeneratedGroup(Element.CreateSwap(6));
 
@@ -38,7 +38,7 @@
         }
 
         [TestMethod]
-        public void ShouldCreateSymetricGroupSizeThree()
+        public void CreateSymetricGroupSizeThree()
         {
             GeneratedGroup group = new GeneratedGroup(Element.CreateSwap(3), Element.CreateRotation(3));
 
@@ -47,7 +47,7 @@
         }
 
         [TestMethod]
-        public void ShouldCreateSymetricGroupSizeFour()
+        public void CreateSymetricGroupSizeFour()
         {
             GeneratedGroup group = new GeneratedGroup(Element.CreateSwap(4), Element.CreateRotation(4));
 
@@ -56,7 +56,7 @@
         }
 
         [TestMethod]
-        public void ShouldCreateSymetricGroups()
+        public void CreateSymetricGroups()
         {
             int n = 1;
 

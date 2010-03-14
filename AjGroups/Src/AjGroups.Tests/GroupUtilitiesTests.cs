@@ -11,7 +11,7 @@
     public class GroupUtilitiesTests
     {
         [TestMethod]
-        public void ShouldMultiplyBeIdempotent()
+        public void MultiplyBeIdempotent()
         {
             IGroup group = new SymmetricGroup(3);
 
@@ -21,7 +21,7 @@
         }
 
         [TestMethod]
-        public void ShouldMultiplyGenerateSymmetricGroup()
+        public void MultiplyGenerateSymmetricGroup()
         {
             IGroup group1 = new GeneratedGroup(Element.CreateRotation(4));
             IGroup group2 = new GeneratedGroup(Element.CreateSwap(4));
@@ -37,7 +37,7 @@
         }
 
         [TestMethod]
-        public void ShouldGetSubgroupsOfMinimalGroup()
+        public void GetSubgroupsOfMinimalGroup()
         {
             IGroup group = new SymmetricGroup(2);
 
@@ -48,7 +48,7 @@
         }
 
         [TestMethod]
-        public void ShouldGetSubgroupsOfSymetricGroupThree()
+        public void GetSubgroupsOfSymetricGroupThree()
         {
             IGroup group = new SymmetricGroup(3);
 
@@ -59,7 +59,7 @@
         }
 
         [TestMethod]
-        public void ShouldGetSubgroupsOfSymetricGroupFour()
+        public void GetSubgroupsOfSymetricGroupFour()
         {
             IGroup group = new SymmetricGroup(4);
 
@@ -70,7 +70,7 @@
         }
 
         [TestMethod]
-        public void ShouldGetSubgroupsOfCyclicGroupFour()
+        public void GetSubgroupsOfCyclicGroupFour()
         {
             IGroup group = new GeneratedGroup(Element.CreateRotation(4));
 
@@ -81,7 +81,7 @@
         }
 
         [TestMethod]
-        public void ShouldGetSubgroupsOfCyclicGroupFive()
+        public void GetSubgroupsOfCyclicGroupFive()
         {
             IGroup group = new GeneratedGroup(Element.CreateRotation(5));
 
@@ -92,7 +92,7 @@
         }
 
         [TestMethod]
-        public void ShouldGetSubgroupsOfCyclicGroupSeven()
+        public void GetSubgroupsOfCyclicGroupSeven()
         {
             IGroup group = new GeneratedGroup(Element.CreateRotation(7));
 

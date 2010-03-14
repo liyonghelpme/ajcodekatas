@@ -13,7 +13,7 @@
     public class ElementTests
     {
         [TestMethod]
-        public void ShouldCreate()
+        public void Create()
         {
             Element element = new Element(0, 1, 2);
 
@@ -23,20 +23,20 @@
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfValueIsRepeated()
+        public void RaiseIfValueIsRepeated()
         {
             Element element = new Element(0, 1, 1);
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ShouldRaiseIfValueOutOfRange()
+        public void RaiseIfValueOutOfRange()
         {
             Element element = new Element(0, 1, 10);
         }
 
         [TestMethod]
-        public void ShouldBeEqual()
+        public void BeEqual()
         {
             Element element1 = new Element(0, 1, 2);
             Element element2 = new Element(0, 1, 2);
@@ -46,7 +46,7 @@
         }
 
         [TestMethod]
-        public void ShouldBeNotEqual()
+        public void BeNotEqual()
         {
             Element element1 = new Element(0, 1, 2);
             Element element2 = new Element(2, 1, 0);
@@ -55,7 +55,7 @@
         }
 
         [TestMethod]
-        public void ShouldMultiplyIdentity()
+        public void MultiplyIdentity()
         {
             Element element = new Element(0, 1, 2);
 
@@ -63,7 +63,7 @@
         }
 
         [TestMethod]
-        public void ShouldMultiplySwitch()
+        public void MultiplySwitch()
         {
             Element identity = new Element(0, 1, 2);
             Element element = new Element(1, 0, 2);
@@ -72,7 +72,7 @@
         }
 
         [TestMethod]
-        public void ShouldMultiplyRotateLeft()
+        public void MultiplyRotateLeft()
         {
             Element identity = new Element(0, 1, 2);
             Element element = new Element(1, 2, 0);
@@ -83,7 +83,7 @@
         }
 
         [TestMethod]
-        public void ShouldMultiplyRotateRight()
+        public void MultiplyRotateRight()
         {
             Element identity = new Element(0, 1, 2);
             Element element = new Element(2, 0, 1);
@@ -94,7 +94,7 @@
         }
 
         [TestMethod]
-        public void ShouldMultiplyDifferentSizes()
+        public void MultiplyDifferentSizes()
         {
             Element swap3 = Element.CreateSwap(3);
             Element swap7 = Element.CreateSwap(7);
@@ -116,7 +116,7 @@
         }
 
         [TestMethod]
-        public void ShouldCreateIdentity()
+        public void CreateIdentity()
         {
             Element element = Element.CreateIdentity(4);
             Element identity = new Element(0, 1, 2, 3);
@@ -127,7 +127,7 @@
         }
 
         [TestMethod]
-        public void ShouldCreateSwap()
+        public void CreateSwap()
         {
             Element element = Element.CreateSwap(4);
             Element swap = new Element(1, 0, 2, 3);
@@ -138,7 +138,7 @@
         }
 
         [TestMethod]
-        public void ShouldCreateRotation()
+        public void CreateRotation()
         {
             Element element = Element.CreateRotation(4);
             Element rotation = new Element(1, 2, 3, 0);
