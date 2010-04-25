@@ -38,6 +38,19 @@
             if (char.IsDigit(ch))
                 return NextInteger(ch);
 
+            if (ch == ';' || ch == '\n')
+                return new Token() { Value = ch.ToString(), TokenType = TokenType.Terminator };
+
+            if (ch == '\r')
+            {
+                int nxch2 = this.NextChar();
+
+                if (nxch2 != -1 && ((char) nxch2) == '\n')
+                    return new Token() { Value = ch.ToString(), TokenType = TokenType.Terminator };
+
+                this.Push(nxch2);
+            }
+
             if (ch == '"')
                 return NextString();
 
@@ -166,8 +179,8 @@
         {
             int ch = this.NextChar();
 
-            while (ch != -1 && char.IsWhiteSpace((char) ch))
-            {
+            while (ch != -1 && ((char)ch) != '\n' && ((char)ch) != '\r' && char.IsWhiteSpace((char)ch))
+            {                
                 ch = this.NextChar();
             }
 

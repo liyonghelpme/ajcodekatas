@@ -8,4 +8,7 @@ ClonedObject
 Message, IMethod
 CloneMethod
 Machine initial implementation
-
+AjIo.Console
+IObject.Evaluate
+IObject.Process with context
+EvaluationTests

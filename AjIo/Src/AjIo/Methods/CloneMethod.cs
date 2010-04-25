@@ -9,7 +9,7 @@
 
     public class CloneMethod : IMethod
     {
-        public object Execute(IObject receiver, IList<object> arguments)
+        public object Execute(IObject context, IObject receiver, IList<object> arguments)
         {
             if (arguments != null)
                 throw new InvalidOperationException("clone should have no arguments");

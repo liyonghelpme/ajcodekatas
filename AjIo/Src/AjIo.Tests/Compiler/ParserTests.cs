@@ -83,5 +83,44 @@ namespace AjIo.Tests.Compiler
             Assert.AreEqual(1, message.Arguments[0]);
             Assert.AreEqual(2, message.Arguments[1]);
         }
+
+        [TestMethod]
+        public void ParseTwoExpressionsWithTerminators()
+        {
+            Parser parser = new Parser("1;foo\r\n");
+
+            object expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(int));
+
+            expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Message));
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseTerminators()
+        {
+            Parser parser = new Parser(";\n\r\n");
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseCloneExpression()
+        {
+            Parser parser = new Parser("Object clone");
+
+            object expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(IList<Message>));
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

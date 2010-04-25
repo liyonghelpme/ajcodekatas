@@ -14,6 +14,7 @@
         Comma,
         String,
         Integer,
-        Real
+        Real,
+        Terminator
     }
 }

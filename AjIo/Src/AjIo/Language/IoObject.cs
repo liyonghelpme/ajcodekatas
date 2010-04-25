@@ -12,6 +12,10 @@
         public IoObject()
         {
             this.SetSlot("clone", new CloneMethod());
+            this.SetSlot("setSlot", new SetSlotMethod());
+            this.SetSlot("newSlot", new NewSlotMethod());
         }
+
+        public override string TypeName { get { return "Object"; } }
     }
 }

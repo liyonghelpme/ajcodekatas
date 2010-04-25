@@ -16,6 +16,11 @@
 
         public IObject Parent { get { return this.parent; } }
 
+        public override string TypeName
+        {
+            get { return this.parent.TypeName; }
+        }
+
         public override object GetSlot(string name)
         {
             if (this.slotValues.ContainsKey(name))

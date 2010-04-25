@@ -104,6 +104,28 @@
         }
 
         [TestMethod]
+        public void GetTerminators()
+        {
+            Lexer lexer = new Lexer(";\n\r\n");
+
+            Token token;
+
+            token = lexer.NextToken();
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Terminator, token.TokenType);
+
+            token = lexer.NextToken();
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Terminator, token.TokenType);
+
+            token = lexer.NextToken();
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Terminator, token.TokenType);
+
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetArithmeticOperators()
         {
             Lexer lexer = new Lexer("+ - * /");

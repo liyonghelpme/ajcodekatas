@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Compiler\LexerTests.cs" />
     <Compile Include="Compiler\ParserTests.cs" />
+    <Compile Include="EvaluationTests.cs" />
     <Compile Include="Language\IoObjectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

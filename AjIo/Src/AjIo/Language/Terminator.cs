@@ -5,8 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public interface IMethod
+    public class Terminator
     {
-        object Execute(IObject context, IObject receiver, IList<object> arguments);
     }
 }

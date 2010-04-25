@@ -10,6 +10,7 @@
     public class Parser
     {
         private Lexer lexer;
+        private Terminator terminator = new Terminator();
         private Stack<Token> tokens = new Stack<Token>();
 
         public Parser(Lexer lexer)
@@ -26,22 +27,41 @@
         {
             Token token = this.NextToken();
 
+            while (token != null && token.TokenType == TokenType.Terminator)
+                token = this.NextToken();
+
             if (token == null)
                 return null;
 
             if (token.TokenType == TokenType.Identifier)
             {
-                Token token2 = this.NextToken();
+                Message msg = this.ParseMessage(token.Value);
 
-                if (token2 == null)
-                    return new Message(token.Value);
+                token = this.NextToken();
 
-                if (token2.TokenType == TokenType.LeftPar) 
+                if (token == null)
+                    return msg;
+
+                if (token.TokenType != TokenType.Identifier) 
                 {
-                    IList<object> arguments = this.ParseArguments();
-
-                    return new Message(token.Value, arguments);
+                    this.PushToken(token);
+                    return msg;
                 }
+
+                IList<Message> messages = new List<Message>();
+
+                messages.Add(msg);
+
+                while (token != null && token.TokenType == TokenType.Identifier)
+                {
+                    messages.Add(this.ParseMessage(token.Value));
+                    token = this.NextToken();
+                }
+
+                if (token != null && token.TokenType != TokenType.Terminator)
+                    this.PushToken(token);
+
+                return messages;
             }
 
             if (token.TokenType == TokenType.Integer)
@@ -51,6 +71,25 @@
                 return token.Value;
 
             throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+        }
+
+        private Message ParseMessage(string symbol)
+        {
+            Token token = this.NextToken();
+
+            if (token == null)
+                return new Message(symbol);
+
+            if (token.TokenType == TokenType.LeftPar)
+            {
+                IList<object> arguments = this.ParseArguments();
+
+                return new Message(symbol, arguments);
+            }
+
+            this.PushToken(token);
+
+            return new Message(symbol);
         }
 
         private IList<object> ParseArguments()
