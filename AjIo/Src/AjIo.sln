@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjIo", "AjIo\AjIo.csproj", "{8926CC6D-4B1A-47BA-B51E-0D19898366BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjIo.Tests", "AjIo.Tests\AjIo.Tests.csproj", "{1632DA42-35E3-4C1F-85E0-2706FB84E4FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9CABB7D8-8C9C-4ED1-A298-3C4669C379E3}"
+	ProjectSection(SolutionItems) = preProject
+		AjIo.vsmdi = AjIo.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = AjIo.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8926CC6D-4B1A-47BA-B51E-0D19898366BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8926CC6D-4B1A-47BA-B51E-0D19898366BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8926CC6D-4B1A-47BA-B51E-0D19898366BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8926CC6D-4B1A-47BA-B51E-0D19898366BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1632DA42-35E3-4C1F-85E0-2706FB84E4FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1632DA42-35E3-4C1F-85E0-2706FB84E4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1632DA42-35E3-4C1F-85E0-2706FB84E4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1632DA42-35E3-4C1F-85E0-2706FB84E4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

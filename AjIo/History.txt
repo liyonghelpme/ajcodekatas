@@ -1,0 +1,4 @@
+
+2010-04-25
+Initial project in ajcodekatas
+Lexer with initial tests

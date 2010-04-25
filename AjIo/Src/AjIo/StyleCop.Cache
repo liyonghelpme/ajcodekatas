@@ -1,0 +1,24 @@
+<stylecopresultscache>
+  <version>10</version>
+  <project key="256870790">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Token.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/25/2010 10:18:41</timestamp>
+      <milliseconds>499</milliseconds>
+    </settings>
+    <timestamp>04/25/2010 10:18:08</timestamp>
+    <milliseconds>566</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>04/25/2010 10:18:41</timestamp>
+      <milliseconds>499</milliseconds>
+    </settings>
+    <timestamp>04/25/2010 09:09:20</timestamp>
+    <milliseconds>588</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
