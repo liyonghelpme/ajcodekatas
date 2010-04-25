@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{8926CC6D-4B1A-47BA-B51E-0D19898366BB}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -45,10 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compiler\ParserException.cs" />
     <Compile Include="Compiler\Lexer.cs" />
     <Compile Include="Compiler\LexerException.cs" />
+    <Compile Include="Compiler\Parser.cs" />
     <Compile Include="Compiler\Token.cs" />
     <Compile Include="Compiler\TokenType.cs" />
+    <Compile Include="Language\BaseObject.cs" />
+    <Compile Include="Language\ClonedObject.cs" />
+    <Compile Include="Language\IObject.cs" />
+    <Compile Include="Language\IoObject.cs" />
+    <Compile Include="Language\Message.cs" />
+    <Compile Include="Language\IMethod.cs" />
+    <Compile Include="Machine.cs" />
+    <Compile Include="Methods\CloneMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

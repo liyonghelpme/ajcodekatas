@@ -1,0 +1,12 @@
+﻿namespace AjIo.Language
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    public interface IMethod
+    {
+        object Execute(IObject receiver, IList<object> arguments);
+    }
+}

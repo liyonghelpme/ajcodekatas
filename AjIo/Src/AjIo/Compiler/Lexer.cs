@@ -141,12 +141,15 @@
                     break;
 
                 if (ch == '\r' || ch == '\n') 
-                    throw new LexerException("Not closing string");
+                    throw new LexerException("Not closed string");
 
                 value += ch;
 
                 nxch = this.NextChar();
             }
+
+            if (nxch == -1)
+                throw new LexerException("Not closed string");
 
             return new Token() { Value = value, TokenType = TokenType.String };
         }

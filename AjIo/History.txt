@@ -2,3 +2,10 @@
 2010-04-25
 Initial project in ajcodekatas
 Lexer with initial tests
+Parser.ParseExpression with tests
+IObject, IoObject with tests
+ClonedObject
+Message, IMethod
+CloneMethod
+Machine initial implementation
+

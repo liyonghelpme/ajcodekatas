@@ -83,14 +83,6 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(LexerException))]
-        public void RaiseIfInvalidCharacter()
-        {
-            Lexer lexer = new Lexer("'");
-            lexer.NextToken();
-        }
-
-        [TestMethod]
         public void GetSeparators()
         {
             Lexer lexer = new Lexer("(,)");
