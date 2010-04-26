@@ -122,5 +122,32 @@ namespace AjIo.Tests.Compiler
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseSimpleAssigmentOperator()
+        {
+            Parser parser = new Parser("a := 1");
+
+            object expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Message));
+
+            Message message = (Message)expression;
+
+            Assert.AreEqual(":=", message.Symbol);
+            Assert.IsNotNull(message.Arguments);
+            Assert.AreEqual(2, message.Arguments.Count);
+
+            expression = message.Arguments[0];
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(string));
+            Assert.AreEqual("a", expression);
+
+            Assert.AreEqual(1, message.Arguments[1]);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

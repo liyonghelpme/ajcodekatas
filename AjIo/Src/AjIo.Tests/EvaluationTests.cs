@@ -89,13 +89,72 @@ namespace AjIo.Tests
             Assert.AreEqual("Fido", result);
         }
 
+        [TestMethod]
+        public void EvaluateDefineDogUsingAssigment()
+        {
+            this.Evaluate("Dog := Object clone");
+
+            object result = this.machine.GetSlot("Dog");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+        }
+
+        [TestMethod]
+        public void EvaluateDefineDogUsingAssigmentWithExpression()
+        {
+            this.Evaluate("Dog ::= Object clone clone");
+
+            object result = this.machine.GetSlot("Dog");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+        }
+
+        [TestMethod]
+        public void EvaluateDefineDogAndSetSlot()
+        {
+            this.Evaluate("Dog ::= Object clone clone");
+            this.Evaluate("Dog name ::= \"Fido\"");
+
+            object result = this.machine.GetSlot("Dog");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+
+            Assert.AreEqual("Fido", ((IObject)result).GetSlot("name"));
+        }
+
+        [TestMethod]
+        public void EvaluateManyDefineDogAndSetSlot()
+        {
+            this.EvaluateMany("Dog ::= Object clone clone; Dog name ::= \"Fido\"");
+
+            object result = this.machine.GetSlot("Dog");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+
+            Assert.AreEqual("Fido", ((IObject)result).GetSlot("name"));
+        }
+
         private object Evaluate(string text)
         {
             Parser parser = new Parser(text);
 
             object expression = parser.ParseExpression();
 
+            Assert.IsNull(parser.ParseExpression());
+
             return machine.Evaluate(expression);
+        }
+
+        private void EvaluateMany(string text)
+        {
+            Parser parser = new Parser(text);
+
+            for (object expression = parser.ParseExpression(); expression != null; expression = parser.ParseExpression())
+                ;
         }
     }
 }

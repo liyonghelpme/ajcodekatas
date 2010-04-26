@@ -62,6 +62,7 @@
     <Compile Include="Machine.cs" />
     <Compile Include="Methods\BaseMethod.cs" />
     <Compile Include="Methods\CloneMethod.cs" />
+    <Compile Include="Methods\UpdateSlotMethod.cs" />
     <Compile Include="Methods\MethodMethod.cs" />
     <Compile Include="Methods\Method.cs" />
     <Compile Include="Methods\SetSlotMethod.cs" />

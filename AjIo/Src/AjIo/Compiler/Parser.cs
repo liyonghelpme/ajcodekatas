@@ -9,6 +9,8 @@
 
     public class Parser
     {
+        private static string[] assigmentOperators = new string[] { "=", ":=", "::=" };
+
         private Lexer lexer;
         private Terminator terminator = new Terminator();
         private Stack<Token> tokens = new Stack<Token>();
@@ -24,6 +26,33 @@
         }
 
         public object ParseExpression()
+        {
+            object expression = this.ParseSimpleExpression();
+
+            if (expression == null)
+                return null;
+
+            if (expression is Message)
+            {
+                Message msg = (Message)expression;
+
+                Token token = this.NextToken();
+
+                if (token == null)
+                    return expression;
+
+                if (token.TokenType == TokenType.Operator)
+                    return this.ParseOperators(expression, token.Value);
+
+                this.PushToken(token);
+
+                return expression;
+            }
+
+            return expression;
+        }
+
+        private object ParseSimpleExpression()
         {
             Token token = this.NextToken();
 
@@ -42,7 +71,7 @@
                 if (token == null)
                     return msg;
 
-                if (token.TokenType != TokenType.Identifier) 
+                if (token.TokenType != TokenType.Identifier)
                 {
                     this.PushToken(token);
                     return msg;
@@ -58,7 +87,8 @@
                     token = this.NextToken();
                 }
 
-                if (token != null && token.TokenType != TokenType.Terminator)
+                //if (token != null && token.TokenType != TokenType.Terminator)
+                if (token != null)
                     this.PushToken(token);
 
                 return messages;
@@ -71,6 +101,58 @@
                 return token.Value;
 
             throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+        }
+
+        private Message ParseOperators(object left, string oper)
+        {
+            object right;
+
+            if (IsAssigmentOperator(oper))
+            {
+                if (!(left is Message) || ((Message)left).Arguments != null)
+                    throw new ParserException("Invalid left value in assignment");
+
+                left = ((Message)left).Symbol;
+                right = this.ParseExpression();
+            }
+            else
+                right = this.ParseSimpleExpression();
+
+            Message result = new Message(oper, new object[] { left, right });
+
+            return result;
+        }
+
+        private Message ParseAssigment(object left, string oper)
+        {
+            if (!(left is Message) || ((Message)left).Arguments != null)
+                throw new ParserException("Invalid left value in assignment");
+
+            left = ((Message)left).Symbol;
+
+            object right = this.ParseExpression();
+
+            Message result = new Message(oper, new object[] { left, right });
+
+            return result;
+        }
+
+        private static bool IsAssigmentOperator(string oper)
+        {
+            return assigmentOperators.Contains(oper);
+        }
+
+        private Message ParseMessage()
+        {
+            Token token = this.NextToken();
+
+            if (token == null)
+                throw new ParserException("Unexpected end of input");
+
+            if (token.TokenType != TokenType.Identifier)
+                throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+
+            return ParseMessage(token.Value);
         }
 
         private Message ParseMessage(string symbol)
@@ -89,7 +171,17 @@
 
             this.PushToken(token);
 
-            return new Message(symbol);
+            Message msg = new Message(symbol);
+
+            token = this.NextToken();
+
+            if (token != null && token.TokenType == TokenType.Operator && IsAssigmentOperator(token.Value))
+                return this.ParseAssigment(msg, token.Value);
+
+            if (token != null)
+                this.PushToken(token);
+
+            return msg;
         }
 
         private IList<object> ParseArguments()
