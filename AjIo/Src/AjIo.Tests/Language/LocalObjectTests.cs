@@ -50,5 +50,11 @@ namespace AjIo.Tests.Language
         {
             this.local.UpdateSlot("b", "bar");
         }
+
+        [TestMethod]
+        public void GetSelf()
+        {
+            Assert.AreSame(this.obj, this.local.Self);
+        }
     }
 }

@@ -40,6 +40,14 @@
 
         public abstract string TypeName { get; }
 
+        public virtual IObject Self
+        {
+            get
+            {
+                return this;
+            }
+        }
+
         public object Evaluate(object expression)
         {
             Message message = expression as Message;

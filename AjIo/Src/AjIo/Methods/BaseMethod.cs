@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AjIo.Methods
+﻿namespace AjIo.Methods
 {
     using System;
     using System.Collections.Generic;

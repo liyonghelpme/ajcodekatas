@@ -48,6 +48,47 @@ namespace AjIo.Tests
             Assert.IsInstanceOfType(result, typeof(ClonedObject));
         }
 
+        [TestMethod]
+        public void EvaluateDefineDog()
+        {
+            this.Evaluate("setSlot(\"Dog\", Object clone)");
+
+            object result = this.machine.GetSlot("Dog");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+        }
+
+        [TestMethod]
+        public void EvaluateDefineDogAndSetName()
+        {
+            this.Evaluate("setSlot(\"Dog\", Object clone)");
+            this.Evaluate("Dog setSlot(\"name\", \"Fido\")");
+
+            object result = this.machine.GetSlot("Dog");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IObject));
+
+            result = ((IObject)result).GetSlot("name");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Fido", result);
+        }
+
+        [TestMethod]
+        public void EvaluateDefineDogWithMethod()
+        {
+            this.Evaluate("setSlot(\"Dog\", Object clone)");
+            this.Evaluate("Dog setSlot(\"name\", \"Fido\")");
+            this.Evaluate("Dog setSlot(\"getName\", method(name))");
+
+            object result = this.Evaluate("Dog getName");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Fido", result);
+        }
+
         private object Evaluate(string text)
         {
             Parser parser = new Parser(text);

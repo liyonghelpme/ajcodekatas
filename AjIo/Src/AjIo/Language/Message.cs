@@ -27,13 +27,16 @@
 
         public object Send(IObject context, IObject receiver)
         {
-            object result = receiver.GetSlot(this.symbol);
+            object result;
+
+            result = receiver.GetSlot(this.symbol);
 
             if (this.arguments == null && !(result is IMethod))
                 return result;
 
             IMethod method = (IMethod)result;
-            return method.Execute(context, receiver, this.arguments);
+
+            return method.Execute(context, receiver.Self, this.arguments);
         }
     }
 }

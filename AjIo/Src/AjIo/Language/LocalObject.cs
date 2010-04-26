@@ -49,5 +49,13 @@
 
             this.parent.UpdateSlot(name, value);
         }
+
+        public override IObject Self
+        {
+            get
+            {
+                return this.parent.Self;
+            }
+        }
     }
 }
