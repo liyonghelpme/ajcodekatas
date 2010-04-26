@@ -24,5 +24,16 @@
         public string Symbol { get { return this.symbol; } }
 
         public IList<object> Arguments { get { return this.arguments; } }
+
+        public object Send(IObject context, IObject receiver)
+        {
+            object result = receiver.GetSlot(this.symbol);
+
+            if (this.arguments == null && !(result is IMethod))
+                return result;
+
+            IMethod method = (IMethod)result;
+            return method.Execute(context, receiver, this.arguments);
+        }
     }
 }

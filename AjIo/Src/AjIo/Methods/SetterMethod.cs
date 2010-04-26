@@ -7,7 +7,7 @@
     
     using AjIo.Language;
 
-    public class SetterMethod : IMethod
+    public class SetterMethod : BaseMethod
     {
         private string name;
 
@@ -18,7 +18,7 @@
 
         public string SlotName { get { return this.name; } }
 
-        public object Execute(IObject context, IObject receiver, IList<object> arguments)
+        public override object Apply(IObject context, IObject receiver, IList<object> arguments)
         {
             if (arguments == null || arguments.Count != 1)
                 throw new InvalidOperationException(string.Format("set{0} should have only one argument", this.name));

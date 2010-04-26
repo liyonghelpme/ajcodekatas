@@ -7,9 +7,9 @@
     
     using AjIo.Language;
 
-    public class SetSlotMethod : IMethod
+    public class SetSlotMethod : BaseMethod
     {
-        public object Execute(IObject context, IObject receiver, IList<object> arguments)
+        public override object Apply(IObject context, IObject receiver, IList<object> arguments)
         {
             if (arguments == null || arguments.Count != 2)
                 throw new InvalidOperationException("setSlot should receive two arguments");

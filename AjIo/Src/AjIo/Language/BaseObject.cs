@@ -22,29 +22,6 @@
             return null;
         }
 
-        public virtual object Process(IObject context, Message message)
-        {
-            object value = this.GetSlot(message.Symbol);
-
-            if (message.Arguments == null && !(value is IMethod))
-                return value;
-
-            IMethod method = (IMethod) value;
-
-            if (method == null)
-                throw new InvalidOperationException(string.Format("Undefined method '{0}'", message.Symbol));
-
-            if (message.Arguments == null)
-                return method.Execute(context, this, message.Arguments);
-
-            IList<object> parameters = new List<object>();
-
-            foreach (object arg in message.Arguments)
-                parameters.Add(context.Evaluate(arg));
-
-            return method.Execute(context, this, parameters);
-        }
-
         public override string ToString()
         {
             return string.Format("{0}_{1:x}", this.TypeName, this.GetHashCode());
@@ -57,7 +34,7 @@
             Message message = expression as Message;
 
             if (message != null)
-                return this.Process(this, message);
+                return message.Send(this, this);
 
             ICollection<Message> messages = expression as ICollection<Message>;
 
@@ -66,7 +43,7 @@
                 object receiver = this;
 
                 foreach (Message msg in messages)
-                    receiver = ((IObject)receiver).Process(this, msg);
+                    receiver = msg.Send(this, (IObject) receiver);
 
                 return receiver;
             }

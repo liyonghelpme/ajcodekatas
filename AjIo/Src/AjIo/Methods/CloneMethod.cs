@@ -7,9 +7,9 @@
     
     using AjIo.Language;
 
-    public class CloneMethod : IMethod
+    public class CloneMethod : BaseMethod
     {
-        public object Execute(IObject context, IObject receiver, IList<object> arguments)
+        public override object Apply(IObject context, IObject receiver, IList<object> arguments)
         {
             if (arguments != null)
                 throw new InvalidOperationException("clone should have no arguments");

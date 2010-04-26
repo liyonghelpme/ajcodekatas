@@ -33,7 +33,7 @@ namespace AjIo.Tests.Language
         {
             IoObject obj = new IoObject();
             Message message = new Message("clone");
-            object result = obj.Process(null, message);
+            object result = message.Send(null, obj);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IObject));
@@ -50,7 +50,7 @@ namespace AjIo.Tests.Language
             IoObject obj = new IoObject();
             Message message = new Message("setSlot", new object[] { "foo", "bar" });
             
-            obj.Process(obj, message);
+            message.Send(obj, obj);
 
             object result = obj.GetSlot("foo");
 
@@ -64,9 +64,9 @@ namespace AjIo.Tests.Language
             IoObject obj = new IoObject();
             Message message = new Message("setSlot", new object[] { "foo", "bar" });
 
-            obj.Process(obj, message);
+            message.Send(obj, obj);
 
-            object result = obj.Process(null, new Message("foo"));
+            object result = (new Message("foo")).Send(null, obj);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("bar", result);
@@ -95,7 +95,7 @@ namespace AjIo.Tests.Language
             IoObject obj = new IoObject();
             Message message = new Message("newSlot", new object[] { "foo", "bar" });
 
-            obj.Process(obj, message);
+            message.Send(obj, obj);
 
             object result = obj.GetSlot("foo");
 
