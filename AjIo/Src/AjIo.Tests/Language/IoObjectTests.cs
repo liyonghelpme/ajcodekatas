@@ -13,27 +13,39 @@ namespace AjIo.Tests.Language
     [TestClass]
     public class IoObjectTests
     {
+        private IoObject obj;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            this.obj = new IoObject();
+            this.obj.SetSlot("name", "Fido");
+        }
+
+        [TestMethod]
+        public void GetDefinedSlot()
+        {
+            Assert.AreEqual("Fido", this.obj.GetSlot("name"));
+        }
+
         [TestMethod]
         public void SetAndGetSlot()
         {
-            IoObject obj = new IoObject();
-            obj.SetSlot("foo", "bar");
+            this.obj.SetSlot("foo", "bar");
             Assert.AreEqual("bar", obj.GetSlot("foo"));
         }
 
         [TestMethod]
         public void GetUndefinedSlotAsNull()
         {
-            IoObject obj = new IoObject();
-            Assert.IsNull(obj.GetSlot("foo"));
+            Assert.IsNull(this.obj.GetSlot("foo"));
         }
 
         [TestMethod]
         public void CloneObject()
         {
-            IoObject obj = new IoObject();
             Message message = new Message("clone");
-            object result = message.Send(null, obj);
+            object result = message.Send(null, this.obj);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IObject));
@@ -47,12 +59,11 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void SetSlot()
         {
-            IoObject obj = new IoObject();
             Message message = new Message("setSlot", new object[] { "foo", "bar" });
             
-            message.Send(obj, obj);
+            message.Send(this.obj, this.obj);
 
-            object result = obj.GetSlot("foo");
+            object result = this.obj.GetSlot("foo");
 
             Assert.IsNotNull(result);
             Assert.AreEqual("bar", result);
@@ -61,12 +72,11 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void SetSlotAndGetMessage()
         {
-            IoObject obj = new IoObject();
             Message message = new Message("setSlot", new object[] { "foo", "bar" });
 
-            message.Send(obj, obj);
+            message.Send(this.obj, this.obj);
 
-            object result = (new Message("foo")).Send(null, obj);
+            object result = (new Message("foo")).Send(null, this.obj);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("bar", result);
@@ -75,16 +85,14 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void GetToString()
         {
-            IoObject obj = new IoObject();
-            string text = obj.ToString();
+            string text = this.obj.ToString();
             Assert.IsTrue(text.StartsWith("Object_"));
         }
 
         [TestMethod]
         public void GetClonedToString()
         {
-            IoObject obj = new IoObject();
-            IObject cloned = new ClonedObject(obj);
+            IObject cloned = new ClonedObject(this.obj);
             string text = cloned.ToString();
             Assert.IsTrue(text.StartsWith("Object_"));
         }
@@ -92,17 +100,16 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void NewSlot()
         {
-            IoObject obj = new IoObject();
             Message message = new Message("newSlot", new object[] { "foo", "bar" });
 
-            message.Send(obj, obj);
+            message.Send(this.obj, this.obj);
 
-            object result = obj.GetSlot("foo");
+            object result = this.obj.GetSlot("foo");
 
             Assert.IsNotNull(result);
             Assert.AreEqual("bar", result);
 
-            object result2 = obj.GetSlot("setFoo");
+            object result2 = this.obj.GetSlot("setFoo");
 
             Assert.IsNotNull(result2);
             Assert.IsInstanceOfType(result2, typeof(SetterMethod));
@@ -110,6 +117,13 @@ namespace AjIo.Tests.Language
             SetterMethod method = (SetterMethod)result2;
 
             Assert.AreEqual("foo", method.SlotName);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void RaiseIfUpdateUndefinedSlot()
+        {
+            this.obj.UpdateSlot("undefined", "bar");
         }
     }
 }

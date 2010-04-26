@@ -12,3 +12,8 @@ AjIo.Console
 IObject.Evaluate
 IObject.Process with context
 EvaluationTests
+
+2010-04/26
+LocalObject with tests
+New Message.Send instead IObject.Process
+BaseMethod

@@ -14,6 +14,17 @@
             this.slotValues[name] = value;
         }
 
+        public virtual void UpdateSlot(string name, object value)
+        {
+            if (this.slotValues.ContainsKey(name)) 
+            {
+                this.slotValues[name] = value;
+                return;
+            }
+
+            throw new InvalidOperationException(string.Format("Not defined slot '{0}'", name));
+        }
+
         public virtual object GetSlot(string name)
         {
             if (this.slotValues.ContainsKey(name))
@@ -43,7 +54,7 @@
                 object receiver = this;
 
                 foreach (Message msg in messages)
-                    receiver = msg.Send(this, (IObject) receiver);
+                    receiver = msg.Send(this, (IObject)receiver);
 
                 return receiver;
             }

@@ -8,6 +8,8 @@
 
         object GetSlot(string name);
 
+        void UpdateSlot(string name, object value);
+
         string TypeName { get; }
     }
 }
