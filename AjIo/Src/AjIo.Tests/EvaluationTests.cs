@@ -154,7 +154,7 @@ namespace AjIo.Tests
             Parser parser = new Parser(text);
 
             for (object expression = parser.ParseExpression(); expression != null; expression = parser.ParseExpression())
-                ;
+                this.machine.Evaluate(expression);
         }
     }
 }

@@ -19,3 +19,7 @@ New Message.Send instead IObject.Process
 BaseMethod
 MethodMethod, Method with evaluation tests
 IObject.Self with tests
+UpdateSlotMethod
+Assigment operators WIP
+Fixing EvaluationTest.EvaluateMany
+New prompts in AjIo.Console

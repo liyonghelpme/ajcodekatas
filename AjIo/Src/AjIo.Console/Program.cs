@@ -19,7 +19,7 @@ namespace AjIo.Console
             {
                 object result = machine.Evaluate(expression);
 
-                System.Console.Write("---->");
+                System.Console.Write("----> ");
 
                 if (result != null)
                     System.Console.WriteLine(result.ToString());

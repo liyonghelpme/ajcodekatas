@@ -15,7 +15,7 @@ namespace AjIo.Console
         {
             if (this.line == null)
             {
-                System.Console.Write("AjIo>");
+                System.Console.Write("AjIo> ");
                 System.Console.Out.Flush();
                 this.line = System.Console.ReadLine();
                 this.position = 0;
