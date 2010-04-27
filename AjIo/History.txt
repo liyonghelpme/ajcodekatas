@@ -29,3 +29,4 @@ IMessage abstraction
 First steps in arithmetic methods
 First steps in native object methods
 Native object WIP
+Add integers with tests WIP

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using AjIo.Methods.Arithmetic;
 
     public class Message : AjIo.Language.IMessage
     {
@@ -44,7 +45,11 @@
             if (receiver is IObject)
                 return this.Send(context, (IObject)receiver);
 
-            throw new NotImplementedException();
+            // TODO refactor
+            if (this.symbol == "+")
+                return (new AddMethod()).Execute(context, receiver, this.arguments);
+
+            throw new InvalidOperationException(string.Format("Unknown method '{0}'", this.symbol));
         }
     }
 }

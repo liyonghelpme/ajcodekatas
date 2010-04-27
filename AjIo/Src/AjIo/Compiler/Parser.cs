@@ -42,7 +42,7 @@
                     return expression;
 
                 if (token.TokenType == TokenType.Operator)
-                    return this.ParseOperators(expression, token.Value);
+                    return this.ParseOperators(msg, token.Value);
 
                 this.PushToken(token);
 
@@ -101,7 +101,7 @@
             return messages;
         }
 
-        private IMessage ParseOperators(object left, string oper)
+        private object ParseOperators(IMessage left, string oper)
         {
             object right;
 
@@ -110,15 +110,17 @@
                 if (!(left is Message) || ((Message)left).Arguments != null)
                     throw new ParserException("Invalid left value in assignment");
 
-                left = ((Message)left).Symbol;
                 right = this.ParseExpression();
+                return new Message(oper, new object[] { ((Message)left).Symbol, right });
             }
-            else
-                right = this.ParseSimpleExpression();
 
-            Message result = new Message(oper, new object[] { left, right });
+            right = this.ParseSimpleExpression();
 
-            return result;
+            IList<IMessage> messages = new List<IMessage>();
+            messages.Add(left);
+            messages.Add(new Message(oper, new object[] { right }));
+
+            return messages;
         }
 
         private IMessage ParseAssigment(object left, string oper)

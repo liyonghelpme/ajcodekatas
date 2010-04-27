@@ -14,7 +14,6 @@
             : base(new IoObject())
         {
             this.SetSlot("Object", this.Parent);
-            this.SetSlot("+", new AddMethod());
         }
     }
 }
