@@ -147,6 +147,15 @@ namespace AjIo.Tests
             Assert.AreEqual(3, result);
         }
 
+        [TestMethod]
+        public void EvaluateSubtractTwoIntegers()
+        {
+            object result = this.Evaluate("3 - 2");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
+        }
+
         private object Evaluate(string text)
         {
             Parser parser = new Parser(text);

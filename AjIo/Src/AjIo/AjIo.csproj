@@ -68,6 +68,7 @@
     <Compile Include="Methods\Arithmetic\AddMethod.cs" />
     <Compile Include="Methods\Arithmetic\ArithmeticsOperator.cs" />
     <Compile Include="Methods\Arithmetic\BinaryArithmeticMethod.cs" />
+    <Compile Include="Methods\Arithmetic\SubtractMethod.cs" />
     <Compile Include="Methods\BaseMethod.cs" />
     <Compile Include="Methods\CloneMethod.cs" />
     <Compile Include="Methods\BaseNativeMethod.cs" />

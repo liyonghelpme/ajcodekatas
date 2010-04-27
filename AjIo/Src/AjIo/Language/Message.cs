@@ -8,6 +8,9 @@
 
     public class Message : AjIo.Language.IMessage
     {
+        private static AddMethod addMethod = new AddMethod();
+        private static SubtractMethod subtractMethod = new SubtractMethod();
+
         private string symbol;
         private IList<object> arguments;
 
@@ -47,7 +50,9 @@
 
             // TODO refactor
             if (this.symbol == "+")
-                return (new AddMethod()).Execute(context, receiver, this.arguments);
+                return addMethod.Execute(context, receiver, this.arguments);
+            if (this.symbol == "-")
+                return subtractMethod.Execute(context, receiver, this.arguments);
 
             throw new InvalidOperationException(string.Format("Unknown method '{0}'", this.symbol));
         }

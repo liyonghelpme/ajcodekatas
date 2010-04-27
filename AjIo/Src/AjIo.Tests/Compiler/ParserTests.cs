@@ -207,5 +207,32 @@ namespace AjIo.Tests.Compiler
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseSimpleSubOperatorWithIntegers()
+        {
+            Parser parser = new Parser("3 - 1");
+
+            object expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(IList<IMessage>));
+
+            IList<IMessage> messages = (IList<IMessage>)expression;
+
+            Assert.IsInstanceOfType(messages[0], typeof(ObjectMessage));
+            Assert.AreEqual(3, ((ObjectMessage)messages[0]).Object);
+
+            Message message = (Message)messages[1];
+
+            Assert.AreEqual("-", message.Symbol);
+            Assert.IsNotNull(message.Arguments);
+            Assert.AreEqual(1, message.Arguments.Count);
+
+            Assert.IsInstanceOfType(message.Arguments[0], typeof(ObjectMessage));
+            Assert.AreEqual(1, ((ObjectMessage)message.Arguments[0]).Object);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }
