@@ -32,9 +32,9 @@
             if (expression == null)
                 return null;
 
-            if (expression is Message)
+            if (expression is IMessage)
             {
-                Message msg = (Message)expression;
+                IMessage msg = (IMessage)expression;
 
                 Token token = this.NextToken();
 
@@ -62,45 +62,43 @@
             if (token == null)
                 return null;
 
+            IMessage msg;
+
             if (token.TokenType == TokenType.Identifier)
+                msg = this.ParseMessage(token.Value);
+            else if (token.TokenType == TokenType.Integer)
+                msg = new ObjectMessage(int.Parse(token.Value, System.Globalization.CultureInfo.InvariantCulture));
+            else if (token.TokenType == TokenType.String)
+                msg = new ObjectMessage(token.Value);
+            else
+                throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+
+            token = this.NextToken();
+
+            if (token == null)
+                return msg;
+
+            if (token.TokenType != TokenType.Identifier)
             {
-                IMessage msg = this.ParseMessage(token.Value);
-
-                token = this.NextToken();
-
-                if (token == null)
-                    return msg;
-
-                if (token.TokenType != TokenType.Identifier)
-                {
-                    this.PushToken(token);
-                    return msg;
-                }
-
-                IList<IMessage> messages = new List<IMessage>();
-
-                messages.Add(msg);
-
-                while (token != null && token.TokenType == TokenType.Identifier)
-                {
-                    messages.Add(this.ParseMessage(token.Value));
-                    token = this.NextToken();
-                }
-
-                //if (token != null && token.TokenType != TokenType.Terminator)
-                if (token != null)
-                    this.PushToken(token);
-
-                return messages;
+                this.PushToken(token);
+                return msg;
             }
 
-            if (token.TokenType == TokenType.Integer)
-                return int.Parse(token.Value, System.Globalization.CultureInfo.InvariantCulture);
+            IList<IMessage> messages = new List<IMessage>();
 
-            if (token.TokenType == TokenType.String)
-                return token.Value;
+            messages.Add(msg);
 
-            throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+            while (token != null && token.TokenType == TokenType.Identifier)
+            {
+                messages.Add(this.ParseMessage(token.Value));
+                token = this.NextToken();
+            }
+
+            //if (token != null && token.TokenType != TokenType.Terminator)
+            if (token != null)
+                this.PushToken(token);
+
+            return messages;
         }
 
         private IMessage ParseOperators(object left, string oper)

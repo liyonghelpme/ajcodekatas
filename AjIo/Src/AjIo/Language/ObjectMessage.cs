@@ -14,7 +14,14 @@
             this.obj = obj;
         }
 
+        public object Object { get { return this.obj; } }
+
         public object Send(IObject context, IObject receiver)
+        {
+            return this.obj;
+        }
+
+        public object Send(IObject context, object receiver)
         {
             return this.obj;
         }

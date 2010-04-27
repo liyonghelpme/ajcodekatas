@@ -39,11 +39,11 @@ namespace AjIo.Tests.Compiler
             object expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(string));
+            Assert.IsInstanceOfType(expression, typeof(ObjectMessage));
 
-            string text = (string)expression;
+            ObjectMessage msg = (ObjectMessage)expression;
 
-            Assert.AreEqual("foo", text);
+            Assert.AreEqual("foo", msg.Object);
 
             Assert.IsNull(parser.ParseExpression());
         }
@@ -56,11 +56,11 @@ namespace AjIo.Tests.Compiler
             object expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(int));
+            Assert.IsInstanceOfType(expression, typeof(ObjectMessage));
 
-            int number = (int) expression;
+            ObjectMessage msg = (ObjectMessage) expression;
 
-            Assert.AreEqual(123, number);
+            Assert.AreEqual(123, msg.Object);
 
             Assert.IsNull(parser.ParseExpression());
         }
@@ -80,8 +80,10 @@ namespace AjIo.Tests.Compiler
             Assert.AreEqual("foo", message.Symbol);
             Assert.IsNotNull(message.Arguments);
             Assert.AreEqual(2, message.Arguments.Count);
-            Assert.AreEqual(1, message.Arguments[0]);
-            Assert.AreEqual(2, message.Arguments[1]);
+            Assert.IsInstanceOfType(message.Arguments[0], typeof(ObjectMessage));
+            Assert.IsInstanceOfType(message.Arguments[1], typeof(ObjectMessage));
+            Assert.AreEqual(1, ((ObjectMessage)message.Arguments[0]).Object);
+            Assert.AreEqual(2, ((ObjectMessage)message.Arguments[1]).Object);
         }
 
         [TestMethod]
@@ -92,7 +94,7 @@ namespace AjIo.Tests.Compiler
             object expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(int));
+            Assert.IsInstanceOfType(expression, typeof(ObjectMessage));
 
             expression = parser.ParseExpression();
 
@@ -145,7 +147,8 @@ namespace AjIo.Tests.Compiler
             Assert.IsInstanceOfType(expression, typeof(string));
             Assert.AreEqual("a", expression);
 
-            Assert.AreEqual(1, message.Arguments[1]);
+            Assert.IsInstanceOfType(message.Arguments[1], typeof(ObjectMessage));
+            Assert.AreEqual(1, ((ObjectMessage)message.Arguments[1]).Object);
 
             Assert.IsNull(parser.ParseExpression());
         }
@@ -176,7 +179,8 @@ namespace AjIo.Tests.Compiler
             Assert.AreEqual("a", identifier.Symbol);
             Assert.IsNull(identifier.Arguments);
 
-            Assert.AreEqual(1, message.Arguments[1]);
+            Assert.IsInstanceOfType(message.Arguments[1], typeof(ObjectMessage));
+            Assert.AreEqual(1, ((ObjectMessage)message.Arguments[1]).Object);
 
             Assert.IsNull(parser.ParseExpression());
         }
@@ -197,8 +201,10 @@ namespace AjIo.Tests.Compiler
             Assert.IsNotNull(message.Arguments);
             Assert.AreEqual(2, message.Arguments.Count);
 
-            Assert.AreEqual(1, message.Arguments[0]);
-            Assert.AreEqual(2, message.Arguments[1]);
+            Assert.IsInstanceOfType(message.Arguments[0], typeof(ObjectMessage));
+            Assert.AreEqual(1, ((ObjectMessage)message.Arguments[0]).Object);
+            Assert.IsInstanceOfType(message.Arguments[1], typeof(ObjectMessage));
+            Assert.AreEqual(2, ((ObjectMessage)message.Arguments[1]).Object);
 
             Assert.IsNull(parser.ParseExpression());
         }

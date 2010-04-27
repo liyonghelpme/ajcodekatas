@@ -61,8 +61,8 @@
             {
                 object receiver = this;
 
-                foreach (Message msg in messages)
-                    receiver = msg.Send(this, (IObject)receiver);
+                foreach (IMessage msg in messages)
+                    receiver = msg.Send(this, receiver);
 
                 return receiver;
             }

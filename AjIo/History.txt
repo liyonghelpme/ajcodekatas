@@ -28,3 +28,4 @@ New prompts in AjIo.Console
 IMessage abstraction
 First steps in arithmetic methods
 First steps in native object methods
+Native object WIP

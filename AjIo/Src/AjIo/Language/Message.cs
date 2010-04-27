@@ -38,5 +38,13 @@
 
             return method.Execute(context, receiver.Self, this.arguments);
         }
+
+        public object Send(IObject context, object receiver)
+        {
+            if (receiver is IObject)
+                return this.Send(context, (IObject)receiver);
+
+            throw new NotImplementedException();
+        }
     }
 }
