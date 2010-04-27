@@ -64,7 +64,7 @@
 
             if (token.TokenType == TokenType.Identifier)
             {
-                Message msg = this.ParseMessage(token.Value);
+                IMessage msg = this.ParseMessage(token.Value);
 
                 token = this.NextToken();
 
@@ -77,7 +77,7 @@
                     return msg;
                 }
 
-                IList<Message> messages = new List<Message>();
+                IList<IMessage> messages = new List<IMessage>();
 
                 messages.Add(msg);
 
@@ -103,7 +103,7 @@
             throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
         }
 
-        private Message ParseOperators(object left, string oper)
+        private IMessage ParseOperators(object left, string oper)
         {
             object right;
 
@@ -123,7 +123,7 @@
             return result;
         }
 
-        private Message ParseAssigment(object left, string oper)
+        private IMessage ParseAssigment(object left, string oper)
         {
             if (!(left is Message) || ((Message)left).Arguments != null)
                 throw new ParserException("Invalid left value in assignment");
@@ -142,7 +142,7 @@
             return assigmentOperators.Contains(oper);
         }
 
-        private Message ParseMessage()
+        private IMessage ParseMessage()
         {
             Token token = this.NextToken();
 
@@ -155,7 +155,7 @@
             return ParseMessage(token.Value);
         }
 
-        private Message ParseMessage(string symbol)
+        private IMessage ParseMessage(string symbol)
         {
             Token token = this.NextToken();
 

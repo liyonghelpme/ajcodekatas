@@ -138,6 +138,15 @@ namespace AjIo.Tests
             Assert.AreEqual("Fido", ((IObject)result).GetSlot("name"));
         }
 
+        [TestMethod]
+        public void EvaluateAddTwoIntegers()
+        {
+            object result = this.Evaluate("1 + 2");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3, result);
+        }
+
         private object Evaluate(string text)
         {
             Parser parser = new Parser(text);

@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class Message
+    public class Message : AjIo.Language.IMessage
     {
         private string symbol;
         private IList<object> arguments;

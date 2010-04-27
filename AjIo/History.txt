@@ -13,7 +13,7 @@ IObject.Evaluate
 IObject.Process with context
 EvaluationTests
 
-2010-04/26
+2010-04-26
 LocalObject with tests
 New Message.Send instead IObject.Process
 BaseMethod
@@ -23,3 +23,8 @@ UpdateSlotMethod
 Assigment operators WIP
 Fixing EvaluationTest.EvaluateMany
 New prompts in AjIo.Console
+
+2010-04-27
+IMessage abstraction
+First steps in arithmetic methods
+First steps in native object methods

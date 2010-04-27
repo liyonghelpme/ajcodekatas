@@ -118,7 +118,7 @@ namespace AjIo.Tests.Compiler
             object expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(IList<Message>));
+            Assert.IsInstanceOfType(expression, typeof(IList<IMessage>));
 
             Assert.IsNull(parser.ParseExpression());
         }
@@ -146,6 +146,59 @@ namespace AjIo.Tests.Compiler
             Assert.AreEqual("a", expression);
 
             Assert.AreEqual(1, message.Arguments[1]);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseSimpleAddOperator()
+        {
+            Parser parser = new Parser("a + 1");
+
+            object expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Message));
+
+            Message message = (Message)expression;
+
+            Assert.AreEqual("+", message.Symbol);
+            Assert.IsNotNull(message.Arguments);
+            Assert.AreEqual(2, message.Arguments.Count);
+
+            expression = message.Arguments[0];
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Message));
+
+            Message identifier = (Message)expression;
+
+            Assert.AreEqual("a", identifier.Symbol);
+            Assert.IsNull(identifier.Arguments);
+
+            Assert.AreEqual(1, message.Arguments[1]);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseSimpleAddOperatorWithIntegers()
+        {
+            Parser parser = new Parser("1 + 2");
+
+            object expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(Message));
+
+            Message message = (Message)expression;
+
+            Assert.AreEqual("+", message.Symbol);
+            Assert.IsNotNull(message.Arguments);
+            Assert.AreEqual(2, message.Arguments.Count);
+
+            Assert.AreEqual(1, message.Arguments[0]);
+            Assert.AreEqual(2, message.Arguments[1]);
 
             Assert.IsNull(parser.ParseExpression());
         }

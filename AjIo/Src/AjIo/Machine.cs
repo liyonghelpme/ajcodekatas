@@ -6,6 +6,7 @@
     using System.Text;
     
     using AjIo.Language;
+    using AjIo.Methods.Arithmetic;
 
     public class Machine : ClonedObject
     {
@@ -13,6 +14,7 @@
             : base(new IoObject())
         {
             this.SetSlot("Object", this.Parent);
+            this.SetSlot("+", new AddMethod());
         }
     }
 }

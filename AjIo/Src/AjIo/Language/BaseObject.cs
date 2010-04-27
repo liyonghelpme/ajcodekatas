@@ -50,12 +50,12 @@
 
         public object Evaluate(object expression)
         {
-            Message message = expression as Message;
+            IMessage message = expression as IMessage;
 
             if (message != null)
                 return message.Send(this, this);
 
-            ICollection<Message> messages = expression as ICollection<Message>;
+            ICollection<IMessage> messages = expression as ICollection<IMessage>;
 
             if (messages != null)
             {

@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -53,15 +54,23 @@
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Language\BaseObject.cs" />
     <Compile Include="Language\ClonedObject.cs" />
+    <Compile Include="Language\IMessage.cs" />
+    <Compile Include="Language\INativeMethod.cs" />
     <Compile Include="Language\LocalObject.cs" />
     <Compile Include="Language\IObject.cs" />
     <Compile Include="Language\IoObject.cs" />
     <Compile Include="Language\Message.cs" />
     <Compile Include="Language\IMethod.cs" />
+    <Compile Include="Language\NativeObject.cs" />
+    <Compile Include="Language\ObjectMessage.cs" />
     <Compile Include="Language\Terminator.cs" />
     <Compile Include="Machine.cs" />
+    <Compile Include="Methods\Arithmetic\AddMethod.cs" />
+    <Compile Include="Methods\Arithmetic\ArithmeticsOperator.cs" />
+    <Compile Include="Methods\Arithmetic\BinaryArithmeticMethod.cs" />
     <Compile Include="Methods\BaseMethod.cs" />
     <Compile Include="Methods\CloneMethod.cs" />
+    <Compile Include="Methods\BaseNativeMethod.cs" />
     <Compile Include="Methods\UpdateSlotMethod.cs" />
     <Compile Include="Methods\MethodMethod.cs" />
     <Compile Include="Methods\Method.cs" />
