@@ -184,6 +184,69 @@ namespace AjIo.Tests
             Assert.AreEqual(2, this.machine.GetSlot("b"));
         }
 
+        [TestMethod]
+        public void EvaluateAndExecuteMethodWithMultipleMessagesInLines()
+        {
+            object result = this.Evaluate("method(a:=1\r\nb:=2\r\nc:=3)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IMethod));
+            Assert.IsInstanceOfType(result, typeof(Method));
+
+            Method method = (Method)result;
+
+            method.Execute(this.machine, this.machine, null);
+
+            Assert.AreEqual(1, this.machine.GetSlot("a"));
+            Assert.AreEqual(2, this.machine.GetSlot("b"));
+            Assert.AreEqual(3, this.machine.GetSlot("c"));
+        }
+
+        [TestMethod]
+        public void EvaluateMultiplyTwoIntegers()
+        {
+            object result = this.Evaluate("2 * 3");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
+        public void EvaluateDivideTwoIntegers()
+        {
+            object result = this.Evaluate("6 / 3");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2.0, result);
+        }
+
+        [TestMethod]
+        public void EvaluateSimpleArithmeticExpression()
+        {
+            object result = this.Evaluate("6 / 3 * 2 + 1");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(5.0, result);
+        }
+
+        [TestMethod]
+        public void EvaluateArithmeticExpressionWithParenthesis()
+        {
+            object result = this.Evaluate("6 + (3 * 2) + 1");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(13, result);
+        }
+
+        [TestMethod]
+        public void EvaluateArithmeticExpressionWithStartingParenthesis()
+        {
+            object result = this.Evaluate("(3 * 2) + 1");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(7, result);
+        }
+
         private object Evaluate(string text)
         {
             Parser parser = new Parser(text);

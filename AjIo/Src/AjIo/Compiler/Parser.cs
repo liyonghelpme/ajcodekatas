@@ -92,7 +92,7 @@
             if (IsCommaOrRightParenthesis(token))
                 return null;
 
-            IMessage msg = this.ParseSimpleMessage(true);
+            IMessage msg = this.ParseSimpleMessage(true, true);
 
             token = this.NextToken();
 
@@ -112,7 +112,7 @@
 
             MessageChain messages = new MessageChain(msg);
 
-            messages.AddMessage(this.ParseSimpleMessage(true));
+            messages.AddMessage(this.ParseSimpleMessage(true, false));
 
             token = this.NextToken();
 
@@ -123,7 +123,7 @@
                 if (IsCommaOrRightParenthesis(token))
                     break;
 
-                messages.AddMessage(this.ParseSimpleMessage(true));
+                messages.AddMessage(this.ParseSimpleMessage(true, false));
                 token = this.NextToken();
             }
 
@@ -152,7 +152,8 @@
             return assigmentOperators.Contains(oper);
         }
 
-        private IMessage ParseSimpleMessage(bool acceptOperator)
+        // TODO Refactor
+        private IMessage ParseSimpleMessage(bool acceptOperator, bool acceptLeftParenthesis)
         {
             Token token = this.NextToken();
 
@@ -165,6 +166,18 @@
             if (acceptOperator && token.TokenType == TokenType.Operator && !IsAssigmentOperator(token.Value))
                 return ParseOperatorMessage(token.Value);
 
+            if (acceptLeftParenthesis && token.TokenType == TokenType.LeftPar)
+            {
+                IMessage message = this.ParseDelimitedMessage();
+
+                token = this.NextToken();
+
+                if (token == null || token.TokenType != TokenType.RightPar)
+                    throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+
+                return message;
+            }
+
             if (token.TokenType == TokenType.Integer)
                 return new ObjectMessage(int.Parse(token.Value, System.Globalization.CultureInfo.InvariantCulture));
 
@@ -176,7 +189,7 @@
 
         private IMessage ParseOperatorMessage(string oper)
         {
-            return new Message(oper, new object[] { this.ParseSimpleMessage(false) });
+            return new Message(oper, new object[] { this.ParseSimpleMessage(false, true) });
         }
 
         private IMessage ParseSymbolMessage(string symbol)

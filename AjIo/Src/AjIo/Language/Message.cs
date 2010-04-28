@@ -8,11 +8,18 @@
 
     public class Message : AjIo.Language.IMessage
     {
-        private static AddMethod addMethod = new AddMethod();
-        private static SubtractMethod subtractMethod = new SubtractMethod();
+        private static Dictionary<string, INativeMethod> globalMethods = new Dictionary<string, INativeMethod>();
 
         private string symbol;
         private IList<object> arguments;
+
+        static Message()
+        {
+            globalMethods["+"] = new AddMethod();
+            globalMethods["-"] = new SubtractMethod();
+            globalMethods["*"] = new MultiplyMethod();
+            globalMethods["/"] = new DivideMethod();
+        }
 
         public Message(string symbol)
         {
@@ -48,11 +55,11 @@
             if (receiver is IObject)
                 return this.Send(context, (IObject)receiver);
 
-            // TODO refactor
-            if (this.symbol == "+")
-                return addMethod.Execute(context, receiver, this.arguments);
-            if (this.symbol == "-")
-                return subtractMethod.Execute(context, receiver, this.arguments);
+            if (globalMethods.ContainsKey(this.symbol))
+            {
+                INativeMethod method = globalMethods[this.symbol];
+                return method.Execute(context, receiver, this.arguments);
+            }
 
             throw new InvalidOperationException(string.Format("Unknown method '{0}'", this.symbol));
         }

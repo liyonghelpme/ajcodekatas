@@ -36,3 +36,6 @@ Sub integers
 MessageChain (instead IList<IMessage>)
 Refactoring to support MessageChain
 MessageList with tests
+Arithmetic operations (-,*,/)
+Global Native Methods in Message
+Parenthesis support in Parser
