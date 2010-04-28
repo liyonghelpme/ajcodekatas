@@ -61,6 +61,7 @@
     <Compile Include="Language\IoObject.cs" />
     <Compile Include="Language\Message.cs" />
     <Compile Include="Language\IMethod.cs" />
+    <Compile Include="Language\MessageChain.cs" />
     <Compile Include="Language\NativeObject.cs" />
     <Compile Include="Language\ObjectMessage.cs" />
     <Compile Include="Language\Terminator.cs" />

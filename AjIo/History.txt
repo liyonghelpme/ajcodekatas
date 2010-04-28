@@ -31,3 +31,7 @@ First steps in native object methods
 Native object WIP
 Add integers with tests WIP
 Sub integers
+
+2010-04-28
+MessageChain (instead IList<IMessage>)
+Refactoring to support MessageChain

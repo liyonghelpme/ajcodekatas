@@ -120,7 +120,7 @@ namespace AjIo.Tests.Compiler
             object expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(IList<IMessage>));
+            Assert.IsInstanceOfType(expression, typeof(MessageChain));
 
             Assert.IsNull(parser.ParseExpression());
         }
@@ -162,14 +162,14 @@ namespace AjIo.Tests.Compiler
 
             Assert.IsNotNull(expression);
 
-            Assert.IsInstanceOfType(expression, typeof(IList<IMessage>));
+            Assert.IsInstanceOfType(expression, typeof(MessageChain));
 
-            IList<IMessage> messages = (IList<IMessage>)expression;
+            MessageChain messages = (MessageChain)expression;
 
-            Assert.IsInstanceOfType(messages[0], typeof(Message));
-            Assert.AreEqual("a", ((Message)messages[0]).Symbol);
+            Assert.IsInstanceOfType(messages.Messages[0], typeof(Message));
+            Assert.AreEqual("a", ((Message)messages.Messages[0]).Symbol);
 
-            Message message = (Message)messages[1];
+            Message message = (Message)messages.Messages[1];
 
             Assert.AreEqual("+", message.Symbol);
             Assert.IsNotNull(message.Arguments);
@@ -189,14 +189,14 @@ namespace AjIo.Tests.Compiler
             object expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(IList<IMessage>));
+            Assert.IsInstanceOfType(expression, typeof(MessageChain));
 
-            IList<IMessage> messages = (IList<IMessage>)expression;
+            MessageChain messages = (MessageChain)expression;
 
-            Assert.IsInstanceOfType(messages[0], typeof(ObjectMessage));
-            Assert.AreEqual(1, ((ObjectMessage)messages[0]).Object);
+            Assert.IsInstanceOfType(messages.Messages[0], typeof(ObjectMessage));
+            Assert.AreEqual(1, ((ObjectMessage)messages.Messages[0]).Object);
 
-            Message message = (Message)messages[1];
+            Message message = (Message)messages.Messages[1];
 
             Assert.AreEqual("+", message.Symbol);
             Assert.IsNotNull(message.Arguments);
@@ -216,14 +216,14 @@ namespace AjIo.Tests.Compiler
             object expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(IList<IMessage>));
+            Assert.IsInstanceOfType(expression, typeof(MessageChain));
 
-            IList<IMessage> messages = (IList<IMessage>)expression;
+            MessageChain messages = (MessageChain)expression;
 
-            Assert.IsInstanceOfType(messages[0], typeof(ObjectMessage));
-            Assert.AreEqual(3, ((ObjectMessage)messages[0]).Object);
+            Assert.IsInstanceOfType(messages.Messages[0], typeof(ObjectMessage));
+            Assert.AreEqual(3, ((ObjectMessage)messages.Messages[0]).Object);
 
-            Message message = (Message)messages[1];
+            Message message = (Message)messages.Messages[1];
 
             Assert.AreEqual("-", message.Symbol);
             Assert.IsNotNull(message.Arguments);
@@ -232,6 +232,16 @@ namespace AjIo.Tests.Compiler
             Assert.IsInstanceOfType(message.Arguments[0], typeof(ObjectMessage));
             Assert.AreEqual(1, ((ObjectMessage)message.Arguments[0]).Object);
 
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseTwoMessagesSeparatedByPeriod()
+        {
+            Parser parser = new Parser("Dog ::= Object clone clone; Dog name ::= \"Fido\"");
+
+            Assert.IsNotNull(parser.ParseExpression());
+            Assert.IsNotNull(parser.ParseExpression());
             Assert.IsNull(parser.ParseExpression());
         }
     }

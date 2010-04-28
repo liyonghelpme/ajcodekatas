@@ -10,9 +10,9 @@
     public class Parser
     {
         private static string[] assigmentOperators = new string[] { "=", ":=", "::=" };
+        private static Token terminator = new Token() { TokenType = TokenType.Terminator };
 
         private Lexer lexer;
-        private Terminator terminator = new Terminator();
         private Stack<Token> tokens = new Stack<Token>();
 
         public Parser(Lexer lexer)
@@ -32,27 +32,15 @@
             if (expression == null)
                 return null;
 
-            if (expression is IMessage)
-            {
-                IMessage msg = (IMessage)expression;
+            Token token = this.NextToken();
 
-                Token token = this.NextToken();
-
-                if (token == null)
-                    return expression;
-
-                if (token.TokenType == TokenType.Operator)
-                    return this.ParseOperators(msg, token.Value);
-
-                this.PushToken(token);
-
+            if (IsTerminator(token))
                 return expression;
-            }
 
-            return expression;
+            throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
         }
 
-        private object ParseSimpleExpression()
+        private IMessage ParseSimpleExpression()
         {
             Token token = this.NextToken();
 
@@ -62,63 +50,45 @@
             if (token == null)
                 return null;
 
-            IMessage msg;
+            this.PushToken(token);
 
-            if (token.TokenType == TokenType.Identifier)
-                msg = this.ParseMessage(token.Value);
-            else if (token.TokenType == TokenType.Integer)
-                msg = new ObjectMessage(int.Parse(token.Value, System.Globalization.CultureInfo.InvariantCulture));
-            else if (token.TokenType == TokenType.String)
-                msg = new ObjectMessage(token.Value);
-            else
-                throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+            IMessage msg = this.ParseSimpleMessage(true);
 
             token = this.NextToken();
 
-            if (token == null)
-                return msg;
-
-            if (token.TokenType != TokenType.Identifier)
+            if (IsTerminator(token))
             {
                 this.PushToken(token);
                 return msg;
             }
 
-            IList<IMessage> messages = new List<IMessage>();
-
-            messages.Add(msg);
-
-            while (token != null && token.TokenType == TokenType.Identifier)
+            if (IsCommaOrRightParenthesis(token))
             {
-                messages.Add(this.ParseMessage(token.Value));
+                this.PushToken(token);
+                return msg;
+            }
+
+            this.PushToken(token);
+
+            MessageChain messages = new MessageChain(msg);
+
+            messages.AddMessage(this.ParseSimpleMessage(true));
+
+            token = this.NextToken();
+
+            while (!IsTerminator(token))
+            {
+                this.PushToken(token);
+
+                if (IsCommaOrRightParenthesis(token))
+                    break;
+
+                messages.AddMessage(this.ParseSimpleMessage(true));
                 token = this.NextToken();
             }
 
-            //if (token != null && token.TokenType != TokenType.Terminator)
-            if (token != null)
+            if (IsTerminator(token))
                 this.PushToken(token);
-
-            return messages;
-        }
-
-        private object ParseOperators(IMessage left, string oper)
-        {
-            object right;
-
-            if (IsAssigmentOperator(oper))
-            {
-                if (!(left is Message) || ((Message)left).Arguments != null)
-                    throw new ParserException("Invalid left value in assignment");
-
-                right = this.ParseExpression();
-                return new Message(oper, new object[] { ((Message)left).Symbol, right });
-            }
-
-            right = this.ParseSimpleExpression();
-
-            IList<IMessage> messages = new List<IMessage>();
-            messages.Add(left);
-            messages.Add(new Message(oper, new object[] { right }));
 
             return messages;
         }
@@ -130,7 +100,7 @@
 
             left = ((Message)left).Symbol;
 
-            object right = this.ParseExpression();
+            object right = this.ParseSimpleExpression();
 
             Message result = new Message(oper, new object[] { left, right });
 
@@ -142,20 +112,34 @@
             return assigmentOperators.Contains(oper);
         }
 
-        private IMessage ParseMessage()
+        private IMessage ParseSimpleMessage(bool acceptOperator)
         {
             Token token = this.NextToken();
 
             if (token == null)
                 throw new ParserException("Unexpected end of input");
 
-            if (token.TokenType != TokenType.Identifier)
-                throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+            if (token.TokenType == TokenType.Identifier)
+                return ParseSymbolMessage(token.Value);
 
-            return ParseMessage(token.Value);
+            if (acceptOperator && token.TokenType == TokenType.Operator && !IsAssigmentOperator(token.Value))
+                return ParseOperatorMessage(token.Value);
+
+            if (token.TokenType == TokenType.Integer)
+                return new ObjectMessage(int.Parse(token.Value, System.Globalization.CultureInfo.InvariantCulture));
+
+            if (token.TokenType == TokenType.String)
+                return new ObjectMessage(token.Value);
+
+            throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
         }
 
-        private IMessage ParseMessage(string symbol)
+        private IMessage ParseOperatorMessage(string oper)
+        {
+            return new Message(oper, new object[] { this.ParseSimpleMessage(false) });
+        }
+
+        private IMessage ParseSymbolMessage(string symbol)
         {
             Token token = this.NextToken();
 
@@ -200,7 +184,7 @@
                 else
                     this.PushToken(token);
 
-                arguments.Add(this.ParseExpression());
+                arguments.Add(this.ParseSimpleExpression());
                 token = this.NextToken();
             }
 
@@ -221,6 +205,16 @@
         private void PushToken(Token token)
         {
             this.tokens.Push(token);
+        }
+
+        private static bool IsTerminator(Token token)
+        {
+            return token == null || token.TokenType == TokenType.Terminator;
+        }
+
+        private static bool IsCommaOrRightParenthesis(Token token)
+        {
+            return token != null && (token.TokenType == TokenType.Comma || token.TokenType == TokenType.RightPar);
         }
     }
 }
