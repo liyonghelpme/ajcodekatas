@@ -117,10 +117,10 @@ namespace AjIo.Tests.Compiler
         {
             Parser parser = new Parser("Object clone");
 
-            object expression = parser.ParseExpression();
+            IMessage message = parser.ParseExpression();
 
-            Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(MessageChain));
+            Assert.IsNotNull(message);
+            Assert.IsInstanceOfType(message, typeof(MessageChain));
 
             Assert.IsNull(parser.ParseExpression());
         }
@@ -130,7 +130,7 @@ namespace AjIo.Tests.Compiler
         {
             Parser parser = new Parser("a := 1");
 
-            object expression = parser.ParseExpression();
+            IMessage expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
             Assert.IsInstanceOfType(expression, typeof(Message));
@@ -141,11 +141,11 @@ namespace AjIo.Tests.Compiler
             Assert.IsNotNull(message.Arguments);
             Assert.AreEqual(2, message.Arguments.Count);
 
-            expression = message.Arguments[0];
+            object argument = message.Arguments[0];
 
-            Assert.IsNotNull(expression);
-            Assert.IsInstanceOfType(expression, typeof(string));
-            Assert.AreEqual("a", expression);
+            Assert.IsNotNull(argument);
+            Assert.IsInstanceOfType(argument, typeof(string));
+            Assert.AreEqual("a", argument);
 
             Assert.IsInstanceOfType(message.Arguments[1], typeof(ObjectMessage));
             Assert.AreEqual(1, ((ObjectMessage)message.Arguments[1]).Object);
@@ -158,7 +158,7 @@ namespace AjIo.Tests.Compiler
         {
             Parser parser = new Parser("a + 1");
 
-            object expression = parser.ParseExpression();
+            IMessage expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
 
@@ -186,7 +186,7 @@ namespace AjIo.Tests.Compiler
         {
             Parser parser = new Parser("1 + 2");
 
-            object expression = parser.ParseExpression();
+            IMessage expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
             Assert.IsInstanceOfType(expression, typeof(MessageChain));
@@ -213,7 +213,7 @@ namespace AjIo.Tests.Compiler
         {
             Parser parser = new Parser("3 - 1");
 
-            object expression = parser.ParseExpression();
+            IMessage expression = parser.ParseExpression();
 
             Assert.IsNotNull(expression);
             Assert.IsInstanceOfType(expression, typeof(MessageChain));
@@ -242,6 +242,18 @@ namespace AjIo.Tests.Compiler
 
             Assert.IsNotNull(parser.ParseExpression());
             Assert.IsNotNull(parser.ParseExpression());
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseMethodWithMultipleMessages()
+        {
+            Parser parser = new Parser("method(a:=1;b:=2;a+b)");
+
+            IMessage result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+
             Assert.IsNull(parser.ParseExpression());
         }
     }

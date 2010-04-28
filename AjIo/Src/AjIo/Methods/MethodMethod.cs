@@ -25,7 +25,7 @@ namespace AjIo.Methods
                 names.Add(msg.Symbol);
             }
 
-            return new Method((Message)arguments.Last(), names);
+            return new Method((IMessage)arguments.Last(), names);
         }
     }
 }

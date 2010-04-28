@@ -54,6 +54,7 @@
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Language\BaseObject.cs" />
     <Compile Include="Language\ClonedObject.cs" />
+    <Compile Include="Language\MessageList.cs" />
     <Compile Include="Language\IMessage.cs" />
     <Compile Include="Language\INativeMethod.cs" />
     <Compile Include="Language\LocalObject.cs" />

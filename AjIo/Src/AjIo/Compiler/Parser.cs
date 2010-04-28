@@ -25,9 +25,9 @@
         {
         }
 
-        public object ParseExpression()
+        public IMessage ParseExpression()
         {
-            object expression = this.ParseSimpleExpression();
+            IMessage expression = this.ParseDelimitedMessage();
 
             if (expression == null)
                 return null;
@@ -40,7 +40,44 @@
             throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
         }
 
-        private IMessage ParseSimpleExpression()
+        private IMessage ParseMessageList()
+        {
+            IMessage message = this.ParseDelimitedMessage();
+
+            if (message == null)
+                return null;
+
+            Token token = this.NextToken();
+
+            if (!IsTerminator(token))
+            {
+                this.PushToken(token);
+                return message;
+            }
+
+            MessageList messages = new MessageList(message);
+
+            message = this.ParseDelimitedMessage();
+
+            while (message != null)
+            {
+                messages.AddMessage(message);
+
+                token = this.NextToken();
+
+                if (!IsTerminator(token))
+                {
+                    this.PushToken(token);
+                    break;
+                }
+
+                message = this.ParseDelimitedMessage();
+            }
+
+            return messages;
+        }
+
+        private IMessage ParseDelimitedMessage()
         {
             Token token = this.NextToken();
 
@@ -51,6 +88,9 @@
                 return null;
 
             this.PushToken(token);
+
+            if (IsCommaOrRightParenthesis(token))
+                return null;
 
             IMessage msg = this.ParseSimpleMessage(true);
 
@@ -93,14 +133,14 @@
             return messages;
         }
 
-        private IMessage ParseAssigment(object left, string oper)
+        private IMessage ParseAssigmentMessage(object left, string oper)
         {
             if (!(left is Message) || ((Message)left).Arguments != null)
                 throw new ParserException("Invalid left value in assignment");
 
             left = ((Message)left).Symbol;
 
-            object right = this.ParseSimpleExpression();
+            object right = this.ParseDelimitedMessage();
 
             Message result = new Message(oper, new object[] { left, right });
 
@@ -160,7 +200,7 @@
             token = this.NextToken();
 
             if (token != null && token.TokenType == TokenType.Operator && IsAssigmentOperator(token.Value))
-                return this.ParseAssigment(msg, token.Value);
+                return this.ParseAssigmentMessage(msg, token.Value);
 
             if (token != null)
                 this.PushToken(token);
@@ -184,7 +224,7 @@
                 else
                     this.PushToken(token);
 
-                arguments.Add(this.ParseSimpleExpression());
+                arguments.Add(this.ParseMessageList());
                 token = this.NextToken();
             }
 

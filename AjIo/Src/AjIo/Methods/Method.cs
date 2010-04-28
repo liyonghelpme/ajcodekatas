@@ -9,9 +9,9 @@
     public class Method : BaseMethod
     {
         private IList<string> argumentNames;
-        private Message body;
+        private IMessage body;
 
-        public Method(Message body, IList<string> argumentNames)
+        public Method(IMessage body, IList<string> argumentNames)
         {
             this.body = body;
             this.argumentNames = argumentNames;
@@ -19,7 +19,7 @@
 
         public IList<string> ArgumentNames { get { return this.argumentNames; } }
 
-        public Message Body { get { return this.body; } }
+        public IMessage Body { get { return this.body; } }
 
         public override object Apply(IObject context, IObject receiver, IList<object> arguments)
         {

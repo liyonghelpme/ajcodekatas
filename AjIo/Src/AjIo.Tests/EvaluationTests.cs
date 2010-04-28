@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AjIo.Compiler;
 using AjIo.Language;
+using AjIo.Methods;
 
 namespace AjIo.Tests
 {
@@ -154,6 +155,33 @@ namespace AjIo.Tests
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void EvaluateMethod()
+        {
+            object result = this.Evaluate("method(a)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IMethod));
+            Assert.IsInstanceOfType(result, typeof(Method));
+        }
+
+        [TestMethod]
+        public void EvaluateAndExecuteMethodWithMultipleMessages()
+        {
+            object result = this.Evaluate("method(a:=1;b:=2)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IMethod));
+            Assert.IsInstanceOfType(result, typeof(Method));
+
+            Method method = (Method)result;
+
+            method.Execute(this.machine, this.machine, null);
+
+            Assert.AreEqual(1, this.machine.GetSlot("a"));
+            Assert.AreEqual(2, this.machine.GetSlot("b"));
         }
 
         private object Evaluate(string text)

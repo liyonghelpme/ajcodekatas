@@ -15,9 +15,9 @@ namespace AjIo.Console
             Machine machine = new Machine();
             Parser parser = new Parser(new Lexer(new ConsoleTextReader()));
 
-            for (object expression = parser.ParseExpression(); expression != null; expression = parser.ParseExpression())
+            for (IMessage message = parser.ParseExpression(); message != null; message = parser.ParseExpression())
             {
-                object result = machine.Evaluate(expression);
+                object result = machine.Evaluate(message);
 
                 System.Console.Write("----> ");
 
