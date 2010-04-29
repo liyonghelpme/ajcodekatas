@@ -247,6 +247,33 @@ namespace AjIo.Tests
             Assert.AreEqual(7, result);
         }
 
+        [TestMethod]
+        public void EvaluateNativeStringLength()
+        {
+            object result = this.Evaluate("\"Foo\" length");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3, result);
+        }
+
+        [TestMethod]
+        public void EvaluateNativeIntegerToString()
+        {
+            object result = this.Evaluate("123 toString");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123", result);
+        }
+
+        [TestMethod]
+        public void EvaluateNewNativeObject()
+        {
+            object result = this.Evaluate("System.IO.DirectoryInfo new(\".\")");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(System.IO.DirectoryInfo));
+        }
+
         private object Evaluate(string text)
         {
             Parser parser = new Parser(text);

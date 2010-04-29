@@ -39,3 +39,8 @@ MessageList with tests
 Arithmetic operations (-,*,/)
 Global Native Methods in Message
 Parenthesis support in Parser
+
+2010-04-29
+NewMethod with tests
+TypeUtilities
+support for new native objects in Message

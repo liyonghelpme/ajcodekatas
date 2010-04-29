@@ -24,6 +24,17 @@
         }
 
         [TestMethod]
+        public void GetQualifiedIdentifier()
+        {
+            Lexer lexer = new Lexer("System.Int32");
+            Token token = lexer.NextToken();
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Identifier, token.TokenType);
+            Assert.AreEqual("System.Int32", token.Value);
+            Assert.IsNull(lexer.NextToken());
+        }
+
+        [TestMethod]
         public void GetIdentifierWithSpaces()
         {
             Lexer lexer = new Lexer(" name ");

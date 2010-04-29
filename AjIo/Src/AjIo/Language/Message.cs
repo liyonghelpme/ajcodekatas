@@ -4,7 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+
+    using AjIo.Methods;
     using AjIo.Methods.Arithmetic;
+    using AjIo.Utilities;
 
     public class Message : AjIo.Language.IMessage
     {
@@ -19,6 +22,9 @@
             globalMethods["-"] = new SubtractMethod();
             globalMethods["*"] = new MultiplyMethod();
             globalMethods["/"] = new DivideMethod();
+
+            // TODO put not in global, but associated with types
+            globalMethods["new"] = new NewMethod();
         }
 
         public Message(string symbol)
@@ -43,7 +49,19 @@
             result = receiver.GetSlot(this.symbol);
 
             if (this.arguments == null && !(result is IMethod))
+            {
+                // TODO review this way
+                // Check for native type
+                if (result == null && this.symbol.Contains("."))
+                {
+                    Type type = TypeUtilities.AsType(this.symbol);
+
+                    if (type != null)
+                        return type;
+                }
+
                 return result;
+            }
 
             IMethod method = (IMethod)result;
 
@@ -61,7 +79,13 @@
                 return method.Execute(context, receiver, this.arguments);
             }
 
-            throw new InvalidOperationException(string.Format("Unknown method '{0}'", this.symbol));
+            Type type = receiver.GetType();
+            object[] parameters = null;
+
+            if (this.arguments != null)
+                parameters = this.arguments.ToArray();
+
+            return type.InvokeMember(this.symbol, System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.GetField | System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.InvokeMethod | System.Reflection.BindingFlags.Instance, null, receiver, parameters);
         }
     }
 }

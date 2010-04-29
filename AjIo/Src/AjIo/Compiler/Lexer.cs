@@ -33,7 +33,7 @@
             char ch = (char)nxch;
 
             if (char.IsLetter(ch))
-                return NextName(ch);
+                return NextIdentifier(ch);
 
             if (char.IsDigit(ch))
                 return NextInteger(ch);
@@ -96,7 +96,7 @@
             return new Token() { Value = value, TokenType = TokenType.Operator };
         }
 
-        private Token NextName(char ch)
+        private Token NextIdentifier(char ch)
         {
             string value = ch.ToString();
 
@@ -105,7 +105,7 @@
             while (nxch != -1)
             {
                 char ch2 = (char) nxch;
-                if (!char.IsLetterOrDigit(ch2))
+                if (!char.IsLetterOrDigit(ch2) && ch2 != '.')
                 {
                     this.Push(ch2);
                     break;

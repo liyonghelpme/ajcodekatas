@@ -76,6 +76,7 @@
     <Compile Include="Methods\BaseMethod.cs" />
     <Compile Include="Methods\CloneMethod.cs" />
     <Compile Include="Methods\BaseNativeMethod.cs" />
+    <Compile Include="Methods\NewMethod.cs" />
     <Compile Include="Methods\UpdateSlotMethod.cs" />
     <Compile Include="Methods\MethodMethod.cs" />
     <Compile Include="Methods\Method.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Methods\NewSlotMethod.cs" />
     <Compile Include="Methods\SetterMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\TypeUtilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

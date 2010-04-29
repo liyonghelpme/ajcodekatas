@@ -43,6 +43,7 @@
     <Compile Include="EvaluationTests.cs" />
     <Compile Include="Language\IoObjectTests.cs" />
     <Compile Include="Language\LocalObjectTests.cs" />
+    <Compile Include="Methods\MethodTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
