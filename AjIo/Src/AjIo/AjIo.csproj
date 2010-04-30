@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{8926CC6D-4B1A-47BA-B51E-0D19898366BB}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -54,6 +54,7 @@
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Language\BaseObject.cs" />
     <Compile Include="Language\ClonedObject.cs" />
+    <Compile Include="Language\ListObject.cs" />
     <Compile Include="Language\MessageList.cs" />
     <Compile Include="Language\IMessage.cs" />
     <Compile Include="Language\INativeMethod.cs" />
@@ -76,6 +77,10 @@
     <Compile Include="Methods\BaseMethod.cs" />
     <Compile Include="Methods\CloneMethod.cs" />
     <Compile Include="Methods\BaseNativeMethod.cs" />
+    <Compile Include="Methods\Comparison\ComparisonMethod.cs" />
+    <Compile Include="Methods\Comparison\ComparisonNativeMethod.cs" />
+    <Compile Include="Methods\Comparison\EqualsNativeMethod.cs" />
+    <Compile Include="Methods\Comparison\EqualsMethod.cs" />
     <Compile Include="Methods\NewMethod.cs" />
     <Compile Include="Methods\UpdateSlotMethod.cs" />
     <Compile Include="Methods\MethodMethod.cs" />

@@ -44,3 +44,9 @@ Parenthesis support in Parser
 NewMethod with tests
 TypeUtilities
 support for new native objects in Message
+Comparison Methods
+ComparisonMethod, ComparisonNativeMethod
+EqualsMethod, EqualsNativeMethod
+== in IoObject
+== in Message
+ListObject WIP

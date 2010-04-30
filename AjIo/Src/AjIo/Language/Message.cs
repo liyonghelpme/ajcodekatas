@@ -8,6 +8,7 @@
     using AjIo.Methods;
     using AjIo.Methods.Arithmetic;
     using AjIo.Utilities;
+    using AjIo.Methods.Comparison;
 
     public class Message : AjIo.Language.IMessage
     {
@@ -22,6 +23,7 @@
             globalMethods["-"] = new SubtractMethod();
             globalMethods["*"] = new MultiplyMethod();
             globalMethods["/"] = new DivideMethod();
+            globalMethods["=="] = new EqualsNativeMethod();
 
             // TODO put not in global, but associated with types
             globalMethods["new"] = new NewMethod();

@@ -274,6 +274,13 @@ namespace AjIo.Tests
             Assert.IsInstanceOfType(result, typeof(System.IO.DirectoryInfo));
         }
 
+        [TestMethod]
+        public void EvaluateNativeEquals()
+        {
+            Assert.IsTrue((bool) this.Evaluate("2 == 2"));
+            Assert.IsTrue((bool) this.Evaluate("\"Foo\" == \"Foo\""));
+        }
+
         private object Evaluate(string text)
         {
             Parser parser = new Parser(text);

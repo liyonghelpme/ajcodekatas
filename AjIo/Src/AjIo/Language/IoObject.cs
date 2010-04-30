@@ -6,6 +6,7 @@
     using System.Text;
 
     using AjIo.Methods;
+    using AjIo.Methods.Comparison;
 
     public class IoObject : BaseObject
     {
@@ -19,6 +20,7 @@
             this.SetSlot("::=", new NewSlotMethod());
             this.SetSlot("=", new UpdateSlotMethod());
             this.SetSlot("method", new MethodMethod());
+            this.SetSlot("==", new EqualsMethod());
         }
 
         public override string TypeName { get { return "Object"; } }
