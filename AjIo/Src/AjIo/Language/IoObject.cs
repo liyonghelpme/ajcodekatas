@@ -21,6 +21,7 @@
             this.SetSlot("=", new UpdateSlotMethod());
             this.SetSlot("method", new MethodMethod());
             this.SetSlot("==", new EqualsMethod());
+            this.SetSlot("if", new IfMethod());
         }
 
         public override string TypeName { get { return "Object"; } }

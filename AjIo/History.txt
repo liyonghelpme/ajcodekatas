@@ -50,3 +50,4 @@ EqualsMethod, EqualsNativeMethod
 == in IoObject
 == in Message
 ListObject WIP
+IfMethod

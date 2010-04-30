@@ -279,6 +279,19 @@ namespace AjIo.Tests
         {
             Assert.IsTrue((bool) this.Evaluate("2 == 2"));
             Assert.IsTrue((bool) this.Evaluate("\"Foo\" == \"Foo\""));
+            Assert.IsFalse((bool)this.Evaluate("2 == 3"));
+            Assert.IsFalse((bool)this.Evaluate("\"Foo\" == \"Bar\""));
+        }
+
+        [TestMethod]
+        public void EvaluateIf()
+        {
+            Assert.AreEqual(2, this.Evaluate("if(1==1,2,3)"));
+            Assert.AreEqual(3, this.Evaluate("if(1==2,2,3)"));
+            this.Evaluate("if(1==1, a:= 2)");
+            Assert.AreEqual(2, this.machine.GetSlot("a"));
+            this.Evaluate("if(1==2, b:= 1, b:=3)");
+            Assert.AreEqual(3, this.machine.GetSlot("b"));
         }
 
         private object Evaluate(string text)

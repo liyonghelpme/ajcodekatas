@@ -81,6 +81,7 @@
     <Compile Include="Methods\Comparison\ComparisonNativeMethod.cs" />
     <Compile Include="Methods\Comparison\EqualsNativeMethod.cs" />
     <Compile Include="Methods\Comparison\EqualsMethod.cs" />
+    <Compile Include="Methods\IfMethod.cs" />
     <Compile Include="Methods\NewMethod.cs" />
     <Compile Include="Methods\UpdateSlotMethod.cs" />
     <Compile Include="Methods\MethodMethod.cs" />
