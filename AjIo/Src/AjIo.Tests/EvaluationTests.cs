@@ -294,6 +294,57 @@ namespace AjIo.Tests
             Assert.AreEqual(3, this.machine.GetSlot("b"));
         }
 
+        [TestMethod]
+        public void EvaluateListClone()
+        {
+            object result = this.Evaluate("List clone");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ListObject));
+        }
+
+        [TestMethod]
+        public void EvaluateAddToList()
+        {
+            this.Evaluate("aList := List clone");
+            Assert.AreEqual(0, this.Evaluate("aList count"));
+            this.Evaluate("aList add(10)");
+            Assert.AreEqual(1, this.Evaluate("aList count"));
+            this.Evaluate("aList add(20)");
+            Assert.AreEqual(2, this.Evaluate("aList count"));
+            Assert.AreEqual(10, this.Evaluate("aList at(0)"));
+            Assert.AreEqual(20, this.Evaluate("aList at(1)"));
+        }
+
+        [TestMethod]
+        public void EvaluateCloneCloneList()
+        {
+            this.Evaluate("aList := List clone");
+            Assert.AreEqual(0, this.Evaluate("aList count"));
+            this.Evaluate("aList add(10)");
+            this.Evaluate("aList add(20)");
+            this.Evaluate("anotherList := aList clone");
+            Assert.AreEqual(2, this.Evaluate("anotherList count"));
+            Assert.AreEqual(10, this.Evaluate("anotherList at(0)"));
+            Assert.AreEqual(20, this.Evaluate("anotherList at(1)"));
+
+            this.Evaluate("aList add(30)");
+            Assert.AreEqual(3, this.Evaluate("aList count"));
+            Assert.AreEqual(2, this.Evaluate("anotherList count"));
+        }
+
+        [TestMethod]
+        public void EvaluateChainedAddList()
+        {
+            this.Evaluate("aList := List clone");
+            Assert.AreEqual(0, this.Evaluate("aList count"));
+            this.Evaluate("aList add(10) add(20) add(30)");
+            Assert.AreEqual(3, this.Evaluate("aList count"));
+            Assert.AreEqual(10, this.Evaluate("aList at(0)"));
+            Assert.AreEqual(20, this.Evaluate("aList at(1)"));
+            Assert.AreEqual(30, this.Evaluate("aList at(2)"));
+        }
+
         private object Evaluate(string text)
         {
             Parser parser = new Parser(text);

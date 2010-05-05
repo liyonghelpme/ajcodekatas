@@ -16,6 +16,16 @@
 
         public object Object { get { return this.obj; } }
 
+        public string TypeName
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public IObject Self
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         public object Evaluate(object expression)
         {
             throw new NotImplementedException();
@@ -34,16 +44,6 @@
         public void UpdateSlot(string name, object value)
         {
             throw new NotImplementedException();
-        }
-
-        public string TypeName
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public IObject Self
-        {
-            get { throw new NotImplementedException(); }
         }
     }
 }

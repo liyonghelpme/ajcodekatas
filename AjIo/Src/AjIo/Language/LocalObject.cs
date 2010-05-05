@@ -16,6 +16,14 @@
 
         public IObject Parent { get { return this.parent; } }
 
+        public override IObject Self
+        {
+            get
+            {
+                return this.parent.Self;
+            }
+        }
+
         public override string TypeName
         {
             get { return this.parent.TypeName; }
@@ -48,14 +56,6 @@
             }
 
             this.parent.UpdateSlot(name, value);
-        }
-
-        public override IObject Self
-        {
-            get
-            {
-                return this.parent.Self;
-            }
         }
     }
 }

@@ -13,8 +13,8 @@
             object condition = arguments[0];
             object result = context.Evaluate(condition);
 
-            IMessage thenmsg = (arguments.Count>1 ? (IMessage) arguments[1] : null);
-            IMessage elsemsg = (arguments.Count>2 ? (IMessage) arguments[2] : null);
+            IMessage thenmsg = arguments.Count > 1 ? (IMessage) arguments[1] : null;
+            IMessage elsemsg = arguments.Count > 2 ? (IMessage) arguments[2] : null;
 
             bool isFalse = result == null || (result is bool && !((bool)result));
 

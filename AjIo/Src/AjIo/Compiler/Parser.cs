@@ -40,6 +40,21 @@
             throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
         }
 
+        private static bool IsAssigmentOperator(string oper)
+        {
+            return assigmentOperators.Contains(oper);
+        }
+
+        private static bool IsTerminator(Token token)
+        {
+            return token == null || token.TokenType == TokenType.Terminator;
+        }
+
+        private static bool IsCommaOrRightParenthesis(Token token)
+        {
+            return token != null && (token.TokenType == TokenType.Comma || token.TokenType == TokenType.RightPar);
+        }
+
         private IMessage ParseMessageList()
         {
             IMessage message = this.ParseDelimitedMessage();
@@ -147,11 +162,6 @@
             return result;
         }
 
-        private static bool IsAssigmentOperator(string oper)
-        {
-            return assigmentOperators.Contains(oper);
-        }
-
         // TODO Refactor
         private IMessage ParseSimpleMessage(bool acceptOperator, bool acceptLeftParenthesis)
         {
@@ -161,10 +171,10 @@
                 throw new ParserException("Unexpected end of input");
 
             if (token.TokenType == TokenType.Identifier)
-                return ParseSymbolMessage(token.Value);
+                return this.ParseSymbolMessage(token.Value);
 
             if (acceptOperator && token.TokenType == TokenType.Operator && !IsAssigmentOperator(token.Value))
-                return ParseOperatorMessage(token.Value);
+                return this.ParseOperatorMessage(token.Value);
 
             if (acceptLeftParenthesis && token.TokenType == TokenType.LeftPar)
             {
@@ -258,16 +268,6 @@
         private void PushToken(Token token)
         {
             this.tokens.Push(token);
-        }
-
-        private static bool IsTerminator(Token token)
-        {
-            return token == null || token.TokenType == TokenType.Terminator;
-        }
-
-        private static bool IsCommaOrRightParenthesis(Token token)
-        {
-            return token != null && (token.TokenType == TokenType.Comma || token.TokenType == TokenType.RightPar);
         }
     }
 }

@@ -23,7 +23,7 @@
             if (arguments == null || arguments.Count != 1)
                 throw new InvalidOperationException(string.Format("set{0} should have only one argument", this.name));
 
-            receiver.SetSlot(name, arguments[0]);
+            receiver.SetSlot(this.name, arguments[0]);
 
             // TODO review return value
             return arguments[0];

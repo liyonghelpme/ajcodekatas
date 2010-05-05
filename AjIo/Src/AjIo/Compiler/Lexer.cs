@@ -33,10 +33,10 @@
             char ch = (char)nxch;
 
             if (char.IsLetter(ch))
-                return NextIdentifier(ch);
+                return this.NextIdentifier(ch);
 
             if (char.IsDigit(ch))
-                return NextInteger(ch);
+                return this.NextInteger(ch);
 
             if (ch == ';' || ch == '\n')
                 return new Token() { Value = ch.ToString(), TokenType = TokenType.Terminator };
@@ -52,7 +52,7 @@
             }
 
             if (ch == '"')
-                return NextString();
+                return this.NextString();
 
             if (ch == ',')
                 return new Token() { Value = ",", TokenType = TokenType.Comma };
@@ -64,7 +64,7 @@
                 return new Token() { Value = ")", TokenType = TokenType.RightPar };
 
             if (!char.IsControl(ch))
-                return NextOperator(ch);
+                return this.NextOperator(ch);
 
             throw new LexerException(string.Format("Unexpected character '{0}'", (char) ch));
         }
@@ -142,7 +142,7 @@
 
         private Token NextString()
         {
-            string value = "";
+            string value = string.Empty;
 
             int nxch = this.NextChar();
 

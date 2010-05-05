@@ -23,7 +23,7 @@
 
             object argument = arguments[0];
 
-            return Apply(receiver, argument);
+            return this.Apply(receiver, argument);
         }
 
         public virtual object Apply(object first, object second)

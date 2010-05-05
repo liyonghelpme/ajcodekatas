@@ -42,6 +42,7 @@
     <Compile Include="Compiler\ParserTests.cs" />
     <Compile Include="EvaluationTests.cs" />
     <Compile Include="Language\IoObjectTests.cs" />
+    <Compile Include="Language\ListObjectTests.cs" />
     <Compile Include="Language\LocalObjectTests.cs" />
     <Compile Include="Methods\MethodTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,19 +4,35 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using AjIo.Methods;
 
     public abstract class BaseObject : IObject
     {
         protected Dictionary<string, object> slotValues = new Dictionary<string, object>();
+
+        public abstract string TypeName { get; }
+
+        public virtual IObject Self
+        {
+            get
+            {
+                return this;
+            }
+        }
 
         public virtual void SetSlot(string name, object value)
         {
             this.slotValues[name] = value;
         }
 
+        public void SetMethodSlot(string name, Func<IObject, IObject, IList<object>, object> function)
+        {
+            this.slotValues[name] = new FunctionMethod(function);
+        }
+
         public virtual void UpdateSlot(string name, object value)
         {
-            if (this.slotValues.ContainsKey(name)) 
+            if (this.slotValues.ContainsKey(name))
             {
                 this.slotValues[name] = value;
                 return;
@@ -36,16 +52,6 @@
         public override string ToString()
         {
             return string.Format("{0}_{1:x}", this.TypeName, this.GetHashCode());
-        }
-
-        public abstract string TypeName { get; }
-
-        public virtual IObject Self
-        {
-            get
-            {
-                return this;
-            }
         }
 
         public object Evaluate(object expression)

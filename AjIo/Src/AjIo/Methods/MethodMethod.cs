@@ -13,7 +13,7 @@
         {
             IList<string> names = new List<string>();
 
-            for (int k=0; k<arguments.Count-1; k++) 
+            for (int k = 0; k < arguments.Count - 1; k++) 
             {
                 Message msg = (Message) arguments[k];
                 if (msg.Arguments != null)

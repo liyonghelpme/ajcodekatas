@@ -28,7 +28,7 @@
             for (int k = 0; this.argumentNames != null && k < this.argumentNames.Count; k++)
                 local.SetLocalSlot(this.argumentNames[k], arguments[k]);
 
-            return body.Send(local, local);
+            return this.body.Send(local, local);
         }
     }
 }

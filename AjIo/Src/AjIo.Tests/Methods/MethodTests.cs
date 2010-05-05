@@ -18,5 +18,12 @@ namespace AjIo.Tests.Methods
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(System.IO.DirectoryInfo));
         }
+
+        [TestMethod]
+        public void DefineAndExecuteSimpleFunctionMethod()
+        {
+            FunctionMethod method = new FunctionMethod((context, receiver, arguments) => "Foo");
+            Assert.AreEqual("Foo", method.Execute(null, null, null));
+        }
     }
 }

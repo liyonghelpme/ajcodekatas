@@ -14,6 +14,7 @@
             : base(new IoObject())
         {
             this.SetSlot("Object", this.Parent);
+            this.SetSlot("List", new ListObject(this.Parent));
         }
     }
 }

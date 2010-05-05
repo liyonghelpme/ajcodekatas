@@ -7,8 +7,8 @@
 
     using AjIo.Methods;
     using AjIo.Methods.Arithmetic;
-    using AjIo.Utilities;
     using AjIo.Methods.Comparison;
+    using AjIo.Utilities;
 
     public class Message : AjIo.Language.IMessage
     {
