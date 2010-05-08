@@ -54,6 +54,9 @@
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Language\BaseObject.cs" />
     <Compile Include="Language\ClonedObject.cs" />
+    <Compile Include="Methods\Comparison\NotEqualsNativeMethod.cs" />
+    <Compile Include="Methods\Comparison\NotEqualsMethod.cs" />
+    <Compile Include="Methods\ListMethod.cs" />
     <Compile Include="Methods\FunctionMethod.cs" />
     <Compile Include="Language\ListObject.cs" />
     <Compile Include="Language\MessageList.cs" />

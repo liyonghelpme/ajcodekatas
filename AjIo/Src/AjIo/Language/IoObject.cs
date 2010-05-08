@@ -10,6 +10,8 @@
 
     public class IoObject : BaseObject
     {
+        public override IObject Parent { get { return null; } }
+
         public IoObject()
         {
             this.SetSlot("clone", new CloneMethod());
@@ -21,7 +23,9 @@
             this.SetSlot("=", new UpdateSlotMethod());
             this.SetSlot("method", new MethodMethod());
             this.SetSlot("==", new EqualsMethod());
+            this.SetSlot("!=", new NotEqualsMethod());
             this.SetSlot("if", new IfMethod());
+            this.SetSlot("list", new ListMethod());
         }
 
         public override string TypeName { get { return "Object"; } }

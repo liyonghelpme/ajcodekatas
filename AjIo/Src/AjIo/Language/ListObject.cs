@@ -26,6 +26,12 @@
             this.SetMethodSlot("count", (context, receiver, arguments) => ((ListObject)receiver).list.Count);
         }
 
+        public ListObject(IObject parent, IList<object> elements)
+            : this(parent)
+        {
+            this.list = new List<object>(elements);
+        }
+
         public int IndexOf(object item)
         {
             return this.list.IndexOf(item);

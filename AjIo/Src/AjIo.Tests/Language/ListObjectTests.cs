@@ -52,5 +52,15 @@ namespace AjIo.Tests.Language
             Assert.AreEqual(3, obj.Evaluate(new Message("at", new object[] { 1 })));
             Assert.AreEqual(3, obj[1]);
         }
+
+        [TestMethod]
+        public void CreateWithElements()
+        {
+            ListObject obj = new ListObject(new IoObject(), new object[] { 1,2,3});
+            Assert.AreEqual(3, obj.Count);
+            Assert.AreEqual(1, obj[0]);
+            Assert.AreEqual(2, obj[1]);
+            Assert.AreEqual(3, obj[2]);
+        }
     }
 }

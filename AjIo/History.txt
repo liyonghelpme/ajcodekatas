@@ -58,3 +58,5 @@ ListObject w/tests
 
 2010-05-08
 Real support in lexer, parser, evaluation
+NotEqualsMethod with tests
+ListMethod with tests

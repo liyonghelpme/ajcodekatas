@@ -14,7 +14,7 @@
             this.parent = parent;
         }
 
-        public IObject Parent { get { return this.parent; } }
+        public override IObject Parent { get { return this.parent; } }
 
         public override IObject Self
         {

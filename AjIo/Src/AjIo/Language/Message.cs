@@ -24,6 +24,7 @@
             globalMethods["*"] = new MultiplyMethod();
             globalMethods["/"] = new DivideMethod();
             globalMethods["=="] = new EqualsNativeMethod();
+            globalMethods["!="] = new NotEqualsNativeMethod();
 
             // TODO put not in global, but associated with types
             globalMethods["new"] = new NewMethod();

@@ -26,6 +26,11 @@
             get { throw new NotImplementedException(); }
         }
 
+        public IObject Parent
+        {
+            get { return null; }
+        }
+
         public object Evaluate(object expression)
         {
             throw new NotImplementedException();

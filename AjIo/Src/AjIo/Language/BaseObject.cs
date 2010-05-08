@@ -20,6 +20,8 @@
             }
         }
 
+        public abstract IObject Parent { get; }
+
         public virtual void SetSlot(string name, object value)
         {
             this.slotValues[name] = value;

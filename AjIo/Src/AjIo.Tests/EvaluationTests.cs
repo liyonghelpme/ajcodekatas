@@ -317,6 +317,15 @@ namespace AjIo.Tests
         }
 
         [TestMethod]
+        public void EvaluateNativeNotEquals()
+        {
+            Assert.IsFalse((bool)this.Evaluate("2 != 2"));
+            Assert.IsFalse((bool)this.Evaluate("\"Foo\" != \"Foo\""));
+            Assert.IsTrue((bool)this.Evaluate("2 != 3"));
+            Assert.IsTrue((bool)this.Evaluate("\"Foo\" != \"Bar\""));
+        }
+
+        [TestMethod]
         public void EvaluateIf()
         {
             Assert.AreEqual(2, this.Evaluate("if(1==1,2,3)"));
@@ -376,6 +385,20 @@ namespace AjIo.Tests
             Assert.AreEqual(10, this.Evaluate("aList at(0)"));
             Assert.AreEqual(20, this.Evaluate("aList at(1)"));
             Assert.AreEqual(30, this.Evaluate("aList at(2)"));
+        }
+
+        [TestMethod]
+        public void EvaluateListMethod()
+        {
+            object result = this.Evaluate("list(1, 2, 3)");
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ListObject));
+
+            ListObject list = (ListObject)result;
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(2, list[1]);
+            Assert.AreEqual(3, list[2]);
         }
 
         private object Evaluate(string text)

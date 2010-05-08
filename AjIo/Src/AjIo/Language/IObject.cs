@@ -6,6 +6,8 @@
 
         IObject Self { get; }
 
+        IObject Parent { get; }
+
         object Evaluate(object expression);
 
         void SetSlot(string name, object value);
