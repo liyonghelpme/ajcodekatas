@@ -188,5 +188,16 @@
 
             Assert.IsNull(lexer.NextToken());
         }
+
+        [TestMethod]
+        public void GetReal()
+        {
+            Lexer lexer = new Lexer("12.34");
+            Token token = lexer.NextToken();
+            Assert.IsNotNull(token);
+            Assert.AreEqual(TokenType.Real, token.TokenType);
+            Assert.AreEqual("12.34", token.Value);
+            Assert.IsNull(lexer.NextToken());
+        }
     }
 }

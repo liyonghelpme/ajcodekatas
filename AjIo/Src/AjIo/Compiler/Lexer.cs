@@ -127,6 +127,10 @@
             while (nxch != -1)
             {
                 char ch2 = (char)nxch;
+
+                if (ch2 == '.')
+                    return this.NextReal(value);
+
                 if (!char.IsDigit(ch2))
                 {
                     this.Push(ch2);
@@ -138,6 +142,28 @@
             }
 
             return new Token() { Value = value, TokenType = TokenType.Integer };
+        }
+
+        private Token NextReal(string integerpart)
+        {
+            string value = integerpart + ".";
+
+            int nxch = this.NextChar();
+
+            while (nxch != -1)
+            {
+                char ch2 = (char)nxch;
+                if (!char.IsDigit(ch2))
+                {
+                    this.Push(ch2);
+                    break;
+                }
+
+                value += ch2;
+                nxch = this.NextChar();
+            }
+
+            return new Token() { Value = value, TokenType = TokenType.Real };
         }
 
         private Token NextString()

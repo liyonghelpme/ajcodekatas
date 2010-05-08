@@ -158,6 +158,39 @@ namespace AjIo.Tests
         }
 
         [TestMethod]
+        public void EvaluateReal()
+        {
+            object result = this.Evaluate("3.14");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3.14, result);
+        }
+
+        [TestMethod]
+        public void EvaluateOperateTwoReals()
+        {
+            object result = this.Evaluate("3.14 + 1.23");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3.14 + 1.23, result);
+            
+            result = this.Evaluate("3.14 - 1.23");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3.14 - 1.23, result);
+
+            result = this.Evaluate("3.14 * 1.23");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3.14 * 1.23, result);
+
+            result = this.Evaluate("3.14 / 1.23");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3.14 / 1.23, result);
+        }
+
+        [TestMethod]
         public void EvaluateMethod()
         {
             object result = this.Evaluate("method(a)");

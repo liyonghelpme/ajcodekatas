@@ -191,6 +191,9 @@
             if (token.TokenType == TokenType.Integer)
                 return new ObjectMessage(int.Parse(token.Value, System.Globalization.CultureInfo.InvariantCulture));
 
+            if (token.TokenType == TokenType.Real)
+                return new ObjectMessage(double.Parse(token.Value, System.Globalization.CultureInfo.InvariantCulture));
+
             if (token.TokenType == TokenType.String)
                 return new ObjectMessage(token.Value);
 

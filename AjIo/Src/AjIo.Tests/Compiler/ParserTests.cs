@@ -256,5 +256,21 @@ namespace AjIo.Tests.Compiler
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseReal()
+        {
+            Parser parser = new Parser("12.34");
+            object expression = parser.ParseExpression();
+
+            Assert.IsNotNull(expression);
+            Assert.IsInstanceOfType(expression, typeof(ObjectMessage));
+
+            ObjectMessage msg = (ObjectMessage)expression;
+
+            Assert.AreEqual(12.34, msg.Object);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }
