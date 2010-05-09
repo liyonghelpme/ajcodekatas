@@ -11,6 +11,9 @@
     {
         private static string[] assigmentOperators = new string[] { "=", ":=", "::=" };
         private static Token terminator = new Token() { TokenType = TokenType.Terminator };
+        private static IMessage falseMessage = new ObjectMessage(false);
+        private static IMessage trueMessage = new ObjectMessage(true);
+        private static IMessage nullMessage = new ObjectMessage(null);
 
         private Lexer lexer;
         private Stack<Token> tokens = new Stack<Token>();
@@ -171,7 +174,17 @@
                 throw new ParserException("Unexpected end of input");
 
             if (token.TokenType == TokenType.Identifier)
+            {
+                // TODO refactor? dictionary of messages?
+                if (token.Value == "false")
+                    return falseMessage;
+                if (token.Value == "true")
+                    return trueMessage;
+                if (token.Value == "nil")
+                    return nullMessage;
+
                 return this.ParseSymbolMessage(token.Value);
+            }
 
             if (acceptOperator && token.TokenType == TokenType.Operator && !IsAssigmentOperator(token.Value))
                 return this.ParseOperatorMessage(token.Value);

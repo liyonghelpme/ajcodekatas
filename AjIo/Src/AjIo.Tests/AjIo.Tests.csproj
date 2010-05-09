@@ -44,6 +44,7 @@
     <Compile Include="Language\IoObjectTests.cs" />
     <Compile Include="Language\ListObjectTests.cs" />
     <Compile Include="Language\LocalObjectTests.cs" />
+    <Compile Include="MachineTests.cs" />
     <Compile Include="Methods\MethodTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

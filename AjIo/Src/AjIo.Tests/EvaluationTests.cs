@@ -346,14 +346,14 @@ namespace AjIo.Tests
         }
 
         [TestMethod]
-        public void EvaluateAddToList()
+        public void EvaluateAppendToList()
         {
             this.Evaluate("aList := List clone");
-            Assert.AreEqual(0, this.Evaluate("aList count"));
-            this.Evaluate("aList add(10)");
-            Assert.AreEqual(1, this.Evaluate("aList count"));
-            this.Evaluate("aList add(20)");
-            Assert.AreEqual(2, this.Evaluate("aList count"));
+            Assert.AreEqual(0, this.Evaluate("aList size"));
+            this.Evaluate("aList append(10)");
+            Assert.AreEqual(1, this.Evaluate("aList size"));
+            this.Evaluate("aList append(20)");
+            Assert.AreEqual(2, this.Evaluate("aList size"));
             Assert.AreEqual(10, this.Evaluate("aList at(0)"));
             Assert.AreEqual(20, this.Evaluate("aList at(1)"));
         }
@@ -362,26 +362,26 @@ namespace AjIo.Tests
         public void EvaluateCloneCloneList()
         {
             this.Evaluate("aList := List clone");
-            Assert.AreEqual(0, this.Evaluate("aList count"));
-            this.Evaluate("aList add(10)");
-            this.Evaluate("aList add(20)");
+            Assert.AreEqual(0, this.Evaluate("aList size"));
+            this.Evaluate("aList append(10)");
+            this.Evaluate("aList append(20)");
             this.Evaluate("anotherList := aList clone");
-            Assert.AreEqual(2, this.Evaluate("anotherList count"));
+            Assert.AreEqual(2, this.Evaluate("anotherList size"));
             Assert.AreEqual(10, this.Evaluate("anotherList at(0)"));
             Assert.AreEqual(20, this.Evaluate("anotherList at(1)"));
 
-            this.Evaluate("aList add(30)");
-            Assert.AreEqual(3, this.Evaluate("aList count"));
-            Assert.AreEqual(2, this.Evaluate("anotherList count"));
+            this.Evaluate("aList append(30)");
+            Assert.AreEqual(3, this.Evaluate("aList size"));
+            Assert.AreEqual(2, this.Evaluate("anotherList size"));
         }
 
         [TestMethod]
         public void EvaluateChainedAddList()
         {
             this.Evaluate("aList := List clone");
-            Assert.AreEqual(0, this.Evaluate("aList count"));
-            this.Evaluate("aList add(10) add(20) add(30)");
-            Assert.AreEqual(3, this.Evaluate("aList count"));
+            Assert.AreEqual(0, this.Evaluate("aList size"));
+            this.Evaluate("aList append(10) append(20) append(30)");
+            Assert.AreEqual(3, this.Evaluate("aList size"));
             Assert.AreEqual(10, this.Evaluate("aList at(0)"));
             Assert.AreEqual(20, this.Evaluate("aList at(1)"));
             Assert.AreEqual(30, this.Evaluate("aList at(2)"));
@@ -399,6 +399,56 @@ namespace AjIo.Tests
             Assert.AreEqual(1, list[0]);
             Assert.AreEqual(2, list[1]);
             Assert.AreEqual(3, list[2]);
+        }
+
+        [TestMethod]
+        public void EvaluateListAndAtPut()
+        {
+            object result = this.Evaluate("list(1, 2, 3) atPut(1, 4)");
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ListObject));
+
+            ListObject list = (ListObject)result;
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(4, list[1]);
+            Assert.AreEqual(3, list[2]);
+        }
+
+        [TestMethod]
+        public void EvaluateListForEach()
+        {
+            this.Evaluate("a := 0");
+            this.Evaluate("list(1, 2, 3) foreach(n,v, a := a + v)");
+
+            object result = this.Evaluate("a");
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
+        public void EvaluateBooleansAndNil()
+        {
+            object result = this.Evaluate("true");
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(bool));
+            Assert.IsTrue((bool)result);
+
+            result = this.Evaluate("false");
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(bool));
+            Assert.IsFalse((bool)result);
+
+            result = this.Evaluate("nil");
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void EvaluateAddTwoVariables()
+        {
+            this.Evaluate("a := 1");
+            this.Evaluate("b := 2");
+            Assert.AreEqual(3, this.Evaluate("a + b"));
         }
 
         private object Evaluate(string text)

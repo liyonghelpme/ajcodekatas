@@ -6,13 +6,15 @@
     using System.Text;
     using AjIo.Language;
 
-    public class Method : BaseMethod
+    public class Block : BaseMethod
     {
+        private IObject context;
         private IList<string> argumentNames;
         private IMessage body;
 
-        public Method(IMessage body, IList<string> argumentNames)
+        public Block(IObject context, IMessage body, IList<string> argumentNames)
         {
+            this.context = context;
             this.body = body;
             this.argumentNames = argumentNames;
         }
@@ -30,7 +32,7 @@
 
             local.SetLocalSlot("self", receiver);
 
-            return this.body.Send(local, local);
+            return this.body.Send(this.context, local);
         }
     }
 }

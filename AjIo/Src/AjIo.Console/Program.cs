@@ -21,10 +21,7 @@ namespace AjIo.Console
 
                 System.Console.Write("----> ");
 
-                if (result != null)
-                    System.Console.WriteLine(result.ToString());
-                else
-                    System.Console.WriteLine("null");
+                System.Console.WriteLine(Machine.PrintString(result));
             }
         }
     }

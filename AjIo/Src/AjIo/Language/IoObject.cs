@@ -22,6 +22,7 @@
             this.SetSlot("::=", new NewSlotMethod());
             this.SetSlot("=", new UpdateSlotMethod());
             this.SetSlot("method", new MethodMethod());
+            this.SetSlot("block", new MethodMethod());
             this.SetSlot("==", new EqualsMethod());
             this.SetSlot("!=", new NotEqualsMethod());
             this.SetSlot("if", new IfMethod());

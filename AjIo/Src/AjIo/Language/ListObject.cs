@@ -21,9 +21,12 @@
 
             this.SetMethodSlot("clone", (context, receiver, arguments) => new ListObject(receiver));
             this.SetMethodSlot("at", (context, receiver, arguments) => ((ListObject)receiver).list[(int)arguments[0]]);
-            this.SetMethodSlot("add", (context, receiver, arguments) => { ((ListObject)receiver).list.Add(arguments[0]);  return this; });
+            this.SetMethodSlot("append", (context, receiver, arguments) => { ((ListObject)receiver).list.Add(arguments[0]);  return this; });
             this.SetMethodSlot("remove", (context, receiver, arguments) => { ((ListObject)receiver).list.Remove(arguments[0]); return this; });
-            this.SetMethodSlot("count", (context, receiver, arguments) => ((ListObject)receiver).list.Count);
+            this.SetMethodSlot("atPut", (context, receiver, arguments) => { ((ListObject)receiver).list[(int)arguments[0]] = arguments[1]; return this; });
+            this.SetMethodSlot("atInsert", (context, receiver, arguments) => { ((ListObject)receiver).list.Insert((int)arguments[0], arguments[1]); return this; });
+            this.SetMethodSlot("size", (context, receiver, arguments) => ((ListObject)receiver).list.Count);
+            this.SetSlot("foreach", new ForEachMethod());
         }
 
         public ListObject(IObject parent, IList<object> elements)
@@ -102,6 +105,25 @@
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.list.GetEnumerator();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder("list(");
+            int n = 0;
+
+            foreach (object obj in this.list)
+            {
+                if (n > 0)
+                    builder.Append(", ");
+
+                builder.Append(Machine.PrintString(obj));
+                n++;
+            }
+
+            builder.Append(")");
+
+            return builder.ToString();
         }
     }
 }
