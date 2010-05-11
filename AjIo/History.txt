@@ -66,3 +66,7 @@ Method in List: at atPut atInsert size with tests
 ForEachMethod
 foreach in List with test
 Block, BlockMethod, work in progress
+
+2010-05-11
+Language.cd class diagram
+Refactor BaseObject.Evaluate (remove IList<Message> support)

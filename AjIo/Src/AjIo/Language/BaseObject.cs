@@ -63,18 +63,6 @@
             if (message != null)
                 return message.Send(this, this);
 
-            ICollection<IMessage> messages = expression as ICollection<IMessage>;
-
-            if (messages != null)
-            {
-                object receiver = this;
-
-                foreach (IMessage msg in messages)
-                    receiver = msg.Send(this, receiver);
-
-                return receiver;
-            }
-
             return expression;
         }
     }
