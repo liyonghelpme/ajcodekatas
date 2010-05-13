@@ -53,11 +53,13 @@
     <Compile Include="Compiler\Token.cs" />
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Language\BaseObject.cs" />
-    <Compile Include="Language\ClonedObject.cs" />
+    <Compile Include="Language\DerivedObject.cs" />
     <Compile Include="Methods\Comparison\NotEqualsNativeMethod.cs" />
     <Compile Include="Methods\Comparison\NotEqualsMethod.cs" />
     <Compile Include="Methods\Block.cs" />
     <Compile Include="Methods\BlockMethod.cs" />
+    <Compile Include="Methods\MapMethod.cs" />
+    <Compile Include="Methods\SelectMethod.cs" />
     <Compile Include="Methods\ForEachMethod.cs" />
     <Compile Include="Methods\ListMethod.cs" />
     <Compile Include="Methods\FunctionMethod.cs" />
@@ -67,7 +69,7 @@
     <Compile Include="Language\INativeMethod.cs" />
     <Compile Include="Language\LocalObject.cs" />
     <Compile Include="Language\IObject.cs" />
-    <Compile Include="Language\IoObject.cs" />
+    <Compile Include="Language\TopObject.cs" />
     <Compile Include="Language\Message.cs" />
     <Compile Include="Language\IMethod.cs" />
     <Compile Include="Language\MessageChain.cs" />

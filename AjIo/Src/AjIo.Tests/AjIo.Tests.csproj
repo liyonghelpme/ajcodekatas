@@ -41,7 +41,7 @@
     <Compile Include="Compiler\LexerTests.cs" />
     <Compile Include="Compiler\ParserTests.cs" />
     <Compile Include="EvaluationTests.cs" />
-    <Compile Include="Language\IoObjectTests.cs" />
+    <Compile Include="Language\TopObjectTests.cs" />
     <Compile Include="Language\ListObjectTests.cs" />
     <Compile Include="Language\LocalObjectTests.cs" />
     <Compile Include="MachineTests.cs" />

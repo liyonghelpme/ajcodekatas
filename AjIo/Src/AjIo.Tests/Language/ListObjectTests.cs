@@ -15,7 +15,7 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void ExecuteCloneMethod()
         {
-            ListObject obj = new ListObject(new IoObject());
+            ListObject obj = new ListObject(new TopObject());
             object result = obj.Evaluate(new Message("clone"));
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ListObject));
@@ -26,7 +26,7 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void ExecuteAppendMethod()
         {
-            ListObject obj = new ListObject(new IoObject());
+            ListObject obj = new ListObject(new TopObject());
             obj.Evaluate(new Message("append", new object[] { 1 }));
             object result = obj.Evaluate(new Message("size"));
             Assert.AreEqual(1, result);
@@ -40,7 +40,7 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void ExecuteRemoveMethod()
         {
-            ListObject obj = new ListObject(new IoObject());
+            ListObject obj = new ListObject(new TopObject());
             obj.Evaluate(new Message("append", new object[] { 1 }));
             obj.Evaluate(new Message("append", new object[] { 2 }));
             obj.Evaluate(new Message("append", new object[] { 3 }));
@@ -56,7 +56,7 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void CreateWithElements()
         {
-            ListObject obj = new ListObject(new IoObject(), new object[] { 1,2,3});
+            ListObject obj = new ListObject(new TopObject(), new object[] { 1,2,3});
             Assert.AreEqual(3, obj.Count);
             Assert.AreEqual(1, obj[0]);
             Assert.AreEqual(2, obj[1]);
@@ -66,7 +66,7 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void AtPut()
         {
-            ListObject obj = new ListObject(new IoObject(), new object[] { 1, 2, 3 });
+            ListObject obj = new ListObject(new TopObject(), new object[] { 1, 2, 3 });
             obj.Evaluate(new Message("atPut", new object[] { 1, 20 }));
             Assert.AreEqual(3, obj.Count);
             Assert.AreEqual(1, obj[0]);
@@ -77,7 +77,7 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void AtInsert()
         {
-            ListObject obj = new ListObject(new IoObject(), new object[] { 1, 2, 3 });
+            ListObject obj = new ListObject(new TopObject(), new object[] { 1, 2, 3 });
             obj.Evaluate(new Message("atInsert", new object[] { 1, 20 }));
             Assert.AreEqual(4, obj.Count);
             Assert.AreEqual(1, obj[0]);
@@ -89,7 +89,7 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void PrintString()
         {
-            ListObject obj = new ListObject(new IoObject(), new object[] { 1, "foo", 3 });
+            ListObject obj = new ListObject(new TopObject(), new object[] { 1, "foo", 3 });
             string result = Machine.PrintString(obj);
 
             Assert.AreEqual("list(1, \"foo\", 3)", result);

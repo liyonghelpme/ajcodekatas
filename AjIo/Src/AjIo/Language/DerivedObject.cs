@@ -5,11 +5,11 @@
     using System.Linq;
     using System.Text;
 
-    public class ClonedObject : BaseObject
+    public class DerivedObject : BaseObject
     {
         private IObject parent;
 
-        public ClonedObject(IObject parent)
+        public DerivedObject(IObject parent)
         {
             this.parent = parent;
         }

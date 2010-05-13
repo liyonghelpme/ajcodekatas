@@ -18,7 +18,7 @@ namespace AjIo.Tests
             Assert.AreEqual("123", Machine.PrintString(123));
             Assert.AreEqual("true", Machine.PrintString(true));
             Assert.AreEqual("false", Machine.PrintString(false));
-            Assert.IsTrue(Machine.PrintString(new IoObject()).StartsWith("Object_"));
+            Assert.IsTrue(Machine.PrintString(new TopObject()).StartsWith("Object_"));
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace AjIo.Tests
             object obj = machine.GetSlot("Object");
 
             Assert.IsNotNull(obj);
-            Assert.IsInstanceOfType(obj, typeof(IoObject));
+            Assert.IsInstanceOfType(obj, typeof(TopObject));
 
             object list = machine.GetSlot("List");
 

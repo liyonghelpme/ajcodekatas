@@ -11,14 +11,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AjIo.Tests.Language
 {
     [TestClass]
-    public class IoObjectTests
+    public class TopObjectTests
     {
-        private IoObject obj;
+        private TopObject obj;
 
         [TestInitialize]
         public void Setup()
         {
-            this.obj = new IoObject();
+            this.obj = new TopObject();
             this.obj.SetSlot("name", "Fido");
         }
 
@@ -49,9 +49,9 @@ namespace AjIo.Tests.Language
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IObject));
-            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+            Assert.IsInstanceOfType(result, typeof(DerivedObject));
 
-            ClonedObject obj2 = (ClonedObject)result;
+            DerivedObject obj2 = (DerivedObject)result;
 
             Assert.AreEqual(obj, obj2.Parent);
         }
@@ -92,7 +92,7 @@ namespace AjIo.Tests.Language
         [TestMethod]
         public void GetClonedToString()
         {
-            IObject cloned = new ClonedObject(this.obj);
+            IObject cloned = new DerivedObject(this.obj);
             string text = cloned.ToString();
             Assert.IsTrue(text.StartsWith("Object_"));
         }

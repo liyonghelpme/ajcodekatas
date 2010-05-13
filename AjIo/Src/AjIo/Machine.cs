@@ -8,10 +8,10 @@
     using AjIo.Language;
     using AjIo.Methods.Arithmetic;
 
-    public class Machine : ClonedObject
+    public class Machine : DerivedObject
     {
         public Machine()
-            : base(new IoObject())
+            : base(new TopObject())
         {
             this.SetSlot("Object", this.Parent);
             this.SetSlot("List", new ListObject(this.Parent));

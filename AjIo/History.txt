@@ -70,3 +70,9 @@ Block, BlockMethod, work in progress
 2010-05-11
 Language.cd class diagram
 Refactor BaseObject.Evaluate (remove IList<Message> support)
+
+2010-05-13
+Renaming IoObject to TopObject
+Renaming CloneObject to DerivedObject
+map method in ListObject, partial implementation
+select method in ListObject, partial implementation

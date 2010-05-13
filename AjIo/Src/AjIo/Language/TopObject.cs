@@ -8,11 +8,11 @@
     using AjIo.Methods;
     using AjIo.Methods.Comparison;
 
-    public class IoObject : BaseObject
+    public class TopObject : BaseObject
     {
         public override IObject Parent { get { return null; } }
 
-        public IoObject()
+        public TopObject()
         {
             this.SetSlot("clone", new CloneMethod());
             this.SetSlot("setSlot", new SetSlotMethod());

@@ -7,7 +7,7 @@
     using AjIo.Language;
     using System.Collections;
 
-    public class ForEachMethod : IMethod
+    public class MapMethod : IMethod
     {
         public object Execute(IObject context, IObject receiver, IList<object> arguments)
         {
@@ -24,17 +24,24 @@
             IEnumerable list = (IEnumerable)receiver;
             int n = 0;
 
+            List<object> mapresult = new List<object>();
+
             foreach (object obj in list)
             {
                 LocalObject local = new LocalObject(context);
                 local.SetLocalSlot(index.Symbol, n);
                 local.SetLocalSlot(variable.Symbol, obj);
 
-                body.Send(local, local);
+                mapresult.Add(body.Send(local, local));
                 n++;
             }
 
-            return receiver;
+            IObject top = context;
+
+            while (top.Parent != null)
+                top = top.Parent;
+
+            return new ListObject(top, mapresult);
         }
     }
 }

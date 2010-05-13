@@ -7,7 +7,7 @@
 
     using AjIo.Methods;
 
-    public class ListObject : ClonedObject, IList<object>
+    public class ListObject : DerivedObject, IList<object>
     {
         private IList<object> list;
 
@@ -27,6 +27,8 @@
             this.SetMethodSlot("atInsert", (context, receiver, arguments) => { ((ListObject)receiver).list.Insert((int)arguments[0], arguments[1]); return this; });
             this.SetMethodSlot("size", (context, receiver, arguments) => ((ListObject)receiver).list.Count);
             this.SetSlot("foreach", new ForEachMethod());
+            this.SetSlot("select", new SelectMethod());
+            this.SetSlot("map", new MapMethod());
         }
 
         public ListObject(IObject parent, IList<object> elements)

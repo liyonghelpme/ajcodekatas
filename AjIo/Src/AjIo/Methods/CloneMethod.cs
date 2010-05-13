@@ -14,7 +14,7 @@
             if (arguments != null)
                 throw new InvalidOperationException("clone should have no arguments");
 
-            return new ClonedObject(receiver);
+            return new DerivedObject(receiver);
         }
     }
 }

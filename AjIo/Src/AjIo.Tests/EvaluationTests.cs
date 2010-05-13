@@ -39,14 +39,14 @@ namespace AjIo.Tests
         public void EvaluateObject()
         {
             object result = this.Evaluate("Object");
-            Assert.IsInstanceOfType(result, typeof(IoObject));
+            Assert.IsInstanceOfType(result, typeof(TopObject));
         }
 
         [TestMethod]
         public void EvaluateObjectClone()
         {
             object result = this.Evaluate("Object clone");
-            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+            Assert.IsInstanceOfType(result, typeof(DerivedObject));
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace AjIo.Tests
             object result = this.machine.GetSlot("Dog");
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+            Assert.IsInstanceOfType(result, typeof(DerivedObject));
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace AjIo.Tests
             object result = this.machine.GetSlot("Dog");
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+            Assert.IsInstanceOfType(result, typeof(DerivedObject));
         }
 
         [TestMethod]
@@ -109,7 +109,7 @@ namespace AjIo.Tests
             object result = this.machine.GetSlot("Dog");
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+            Assert.IsInstanceOfType(result, typeof(DerivedObject));
         }
 
         [TestMethod]
@@ -121,7 +121,7 @@ namespace AjIo.Tests
             object result = this.machine.GetSlot("Dog");
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+            Assert.IsInstanceOfType(result, typeof(DerivedObject));
 
             Assert.AreEqual("Fido", ((IObject)result).GetSlot("name"));
         }
@@ -134,7 +134,7 @@ namespace AjIo.Tests
             object result = this.machine.GetSlot("Dog");
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(ClonedObject));
+            Assert.IsInstanceOfType(result, typeof(DerivedObject));
 
             Assert.AreEqual("Fido", ((IObject)result).GetSlot("name"));
         }
@@ -424,6 +424,39 @@ namespace AjIo.Tests
             object result = this.Evaluate("a");
             Assert.IsNotNull(result);
             Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
+        public void EvaluateListSelect()
+        {
+            this.Evaluate("a := 0");
+            object result = this.Evaluate("list(1, 2, 3) select(x, x != 2)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ListObject));
+
+            ListObject list = (ListObject)result;
+
+            Assert.AreEqual(2, list.Count);
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(3, list[1]);
+        }
+
+        [TestMethod]
+        public void EvaluateListMap()
+        {
+            this.Evaluate("a := 0");
+            object result = this.Evaluate("list(1, 2, 3) map(i, x, x+i)");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(ListObject));
+
+            ListObject list = (ListObject)result;
+
+            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(3, list[1]);
+            Assert.AreEqual(5, list[2]);
         }
 
         [TestMethod]

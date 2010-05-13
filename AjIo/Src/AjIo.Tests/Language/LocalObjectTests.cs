@@ -10,13 +10,13 @@ namespace AjIo.Tests.Language
     [TestClass]
     public class LocalObjectTests
     {
-        private IoObject obj;
+        private TopObject obj;
         private LocalObject local;
 
         [TestInitialize]
         public void Setup()
         {
-            this.obj = new IoObject();
+            this.obj = new TopObject();
             this.obj.SetSlot("Foo", "Bar");
             this.local = new LocalObject(obj);
             this.local.SetLocalSlot("a", "localvalue");
