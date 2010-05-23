@@ -14,3 +14,8 @@ Cursor
 
 2010-03-01
 Class Diagrams
+
+2010-05-23
+BasicObject inherits from DictionaryBase
+BasicObject.Add with two parameters
+Now new BasicObject() { {key1,value1}, {key2,value2}... } is supported, with tests

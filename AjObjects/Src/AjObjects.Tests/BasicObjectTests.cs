@@ -28,6 +28,15 @@ namespace AjObjects.Tests
         }
 
         [TestMethod]
+        public void SetValuesUsingInitializer()
+        {
+            BasicObject newobj = new BasicObject() { { "Name", "Adam"} , {"Age", 800 } };
+
+            Assert.AreEqual("Adam", newobj["Name"]);
+            Assert.AreEqual(800, newobj["Age"]);
+        }
+
+        [TestMethod]
         public void UndefinedPropertyIsNull()
         {
             Assert.IsNull(this.obj["UndefinedName"]);

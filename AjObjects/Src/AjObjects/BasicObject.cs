@@ -1,13 +1,13 @@
 ﻿namespace AjObjects
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public class BasicObject : ICloneable
+    public class BasicObject : DictionaryBase, ICloneable
     {
-        private Dictionary<string, object> values = new Dictionary<string, object>();
         private IList<string> names = new List<string>();
 
         public ICollection<string> Names { get { return this.names; } }
@@ -18,29 +18,29 @@
         {
             get
             {
-                if (!this.values.ContainsKey(name))
+                if (!this.Dictionary.Contains(name))
                     return null;
 
-                return this.values[name];
+                return this.Dictionary[name];
             }
 
             set
             {
                 if (value == null)
                 {
-                    if (this.values.ContainsKey(name))
+                    if (this.Dictionary.Contains(name))
                     {
-                        this.values.Remove(name);
+                        this.Dictionary.Remove(name);
                         this.names.Remove(name);
                     }
 
                     return;
                 }
 
-                if (!this.values.ContainsKey(name))
+                if (!this.Dictionary.Contains(name))
                     this.names.Add(name);
 
-                this.values[name] = value;
+                this.Dictionary[name] = value;
             }
         }
 
@@ -55,6 +55,11 @@
                 obj[(string)namevaluepairs[k]] = namevaluepairs[k + 1];
 
             return obj;
+        }
+
+        public void Add(String key, Object value)
+        {
+            this[key] = value;
         }
 
         public override bool Equals(object obj)
@@ -75,8 +80,8 @@
                 if (!bobj.names.Contains(name))
                     return false;
 
-                object v1 = this.values[name];
-                object v2 = bobj.values[name];
+                object v1 = this.Dictionary[name];
+                object v2 = bobj.Dictionary[name];
 
                 if (v1 == null)
                 {
@@ -100,7 +105,7 @@
             int value = HashUtilities.CombineHash(ordnames);
 
             foreach (string name in ordnames)
-                value = HashUtilities.CombineHash(value, HashUtilities.Hash(this.values[name]));
+                value = HashUtilities.CombineHash(value, HashUtilities.Hash(this.Dictionary[name]));
 
             return value;
         }
@@ -111,7 +116,7 @@
 
             foreach (string name in this.names)
             {
-                object value = this.values[name];
+                object value = this.Dictionary[name];
 
                 if (value is ICloneable)
                     value = ((ICloneable)value).Clone();
