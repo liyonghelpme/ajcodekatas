@@ -1,0 +1,9 @@
+
+2010-08-29
+Create Interpreter directory
+Step01 Expression with constant expression
+Step02 Expression with variable expression
+Step03 Command with SetCommand
+Step04 Token, Lexer
+Step05 Parser with ParseExpression
+HelloWorldILGenerator
