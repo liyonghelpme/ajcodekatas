@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Interpreter.ConstantExpression">
-    <Position X="4.5" Y="0.5" Width="2.5" />
+    <Position X="2.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>ConstantExpression.cs</FileName>
@@ -9,7 +9,7 @@
     <Lollipop Position="0.17" />
   </Class>
   <Class Name="Interpreter.VariableExpression">
-    <Position X="0.5" Y="2.25" Width="2.75" />
+    <Position X="0.5" Y="2.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VariableExpression.cs</FileName>
@@ -17,7 +17,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="Interpreter.IExpression">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IExpression.cs</FileName>
