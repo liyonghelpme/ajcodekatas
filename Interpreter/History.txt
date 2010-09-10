@@ -9,3 +9,8 @@ Step05 Parser with ParseExpression
 
 2010-09-02
 Minor changes in a class diagram
+
+2010-09-10
+Step06 Lexer process String with escape characters
+BinaryExpression, BinaryArithmeticExpression
+Parser parse binary expressions and parenthesis
