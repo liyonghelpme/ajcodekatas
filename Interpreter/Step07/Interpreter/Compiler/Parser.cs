@@ -7,6 +7,7 @@
     using System.Text;
 
     using Interpreter.Expressions;
+    using Interpreter.Commands;
 
     public class Parser
     {
@@ -50,6 +51,56 @@
             this.PushToken(token);
 
             return expression;
+        }
+
+        public ICommand ParseCommand()
+        {
+            Token token = this.NextToken();
+
+            if (token == null)
+                return null;
+
+            if (token.TokenType == TokenType.Name && token.Value.Equals("if"))
+                return ParseIfCommand();
+
+            this.PushToken(token);
+
+            return ParseSetCommand();
+        }
+
+        private ICommand ParseSetCommand()
+        {
+            string name = this.ParseName();
+            this.ParseToken(TokenType.Operator, "=");
+            IExpression expr = this.ParseExpression();
+            this.ParseToken(TokenType.Separator, ";");
+
+            return new SetCommand(name, expr);
+        }
+
+        private ICommand ParseIfCommand()
+        {
+            IExpression condition;
+            ICommand thencmd;
+            ICommand elsecmd;
+
+            this.ParseToken(TokenType.Separator, "(");
+            condition = this.ParseExpression();
+            this.ParseToken(TokenType.Separator, ")");
+            thencmd = this.ParseCommand();
+
+            Token token = this.NextToken();
+
+            if (token != null && token.TokenType == TokenType.Name && token.Value.Equals("else")) 
+            {
+                elsecmd = this.ParseCommand();
+                return new IfCommand(condition, thencmd, elsecmd);
+            }
+
+            if (token != null)
+                this.PushToken(token);
+
+            return new IfCommand(condition, thencmd);
         }
 
         private IExpression ParseFactorExpression()
@@ -115,6 +166,27 @@
         private void PushToken(Token token)
         {
             this.tokens.Push(token);
+        }
+
+        private void ParseToken(TokenType type, object value)
+        {
+            Token token = this.NextToken();
+
+            if (token == null || token.TokenType != type || !value.Equals(token.Value))
+                throw new ParserException(string.Format("Token '{0}' expected", value));
+        }
+
+        private string ParseName()
+        {
+            Token token = this.NextToken();
+
+            if (token == null)
+                throw new ParserException("Name expected");
+
+            if (token.TokenType != TokenType.Name)
+                throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
+
+            return (string) token.Value;
         }
     }
 }

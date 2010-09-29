@@ -14,3 +14,9 @@ Minor changes in a class diagram
 Step06 Lexer process String with escape characters
 BinaryExpression, BinaryArithmeticExpression
 Parser parse binary expressions and parenthesis
+
+2010-09-11
+IfCommand with tests
+
+2010-09-29
+Parser.ParseCommand, supporting IfCommand and SetCommand, with tests

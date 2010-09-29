@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Interpreter.Compiler;
 using Interpreter.Expressions;
+using Interpreter.Commands;
 
 namespace Interpreter.Tests
 {
@@ -127,6 +128,49 @@ namespace Interpreter.Tests
             Assert.AreEqual(9, expression.Evaluate(null));
 
             Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseAndEvaluateSimpleSetCommand()
+        {
+            Parser parser = new Parser("a = 1;");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(SetCommand));
+
+            BindingEnvironment environment = new BindingEnvironment();
+
+            command.Execute(environment);
+
+            Assert.AreEqual(1, environment.GetValue("a"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ParserException))]
+        public void RaiseIfCommandHasNoClosing()
+        {
+            Parser parser = new Parser("a = 1");
+
+            ICommand command = parser.ParseCommand();
+        }
+
+        [TestMethod]
+        public void ParseAndEvaluateSimpleIfCommand()
+        {
+            Parser parser = new Parser("if (a) b=1; else b=2;");
+
+            ICommand command = parser.ParseCommand();
+
+            Assert.IsNotNull(command);
+            Assert.IsInstanceOfType(command, typeof(IfCommand));
+
+            BindingEnvironment environment = new BindingEnvironment();
+
+            command.Execute(environment);
+
+            Assert.AreEqual(2, environment.GetValue("b"));            
         }
     }
 }
