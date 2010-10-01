@@ -8,8 +8,16 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="Interpreter.Commands.IfCommand">
+    <Position X="1.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAACAACSAAAQggAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\IfCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="Interpreter.Commands.ICommand">
-    <Position X="2" Y="0.5" Width="1.5" />
+    <Position X="1.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Commands\ICommand.cs</FileName>
