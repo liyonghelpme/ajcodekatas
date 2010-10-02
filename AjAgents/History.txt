@@ -6,3 +6,5 @@ Converted to VS2008
 New IAgent<T>
 AgentQueue<T> with tests
 Agent<T> with tests
+AjAgents.Console is a WebCrawler
+Removing AjAgents.ConsoleTest01
