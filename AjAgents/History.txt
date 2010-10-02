@@ -3,3 +3,6 @@
 Initial folders and text files
 Imported code from AjAgents-0.1
 Converted to VS2008
+New IAgent<T>
+AgentQueue<T> with tests
+Agent<T> with tests

@@ -1,54 +1,60 @@
-using System;
-
 namespace AjAgents
 {
-	public class Agent : IAgent
-	{
-		private IAgentHost host;
+    using System;
+    using System.Threading;
 
-		public Agent()
-		{
-		}
+    public class Agent<T> : IAgent<T>
+    {
+        private T instance;
+        private AgentQueue<T> queue;
+        private bool running;
 
-		public void Publish(string action, object data) 
-		{
-			if (host!=null)
-				host.Publish(this,action,data);
-		}
+        public Agent(T instance)
+        {
+            this.instance = instance;
+        }
 
-		public void Subscribe(string action) 
-		{
-			if (host!=null)
-				host.Subscribe(this,action);
-		}
+        public void Post(Action<T> action)
+        {
+            if (!this.running)
+                this.Start();
 
-		#region IAgent Members
+            this.queue.Enqueue(action);
+        }
 
-		public virtual void Start()
-		{
-		}
+        private void Start()
+        {
+            lock (this)
+            {
+                if (this.running)
+                    return;
 
-		public virtual void Stop()
-		{
-		}
+                this.queue = new AgentQueue<T>();
 
-		public virtual void Process(IAgent sender, string action, object data)
-		{
-			
-		}
+                Thread thread = new Thread(new ThreadStart(this.Execute));
+                thread.IsBackground = true;
+                thread.Start();
 
-		public virtual IAgentHost Host
-		{
-			get
-			{
-				return host;
-			}
-			set
-			{
-				host = value;
-			}
-		}
+                this.running = true;
+            }
+        }
 
-		#endregion
-	}
+        private void Execute()
+        {
+            while (true)
+            {
+                try
+                {
+                    Action<T> action = this.queue.Dequeue();
+                    action(this.instance);
+                }
+                catch (Exception ex)
+                {
+                    // TODO review output, maybe raise an event
+                    Console.Error.WriteLine(ex.Message);
+                    Console.Error.WriteLine(ex.StackTrace);
+                }
+            }
+        }
+    }
 }
