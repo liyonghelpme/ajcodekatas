@@ -1,0 +1,5 @@
+
+2010-10-02
+Initial folders and text files
+Imported code from AjAgents-0.1
+Converted to VS2008
