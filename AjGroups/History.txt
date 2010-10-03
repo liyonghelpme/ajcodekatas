@@ -28,3 +28,9 @@ OperationTable with Tests
 2010-03-14
 Renaming test methods
 
+2010-10-03
+Fixing GroupUtilities.IsNormalSubgroup bug
+Change Element.GetHashCode and Element.Equals so identities/elements of diff size are equals if
+	the last elements are not swaped (values[k] == k)
+New tests for all that
+Pending: AreIsomorphic complete implementation

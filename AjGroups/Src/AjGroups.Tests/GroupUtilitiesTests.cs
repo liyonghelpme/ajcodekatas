@@ -32,8 +32,98 @@
 
             IGroup symm = new SymmetricGroup(4);
 
-            Assert.IsTrue(GroupUtilities.AreEquals(group3, symm));
+            Assert.IsTrue(GroupUtilities.AreEqual(group3, symm));
             Assert.IsTrue(group3.Equals(symm));
+        }
+
+        [TestMethod]
+        public void PrimeRotationGroupsAreEqual()
+        {
+            IElement elementrot = Element.CreateRotation(5);
+            IElement elementrot2 = elementrot.Multiply(elementrot);
+
+            IGroup group1 = new GeneratedGroup(elementrot);
+            IGroup group2 = new GeneratedGroup(elementrot2);
+
+            Assert.IsTrue(GroupUtilities.AreEqual(group1, group2));
+        }
+
+        [TestMethod]
+        public void GroupsGeneratedByDiffSizedSwapsAreEqual()
+        {
+            IGroup group1 = new GeneratedGroup(Element.CreateSwap(3));
+            IGroup group2 = new GeneratedGroup(Element.CreateSwap(4));
+
+            Assert.IsTrue(GroupUtilities.AreEqual(group1, group2));
+        }
+
+        [TestMethod]
+        public void GroupsGeneratedByDiffPositionSwapsAreNotEqual()
+        {
+            IElement swap1 = Element.CreateSwap(3);
+            IElement swap2 = Element.CreateRotation(4).Multiply(Element.CreateSwap(4));
+            IGroup group1 = new GeneratedGroup(swap1);
+            IGroup group2 = new GeneratedGroup(swap2);
+
+            Assert.IsFalse(GroupUtilities.AreEqual(group1, group2));
+        }
+
+        [TestMethod]
+        public void GroupsGeneratedByDiffPositionSwapsAreIsomorphic()
+        {
+            IElement swap1 = Element.CreateSwap(3);
+            IElement swap2 = Element.CreateRotation(4).Multiply(Element.CreateSwap(4));
+            IGroup group1 = new GeneratedGroup(swap1);
+            IGroup group2 = new GeneratedGroup(swap2);
+
+            Assert.IsTrue(GroupUtilities.AreIsomorphic(group1, group2));
+        }
+
+        [TestMethod]
+        public void GroupAndIdentityAreSubnormalGroups()
+        {
+            IGroup group = new SymmetricGroup(3);
+            IGroup id = new GeneratedGroup(Element.CreateIdentity(3));
+
+            GroupUtilities.IsNormalSubgroup(group, group);
+            GroupUtilities.IsNormalSubgroup(id, group);
+        }
+
+        [TestMethod]
+        public void SubgroupsIncludesIdentityAndTotalGroup()
+        {
+            IGroup group = new SymmetricGroup(3);
+            IGroup id = new GeneratedGroup(Element.CreateIdentity(3));
+
+            IEnumerable<IGroup> subgroups = GroupUtilities.GetSubgroups(group);
+            Assert.IsTrue(subgroups.Contains(id));
+            Assert.IsTrue(subgroups.Contains(group));
+        }
+
+        [TestMethod]
+        public void IdentityIsNormalSubgroup()
+        {
+            IGroup group = new SymmetricGroup(3);
+            IGroup id = new GeneratedGroup(Element.CreateIdentity(3));
+
+            Assert.IsTrue(GroupUtilities.IsNormalSubgroup(id, group));
+        }
+
+        [TestMethod]
+        public void GroupIsNormalSubgroup()
+        {
+            IGroup group = new SymmetricGroup(3);
+
+            Assert.IsTrue(GroupUtilities.IsNormalSubgroup(group, group));
+        }
+
+        [TestMethod]
+        public void GetSubnormalGroups()
+        {
+            IGroup group = new SymmetricGroup(3);
+            IEnumerable<IGroup> normalsg = GroupUtilities.GetNormalSubgroups(group);
+
+            Assert.IsTrue(normalsg.Count() >= 2);
         }
 
         [TestMethod]

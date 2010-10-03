@@ -24,7 +24,7 @@
             if (this.Order != group.Order)
                 return false;
 
-            return GroupUtilities.AreEquals(this, group);
+            return GroupUtilities.AreEqual(this, group);
         }
 
         public override int GetHashCode()

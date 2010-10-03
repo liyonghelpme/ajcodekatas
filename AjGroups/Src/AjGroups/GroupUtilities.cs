@@ -37,28 +37,42 @@
             return GetSubgroups(group).Where(sg => IsNormalSubgroup(sg, group));
         }
 
-        public static bool AreEquals(IGroup group1, IGroup group2)
+        public static bool AreEqual(IGroup group1, IGroup group2)
         {
             if (group1.Order != group2.Order)
                 return false;
 
-            for (int k = 0; k < group1.Order; k++)
-                if (!group1.Elements[k].Equals(group2.Elements[k]))
+            for (int k = 0; k < group1.Order; k++) {
+                if (!group2.Elements.Contains(group1.Elements[k]))
                     return false;
+                if (!group1.Elements.Contains(group2.Elements[k]))
+                    return false;
+            }
 
             return true;
         }
 
         public static bool IsNormalSubgroup(IGroup subgroup, IGroup group)
         {
-            foreach (Element element1 in subgroup.Elements)
-                foreach (Element element2 in group.Elements)
+            foreach (Element element1 in group.Elements)
+            {
+                IList<IElement> left = new List<IElement>();
+                IList<IElement> right = new List<IElement>();
+
+                foreach (Element element2 in subgroup.Elements)
                 {
-                    if (!subgroup.Elements.Contains(element1.Multiply(element2)))
-                        return false;
-                    if (!subgroup.Elements.Contains(element2.Multiply(element1)))
-                        return false;
+                    left.Add(element1.Multiply(element2));
+                    right.Add(element2.Multiply(element1));
                 }
+
+                foreach (Element e in left)
+                    if (!right.Contains(e))
+                        return false;
+
+                foreach (Element e in right)
+                    if (!left.Contains(e))
+                        return false;
+            }
 
             return true;
         }

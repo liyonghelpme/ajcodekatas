@@ -127,6 +127,28 @@
         }
 
         [TestMethod]
+        public void TwoIdentitiesAreEqual()
+        {
+            Element id3 = Element.CreateIdentity(3);
+            Element id4 = Element.CreateIdentity(4);
+
+            Assert.AreEqual(id3.GetHashCode(), id4.GetHashCode());
+            Assert.IsTrue(id3.Equals(id4));
+            Assert.IsTrue(id4.Equals(id3));
+        }
+
+        [TestMethod]
+        public void TwoSwapsAreEqual()
+        {
+            Element sw3 = Element.CreateSwap(3);
+            Element sw6 = Element.CreateSwap(6);
+
+            Assert.AreEqual(sw3.GetHashCode(), sw6.GetHashCode());
+            Assert.IsTrue(sw3.Equals(sw6));
+            Assert.IsTrue(sw6.Equals(sw3));
+        }
+
+        [TestMethod]
         public void CreateSwap()
         {
             Element element = Element.CreateSwap(4);

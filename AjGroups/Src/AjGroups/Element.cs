@@ -151,21 +151,20 @@
 
             if (this.values.Length != element.values.Length)
             {
-                return false;
+                if (this.values.Length > element.values.Length)
+                    return element.Equals(this);
             }
 
             if (this.Order != element.Order)
-            {
                 return false;
-            }
 
             for (int k = 0; k < this.values.Length; k++)
-            {
                 if (this.values[k] != element.values[k])
-                {
                     return false;
-                }
-            }
+
+            for (int k = this.values.Length; k < element.values.Length; k++)
+                if (element.values[k] != k)
+                    return false;
 
             return true;
         }
@@ -174,10 +173,10 @@
         {
             int hash = 0;
 
-            for (int k = 0; k < this.values.Length; k++)
+            for (int k = this.values.Length-1; k > 0; k--)
             {
                 hash *= 17;
-                hash += this.values[k];
+                hash += this.values[k]-k;
             }
 
             return hash;
