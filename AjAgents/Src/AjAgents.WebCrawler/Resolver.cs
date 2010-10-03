@@ -1,4 +1,4 @@
-﻿namespace AjAgents.Console
+﻿namespace AjAgents.WebCrawler
 {
     using System;
     using System.Collections.Generic;

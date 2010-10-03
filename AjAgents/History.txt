@@ -8,3 +8,6 @@ AgentQueue<T> with tests
 Agent<T> with tests
 AjAgents.Console is a WebCrawler
 Removing AjAgents.ConsoleTest01
+
+2010-10-03
+Renamed AjAgents.Console to AjAgents.WebCrawler
