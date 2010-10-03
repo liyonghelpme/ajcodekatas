@@ -91,6 +91,15 @@
             return element;
         }
 
+        public static Element CreateSwap(int size, int position)
+        {
+            Element element = CreateIdentity(size);
+            element.values[position] = (byte) (position+1);
+            element.values[position+1] = (byte) position;
+
+            return element;
+        }
+
         public static Element CreateRotation(int size)
         {
             byte[] values = new byte[size];

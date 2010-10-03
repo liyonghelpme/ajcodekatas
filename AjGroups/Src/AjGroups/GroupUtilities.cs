@@ -86,15 +86,27 @@
             if (group1.Equals(group2))
                 return true;
 
-            for (int k = 0; k < group1.Order; k++)
-                if (group1.Elements[k].Order != group2.Elements[k].Order)
-                    return false;
+            // Assumes order
+            //for (int k = 0; k < group1.Order; k++)
+            //    if (group1.Elements[k].Order != group2.Elements[k].Order)
+            //        return false;
 
-            List<IGroup> cyclics1 = GetCyclicSubgroups(group1);
-            List<IGroup> cyclics2 = GetCyclicSubgroups(group2);
-
-            if (cyclics1.Count == 2 && cyclics2.Count == 2)
+            if (IsCyclic(group1) && IsCyclic(group2))
                 return true;
+
+            Dictionary<IElement, IElement> map = new Dictionary<IElement, IElement>();
+
+            if (TryMap(group1, group2, map))
+                return true;
+
+            return false;
+        }
+
+        public static Boolean IsCyclic(IGroup group)
+        {
+            foreach (IElement element in group.Elements)
+                if (element.Order == group.Order)
+                    return true;
 
             return false;
         }
@@ -130,6 +142,92 @@
             }
 
             return groups;
+        }
+
+        private static bool TryMap(IGroup group1, IGroup group2, IDictionary<IElement, IElement> map)
+        {
+            if (map.Keys.Count == group1.Order)
+                return true;
+
+            foreach (IElement element in group1.Elements)
+            {
+                if (map.Keys.Contains(element))
+                    continue;
+
+                if (TryMapTo(group1, group2, element, map))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static bool TryMapTo(IGroup group1, IGroup group2, IElement element, IDictionary<IElement, IElement> map)
+        {
+            // It suppossed was tested at TryMap()
+            //if (map.Keys.Contains(element))
+            //    return false;
+
+            foreach (IElement element2 in group2.Elements)
+            {
+                IDictionary<IElement, IElement> resultmap = CompatibleMap(group1, group2, map, element, element2);
+
+                if (resultmap != null)
+                    if (TryMap(group1, group2, resultmap))
+                        return true;
+            }
+
+            return false;
+        }
+
+        private static IDictionary<IElement, IElement> CompatibleMap(IGroup group1, IGroup group2, IDictionary<IElement, IElement> map, IElement element1, IElement element2)
+        {
+            if (element1.Order != element2.Order)
+                return null;
+
+            if (map.Values.Contains(element2))
+                return null;
+
+            Dictionary<IElement, IElement> newmaps = new Dictionary<IElement, IElement>();
+
+            // TODO test isomorphism consistency
+            foreach (IElement el1 in map.Keys)
+            {
+                IElement el2 = map[el1];
+
+                IElement el1element1 = el1.Multiply(element1);
+                IElement el2element2 = el2.Multiply(element2);
+
+                if (map.Keys.Contains(el1element1))
+                {
+                    if (!map[el1element1].Equals(el2element2))
+                        return null;
+                }
+                else
+                    newmaps[el1element1] = el2element2;
+
+                IElement element1el1 = element1.Multiply(el1);
+                IElement element2el2 = element2.Multiply(el2);
+
+                if (map.Keys.Contains(element1el1))
+                {
+                    if (!map[element1el1].Equals(element2el2))
+                        return null;
+                }
+                else
+                    newmaps[element1el1] = element2el2;
+            }
+
+            IDictionary<IElement, IElement> resultmap = new Dictionary<IElement, IElement>(map);
+            resultmap[element1] = element2;
+
+            foreach (IElement key in newmaps.Keys)
+            {
+                resultmap = CompatibleMap(group1, group2, resultmap, key, newmaps[key]);
+                if (resultmap == null)
+                    return null;
+            }
+
+            return resultmap;
         }
     }
 }

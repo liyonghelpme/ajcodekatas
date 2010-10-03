@@ -34,3 +34,4 @@ Change Element.GetHashCode and Element.Equals so identities/elements of diff siz
 	the last elements are not swaped (values[k] == k)
 New tests for all that
 Pending: AreIsomorphic complete implementation
+GroupUtilities.AreIsomorphic with tests (WIP)

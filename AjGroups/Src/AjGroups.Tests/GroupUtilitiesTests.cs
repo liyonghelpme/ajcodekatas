@@ -72,9 +72,36 @@
         public void GroupsGeneratedByDiffPositionSwapsAreIsomorphic()
         {
             IElement swap1 = Element.CreateSwap(3);
-            IElement swap2 = Element.CreateRotation(4).Multiply(Element.CreateSwap(4));
+            IElement swap2 = Element.CreateSwap(3, 1);
             IGroup group1 = new GeneratedGroup(swap1);
             IGroup group2 = new GeneratedGroup(swap2);
+
+            Assert.IsTrue(GroupUtilities.AreIsomorphic(group1, group2));
+        }
+
+        [TestMethod]
+        public void GroupsGeneratedByDiffSizedSwapsAreIsomorphic()
+        {
+            IGroup group1 = new GeneratedGroup(Element.CreateSwap(3));
+            IGroup group2 = new GeneratedGroup(Element.CreateSwap(4));
+
+            Assert.IsTrue(GroupUtilities.AreIsomorphic(group1, group2));
+        }
+
+        [TestMethod]
+        public void TwoSymetricGroupsAreIsomorphic()
+        {
+            IGroup group1 = new GeneratedGroup(Element.CreateSwap(4), Element.CreateRotation(4));
+            IGroup group2 = new GeneratedGroup(Element.CreateSwap(4,2), Element.CreateRotation(4));
+
+            Assert.IsTrue(GroupUtilities.AreIsomorphic(group1, group2));
+        }
+
+        [TestMethod]
+        public void TwoGroupsGeneratedByTwoNonOverlappingSwapsAreIsomorphic()
+        {
+            IGroup group1 = new GeneratedGroup(Element.CreateSwap(4), Element.CreateSwap(4, 2));
+            IGroup group2 = new GeneratedGroup(Element.CreateSwap(6, 2), Element.CreateSwap(6, 4));
 
             Assert.IsTrue(GroupUtilities.AreIsomorphic(group1, group2));
         }
@@ -190,6 +217,36 @@
 
             Assert.IsNotNull(subgroups);
             Assert.AreEqual(2, subgroups.Count());
+        }
+
+        [TestMethod]
+        public void RotationsAreCyclic()
+        {
+            for (int k = 1; k <= 7; k++)
+            {
+                IGroup group = new GeneratedGroup(Element.CreateRotation(k));
+                Assert.IsTrue(GroupUtilities.IsCyclic(group));
+            }
+        }
+
+        [TestMethod]
+        public void SwapsAreCyclic()
+        {
+            for (int k = 2; k <= 10; k++)
+            {
+                IGroup group = new GeneratedGroup(Element.CreateSwap(k));
+                Assert.IsTrue(GroupUtilities.IsCyclic(group));
+            }
+        }
+
+        [TestMethod]
+        public void SymmetricAreNotCyclic()
+        {
+            for (int k = 3; k <= 5; k++)
+            {
+                IGroup group = new SymmetricGroup(k);
+                Assert.IsFalse(GroupUtilities.IsCyclic(group));
+            }
         }
     }
 }
