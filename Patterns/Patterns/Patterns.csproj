@@ -45,13 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Composite\CompositeCommand.cs" />
+    <Compile Include="Composite\ICommand.cs" />
+    <Compile Include="Composite\SetCommand.cs" />
+    <Compile Include="Interpreter\ArithmeticBinaryExpression.cs" />
+    <Compile Include="Interpreter\BinaryExpression.cs" />
+    <Compile Include="Interpreter\ConstantExpression.cs" />
+    <Compile Include="Interpreter\Context.cs" />
+    <Compile Include="Interpreter\IExpression.cs" />
+    <Compile Include="Interpreter\VariableExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Adapter\" />
-    <Folder Include="Composite\" />
     <Folder Include="Decorator\" />
-    <Folder Include="Interpreter\" />
     <Folder Include="Proxy\" />
     <Folder Include="Singleton\" />
     <Folder Include="Strategy\" />

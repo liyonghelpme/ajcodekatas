@@ -4,3 +4,8 @@ Material for ALT.NET Hispano VAN (Work in progress)
 
 2010-10-11
 Initial project in repo
+
+2010-10-15
+IExpression, ConstantExpression, VariableExpression with tests
+ICommand, SetCommand with tests
+CompositeCommand
