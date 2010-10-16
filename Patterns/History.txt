@@ -9,3 +9,6 @@ Initial project in repo
 IExpression, ConstantExpression, VariableExpression with tests
 ICommand, SetCommand with tests
 CompositeCommand
+
+2010-10-16
+Adapter, Visitor, Decorator, Observer, Strategy with tests

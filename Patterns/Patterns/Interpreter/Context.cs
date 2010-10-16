@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Patterns.Interpreter
 {
-    public class Context
+    public class Context : Patterns.Interpreter.IContext
     {
         private Dictionary<string, object> values = new Dictionary<string, object>();
 

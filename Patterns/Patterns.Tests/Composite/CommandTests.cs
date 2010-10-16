@@ -20,5 +20,19 @@ namespace Patterns.Tests.Composite
             command.Execute(context);
             Assert.AreEqual("bar", context.GetValue("foo"));
         }
+
+        [TestMethod]
+        public void CompositeCommand()
+        {
+            Context context = new Context();
+            Assert.IsNull(context.GetValue("foo"));
+            Assert.IsNull(context.GetValue("one"));
+            SetCommand setfoo = new SetCommand("foo", new ConstantExpression("bar"));
+            SetCommand setone = new SetCommand("one", new ConstantExpression(1));
+            CompositeCommand command = new CompositeCommand(new ICommand[] { setfoo, setone } );
+            command.Execute(context);
+            Assert.AreEqual("bar", context.GetValue("foo"));
+            Assert.AreEqual(1, context.GetValue("one"));
+        }
     }
 }

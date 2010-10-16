@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Patterns.Visitor;
 
 namespace Patterns.Interpreter
 {
@@ -16,7 +17,10 @@ namespace Patterns.Interpreter
             this.right = right;
         }
 
-        public object Evaluate(Context context)
+        public IExpression LeftExpression { get { return this.left; } }
+        public IExpression RightExpression { get { return this.right; } }
+
+        public object Evaluate(IContext context)
         {
             object leftValue = this.left.Evaluate(context);
             object rightValue = this.right.Evaluate(context);
@@ -25,5 +29,7 @@ namespace Patterns.Interpreter
         }
 
         public abstract object Apply(object left, object right);
+
+        public abstract void Accept(IVisitor visitor);
     }
 }

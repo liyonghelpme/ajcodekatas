@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Patterns.Interpreter;
+using Patterns.Visitor;
 
 namespace Patterns.Composite
 {
@@ -15,10 +16,17 @@ namespace Patterns.Composite
             this.commands = new List<ICommand>(commands);
         }
 
-        public void Execute(Context context)
+        public IEnumerable<ICommand> Commands { get { return this.commands; } }
+
+        public void Execute(IContext context)
         {
             foreach (ICommand command in this.commands)
                 command.Execute(context);
+        }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }

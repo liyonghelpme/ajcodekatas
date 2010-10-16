@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Patterns.Visitor;
 
 namespace Patterns.Interpreter
 {
-    public interface IExpression
+    public enum ArithmeticOperation
     {
-        object Evaluate(IContext context);
-
-        void Accept(IVisitor visitor);
+        Add,
+        Substract,
+        Multiply,
+        Divide
     }
 }
