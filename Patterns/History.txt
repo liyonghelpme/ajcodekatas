@@ -12,3 +12,8 @@ CompositeCommand
 
 2010-10-16
 Adapter, Visitor, Decorator, Observer, Strategy with tests
+Facade, Machine with tests
+Proxy with tests
+AbstractFactory with tests
+Adapter, Parser with tests
+IfCommand WIP

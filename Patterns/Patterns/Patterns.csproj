@@ -56,10 +56,12 @@
     <Compile Include="Adapter\TokenType.cs" />
     <Compile Include="Composite\CompositeCommand.cs" />
     <Compile Include="Composite\ICommand.cs" />
+    <Compile Include="Composite\IfCommand.cs" />
     <Compile Include="Composite\SetCommand.cs" />
     <Compile Include="Decorator\DebugContext.cs" />
     <Compile Include="AbstractFactory\IDataService.cs" />
     <Compile Include="Facade\Machine.cs" />
+    <Compile Include="Interpreter\AddExpression.cs" />
     <Compile Include="Interpreter\ArithmeticBinaryExpression.cs" />
     <Compile Include="Interpreter\ArithmeticOperation.cs" />
     <Compile Include="Interpreter\BinaryExpression.cs" />
@@ -84,7 +86,7 @@
     <Content Include="TemplateMethod\Readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Singleton\" />
+    <None Include="Composite\Composite.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
