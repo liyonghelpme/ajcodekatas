@@ -61,7 +61,6 @@
     <Compile Include="Decorator\DebugContext.cs" />
     <Compile Include="AbstractFactory\IDataService.cs" />
     <Compile Include="Facade\Machine.cs" />
-    <Compile Include="Interpreter\AddExpression.cs" />
     <Compile Include="Interpreter\ArithmeticBinaryExpression.cs" />
     <Compile Include="Interpreter\ArithmeticOperation.cs" />
     <Compile Include="Interpreter\BinaryExpression.cs" />
