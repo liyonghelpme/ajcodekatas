@@ -45,7 +45,7 @@ namespace Patterns.Adapter
             if (separators.Contains(character))
                 return new Token() { TokenType = TokenType.Separator, Value = character.ToString() };
 
-            throw new InvalidDataException();
+            throw new InvalidProgramException();
         }
 
         private int ReadChar()

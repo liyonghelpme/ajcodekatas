@@ -41,12 +41,16 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractFactory\DataServiceTests.cs" />
     <Compile Include="Adapter\LexerTests.cs" />
+    <Compile Include="Adapter\ParserTests.cs" />
     <Compile Include="Composite\CommandTests.cs" />
     <Compile Include="Decorator\DecoratorTests.cs" />
+    <Compile Include="Facade\MachineTests.cs" />
     <Compile Include="Interpreter\ContextTests.cs" />
     <Compile Include="Interpreter\ExpressionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\CustomerProxyTests.cs" />
     <Compile Include="Visitor\DecompileVisitorTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +58,11 @@
       <Project>{DC95D436-A562-4555-9C26-F9E3BFD69C81}</Project>
       <Name>Patterns</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Facade\SetVariables.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

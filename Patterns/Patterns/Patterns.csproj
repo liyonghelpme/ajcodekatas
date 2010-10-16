@@ -45,14 +45,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractFactory\BaseDataService.cs" />
+    <Compile Include="AbstractFactory\OleDbDataService.cs" />
+    <Compile Include="AbstractFactory\SqlClientDataService.cs" />
     <Compile Include="Adapter\ILexer.cs" />
+    <Compile Include="Adapter\IParser.cs" />
     <Compile Include="Adapter\Lexer.cs" />
+    <Compile Include="Adapter\Parser.cs" />
     <Compile Include="Adapter\Token.cs" />
     <Compile Include="Adapter\TokenType.cs" />
     <Compile Include="Composite\CompositeCommand.cs" />
     <Compile Include="Composite\ICommand.cs" />
     <Compile Include="Composite\SetCommand.cs" />
     <Compile Include="Decorator\DebugContext.cs" />
+    <Compile Include="AbstractFactory\IDataService.cs" />
+    <Compile Include="Facade\Machine.cs" />
     <Compile Include="Interpreter\ArithmeticBinaryExpression.cs" />
     <Compile Include="Interpreter\ArithmeticOperation.cs" />
     <Compile Include="Interpreter\BinaryExpression.cs" />
@@ -62,6 +69,12 @@
     <Compile Include="Interpreter\IExpression.cs" />
     <Compile Include="Interpreter\VariableExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\DbCustomerProvider.cs" />
+    <Compile Include="Proxy\Customer.cs" />
+    <Compile Include="Proxy\CustomerProxy.cs" />
+    <Compile Include="Proxy\ICustomer.cs" />
+    <Compile Include="Proxy\ICustomerProvider.cs" />
+    <Compile Include="Proxy\InMemoryCustomerProvider.cs" />
     <Compile Include="Visitor\DecompileVisitor.cs" />
     <Compile Include="Visitor\IVisitor.cs" />
   </ItemGroup>
@@ -71,7 +84,6 @@
     <Content Include="TemplateMethod\Readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Proxy\" />
     <Folder Include="Singleton\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
