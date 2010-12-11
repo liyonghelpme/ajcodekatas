@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureCollatz", "AzureCollatz\AzureCollatz.ccproj", "{3C704300-6121-4D33-8AA6-B0A14DD26412}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollatzWebRole", "CollatzWebRole\CollatzWebRole.csproj", "{E8065F03-190C-4B79-844A-A6FC0A2DB346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollatzWorkerRole", "CollatzWorkerRole\CollatzWorkerRole.csproj", "{A8414AFF-6576-4219-B713-9705044A0E3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureLibrary", "AzureLibrary\AzureLibrary.csproj", "{6E9ABCA8-B997-47A4-8E0D-2DAEBE2D2379}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C704300-6121-4D33-8AA6-B0A14DD26412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C704300-6121-4D33-8AA6-B0A14DD26412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C704300-6121-4D33-8AA6-B0A14DD26412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C704300-6121-4D33-8AA6-B0A14DD26412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8065F03-190C-4B79-844A-A6FC0A2DB346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8065F03-190C-4B79-844A-A6FC0A2DB346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8065F03-190C-4B79-844A-A6FC0A2DB346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8065F03-190C-4B79-844A-A6FC0A2DB346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8414AFF-6576-4219-B713-9705044A0E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8414AFF-6576-4219-B713-9705044A0E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8414AFF-6576-4219-B713-9705044A0E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8414AFF-6576-4219-B713-9705044A0E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E9ABCA8-B997-47A4-8E0D-2DAEBE2D2379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E9ABCA8-B997-47A4-8E0D-2DAEBE2D2379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E9ABCA8-B997-47A4-8E0D-2DAEBE2D2379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E9ABCA8-B997-47A4-8E0D-2DAEBE2D2379}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
