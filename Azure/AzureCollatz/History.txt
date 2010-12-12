@@ -4,3 +4,6 @@ First Version
 
 2010-12-12
 ProcessMessage calculate Collatz sequence
+Azure Library: MessageQueue, MessageProcessor
+Worker role with 12 threads
+
