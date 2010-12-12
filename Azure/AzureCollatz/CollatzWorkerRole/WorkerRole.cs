@@ -9,6 +9,7 @@ using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.StorageClient;
 using AzureLibrary;
+using System.Text;
 
 namespace CollatzWorkerRole
 {
@@ -28,45 +29,47 @@ namespace CollatzWorkerRole
             {
                 CloudQueueMessage msg = queue.GetMessage();
                 if (msg != null)
-                {
-
-                    string[] data = msg.AsString.Split(' ');
-                    List<int> numbers = new List<int>();
-
-                    foreach (string datum in data)
-                        numbers.Add(Convert.ToInt32(datum));
-
-                    int number = numbers.Last();
-
-                    if (number == 1)
-                        Trace.WriteLine("Result: " + msg.AsString, "Information");
-                    else if ((number % 2) == 0)
-                        numbers.Add(number / 2);
+                    if (ProcessMessage(msg))
+                        queue.DeleteMessage(msg);
                     else
-                        numbers.Add(number * 3 + 1);
-
-                    if (number != 1)
                     {
-                        string newdata = string.Empty;
-                        foreach (int n in numbers)
-                        {
-                            if (newdata != string.Empty)
-                                newdata += ' ';
-                            newdata += n.ToString();
-                        }
-
-                        CloudQueueMessage newmsg = new CloudQueueMessage(newdata);
-                        queue.AddMessage(newmsg);
+                        Thread.Sleep(10000);
+                        Trace.WriteLine("Working", "Information");
                     }
+            }
+        }
 
-                    queue.DeleteMessage(msg);
+        private bool ProcessMessage(CloudQueueMessage msg)
+        {
+            int number = Convert.ToInt32(msg.AsString);
+            List<int> numbers = new List<int>() { number };
+
+            while (number > 1)
+            {
+                if ((number % 2) == 0)
+                {
+                    number = number / 2;
+                    numbers.Add(number);
                 }
                 else
                 {
-                    Thread.Sleep(10000);
-                    Trace.WriteLine("Working", "Information");
+                    number = number * 3 + 1;
+                    numbers.Add(number);
                 }
             }
+
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append("Result:");
+            foreach (int n in numbers)
+            {
+                builder.Append(" ");
+                builder.Append(n);
+            }
+
+            Trace.WriteLine(builder.ToString(), "Information");
+
+            return true;
         }
 
         public override bool OnStart()

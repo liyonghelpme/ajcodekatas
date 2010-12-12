@@ -1,3 +1,6 @@
 
 2010-12-11
 First Version
+
+2010-12-12
+ProcessMessage calculate Collatz sequence
