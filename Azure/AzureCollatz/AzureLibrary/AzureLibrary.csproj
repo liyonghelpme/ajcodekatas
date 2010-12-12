@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContainerUtilities.cs" />
+    <Compile Include="MessageProcessor.cs" />
+    <Compile Include="MessageQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueUtilities.cs" />
   </ItemGroup>

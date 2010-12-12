@@ -25,18 +25,18 @@ namespace CollatzWorkerRole
             QueueUtilities qutil = new QueueUtilities(account);
             CloudQueue queue = qutil.CreateQueueIfNotExists("numbers");
 
-            while (true)
+            CloudQueueClient qclient = account.CreateCloudQueueClient();
+
+            for (int k=0; k<11; k++) 
             {
-                CloudQueueMessage msg = queue.GetMessage();
-                if (msg != null)
-                    if (ProcessMessage(msg))
-                        queue.DeleteMessage(msg);
-                    else
-                    {
-                        Thread.Sleep(10000);
-                        Trace.WriteLine("Working", "Information");
-                    }
+                CloudQueue q = qclient.GetQueueReference("numbers");
+                MessageProcessor p = new MessageProcessor(q, this.ProcessMessage);
+                p.Start();
             }
+
+            MessageProcessor processor = new MessageProcessor(queue, this.ProcessMessage);
+
+            processor.Run();
         }
 
         private bool ProcessMessage(CloudQueueMessage msg)
