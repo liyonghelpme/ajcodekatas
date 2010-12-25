@@ -35,3 +35,9 @@ Change Element.GetHashCode and Element.Equals so identities/elements of diff siz
 New tests for all that
 Pending: AreIsomorphic complete implementation
 GroupUtilities.AreIsomorphic with tests (WIP)
+
+2010-12-25
+GeneratedGroup inherits from CompleteGroup
+ElementsUtilities.ElementsUnion now use Linq
+CompleteGroup constructor now admits repeated elements, discarded using Linq Distinct()
+

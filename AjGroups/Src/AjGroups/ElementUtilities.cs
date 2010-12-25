@@ -46,17 +46,7 @@
 
         internal static List<IElement> ElementsUnion(ICollection<IElement> elements1, ICollection<IElement> elements2) 
         {
-            List<IElement> elements = new List<IElement>(elements1);
-
-            foreach (IElement element in elements2)
-            {
-                if (!elements.Contains(element))
-                {
-                    elements.Add(element);
-                }
-            }
-
-            return elements;
+            return elements1.Union(elements2).ToList();
         }
     }
 }

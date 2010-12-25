@@ -12,7 +12,7 @@
 
         public CompleteGroup(List<IElement> elements)
         {
-            this.elements = new List<IElement>(elements);
+            this.elements = elements.Distinct().ToList();
             this.elements.Sort(comparer);
         }
 
