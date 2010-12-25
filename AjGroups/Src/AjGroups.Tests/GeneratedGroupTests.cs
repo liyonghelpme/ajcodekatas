@@ -69,5 +69,15 @@
                 Assert.AreEqual(n, group.Order);
             }
         }
+        [TestMethod]
+        public void SymetricGroupSizeFourAreEqualToSymetrycGroup()
+        {
+            GeneratedGroup group = new GeneratedGroup(Element.CreateSwap(4), Element.CreateRotation(4));
+            SymmetricGroup group2 = new SymmetricGroup(4);
+
+            Assert.AreEqual(group.Order, group2.Order);
+            Assert.AreEqual(group.GetHashCode(), group2.GetHashCode());
+            Assert.AreEqual(group, group2);
+        }
     }
 }

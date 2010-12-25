@@ -68,5 +68,94 @@
 
             Assert.IsTrue(table.IsCommutative);
         }
+
+        [TestMethod]
+        public void CreateWithNamedIdentity()
+        {
+            NamedElement identity = new NamedElement('e');
+            OperationTable table = new OperationTable(new List<IElement>() { identity }, true);
+
+            identity.OperationTable = table;
+
+            Assert.IsTrue(table.HasIdentity);
+            Assert.IsTrue(table.IsAssociative);
+            Assert.IsTrue(table.IsClosed);
+            Assert.IsTrue(table.IsCommutative);
+
+            Assert.AreEqual(identity, table.GetValue(identity, identity));
+
+            Assert.AreEqual(1, identity.Order);
+        }
+
+        [TestMethod]
+        public void CreateWithNamedIdentityAndOneElement()
+        {
+            NamedElement identity = new NamedElement('e');
+            NamedElement aelement = new NamedElement('a');
+            OperationTable table = new OperationTable(new List<IElement>() { identity , aelement}, true);
+
+            identity.OperationTable = table;
+            aelement.OperationTable = table;
+
+            table.SetValue(aelement, aelement, identity);
+
+            Assert.IsTrue(table.HasIdentity);
+            Assert.IsTrue(table.IsAssociative);
+            Assert.IsTrue(table.IsClosed);
+            Assert.IsTrue(table.IsCommutative);
+
+            Assert.AreEqual(2, table.Elements.Count);
+
+            Assert.AreEqual(identity, table.GetValue(identity, identity));
+            Assert.AreEqual(aelement, table.GetValue(aelement, identity));
+            Assert.AreEqual(aelement, table.GetValue(identity, aelement));
+            Assert.AreEqual(identity, table.GetValue(aelement, aelement));
+
+            Assert.AreEqual(1, identity.Order);
+            Assert.AreEqual(2, aelement.Order);
+        }
+
+        [TestMethod]
+        public void GetIncompatibleOperationTableIfValueIsAlreadyDefined()
+        {
+            NamedElement identity = new NamedElement('e');
+            NamedElement aelement = new NamedElement('a');
+            OperationTable table = new OperationTable(new List<IElement>() { identity, aelement }, true);
+
+            identity.OperationTable = table;
+            aelement.OperationTable = table;
+
+            table.SetValue(aelement, aelement, identity);
+
+            Assert.IsNull(table.GetCompatibleTable(aelement, aelement, aelement));
+        }
+
+        [TestMethod]
+        public void GetIncompatibleOperationTableIfValueIsAlreadyInRowOrColumn()
+        {
+            NamedElement identity = new NamedElement('e');
+            NamedElement aelement = new NamedElement('a');
+            OperationTable table = new OperationTable(new List<IElement>() { identity, aelement }, true);
+
+            identity.OperationTable = table;
+            aelement.OperationTable = table;
+
+            Assert.IsNull(table.GetCompatibleTable(aelement, aelement, aelement));
+        }
+
+        [TestMethod]
+        public void GetCompatibleOperationTable()
+        {
+            NamedElement identity = new NamedElement('e');
+            NamedElement aelement = new NamedElement('a');
+            OperationTable table = new OperationTable(new List<IElement>() { identity, aelement }, true);
+
+            identity.OperationTable = table;
+            aelement.OperationTable = table;
+
+            OperationTable table2 = table.GetCompatibleTable(aelement, aelement, identity);
+            Assert.IsNotNull(table2);
+            Assert.AreNotSame(table2, table);
+        }
     }
 }

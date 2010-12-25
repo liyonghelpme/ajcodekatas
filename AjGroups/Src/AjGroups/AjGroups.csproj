@@ -51,6 +51,7 @@
     <Compile Include="ElementComparer.cs" />
     <Compile Include="ElementUtilities.cs" />
     <Compile Include="GeneratedGroup.cs" />
+    <Compile Include="NamedElement.cs" />
     <Compile Include="OperationTable.cs" />
     <Compile Include="GroupUtilities.cs" />
     <Compile Include="IElement.cs" />

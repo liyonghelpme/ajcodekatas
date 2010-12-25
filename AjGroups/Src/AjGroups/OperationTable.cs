@@ -18,14 +18,21 @@
         public OperationTable(ICollection<IElement> elements, bool firstElementIsIdentity)
         {
             this.elements = new List<IElement>(elements);
-            cells = new IElement[elements.Count, elements.Count];
+            this.cells = new IElement[elements.Count, elements.Count];
 
             if (firstElementIsIdentity)
                 for (int k = 0; k < this.elements.Count; k++)
                 {
-                    cells[k, 0] = this.elements[k];
-                    cells[0, k] = this.elements[k];
+                    this.cells[k, 0] = this.elements[k];
+                    this.cells[0, k] = this.elements[k];
                 }
+        }
+
+        public OperationTable(OperationTable table)
+        {
+            this.elements = new List<IElement>(table.elements);
+            this.cells = new IElement[this.elements.Count, this.elements.Count];
+            Array.Copy(table.cells, this.cells, this.elements.Count * this.elements.Count);
         }
 
         public ICollection<IElement> Elements
@@ -100,6 +107,40 @@
         public IElement GetValue(IElement left, IElement right)
         {
             return this.GetValue(elements.IndexOf(left), elements.IndexOf(right));
+        }
+
+        public OperationTable GetCompatibleTable(IElement left, IElement right, IElement value)
+        {
+            IElement actualvalue = this.GetValue(left, right);
+
+            if (actualvalue == value)
+                return this;
+
+            if (actualvalue != null)
+                return null;
+
+            if (!this.elements.Contains(left))
+                return null;
+
+            if (!this.elements.Contains(right))
+                return null;
+
+            int x = this.elements.IndexOf(left);
+            int y = this.elements.IndexOf(right);
+
+            for (int k = 0; k < this.elements.Count; k++)
+            {
+                if (value.Equals(this.cells[k, y]))
+                    return null;
+                if (value.Equals(this.cells[x, k]))
+                    return null;
+            }
+
+            OperationTable table = new OperationTable(this);
+            
+            // TODO complete other values, test compatibility
+            table.SetValue(left, right, value);
+            return table;
         }
 
         private void SetValue(int leftpos, int rightpos, IElement value)

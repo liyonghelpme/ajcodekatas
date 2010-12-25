@@ -40,4 +40,8 @@ GroupUtilities.AreIsomorphic with tests (WIP)
 GeneratedGroup inherits from CompleteGroup
 ElementsUtilities.ElementsUnion now use Linq
 CompleteGroup constructor now admits repeated elements, discarded using Linq Distinct()
+Test for BaseGroup.GetHashCode()
+NamedElement with tests
+OperationTable with named elements with tests
+OperationTable.GetCompatibleOperationTable with tests
 

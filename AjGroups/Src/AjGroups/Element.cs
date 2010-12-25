@@ -48,9 +48,9 @@
                     return this.calculatedOrder;
                 }
 
-                Element element = this;
+                IElement element = this;
 
-                while (!element.IsIdentity())
+                while (!element.IsIdentity)
                 {
                     element = this.Multiply(element);
                     this.calculatedOrder++;
@@ -223,17 +223,20 @@
             return new Element(newvalues);
         }
 
-        private bool IsIdentity()
+        public bool IsIdentity
         {
-            for (int k = 0; k < this.values.Length; k++)
+            get
             {
-                if (this.values[k] != k)
+                for (int k = 0; k < this.values.Length; k++)
                 {
-                    return false;
+                    if (this.values[k] != k)
+                    {
+                        return false;
+                    }
                 }
-            }
 
-            return true;
+                return true;
+            }
         }
     }
 }

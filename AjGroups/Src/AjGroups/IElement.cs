@@ -7,5 +7,7 @@
         int Order { get; }
 
         IElement Multiply(IElement element);
+
+        bool IsIdentity { get; }
     }
 }
