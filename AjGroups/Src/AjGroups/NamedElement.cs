@@ -16,6 +16,16 @@
             this.name = name;
         }
 
+        public NamedElement(int n)
+        {
+            if (n == 0)
+                this.name = 'e';
+            if (n > 4)
+                this.name = (char)(n + 'a');
+            if (n > 0 && n <= 4)
+                this.name = (char)(n - 1 + 'a');
+        }
+
         public int Order
         {
             get
@@ -38,6 +48,8 @@
                 return this.calculatedOrder;
             }
         }
+
+        public char Name { get { return this.name; } }
 
         public OperationTable OperationTable
         {

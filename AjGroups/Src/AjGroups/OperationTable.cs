@@ -35,7 +35,7 @@
             Array.Copy(table.cells, this.cells, this.elements.Count * this.elements.Count);
         }
 
-        public ICollection<IElement> Elements
+        public IList<IElement> Elements
         {
             get { return this.elements; }
         }
@@ -47,8 +47,10 @@
                 foreach (IElement left in this.elements)
                     foreach (IElement middle in this.elements)
                         foreach (IElement right in this.elements)
-                            if (!left.Multiply(middle.Multiply(right)).Equals((left.Multiply(middle).Multiply(right))))
+                            if (!this.GetValue(left, this.GetValue(middle, right)).Equals(this.GetValue(this.GetValue(left, middle), right)))
                                 return false;
+                            //if (!left.Multiply(middle.Multiply(right)).Equals((left.Multiply(middle).Multiply(right))))
+                            //    return false;
 
                 return true;
             }
@@ -99,6 +101,30 @@
                     this.SetValue(left, right, left.Multiply(right));
         }
 
+        public IEnumerable<OperationTable> GetSolutions()
+        {
+            int n = this.elements.Count;
+
+            for (int k=0; k < n; k++)
+                for (int j = 0; j < n; j++)
+                {
+                    if (this.cells[k, j] != null)
+                        continue;
+
+                    foreach (IElement element in this.elements)
+                    {
+                        OperationTable table = this.GetCompatibleTable(this.elements[k], this.elements[j], element);
+                        if (table != null)
+                            foreach (OperationTable solution in table.GetSolutions())
+                                yield return solution;
+                    }
+
+                    yield break;
+                }
+
+            yield return this;
+        }
+
         public void SetValue(IElement left, IElement right, IElement value)
         {
             this.SetValue(elements.IndexOf(left), elements.IndexOf(right), value);
@@ -140,15 +166,45 @@
             
             // TODO complete other values, test compatibility
             table.SetValue(left, right, value);
+
+            // TODO Review Associative expansion
+            for (int k = 0; k < this.elements.Count; k++)
+                for (int j = 0; j < this.elements.Count; j++)
+                {
+                    if (cells[k, j] != null && cells[k, j].Equals(left))
+                    {
+                        IElement newleft = this.elements[k];
+                        IElement newright = this.GetValue(this.elements[j], right);
+                        if (newright != null)
+                        {
+                            table = table.GetCompatibleTable(newleft, newright, value);
+                            if (table == null)
+                                return null;
+                        }
+                    }
+
+                    if (cells[k, j] != null && cells[k, j].Equals(right))
+                    {
+                        IElement newleft = this.GetValue(left, this.elements[k]);
+                        IElement newright = this.elements[j];
+                        if (newleft != null)
+                        {
+                            table = table.GetCompatibleTable(newleft, newright, value);
+                            if (table == null)
+                                return null;
+                        }
+                    }
+                }
+
             return table;
         }
 
-        private void SetValue(int leftpos, int rightpos, IElement value)
+        internal void SetValue(int leftpos, int rightpos, IElement value)
         {
             cells[leftpos, rightpos] = value;
         }
 
-        private IElement GetValue(int leftpost, int rightpos)
+        internal IElement GetValue(int leftpost, int rightpos)
         {
             return cells[leftpost, rightpos];
         }

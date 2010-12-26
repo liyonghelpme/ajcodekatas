@@ -45,3 +45,9 @@ NamedElement with tests
 OperationTable with named elements with tests
 OperationTable.GetCompatibleOperationTable with tests
 
+2010-12-26
+OperationTable.GetSolutions generate tables from incomplete ones
+TableGroup with tests
+.GetSolutions with tests
+NamedElement with number and Table, with tests
+Fix bug in AreIsomorphic

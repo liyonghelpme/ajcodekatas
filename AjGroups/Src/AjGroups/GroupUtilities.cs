@@ -37,6 +37,28 @@
             return GetSubgroups(group).Where(sg => IsNormalSubgroup(sg, group));
         }
 
+        public static IList<IGroup> GetNonIsomorphic(IEnumerable<IGroup> groups)
+        {
+            IList<IGroup> result = new List<IGroup>();
+
+            foreach (IGroup group in groups)
+            {
+                bool isnew = true;
+
+                foreach (IGroup g in result)
+                    if (AreIsomorphic(g, group))
+                    {
+                        isnew = false;
+                        break;
+                    }
+
+                if (isnew)
+                    result.Add(group);
+            }
+
+            return result;
+        }
+
         public static bool AreEqual(IGroup group1, IGroup group2)
         {
             if (group1.Order != group2.Order)
@@ -184,6 +206,14 @@
             if (element1.Order != element2.Order)
                 return null;
 
+            if (map.Keys.Contains(element1))
+            {
+                if (map[element1].Equals(element2))
+                    return map;
+
+                return null;
+            }
+
             if (map.Values.Contains(element2))
                 return null;
 
@@ -197,6 +227,9 @@
                 IElement el1element1 = el1.Multiply(element1);
                 IElement el2element2 = el2.Multiply(element2);
 
+                if (el1element1.Order != el2element2.Order)
+                    return null;
+
                 if (map.Keys.Contains(el1element1))
                 {
                     if (!map[el1element1].Equals(el2element2))
@@ -207,6 +240,9 @@
 
                 IElement element1el1 = element1.Multiply(el1);
                 IElement element2el2 = element2.Multiply(el2);
+
+                if (element1el1.Order != element2el2.Order)
+                    return null;
 
                 if (map.Keys.Contains(element1el1))
                 {
@@ -222,6 +258,9 @@
 
             foreach (IElement key in newmaps.Keys)
             {
+                if (key.Equals(element1))
+                    continue;
+
                 resultmap = CompatibleMap(group1, group2, resultmap, key, newmaps[key]);
                 if (resultmap == null)
                     return null;
