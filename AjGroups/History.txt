@@ -55,3 +55,6 @@ Fix bug in AreIsomorphic
 2010-12-28
 Class diagram
 Post http://ajlopez.wordpress.com/2010/12/28/presenting-ajgroups-finite-groups-library/
+
+2011-01-02
+Removing sort of elements from CompleteGroup, all tests in green wo modification

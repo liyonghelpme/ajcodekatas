@@ -7,13 +7,11 @@
 
     public class CompleteGroup : BaseGroup
     {
-        private static ElementComparer comparer = new ElementComparer();
         private List<IElement> elements;
 
         public CompleteGroup(List<IElement> elements)
         {
             this.elements = elements.Distinct().ToList();
-            this.elements.Sort(comparer);
         }
 
         public override int Order
