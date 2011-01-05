@@ -61,6 +61,7 @@
     <Compile Include="TableGroup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AbstractGroups.cd" />
     <None Include="Classes.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
