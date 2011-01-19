@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Interpreter.Expressions.ConstantExpression">
+    <Position X="4.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Expressions\ConstantExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.17" />
+  </Class>
+  <Class Name="Interpreter.Expressions.VariableExpression">
+    <Position X="0.5" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Expressions\VariableExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Interpreter.Expressions.BinaryExpression">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAIAAAACAAAAgAAAAAAgAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Expressions\BinaryExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Interpreter.Expressions.BinaryArithmeticExpression">
+    <Position X="2.5" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Expressions\BinaryArithmeticExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Interpreter.Expressions.IExpression">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Expressions\IExpression.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

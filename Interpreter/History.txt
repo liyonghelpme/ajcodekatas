@@ -24,3 +24,7 @@ Parser.ParseCommand, supporting IfCommand and SetCommand, with tests
 2010-10-01
 IfCommand class in diagram
 Minor changes for blog posts Step 07
+
+2011-01-19
+WhileCommand with tests
+BooleanPredicates with tests
