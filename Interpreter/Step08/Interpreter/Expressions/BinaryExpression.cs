@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Interpreter.Expressions
+﻿namespace Interpreter.Expressions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public abstract class BinaryExpression : IExpression
     {
-        IExpression leftExpression;
-        IExpression rightExpression;
+        private IExpression leftExpression;
+        private IExpression rightExpression;
 
         public BinaryExpression(IExpression leftExpression, IExpression rightExpression)
         {
@@ -25,7 +25,7 @@ namespace Interpreter.Expressions
             object leftValue = this.leftExpression.Evaluate(environment);
             object rightValue = this.rightExpression.Evaluate(environment);
 
-            return Apply(leftValue, rightValue);
+            return this.Apply(leftValue, rightValue);
         }
 
         public abstract object Apply(object leftValue, object rightValue);

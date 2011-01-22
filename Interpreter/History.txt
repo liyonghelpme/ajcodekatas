@@ -28,3 +28,6 @@ Minor changes for blog posts Step 07
 2011-01-19
 WhileCommand with tests
 BooleanPredicates with tests
+
+2011-01-22
+Source Analysis improvements, Step 08

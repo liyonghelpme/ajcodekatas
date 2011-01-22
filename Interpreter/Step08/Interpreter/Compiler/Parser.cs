@@ -6,8 +6,8 @@
     using System.Linq;
     using System.Text;
 
-    using Interpreter.Expressions;
     using Interpreter.Commands;
+    using Interpreter.Expressions;
 
     public class Parser
     {
@@ -61,13 +61,13 @@
                 return null;
 
             if (token.TokenType == TokenType.Name && token.Value.Equals("if"))
-                return ParseIfCommand();
+                return this.ParseIfCommand();
             if (token.TokenType == TokenType.Name && token.Value.Equals("while"))
-                return ParseWhileCommand();
+                return this.ParseWhileCommand();
 
             this.PushToken(token);
 
-            return ParseSetCommand();
+            return this.ParseSetCommand();
         }
 
         private ICommand ParseSetCommand()
@@ -201,7 +201,7 @@
             if (token.TokenType != TokenType.Name)
                 throw new ParserException(string.Format("Unexpected token '{0}'", token.Value));
 
-            return (string) token.Value;
+            return (string)token.Value;
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Interpreter.Expressions;
-using Interpreter.Predicates;
-
-namespace Interpreter.Commands
+﻿namespace Interpreter.Commands
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Interpreter.Expressions;
+    using Interpreter.Predicates;
+
     public class WhileCommand : ICommand
     {
         private IExpression condition;

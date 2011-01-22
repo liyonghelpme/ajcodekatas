@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Interpreter.Predicates
+﻿namespace Interpreter.Predicates
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class BooleanPredicates
     {
         public static bool IsFalse(object obj)

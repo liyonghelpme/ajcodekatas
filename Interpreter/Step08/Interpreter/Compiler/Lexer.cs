@@ -8,12 +8,14 @@
 
     public class Lexer
     {
+        private const char StringDelimeter = '"';
+        private const char StringEscape = '\\';
+
+        private static string[] separators = new string[] { ";", "(", ")" };
+        private static string[] operators = new string[] { "=", "+", "-", "*", "/" };
+
         private TextReader reader;
         private Stack<int> chars = new Stack<int>();
-        private static String[] separators = new string[] { ";", "(", ")" };
-        private static String[] operators = new string[] { "=", "+", "-", "*", "/" };
-        private const char stringDelimeter = '"';
-        private const char stringEscape = '\\';
 
         public Lexer(TextReader reader)
         {
@@ -30,15 +32,16 @@
             int ch;
 
             for (ch = this.NextChar(); ch != -1 && char.IsWhiteSpace((char)ch); ch = this.NextChar())
-                ;
+            {
+            }
 
             if (ch == -1)
                 return null;
 
-            char character = (char) ch;
+            char character = (char)ch;
 
-            if (character == stringDelimeter)
-                return NextString();
+            if (character == StringDelimeter)
+                return this.NextString();
 
             if (separators.Contains(character.ToString()))
                 return new Token(TokenType.Separator, character.ToString());
@@ -47,9 +50,9 @@
                 return new Token(TokenType.Operator, character.ToString());
 
             if (char.IsDigit(character))
-                return NextInteger(character);
+                return this.NextInteger(character);
 
-            return NextName(character);
+            return this.NextName(character);
         }
 
         private Token NextName(char first)
@@ -82,7 +85,7 @@
 
         private Token NextString()
         {
-            string value = "";
+            string value = string.Empty;
 
             int ch;
 
@@ -107,7 +110,7 @@
         {
             int ch = this.NextChar();
 
-            if (ch != -1 && (char)ch == stringEscape)
+            if (ch != -1 && (char)ch == StringEscape)
             {
                 int ch2 = this.NextChar();
 
@@ -126,7 +129,7 @@
                 this.PushChar(ch2);
             }
 
-            if (ch == stringDelimeter)
+            if (ch == StringDelimeter)
                 return -2; // special case
 
             return ch;
