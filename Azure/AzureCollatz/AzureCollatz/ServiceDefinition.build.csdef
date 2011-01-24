@@ -10,13 +10,13 @@
 -->
 <ServiceDefinition name="AzureCollatz" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
   <WebRole name="CollatzWebRole">
-    <Sites>
+    <!--<Sites>
       <Site name="Web">
         <Bindings>
           <Binding name="HttpIn" endpointName="HttpIn" />
         </Bindings>
       </Site>
-    </Sites>
+    </Sites>-->
     <ConfigurationSettings>
       <Setting name="DiagnosticsConnectionString" />
       <Setting name="DataConnectionString" />
