@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Customers.Services;
 using Customers.Data;
+using Microsoft.WindowsAzure;
 
 namespace AzureWebCustomers
 {
@@ -15,7 +16,8 @@ namespace AzureWebCustomers
         {
             if (!this.IsPostBack) 
             {
-                CustomerServices services = new CustomerServices(new DataContext(WebRole.Instance.StorageAccount));
+                CloudStorageAccount storage = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
+                CustomerServices services = new CustomerServices(new DataContext(storage));
                 this.grdCustomerList.DataSource = services.GetCustomerList();
                 this.grdCustomerList.DataBind();
             }

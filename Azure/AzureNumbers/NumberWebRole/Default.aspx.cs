@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure;
 
 namespace NumberWebRole
 {
@@ -19,7 +20,9 @@ namespace NumberWebRole
         {
             int number = Convert.ToInt32(txtNumber.Text);
             CloudQueueMessage msg = new CloudQueueMessage(number.ToString());
-            WebRole.NumbersQueue.AddMessage(msg);
+            CloudStorageAccount account = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
+            CloudQueue numbersQueue = account.CreateCloudQueueClient().GetQueueReference("numbers");
+            numbersQueue.AddMessage(msg);
         }
     }
 }

@@ -1,3 +1,6 @@
 
 2010-12-06
 First Version
+
+2011-01-24
+Update to SDK 1.3

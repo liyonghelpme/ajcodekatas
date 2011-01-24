@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Customers.Entities;
 using Customers.Services;
 using Customers.Data;
+using Microsoft.WindowsAzure;
 
 namespace AzureWebCustomers
 {
@@ -25,7 +26,8 @@ namespace AzureWebCustomers
                 Address = txtAddress.Text
             };
 
-            CustomerServices service = new CustomerServices(new DataContext(WebRole.Instance.StorageAccount));
+            CloudStorageAccount storage = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
+            CustomerServices service = new CustomerServices(new DataContext(storage));
             
             service.AddCustomer(customer);
             Response.Redirect("~/CustomerList.aspx");

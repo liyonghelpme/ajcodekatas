@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure;
 
 namespace CollatzWebRole
 {
@@ -23,7 +24,9 @@ namespace CollatzWebRole
             for (int k=from; k<=to; k++) 
             {
                 CloudQueueMessage msg = new CloudQueueMessage(k.ToString());
-                WebRole.Instance.NumbersQueue.AddMessage(msg);
+                CloudStorageAccount account = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
+                CloudQueue numbersQueue = account.CreateCloudQueueClient().GetQueueReference("numbers");
+                numbersQueue.AddMessage(msg);
             }
         }
     }

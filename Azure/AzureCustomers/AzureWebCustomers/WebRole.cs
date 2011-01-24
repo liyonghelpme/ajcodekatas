@@ -6,14 +6,13 @@ using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.StorageClient;
 using Customers.Data;
+using System.Configuration;
 
 namespace AzureWebCustomers
 {
     public class WebRole : RoleEntryPoint
     {
-        public CloudStorageAccount StorageAccount { get; private set; }
-
-        public static WebRole Instance { get; private set; }
+        public static CloudStorageAccount StorageAccount { get; private set; }
 
         public override bool OnStart()
         {
@@ -25,17 +24,19 @@ namespace AzureWebCustomers
 
             Microsoft.WindowsAzure.CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
             {
-                configSetter(Microsoft.WindowsAzure.ServiceRuntime.RoleEnvironment.GetConfigurationSettingValue(configName));
+                string configuration = RoleEnvironment.IsAvailable ?
+                    RoleEnvironment.GetConfigurationSettingValue(configName) :
+                    ConfigurationManager.AppSettings[configName];
+
+                configSetter(configuration);
             });
 
-            Instance = this;
-
-            this.StorageAccount = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
+            StorageAccount = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
 
             CloudTableClient.CreateTablesFromModel(
                 typeof(DataContext),
-                this.StorageAccount.TableEndpoint.AbsoluteUri,
-                this.StorageAccount.Credentials);
+                StorageAccount.TableEndpoint.AbsoluteUri,
+                StorageAccount.Credentials);
 
             return base.OnStart();
         }

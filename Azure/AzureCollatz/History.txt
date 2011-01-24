@@ -7,3 +7,5 @@ ProcessMessage calculate Collatz sequence
 Azure Library: MessageQueue, MessageProcessor
 Worker role with 12 threads
 
+2011-01-24
+Update to SDK 1.3

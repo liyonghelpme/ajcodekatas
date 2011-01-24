@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using Microsoft.WindowsAzure.ServiceRuntime;
+using System.Configuration;
 
 namespace CollatzWebRole
 {
@@ -13,7 +15,15 @@ namespace CollatzWebRole
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
+            // Code that runs on application startup
+            Microsoft.WindowsAzure.CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
+            {
+                string configuration = RoleEnvironment.IsAvailable ?
+                    RoleEnvironment.GetConfigurationSettingValue(configName) :
+                    ConfigurationManager.AppSettings[configName];
 
+                configSetter(configuration);
+            });
         }
 
         void Application_End(object sender, EventArgs e)
