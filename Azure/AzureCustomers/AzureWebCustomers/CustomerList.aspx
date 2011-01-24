@@ -11,7 +11,9 @@
     </div>
     <asp:GridView runat="server" ID="grdCustomerList" AutoGenerateColumns="False">
         <Columns>
-            <asp:BoundField DataField="PartitionKey" HeaderText="Id" />
+            <asp:HyperLinkField DataNavigateUrlFields="PartitionKey" 
+                DataNavigateUrlFormatString="CustomerView.aspx?Id={0}" 
+                Text="Ver..." />
             <asp:BoundField DataField="Name" HeaderText="Name" />
         </Columns>
     </asp:GridView>
