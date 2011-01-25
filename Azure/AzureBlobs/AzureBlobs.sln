@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureBlobs", "AzureBlobs\AzureBlobs.ccproj", "{AFB66209-81DD-402E-A882-AB4BC658E81F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBlobsWeb", "AzureBlobsWeb\AzureBlobsWeb.csproj", "{719AF5DB-F669-465F-9CED-58DBDCE0EAA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFB66209-81DD-402E-A882-AB4BC658E81F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB66209-81DD-402E-A882-AB4BC658E81F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB66209-81DD-402E-A882-AB4BC658E81F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB66209-81DD-402E-A882-AB4BC658E81F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719AF5DB-F669-465F-9CED-58DBDCE0EAA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719AF5DB-F669-465F-9CED-58DBDCE0EAA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719AF5DB-F669-465F-9CED-58DBDCE0EAA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719AF5DB-F669-465F-9CED-58DBDCE0EAA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
