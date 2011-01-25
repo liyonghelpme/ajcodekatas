@@ -31,3 +31,11 @@ BooleanPredicates with tests
 
 2011-01-22
 Source Analysis improvements, Step 08
+
+2011-01-24
+Step 09
+CompositeCommand with tests
+Curly brackets in Lexer, with tests
+Parser support for composite commands, with tests
+
+
