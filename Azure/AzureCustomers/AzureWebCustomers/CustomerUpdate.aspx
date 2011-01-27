@@ -5,6 +5,8 @@
 <h2>Update Customer</h2>
 <div>
 <asp:HyperLink ID="lnkCustomerList" runat="server" NavigateUrl="~/CustomerList.aspx">Customers</asp:HyperLink>
+&nbsp;&nbsp;
+<asp:HyperLink ID="HyperLink1" NavigateUrl='<%# "CustomerUpdate.aspx?Id=" + Request["Id"] %>' runat="server" Text="Update" />
 </div>
 <table>
 <tr>
@@ -12,7 +14,7 @@
 Id
 </td>
 <td>
-<asp:Label ID="lblId" runat="server"></asp:TextBox>
+<asp:Label ID="lblId" runat="server" Text="<%# Customer.PartitionKey %>"></asp:Label>
 </td>
 </tr>
 <tr>
@@ -20,7 +22,7 @@ Id
 Name
 </td>
 <td>
-<asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+<asp:TextBox ID="txtName" runat="server" Text="<%# Customer.Name %>"></asp:TextBox>
 </td>
 </tr>
 <tr>
@@ -28,7 +30,7 @@ Name
 Address
 </td>
 <td>
-<asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+<asp:TextBox ID="txtAddress" runat="server" Text="<%# Customer.Address %>"></asp:TextBox>
 </td>
 </tr>
 </table>

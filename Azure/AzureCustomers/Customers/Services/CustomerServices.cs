@@ -34,10 +34,12 @@
 
         public void UpdateCustomer(Customer customer)
         {
-            Customer c = this.GetCustomerById(customer.PartitionKey);
-            c.Name = customer.Name;
-            c.Address = customer.Address;
-            c.Notes = customer.Notes;
+            this.context.AttachTo(DataContext.CustomerTableName, customer, "*");
+            this.context.UpdateObject(customer);
+            //Customer c = this.GetCustomerById(customer.PartitionKey);
+            //c.Name = customer.Name;
+            //c.Address = customer.Address;
+            //c.Notes = customer.Notes;
             this.context.SaveChanges();
         }
 

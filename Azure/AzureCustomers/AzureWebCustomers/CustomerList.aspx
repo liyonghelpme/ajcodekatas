@@ -13,7 +13,7 @@
         <Columns>
             <asp:HyperLinkField DataNavigateUrlFields="PartitionKey" 
                 DataNavigateUrlFormatString="CustomerView.aspx?Id={0}" 
-                Text="Ver..." />
+                Text="View..." />
             <asp:BoundField DataField="Name" HeaderText="Name" />
         </Columns>
     </asp:GridView>
