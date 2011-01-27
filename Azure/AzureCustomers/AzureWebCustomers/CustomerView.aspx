@@ -5,6 +5,8 @@
 <h2>Customer</h2>
 <div>
 <asp:HyperLink ID="lnkCustomers" NavigateUrl="~/CustomerList.aspx" runat="server" Text="Customers" />
+&nbsp;&nbsp;
+<asp:HyperLink ID="HyperLink1" NavigateUrl='<%# "CustomerUpdate.aspx?Id=" + Request["Id"] %>' runat="server" Text="Update" />
 </div>
 <table>
 <tr>

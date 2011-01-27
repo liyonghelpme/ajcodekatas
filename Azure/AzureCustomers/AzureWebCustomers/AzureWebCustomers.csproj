@@ -63,6 +63,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="CustomerList.aspx" />
     <Content Include="CustomerNew.aspx" />
+    <Content Include="CustomerUpdate.aspx" />
     <Content Include="CustomerView.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -127,6 +128,13 @@
     </Compile>
     <Compile Include="CustomerNew.aspx.designer.cs">
       <DependentUpon>CustomerNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerUpdate.aspx.cs">
+      <DependentUpon>CustomerUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerUpdate.aspx.designer.cs">
+      <DependentUpon>CustomerUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="CustomerView.aspx.cs">
       <DependentUpon>CustomerView.aspx</DependentUpon>
