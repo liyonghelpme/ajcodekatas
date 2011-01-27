@@ -38,4 +38,8 @@ CompositeCommand with tests
 Curly brackets in Lexer, with tests
 Parser support for composite commands, with tests
 
+2011-01-26
+CompositeCommand in diagram
+Post: http://ajlopez.wordpress.com/2011/01/27/writing-an-interpreter-in-net-part-9/
+
 
