@@ -18,6 +18,11 @@ namespace Fractal
         public double Delta { get; set; }
         public int MaxIterations { get; set; }
         public int MaxValue { get; set; }
+
+        public SectorInfo Clone()
+        {
+            return (SectorInfo) this.MemberwiseClone();
+        }
     }
 }
 

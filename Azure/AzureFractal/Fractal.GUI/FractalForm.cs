@@ -12,6 +12,8 @@
     using Microsoft.WindowsAzure;
     using System.Configuration;
     using Fractal.Azure;
+    using System.Threading;
+    using System.IO;
 
     public partial class FractalForm : Form
     {
@@ -36,6 +38,8 @@
         Color[] colors = new Color[2000];
 
         private CloudQueue queue;
+        private CloudQueue inqueue;
+        private CloudBlobContainer blobContainer;
 
         public FractalForm()
         {
@@ -46,6 +50,16 @@
             CloudStorageAccount account = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageAccount"]);
             CloudQueueClient queueStorage = account.CreateCloudQueueClient();
             this.queue = queueStorage.GetQueueReference("fractaltoprocess");
+            this.queue.CreateIfNotExist();
+            this.inqueue = queueStorage.GetQueueReference("fractalsectors");
+            this.inqueue.CreateIfNotExist();
+            CloudBlobClient blobClient = account.CreateCloudBlobClient();
+            this.blobContainer = blobClient.GetContainerReference("fractalsectors");
+            this.blobContainer.CreateIfNotExist();
+
+            Thread thread = new Thread(new ThreadStart(this.ProcessQueue));
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         private void ResetColors() 
@@ -167,10 +181,9 @@
             };
 
             Calculator calculator = new Calculator();
-            SectorUtilities util = new SectorUtilities();
-            this.queue.AddMessage(util.FromSectorInfoToMessage(sectorinfo));
-            Sector sector = calculator.CalculateSector(sectorinfo);
-            this.DrawValues(sector.FromX, sector.FromY, sector.Width, sector.Height, sector.Values);
+            this.queue.AddMessage(SectorUtilities.FromSectorInfoToMessage(sectorinfo));
+            //Sector sector = calculator.CalculateSector(sectorinfo);
+            //this.DrawValues(sector.FromX, sector.FromY, sector.Width, sector.Height, sector.Values);
         }
 
         private void btnZoomIn_Click(object sender, EventArgs e)
@@ -210,6 +223,46 @@
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ProcessQueue()
+        {
+            while (true)
+            {
+                CloudQueueMessage msg = this.inqueue.GetMessage();
+
+                if (msg == null)
+                    Thread.Sleep(500);
+                else
+                {
+                    string blobname = msg.AsString;
+                    CloudBlob blob = this.blobContainer.GetBlobReference(blobname);
+                    MemoryStream stream = new MemoryStream();
+                    blob.DownloadToStream(stream);
+                    blob.Delete();
+                    this.inqueue.DeleteMessage(msg);
+
+                    string[] parameters = blobname.Split('.');
+                    Guid id = new Guid(parameters[0]);
+                    int fromx = Int32.Parse(parameters[1]);
+                    int fromy = Int32.Parse(parameters[2]);
+                    int width = Int32.Parse(parameters[3]);
+                    int height = Int32.Parse(parameters[4]);
+
+                    int[] values = new int[width * height];
+
+                    stream.Seek(0, SeekOrigin.Begin);
+
+                    BinaryReader reader = new BinaryReader(stream);
+
+                    for (int k = 0; k < values.Length; k++)
+                        values[k] = reader.ReadInt32();
+
+                    stream.Close();
+
+                    this.Invoke((Action<int,int,int,int,int[]>) ((x,y,h,w,v) => this.DrawValues(x,y,h,w,v)), fromx, fromy, width, height, values);
+                }
             }
         }
     }
