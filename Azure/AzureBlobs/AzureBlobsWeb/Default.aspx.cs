@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
+using System.IO;
 
 namespace AzureBlobsWeb
 {
@@ -40,7 +41,17 @@ namespace AzureBlobsWeb
         {
             CloudBlobContainer blobContainer = this.GetContainer();
             CloudBlob blob = blobContainer.GetBlobReference(fluFile.PostedFile.FileName);
+            string extension = Path.GetExtension(fluFile.PostedFile.FileName);
+            
+            if (extension == "jpg")
+                blob.Properties.ContentType = "image/jpeg";
+            if (extension == "gif")
+                blob.Properties.ContentType = "image/gif";
+            if (extension == "png")
+                blob.Properties.ContentType = "image/png";
+
             blob.UploadByteArray(fluFile.FileBytes);
+
             this.BindGrid();
         }
     }

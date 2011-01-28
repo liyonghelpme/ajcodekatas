@@ -10,7 +10,9 @@
     <div>
         <asp:GridView ID="grdBlobs" runat="server" AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="Uri" HeaderText="Uri" />
+                <asp:HyperLinkField DataNavigateUrlFields="Uri" 
+                    DataNavigateUrlFormatString="{0}" DataTextField="Uri" HeaderText="Uri" 
+                    Target="_blank" />
             </Columns>
         </asp:GridView>
     </div>
