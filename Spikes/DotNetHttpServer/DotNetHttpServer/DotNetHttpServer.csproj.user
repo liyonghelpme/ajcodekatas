@@ -1,0 +1,5 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartArguments>C:\apache-tomcat-6.0.18\webapps\docs http://*:8000/</StartArguments>
+  </PropertyGroup>
+</Project>
