@@ -8,7 +8,7 @@
         File Blobs
     </h2>
     <div>
-        <asp:GridView ID="grdBlobs" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="grdBlobs" runat="server">
             <Columns>
                 <asp:HyperLinkField DataNavigateUrlFields="Uri" 
                     DataNavigateUrlFormatString="{0}" DataTextField="Uri" HeaderText="Uri" 

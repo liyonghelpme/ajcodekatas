@@ -1,0 +1,8 @@
+
+2011-January
+First Version
+
+2011-01-29
+Web Role creates the container
+List blobs updated
+

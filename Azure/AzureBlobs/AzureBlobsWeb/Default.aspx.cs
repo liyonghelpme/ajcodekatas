@@ -21,11 +21,11 @@ namespace AzureBlobsWeb
         private void BindGrid()
         {
             CloudBlobContainer blobContainer = this.GetContainer();
-            blobContainer.CreateIfNotExist();
-            BlobContainerPermissions perms = new BlobContainerPermissions();
-            perms.PublicAccess = BlobContainerPublicAccessType.Blob;
-            blobContainer.SetPermissions(perms);
-            grdBlobs.DataSource = blobContainer.ListBlobs();
+            grdBlobs.DataSource = blobContainer.ListBlobs(new BlobRequestOptions()
+              {
+                  UseFlatBlobListing = true,
+                  BlobListingDetails = BlobListingDetails.All
+              });
             grdBlobs.DataBind();
         }
 
