@@ -8,7 +8,7 @@
     </ConfigurationSettings>
   </Role>
   <Role name="NumberWorkerRole">
-    <Instances count="1" />
+    <Instances count="3" />
     <ConfigurationSettings>
       <Setting name="DiagnosticsConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="DataConnectionString" value="UseDevelopmentStorage=true" />
