@@ -6,6 +6,8 @@
     using System.Text;
     using Customers.Data;
     using Customers.Entities;
+    using Microsoft.WindowsAzure;
+    using Microsoft.WindowsAzure.StorageClient;
 
     public class CustomerServices
     {
@@ -36,10 +38,6 @@
         {
             this.context.AttachTo(DataContext.CustomerTableName, customer, "*");
             this.context.UpdateObject(customer);
-            //Customer c = this.GetCustomerById(customer.PartitionKey);
-            //c.Name = customer.Name;
-            //c.Address = customer.Address;
-            //c.Notes = customer.Notes;
             this.context.SaveChanges();
         }
 
