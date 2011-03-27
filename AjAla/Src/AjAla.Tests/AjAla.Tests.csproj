@@ -38,7 +38,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LexerTests.cs" />
+    <Compile Include="Commands\SetValueCommandTests.cs" />
+    <Compile Include="Compiler\ParserTests.cs" />
+    <Compile Include="Language\ContextTests.cs" />
+    <Compile Include="Compiler\LexerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

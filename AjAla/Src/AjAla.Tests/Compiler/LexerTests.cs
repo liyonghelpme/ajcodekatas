@@ -1,4 +1,4 @@
-﻿namespace AjAla.Tests
+﻿namespace AjAla.Tests.Compiler
 {
     using System;
     using System.Text;
