@@ -1,0 +1,214 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EEEE2BF0-700F-496C-8A4F-9938B1C03189}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>AjFramework.Objects</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>AjFramework.Objects</RootNamespace>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>Windows</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>AjFramework.Objects.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\bin\</OutputPath>
+    <DocumentationFile>AjFramework.Objects.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataObjects\DataReaderObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\DateType.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\DecimalType.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\Entity.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\EntityType.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\EntityXml.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\IEntity.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\IEntityType.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\IntegerType.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\IType.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\StringType.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\TypeManager.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\UndefinedType.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\CollectionFunctor.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\Criteria.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\Filter.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\ICollectionFunctor.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\IFilter.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\IFunctor.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\OrCriteria.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\PropertyFilter.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\SumFunctor.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\BaseObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\DynamicObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\GenericList.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\IListObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\IMapping.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\IObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\ListObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\MappedObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\Mapping.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\Objects.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\Types.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\ValueObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\ViewObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Objects\XmlObject.vb">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
