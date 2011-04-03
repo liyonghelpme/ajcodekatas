@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemsTablePerHierarchyMapping.Console", "ItemsTablePerHierarchyMapping.Console\ItemsTablePerHierarchyMapping.Console.csproj", "{F4770D9F-5BE1-42D2-BBFA-9DAF37E4EB03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemsTablePerHierarchyMapping.Domain", "ItemsTablePerHierarchyMapping.Domain\ItemsTablePerHierarchyMapping.Domain.csproj", "{B75D993B-1D37-4DB0-A643-EA0EE8ADA2DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schema", "Schema", "{7CA081DF-F513-47A8-9214-F1C628FAA084}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-configuration.xsd = ..\..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-configuration.xsd
+		..\..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-mapping.xsd = ..\..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-mapping.xsd
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4770D9F-5BE1-42D2-BBFA-9DAF37E4EB03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4770D9F-5BE1-42D2-BBFA-9DAF37E4EB03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4770D9F-5BE1-42D2-BBFA-9DAF37E4EB03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4770D9F-5BE1-42D2-BBFA-9DAF37E4EB03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B75D993B-1D37-4DB0-A643-EA0EE8ADA2DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B75D993B-1D37-4DB0-A643-EA0EE8ADA2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B75D993B-1D37-4DB0-A643-EA0EE8ADA2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B75D993B-1D37-4DB0-A643-EA0EE8ADA2DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

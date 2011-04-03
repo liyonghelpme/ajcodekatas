@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="ItemsTablePerHierarchyMapping.Domain"
+namespace="ItemsTablePerHierarchyMapping.Domain">
+  <subclass name="Page" extends="Item" discriminator-value="Page">
+    <property name="Url"/>
+  </subclass>
+</hibernate-mapping>

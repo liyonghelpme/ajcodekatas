@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="ItemsTablePerHierarchyMapping.Domain"
+namespace="ItemsTablePerHierarchyMapping.Domain">
+  <subclass name="Note" extends="Item" discriminator-value="Note">
+    <property name="Content" />
+  </subclass>
+</hibernate-mapping>
