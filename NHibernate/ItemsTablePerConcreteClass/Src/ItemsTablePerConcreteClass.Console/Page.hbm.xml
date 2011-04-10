@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="ItemsTablePerConcreteClass.Domain"
+namespace="ItemsTablePerConcreteClass.Domain">
+  <union-subclass name="Page" extends="Item" table="Pages">
+    <property name="Url"/>
+  </union-subclass>
+</hibernate-mapping>
