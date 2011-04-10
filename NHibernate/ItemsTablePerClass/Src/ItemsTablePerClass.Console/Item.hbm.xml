@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="ItemsTablePerClass.Domain"
+namespace="ItemsTablePerClass.Domain">
+  <class name="Item" table="Items">
+    <id name="Id">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Title" not-null="true" />
+    <property name="Description" not-null="true" />
+  </class>
+</hibernate-mapping>

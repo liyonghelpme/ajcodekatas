@@ -1,15 +1,15 @@
 
 This is an example of NHibernate 3.x mapping:
 - Three classes, one abstract, two concrete ones.
-- Two tables
+- Three tables
 
-using the mapping strategy Table Per Concrete Class
+using the mapping strategy Table Per Class
 
 To generate the database (in \.SQLEXPRESS) run
 
 ExecuteAll.cmd
 
-in Sql folder.
+from Sql folder.
 
 You can specify the SQL Server using a parameter, e.g.:
 

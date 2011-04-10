@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemsTablePerClass.Console", "ItemsTablePerClass.Console\ItemsTablePerClass.Console.csproj", "{41C63730-EFD3-4CCB-B489-6ED1CAA1CD1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemsTablePerClass.Domain", "ItemsTablePerClass.Domain\ItemsTablePerClass.Domain.csproj", "{6A6E6342-8FC2-41C3-9468-2272A11AA55F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schema", "Schema", "{73CD8400-4FDC-42C2-8E7A-4B279B15B4EE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-configuration.xsd = ..\..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-configuration.xsd
+		..\..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-mapping.xsd = ..\..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-mapping.xsd
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41C63730-EFD3-4CCB-B489-6ED1CAA1CD1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41C63730-EFD3-4CCB-B489-6ED1CAA1CD1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41C63730-EFD3-4CCB-B489-6ED1CAA1CD1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41C63730-EFD3-4CCB-B489-6ED1CAA1CD1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A6E6342-8FC2-41C3-9468-2272A11AA55F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6E6342-8FC2-41C3-9468-2272A11AA55F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6E6342-8FC2-41C3-9468-2272A11AA55F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6E6342-8FC2-41C3-9468-2272A11AA55F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
