@@ -5,3 +5,6 @@ DlrHelloWorld example
 
 2011-04-02
 DlrHelloExpressions example
+
+2011-04-09
+DlrBinaryExpressions example
