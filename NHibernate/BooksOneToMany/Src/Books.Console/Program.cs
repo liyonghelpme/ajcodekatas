@@ -23,15 +23,12 @@
                     {
                         Title = "NHibernate Cookbook",
                         Author = "Jason Dentler",
-                        //Chapters = new List<Chapter>() { 
-                        //    new Chapter() { Title = "Models and Mappings" },
-                        //    new Chapter() { Title = "Configuration and Schema" },
-                        //    new Chapter() { Title = "Sessions and Transactions" }
-                        //}
+                        Chapters = new List<Chapter>() { 
+                            new Chapter() { Title = "Models and Mappings" },
+                            new Chapter() { Title = "Configuration and Schema" },
+                            new Chapter() { Title = "Sessions and Transactions" }
+                        }
                     };
-
-                    cookbook.Chapters = new List<Chapter>();
-                    cookbook.Chapters.Add(new Chapter() { Title = "Models and Mappings" }); 
 
                     session.Save(cookbook);
 
@@ -40,7 +37,7 @@
                         System.Console.WriteLine(string.Format("Book {0}", book.Title));
                         int nchapter = 0;
                         foreach (Chapter chapter in book.Chapters)
-                            System.Console.Write(string.Format("Chapter {0}:{1}", ++nchapter, chapter.Title));
+                            System.Console.WriteLine(string.Format("Chapter {0}:{1}", ++nchapter, chapter.Title));
                     }
 
                     tx.Commit();
