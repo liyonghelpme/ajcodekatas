@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books", "Books\Books.csproj", "{99DE8C1D-C077-425E-A53E-C2274DA89666}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Console", "Books.Console\Books.Console.csproj", "{B0EADCDE-1F39-49F6-B2D6-FDB8EBC0DD4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{6FE88057-2922-40CE-B3EF-1B075ADFA16B}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-configuration.xsd = ..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-configuration.xsd
+		..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-mapping.xsd = ..\..\..\..\..\Software\NHibernate-3.0.0.GA-bin\Required_Bins\nhibernate-mapping.xsd
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99DE8C1D-C077-425E-A53E-C2274DA89666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99DE8C1D-C077-425E-A53E-C2274DA89666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99DE8C1D-C077-425E-A53E-C2274DA89666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99DE8C1D-C077-425E-A53E-C2274DA89666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EADCDE-1F39-49F6-B2D6-FDB8EBC0DD4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EADCDE-1F39-49F6-B2D6-FDB8EBC0DD4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EADCDE-1F39-49F6-B2D6-FDB8EBC0DD4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EADCDE-1F39-49F6-B2D6-FDB8EBC0DD4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
