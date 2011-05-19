@@ -26,23 +26,29 @@
                         Chapters = new List<Chapter>()
                     };
 
-                    cookbook.Chapters.Add(new Chapter() { Title = "Models and Mappings", Book = cookbook });
-                    cookbook.Chapters.Add(new Chapter() { Title = "Configuration and Schema", Book = cookbook });
-                    cookbook.Chapters.Add(new Chapter() { Title = "Configuration and Schema", Book = cookbook });
+                    cookbook.Chapters.Add(new Chapter() { Title = "Models and Mappings" });
+                    cookbook.Chapters.Add(new Chapter() { Title = "Configuration and Schema" });
+                    cookbook.Chapters.Add(new Chapter() { Title = "Sessions and Transactions" });
 
                     session.Save(cookbook);
+                    tx.Commit();
+                    session.Close();
+                }
+            }
 
-                    foreach (Book book in session.Query<Book>().Fetch(b => b.Chapters))
+            using (ISession session = sessionFactory.OpenSession())
+            {
+                foreach (Book book in session.Query<Book>().Fetch(b => b.Chapters))
                     {
                         System.Console.WriteLine(string.Format("Book {0}", book.Title));
                         int nchapter = 0;
                         foreach (Chapter chapter in book.Chapters)
+                        {
                             System.Console.WriteLine(string.Format("Chapter {0}:{1}", ++nchapter, chapter.Title));
+                            System.Console.WriteLine(string.Format("From Book {0}", chapter.Book.Title));
+                        }
                     }
 
-                    tx.Commit();
-                    session.Close();
-                }
             }
 
             System.Console.ReadKey();
