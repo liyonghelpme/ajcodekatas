@@ -1,6 +1,7 @@
 
 This is an example of NHibernate 3.x mapping:
-- Two classes, one to many relation, with many to one
+- Two classes, one to many relation, with many to one (Books.Console project)
+- Same classes, but one to many with inverse="true" (Books.Inverse project)
 
 To generate the database (in \.SQLEXPRESS) run
 

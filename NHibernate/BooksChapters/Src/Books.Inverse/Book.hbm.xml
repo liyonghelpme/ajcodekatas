@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="Books"
+namespace="Books">
+  <class name="Book" table="Books">
+    <id name="Id">
+      <generator class="guid" />
+    </id>
+    <property name="Title" not-null="true" />
+    <property name="Author" not-null="true"/>
+    <list name="Chapters" cascade="all-delete-orphan" inverse="true">
+      <key column="BookId"/>
+      <index column="ChapterIndex"/>
+      <one-to-many class="Chapter"/>
+    </list>
+  </class>
+</hibernate-mapping>

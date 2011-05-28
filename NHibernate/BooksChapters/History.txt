@@ -5,3 +5,5 @@ First version
 2011-05-19
 Change for post demos
 
+2011-05-28
+Inverse example
