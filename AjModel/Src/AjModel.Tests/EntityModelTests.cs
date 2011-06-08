@@ -11,6 +11,15 @@ namespace AjModel.Tests
     public class EntityModelTests
     {
         [TestMethod]
+        public void GetNames()
+        {
+            EntityModel model = new EntityModel(typeof(Customer));
+
+            Assert.AreEqual("Customer", model.Name);
+            Assert.IsNull(model.SetName);
+        }
+
+        [TestMethod]
         public void GetProperties()
         {
             EntityModel model = new EntityModel(typeof(Customer));

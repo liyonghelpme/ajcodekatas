@@ -1,3 +1,11 @@
 
 2011-06-07
 Initial Project in ajcodekatas
+EntityModel with first tests
+First MVC application skeleton
+EntityListViewModel
+Customer Domain for testing
+
+2011-06-08
+Entity Controller, Index action
+Entity/Index View

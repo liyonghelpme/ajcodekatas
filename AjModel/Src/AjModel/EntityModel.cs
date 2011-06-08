@@ -18,7 +18,13 @@ namespace AjModel
 
             foreach (var info in this.type.GetProperties())
                 this.properties.Add(new PropertyModel(info));
+
+            this.Name = this.type.Name;
         }
+
+        public string Name { get; set; }
+
+        public string SetName { get; set; }
 
         public ICollection<PropertyModel> Properties
         {

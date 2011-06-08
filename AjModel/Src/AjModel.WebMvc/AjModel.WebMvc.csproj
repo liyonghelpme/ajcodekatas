@@ -91,16 +91,14 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Site.Master" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AjModel\AjModel.csproj">
       <Project>{7E6BC4FD-3422-4BC0-B360-1BF8D71CACD4}</Project>
       <Name>AjModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Shared\" />
+    <Content Include="Views\Entity\Index.aspx" />
+    <Content Include="Views\Shared\Site.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
