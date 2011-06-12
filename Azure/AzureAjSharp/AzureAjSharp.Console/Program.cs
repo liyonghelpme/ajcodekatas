@@ -8,12 +8,13 @@ using Microsoft.WindowsAzure;
 using AzureLibrary;
 using Microsoft.WindowsAzure.StorageClient;
 using System.Threading;
+using Azure.AjSharp;
 
 namespace AzureAjSharp.Console
 {
     class Program
     {
-        static private QueueUtilities qutil;
+        private static Processor Processor;
 
         static void Main(string[] args)
         {
@@ -28,8 +29,7 @@ namespace AzureAjSharp.Console
 
             CloudStorageAccount account = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
 
-            qutil = new QueueUtilities(account);
-            CloudQueue queue = qutil.CreateQueueIfNotExists("ajsprograms");
+            Processor = new Processor(account);
 
             (new Thread(new ThreadStart(GetResponse))).Start();
 
@@ -39,31 +39,22 @@ namespace AzureAjSharp.Console
 
                 string line = System.Console.ReadLine();
 
-                while (line != "go")
+                while (line != "send")
                 {
                     program += line;
                     program += "\r\n";
                     line = System.Console.ReadLine();
                 }
 
-                queue.AddMessage(new CloudQueueMessage(program));
+                Processor.SendRequest(program);
             }
         }
 
         private static void GetResponse()
         {
-            CloudQueue qresponse = qutil.CreateQueueIfNotExists("ajsresponses");
-
             while (true)
             {
-                CloudQueueMessage response = qresponse.GetMessage();
-                while (response == null)
-                {
-                    Thread.Sleep(10000);
-                    response = qresponse.GetMessage();
-                }
-                System.Console.WriteLine(response.AsString);
-                qresponse.DeleteMessage(response);
+                System.Console.WriteLine(Processor.GetResponse());
             }
         }
     }

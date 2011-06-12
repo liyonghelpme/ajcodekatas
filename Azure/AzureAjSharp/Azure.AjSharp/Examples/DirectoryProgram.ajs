@@ -1,0 +1,5 @@
+﻿di = new System.IO.DirectoryInfo(".");
+
+foreach (fi in di.GetFiles())
+	PrintLine(fi.FullName);
+

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjSharpVs2010", "..\..\AjLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureAjSharp.Console", "AzureAjSharp.Console\AzureAjSharp.Console.csproj", "{5B8BD208-77FD-4341-9164-30B2A6016C5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.AjSharp", "Azure.AjSharp\Azure.AjSharp.csproj", "{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,16 @@ Global
 		{5B8BD208-77FD-4341-9164-30B2A6016C5B}.Release|Mixed Platforms.Build.0 = Release|x86
 		{5B8BD208-77FD-4341-9164-30B2A6016C5B}.Release|x86.ActiveCfg = Release|x86
 		{5B8BD208-77FD-4341-9164-30B2A6016C5B}.Release|x86.Build.0 = Release|x86
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

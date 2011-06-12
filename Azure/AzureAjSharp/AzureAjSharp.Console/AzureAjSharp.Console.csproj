@@ -57,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Azure.AjSharp\Azure.AjSharp.csproj">
+      <Project>{FAF53E32-FE0A-4EDF-B8CE-193E4A851578}</Project>
+      <Name>Azure.AjSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AzureLibrary\AzureLibrary.csproj">
       <Project>{6E9ABCA8-B997-47A4-8E0D-2DAEBE2D2379}</Project>
       <Name>AzureLibrary</Name>

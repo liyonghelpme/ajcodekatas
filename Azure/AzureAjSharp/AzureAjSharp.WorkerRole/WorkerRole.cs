@@ -14,6 +14,7 @@ using System.IO;
 using AjSharp.Compiler;
 using AjLanguage.Commands;
 using System.Configuration;
+using Azure.AjSharp;
 
 namespace AzureAjSharp.WorkerRole
 {
@@ -28,38 +29,14 @@ namespace AzureAjSharp.WorkerRole
 
             CloudStorageAccount account = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
 
-            QueueUtilities qutil = new QueueUtilities(account);
-            CloudQueue queue = qutil.CreateQueueIfNotExists("ajsprograms");
-            this.qresponse = qutil.CreateQueueIfNotExists("ajsresponses");
-
-            MessageProcessor p = new MessageProcessor(queue, this.ProcessMessage);
-            p.Start();
+            Processor processor = new Processor(account);
+            processor.Start();
 
             while (true)
             {
                 Thread.Sleep(10000);
                 Trace.WriteLine("Working", "Information");
             }
-        }
-
-        private bool ProcessMessage(CloudQueueMessage msg)
-        {
-            string message = msg.AsString;
-
-            AjSharpMachine machine = new AjSharpMachine();
-            StringWriter writer = new StringWriter();
-            machine.Out = writer;
-
-            Parser parser = new Parser(message);
-            ICommand command;
-
-            while ((command = parser.ParseCommand()) != null)
-                command.Execute(machine.Environment);
-
-            writer.Close();
-            this.qresponse.AddMessage(new CloudQueueMessage(writer.ToString()));
-
-            return true;
         }
 
         public override bool OnStart()
