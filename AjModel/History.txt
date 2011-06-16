@@ -9,3 +9,9 @@ Customer Domain for testing
 2011-06-08
 Entity Controller, Index action
 Entity/Index View
+
+2011-06-16
+New class diagrams for post
+http://ajlopez.wordpress.com/2011/06/16/ajmodel-model-by-code-part-1-inception/
+New classes to use in post
+
