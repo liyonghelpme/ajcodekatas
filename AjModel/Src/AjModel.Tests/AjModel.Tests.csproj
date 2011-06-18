@@ -45,6 +45,8 @@
     <Compile Include="Entities\OrderLine.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="EntityModelTests.cs" />
+    <Compile Include="Fluent\FluentEntityModelTests.cs" />
+    <Compile Include="ModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,3 +15,8 @@ New class diagrams for post
 http://ajlopez.wordpress.com/2011/06/16/ajmodel-model-by-code-part-1-inception/
 New classes to use in post
 
+2011-06-18
+Fluent Entity Model first version, with tests
+Model, with tests
+Model extensions, with tests, first version
+

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Linq.Expressions;
 
 namespace AjModel
 {
@@ -26,12 +27,50 @@ namespace AjModel
 
         public string SetName { get; set; }
 
-        public ICollection<PropertyModel> Properties
+        public string Descriptor { get; set; }
+
+        public string SetDescriptor { get; set; }
+
+        public Type Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
+
+        public IEnumerable<PropertyModel> Properties
         {
             get
             {
                 return this.properties;
             }
+        }
+
+        public string GetDescriptor()
+        {
+            if (this.Descriptor == null)
+                return this.Name;
+
+            return this.Descriptor;
+        }
+
+        public PropertyModel GetPropertyModel(string name)
+        {
+            return this.properties.Where(p => p.Name == name).FirstOrDefault();
+        }
+    }
+    
+    public class EntityModel<T> : EntityModel
+    {
+        public EntityModel()
+            : base(typeof(T))
+        {
+        }
+
+        public PropertyModel GetPropertyModel<R>(Expression<Func<T, R>> expr)
+        {
+            throw new NotImplementedException();
         }
     }
 }

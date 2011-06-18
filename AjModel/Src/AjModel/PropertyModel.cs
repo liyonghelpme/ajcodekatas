@@ -15,13 +15,13 @@ namespace AjModel
             this.info = info;
         }
 
-        public string Name
-        {
-            get
-            {
-                return this.info.Name;
-            }
-        }
+        public string Name { get { return this.info.Name; } }
+
+        public Type Type { get { return this.info.PropertyType; } }
+
+        public string Descriptor { get; set; }
+
+        public string Description { get; set; }
 
         public object GetValue(object entity)
         {

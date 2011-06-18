@@ -17,6 +17,7 @@ namespace AjModel.Tests
 
             Assert.AreEqual("Customer", model.Name);
             Assert.IsNull(model.SetName);
+            Assert.AreEqual(typeof(Customer), model.Type);
         }
 
         [TestMethod]
@@ -27,12 +28,37 @@ namespace AjModel.Tests
             var properties = model.Properties;
 
             Assert.IsNotNull(properties);
-            Assert.AreEqual(4, properties.Count);
+            Assert.AreEqual(4, properties.Count());
 
             Assert.AreEqual("Id", properties.First().Name);
             Assert.AreEqual("Name", properties.Skip(1).First().Name);
             Assert.AreEqual("Address", properties.Skip(2).First().Name);
             Assert.AreEqual("Notes", properties.Skip(3).First().Name);
+        }
+
+        [TestMethod]
+        public void TypedModelGetProperties()
+        {
+            EntityModel<Customer> model = new EntityModel<Customer>();
+
+            var properties = model.Properties;
+
+            Assert.IsNotNull(properties);
+            Assert.AreEqual(4, properties.Count());
+
+            Assert.AreEqual("Id", properties.First().Name);
+            Assert.AreEqual("Name", properties.Skip(1).First().Name);
+            Assert.AreEqual("Address", properties.Skip(2).First().Name);
+            Assert.AreEqual("Notes", properties.Skip(3).First().Name);
+        }
+
+        [TestMethod]
+        public void GetDescriptorUsingName()
+        {
+            EntityModel model = new EntityModel(typeof(Customer));
+
+            Assert.IsNull(model.Descriptor);
+            Assert.AreEqual(model.Name, model.GetDescriptor());
         }
 
         [TestMethod]
