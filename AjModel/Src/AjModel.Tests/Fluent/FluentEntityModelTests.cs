@@ -14,7 +14,7 @@ namespace AjModel.Tests.Fluent
         [TestMethod]
         public void SetNames()
         {
-            EntityModel model = new EntityModel(typeof(Customer));
+            EntityModel<Customer> model = new EntityModel<Customer>();
             FluentEntityModel<Customer> fluentModel = new FluentEntityModel<Customer>(model);
             fluentModel.Name("BusinessCustomer")
                 .SetName("BusinessCustomers")
@@ -42,6 +42,22 @@ namespace AjModel.Tests.Fluent
             Assert.AreEqual(typeof(Customer), entityModel.Model.Type);
             Assert.AreEqual("Business Customer", entityModel.Model.Descriptor);
             Assert.AreEqual("Business Customers", entityModel.Model.SetDescriptor);
+        }
+
+        [TestMethod]
+        public void ModelForProperty()
+        {
+            Model model = new Model();
+            model.ForEntity<Customer>().Property(
+                c => c.Name,
+                pm => pm.Descriptor("Customer Name")
+                        .Description("The Customer Name")
+                        );
+
+            var propertyModel = model.GetEntityModel("Customer").GetPropertyModel("Name");
+
+            Assert.AreEqual("Customer Name", propertyModel.Descriptor);
+            Assert.AreEqual("The Customer Name", propertyModel.Description);
         }
     }
 }

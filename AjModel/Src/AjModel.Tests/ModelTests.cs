@@ -39,12 +39,32 @@ namespace AjModel.Tests
         {
             Model model = new Model();
 
-            model.AddEntityModel(new EntityModel(typeof(Customer)));
+            model.AddEntityModel(new EntityModel<Customer>());
 
             EntityModel entityModel = model.GetEntityModel<Customer>();
             Assert.IsNotNull(entityModel);
             Assert.AreEqual(typeof(Customer), entityModel.Type);
             Assert.AreEqual("Customer", entityModel.Name);
+        }
+
+        [TestMethod]
+        public void GetModelFromSimpleDomain()
+        {
+            var model = new Model(typeof(SimpleDomain));
+
+            var entityModel = model.GetEntityModel("Customer");
+
+            Assert.IsNotNull(entityModel);
+        }
+
+        [TestMethod]
+        public void GetProductModelFromSimpleDomain()
+        {
+            var model = new Model(typeof(SimpleDomain));
+
+            var entityModel = model.GetEntityModel("Product");
+
+            Assert.IsNotNull(entityModel);
         }
     }
 }

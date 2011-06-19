@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityModel.cs" />
+    <Compile Include="ExpressionExtensions.cs" />
     <Compile Include="Fluent\FluentPropertyModel.cs" />
     <Compile Include="Fluent\FluentEntityModel.cs" />
     <Compile Include="Fluent\ModelExtensions.cs" />

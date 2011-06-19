@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Linq.Expressions;
 
 namespace AjModel.Fluent
 {
     public class FluentEntityModel<T>
     {
-        private EntityModel model;
+        private EntityModel<T> model;
 
-        public FluentEntityModel(EntityModel model)
+        public FluentEntityModel(EntityModel<T> model)
         {
             this.model = model;
         }
@@ -37,6 +38,13 @@ namespace AjModel.Fluent
         public FluentEntityModel<T> Descriptor(string descriptor)
         {
             this.model.Descriptor = descriptor;
+            return this;
+        }
+
+        public FluentEntityModel<T> Property<R>(Expression<Func<T, R>> expr, Action<FluentPropertyModel<T, R>> action)
+        {
+            var propertyModel = new FluentPropertyModel<T, R>(this.model.GetPropertyModel(expr));
+            action(propertyModel);
             return this;
         }
 

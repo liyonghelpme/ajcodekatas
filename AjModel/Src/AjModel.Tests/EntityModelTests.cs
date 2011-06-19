@@ -77,6 +77,55 @@ namespace AjModel.Tests
             Assert.AreEqual(customer.Name, nameProperty.GetValue(customer));
         }
 
+        [TestMethod]
+        public void GetTypedPropertyValue()
+        {
+            EntityModel<Customer> model = new EntityModel<Customer>();
+
+            var customer = CreateCustomer(1);
+
+            var idProperty = model.GetPropertyModel(c => c.Id);
+            Assert.AreEqual("Id", idProperty.Name);
+            Assert.AreEqual(customer.Id, idProperty.GetValue(customer));
+
+            var nameProperty = model.GetPropertyModel(c => c.Name);
+            Assert.AreEqual("Name", nameProperty.Name);
+            Assert.AreEqual(customer.Name, nameProperty.GetValue(customer));
+        }
+
+        [TestMethod]
+        public void GetPropertyByExpression()
+        {
+            EntityModel<Customer> model = new EntityModel<Customer>();
+
+            var propertyModel = model.GetPropertyModel(c => c.Name);
+
+            Assert.IsNotNull(propertyModel);
+            Assert.IsInstanceOfType(propertyModel, typeof(PropertyModel<Customer, string>));
+            Assert.AreEqual("Name", propertyModel.Name);
+            Assert.AreEqual(typeof(string), propertyModel.Type);
+
+            // Check properties are well formed
+            var properties = model.Properties;
+
+            Assert.IsNotNull(properties);
+            Assert.AreEqual(4, properties.Count());
+
+            Assert.AreEqual("Name", properties.Skip(1).First().Name);
+        }
+
+        [TestMethod]
+        public void GetEnumerableProperties()
+        {
+            var model = new EntityModel<Order>();
+            var properties = model.Properties.Where(pm => pm.IsEnumerable());
+
+            Assert.IsNotNull(properties);
+            Assert.AreEqual(1, properties.Count());
+
+            Assert.AreEqual("OrderLines", properties.First().Name);
+        }
+
         private static Customer CreateCustomer(int n)
         {
             return new Customer()

@@ -20,3 +20,8 @@ Fluent Entity Model first version, with tests
 Model, with tests
 Model extensions, with tests, first version
 
+2011-06-19
+ExpressionExtensions, with test
+new PropertyModel(Func<T,P> expr)
+entityModel.Property(Funct<T,P> expr, FluentPropertyModel<T,P> pm)
+new Model(domain) detecting IList<T> or derived, with test

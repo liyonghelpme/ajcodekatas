@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace AjModel
 {
@@ -59,6 +60,23 @@ namespace AjModel
         {
             return this.properties.Where(p => p.Name == name).FirstOrDefault();
         }
+
+        internal void AddPropertyModel(PropertyModel model)
+        {
+            this.properties.Add(model);
+        }
+
+        internal void ReplacePropertyModel(PropertyModel model)
+        {
+            int k;
+
+            for (k = 0; k < this.properties.Count; k++)
+                if (this.properties[k].Name == model.Name)
+                    break;
+
+            this.properties.RemoveAt(k);
+            this.properties.Insert(k, model);
+        }
     }
     
     public class EntityModel<T> : EntityModel
@@ -68,9 +86,28 @@ namespace AjModel
         {
         }
 
-        public PropertyModel GetPropertyModel<R>(Expression<Func<T, R>> expr)
+        public PropertyModel<T, R> GetPropertyModel<R>(Expression<Func<T, R>> expr)
         {
-            throw new NotImplementedException();
+            PropertyInfo info = expr.ToPropertyInfo();
+            PropertyModel model = this.GetPropertyModel(info.Name);
+
+            if (model == null)
+            {
+                PropertyModel<T, R> newmodel = new PropertyModel<T, R>(expr);
+                this.AddPropertyModel(newmodel);
+                return newmodel;
+            }
+
+            PropertyModel<T, R> typedModel = model as PropertyModel<T, R>;
+
+            if (typedModel == null)
+            {
+                PropertyModel<T, R> newmodel = new PropertyModel<T, R>(expr, model);
+                this.ReplacePropertyModel(newmodel);
+                return newmodel;
+            }
+
+            return typedModel;
         }
     }
 }

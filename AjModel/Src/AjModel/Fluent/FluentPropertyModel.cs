@@ -5,16 +5,16 @@ using System.Text;
 
 namespace AjModel.Fluent
 {
-    public class FluentPropertyModel<T>
+    public class FluentPropertyModel<T, P>
     {
-        private PropertyModel model;
+        private PropertyModel<T, P> model;
 
-        public FluentPropertyModel(PropertyModel model)
+        public FluentPropertyModel(PropertyModel<T, P> model)
         {
             this.model = model;
         }
 
-        public PropertyModel Model
+        public PropertyModel<T, P> Model
         {
             get
             {
@@ -22,13 +22,13 @@ namespace AjModel.Fluent
             }
         }
 
-        public FluentPropertyModel<T> Descriptor(string descriptor)
+        public FluentPropertyModel<T, P> Descriptor(string descriptor)
         {
             this.model.Descriptor = descriptor;
             return this;
         }
 
-        public FluentPropertyModel<T> Description(string description)
+        public FluentPropertyModel<T, P> Description(string description)
         {
             this.model.Description = description;
             return this;
