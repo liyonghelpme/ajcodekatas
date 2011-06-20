@@ -4,3 +4,11 @@ Step 01
 
 2011-03-26
 Step 02
+
+2011-04-02
+Step 03
+Create and Edit Subject
+
+2011-06-20
+Step 04
+First views, Domain.Instance
