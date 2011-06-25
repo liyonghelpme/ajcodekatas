@@ -78,6 +78,77 @@ namespace AjModel.Tests
         }
 
         [TestMethod]
+        public void SetPropertyValue()
+        {
+            EntityModel model = new EntityModel(typeof(Person));
+
+            Person person = new Person();
+
+            model.GetPropertyModel("Age").SetValue(person, 30);
+
+            Assert.AreEqual(30, person.Age);
+        }
+
+        [TestMethod]
+        public void NewEntity()
+        {
+            EntityModel model = new EntityModel(typeof(Person));
+
+            object entity = model.NewEntity();
+
+            Assert.IsNotNull(entity);
+            Assert.IsInstanceOfType(entity, typeof(Person));
+        }
+
+        [TestMethod]
+        public void NewTypedEntity()
+        {
+            EntityModel<Person> model = new EntityModel<Person>();
+
+            object entity = model.NewEntity();
+
+            Assert.IsNotNull(entity);
+            Assert.IsInstanceOfType(entity, typeof(Person));
+        }
+
+        [TestMethod]
+        public void NewEntityWithValues()
+        {
+            EntityModel<Person> model = new EntityModel<Person>();
+            IDictionary<string, object> values = new Dictionary<string, object>()
+            {
+                { "Id", 1 },
+                { "FirstName", "Joe" },
+                { "LastName", "Doe" },
+                { "Age", "30" }
+            };
+
+            object entity = model.NewEntity(values);
+
+            Assert.IsNotNull(entity);
+            Assert.IsInstanceOfType(entity, typeof(Person));
+
+            Person person = (Person)entity;
+
+            Assert.AreEqual(1, person.Id);
+            Assert.AreEqual("Joe", person.FirstName);
+            Assert.AreEqual("Doe", person.LastName);
+            Assert.AreEqual(30, person.Age);
+        }
+
+        [TestMethod]
+        public void SetPropertyValueWithConversion()
+        {
+            EntityModel model = new EntityModel(typeof(Person));
+
+            Person person = new Person();
+
+            model.GetPropertyModel("Age").SetValue(person, "30");
+
+            Assert.AreEqual(30, person.Age);
+        }
+
+        [TestMethod]
         public void GetTypedPropertyValue()
         {
             EntityModel<Customer> model = new EntityModel<Customer>();

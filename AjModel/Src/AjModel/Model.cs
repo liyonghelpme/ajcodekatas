@@ -22,6 +22,8 @@ namespace AjModel
             }
         }
 
+        public static IModelProvider CurrentProvider { get; set; }
+
         public IEnumerable<EntityModel> EntityModels
         {
             get
@@ -40,7 +42,7 @@ namespace AjModel
             return this.entityModels.Where(em => em.Name == name).FirstOrDefault();
         }
 
-        public EntityModel<T> GetEntityModel<T>()
+        public EntityModel<T> GetEntityModel<T>() where T : new()
         {
             return (EntityModel<T>) this.entityModels.Where(em => em.Type == typeof(T)).FirstOrDefault();
         }

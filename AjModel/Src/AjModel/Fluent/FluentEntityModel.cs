@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace AjModel.Fluent
 {
-    public class FluentEntityModel<T>
+    public class FluentEntityModel<T> where T : new()
     {
         private EntityModel<T> model;
 

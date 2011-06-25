@@ -7,7 +7,7 @@ namespace AjModel.Fluent
 {
     public static class ModelExtensions
     {
-        public static FluentEntityModel<T> ForEntity<T>(this Model model)
+        public static FluentEntityModel<T> ForEntity<T>(this Model model) where T: new()
         {
             var entityModel = model.GetEntityModel<T>();
 

@@ -29,6 +29,11 @@ namespace AjModel
             return this.info.GetValue(entity, null);
         }
 
+        public virtual void SetValue(object entity, object value)
+        {
+            this.info.SetValue(entity, System.Convert.ChangeType(value, this.info.PropertyType), null);
+        }
+
         public bool IsEnumerable()
         {
             if (this.info.PropertyType.GetInterface("IEnumerable") != null)

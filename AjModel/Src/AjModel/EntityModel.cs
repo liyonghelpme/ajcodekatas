@@ -61,6 +61,24 @@ namespace AjModel
             return this.properties.Where(p => p.Name == name).FirstOrDefault();
         }
 
+        public virtual object NewEntity()
+        {
+            return Activator.CreateInstance(this.type);
+        }
+
+        public virtual object NewEntity(IDictionary<string, object> values)
+        {
+            object entity = this.NewEntity();
+
+            foreach (string name in values.Keys)
+            {
+                PropertyModel prop = this.GetPropertyModel(name);
+                prop.SetValue(entity, values[name]);
+            }
+
+            return entity;
+        }
+
         internal void AddPropertyModel(PropertyModel model)
         {
             this.properties.Add(model);
@@ -79,7 +97,7 @@ namespace AjModel
         }
     }
     
-    public class EntityModel<T> : EntityModel
+    public class EntityModel<T> : EntityModel where T : new()
     {
         public EntityModel()
             : base(typeof(T))
@@ -108,6 +126,11 @@ namespace AjModel
             }
 
             return typedModel;
+        }
+
+        public override object NewEntity()
+        {
+            return new T();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AjModel.WebMvc.Models;
 
 namespace AjModel.WebMvc
 {
@@ -29,6 +30,9 @@ namespace AjModel.WebMvc
             AreaRegistration.RegisterAllAreas();
 
             RegisterRoutes(RouteTable.Routes);
+
+            Model.CurrentProvider = new ModelProvider();
+            AjModel.Context.CurrentProvider = new ContextProvider();
         }
     }
 }

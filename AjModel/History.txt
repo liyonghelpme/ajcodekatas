@@ -25,3 +25,11 @@ ExpressionExtensions, with test
 new PropertyModel(Func<T,P> expr)
 entityModel.Property(Funct<T,P> expr, FluentPropertyModel<T,P> pm)
 new Model(domain) detecting IList<T> or derived, with test
+
+2011-06-25
+Repository, Repository<T>
+Context
+IModelProvider, IContextProvider
+Model.CurrentProvider
+Context.CurrentProvider
+Model Area in ASP.NET MVC sample
