@@ -1,21 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="AjModel.PropertyModel">
-    <Position X="3" Y="0.75" Width="1.5" />
+    <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIEAgAgAAAABAAAQAAAAAAAAAQQAAAAAAAAA=</HashCode>
       <FileName>PropertyModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AjModel.EntityModel">
-    <Position X="1" Y="0.75" Width="1.5" />
+    <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAQAACAAA=</HashCode>
+      <HashCode>AAIAAIAAAEAAAAAAAAAAAAQEAEIBBAAAAQAAQAACAAA=</HashCode>
       <FileName>EntityModel.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Properties" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AjModel.EntityModel&lt;T&gt;">
+    <Position X="5.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>EntityModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjModel.PropertyModel&lt;T, P&gt;">
+    <Position X="7" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PropertyModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjModel.Model">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAMAAABACAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="EntityModels" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AjModel.Context">
+    <Position X="1" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAAIAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Context.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="repositories" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AjModel.Repository">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAACAAAAAAIAAAAAAAAAAABAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjModel.Repository&lt;T&gt;">
+    <Position X="5.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAACAAAAAAIQAAAAABAAAABAAAAQAAAIAAAAAAAAA=</HashCode>
+      <FileName>Repository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjModel.Fluent.FluentEntityModel&lt;T&gt;">
+    <Position X="0.75" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAQAAEAAAAAAAAgAQQAIAAA=</HashCode>
+      <FileName>Fluent\FluentEntityModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AjModel.Fluent.FluentPropertyModel&lt;T, P&gt;">
+    <Position X="3" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAgAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAA=</HashCode>
+      <FileName>Fluent\FluentPropertyModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Tahoma" Size="8.25" />
 </ClassDiagram>

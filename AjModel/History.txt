@@ -33,3 +33,8 @@ IModelProvider, IContextProvider
 Model.CurrentProvider
 Context.CurrentProvider
 Model Area in ASP.NET MVC sample
+
+2011-06-29
+New class diagram for post
+http://ajlopez.wordpress.com/2011/06/29/ajmodel-model-by-code-part-2-models-and-repositories/
+
