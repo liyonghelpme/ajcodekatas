@@ -70,3 +70,7 @@ Reserved words for identifiers, WIP
 Catch errors: this = 1; var this; with tests
 Hoisted function and var
 Visitor and auxiliars, first tests and base implementations
+
+2011-07-02
+Moved to https://github.com/ajlopez/AjScript
+
