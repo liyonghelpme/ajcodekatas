@@ -1,0 +1,1 @@
+In this project, I write my "code katas": small projects, interpreters, compilers, proof of concepts apps, sample exercises
